@@ -69,6 +69,7 @@ def test_async_job_flow_returns_202_then_completes():
             assert doc["status"] == "processing" and doc["topography"]["elevation_m"] is None
         for _ in range(200):
             j = c.get(doc["links"]["self"])
+            assert j.json()["links"]["self"] == doc["links"]["self"]   # stable while processing too
             if j.status_code == 200:
                 break
             import time
@@ -93,3 +94,34 @@ def test_cors_restricted_to_configured_origins():
         assert ok.headers.get("access-control-allow-origin") == "https://app.example.org"
         bad = c.options("/health", headers={"Origin": "https://evil.example.com", "Access-Control-Request-Method": "GET"})
         assert "access-control-allow-origin" not in bad.headers
+
+
+def test_jobs_interrupted_by_restart_are_resumed(tmp_path):
+    """A job left 'processing' in the store (process killed mid-run) is re-run at startup."""
+    from app.pipelines.common import build_coordinates
+    from app.schemas.analysis import AnalyzeRequest, processing_placeholder
+    from app.services.jobs import MAX_RESUMES, request_key
+    from app.services.store import get_store
+    from datetime import datetime, timezone
+
+    world = FakeWorld(10.0, -15.0)
+    req = AnalyzeRequest(latitude=10.0, longitude=-15.0, radius_km=3)
+    st = get_store()
+    ph = processing_placeholder("orphan", "moon", build_coordinates(req, "moon"), datetime.now(timezone.utc))
+    st.save("orphan", "moon", request_key("moon", req), "processing", ph.model_dump(mode="json"),
+            request={**req.model_dump(mode="json"), "_resumes": 0})
+    st.save("noreq", "moon", "k", "processing", ph.model_dump(mode="json") | {"analysis_id": "noreq"})
+    st.save("exhausted", "moon", "k2", "processing", ph.model_dump(mode="json") | {"analysis_id": "exhausted"},
+            request={**req.model_dump(mode="json"), "_resumes": MAX_RESUMES})
+    with _client_world(world), TestClient(create_app()) as c:
+        import time
+        for _ in range(200):
+            j = c.get("/v1/jobs/orphan")
+            if j.status_code == 200:
+                break
+            time.sleep(0.05)
+        assert j.status_code == 200 and j.json()["status"] == "completed"
+        assert j.json()["topography"]["status"] == "available"
+        for rid in ("noreq", "exhausted"):
+            d = c.get(f"/v1/jobs/{rid}").json()
+            assert d["status"] == "failed" and "could not be resumed" in d["problems"][-1]["message"]

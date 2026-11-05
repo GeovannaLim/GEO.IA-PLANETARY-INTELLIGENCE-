@@ -1,0 +1,218 @@
+{
+  "base": "http://localhost:8767",
+  "results": [
+    {
+      "check": "A health 200",
+      "ok": true,
+      "seconds": 0.0,
+      "database": "ok",
+      "version": "0.1.0",
+      "environment": "production"
+    },
+    {
+      "check": "A https",
+      "ok": true,
+      "base": "http://localhost:8767"
+    },
+    {
+      "check": "B lunar job created",
+      "ok": true,
+      "first_status": 202
+    },
+    {
+      "check": "B lunar completed",
+      "ok": true,
+      "seconds": 12.0,
+      "sections": {
+        "imagery": [
+          "available",
+          null
+        ],
+        "topography": [
+          "available",
+          null
+        ],
+        "mineralogy": [
+          "available",
+          null
+        ],
+        "earth_analogs": [
+          "available",
+          null
+        ]
+      }
+    },
+    {
+      "check": "B coordinates used",
+      "ok": true
+    },
+    {
+      "check": "B LOLA numeric topography",
+      "ok": true,
+      "n_points": 35896,
+      "elev_mean": -2260.3182869957654
+    },
+    {
+      "check": "B ODE queried",
+      "ok": true
+    },
+    {
+      "check": "B M3 extraction",
+      "ok": true,
+      "status": "available",
+      "product": "M3G20090609T183254_V01_RFL",
+      "valid_pixels": 1681,
+      "character": "1 \u00b5m and 2 \u00b5m absorptions both detected: consistent with pyroxene-bearing material (e.g. mare basalt or noritic material). Not a mineral identification."
+    },
+    {
+      "check": "B provenance links",
+      "ok": true
+    },
+    {
+      "check": "B no Imbrium fixed vector",
+      "ok": true
+    },
+    {
+      "check": "C mars job",
+      "ok": true,
+      "first_status": 202
+    },
+    {
+      "check": "C mars completed",
+      "ok": true,
+      "seconds": 8.0,
+      "sections": {
+        "imagery": [
+          "available",
+          null
+        ],
+        "topography": [
+          "available",
+          null
+        ],
+        "mineralogy": [
+          "available",
+          null
+        ],
+        "earth_analogs": [
+          "available",
+          null
+        ]
+      }
+    },
+    {
+      "check": "C MOLA topography",
+      "ok": true,
+      "n_points": 329
+    },
+    {
+      "check": "C CRISM parameters",
+      "ok": true,
+      "product": "frt0001fb74_07_if166j_mtr3",
+      "character": "Positive summary parameters: OLINDEX3 (olivine (broad 1 \u00b5m band)); BDI1000IR (Fe2+ 1 \u00b5m absorption (mafic minerals)); D2300 (Fe/Mg-OH (Fe/Mg phyllosilicates)); BD2210_2 (Al-OH (Al phyllosilicates, hydrated silica)); BD530_2 (crystalline ferric oxides); BD1435 (CO2 ice). Screening only; mineral identification requires ratioed spectra."
+    },
+    {
+      "check": "C no lunar indices on Mars",
+      "ok": true
+    },
+    {
+      "check": "C provenance links",
+      "ok": true
+    },
+    {
+      "check": "C no spectral coverage is explicit",
+      "ok": true,
+      "seconds": 16.1,
+      "mineralogy": [
+        "unavailable",
+        "no_coverage"
+      ]
+    },
+    {
+      "check": "D earth explicit not_configured",
+      "ok": true,
+      "pending": "GEE credentials not set"
+    },
+    {
+      "check": "E lunar report json+pdf",
+      "ok": true,
+      "pdf_bytes": 9831,
+      "sources": 7,
+      "limitations": 5
+    },
+    {
+      "check": "E mars report json+pdf",
+      "ok": true,
+      "pdf_bytes": 11929,
+      "sources": 6,
+      "limitations": 4
+    },
+    {
+      "check": "F invalid latitude 422",
+      "ok": true
+    },
+    {
+      "check": "F invalid radius 422",
+      "ok": true
+    },
+    {
+      "check": "F unknown job 404",
+      "ok": true
+    },
+    {
+      "check": "F lunar south pole",
+      "ok": true,
+      "seconds": 28.3,
+      "sections": {
+        "imagery": [
+          "available",
+          null
+        ],
+        "topography": [
+          "available",
+          null
+        ],
+        "mineralogy": [
+          "available",
+          null
+        ],
+        "earth_analogs": [
+          "available",
+          null
+        ]
+      }
+    },
+    {
+      "check": "F lunar antimeridian",
+      "ok": true,
+      "seconds": 32.1,
+      "sections": {
+        "imagery": [
+          "available",
+          null
+        ],
+        "topography": [
+          "available",
+          null
+        ],
+        "mineralogy": [
+          "available",
+          null
+        ],
+        "earth_analogs": [
+          "available",
+          null
+        ]
+      }
+    },
+    {
+      "check": "CORS preflight for Skip origin",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "check": "CORS rejects unknown origin",
+      "ok": true
+    }
+  ]
+}

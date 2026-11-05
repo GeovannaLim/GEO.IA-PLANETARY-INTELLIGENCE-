@@ -43,9 +43,10 @@ def configure_logging() -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     configure_logging()
-    n = get_store().mark_interrupted()
-    if n:
-        logging.getLogger("geoia").warning("marked interrupted jobs as failed", extra={"count": n})
+    get_store()
+    res = jobs.resume_interrupted()
+    if res["resumed"] or res["failed"]:
+        logging.getLogger("geoia").warning("interrupted jobs handled", extra=res)
     yield
     await jobs.shutdown()
     await close_http()

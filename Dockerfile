@@ -9,4 +9,4 @@ RUN useradd --create-home --uid 10001 geoia && mkdir -p /var/data && chown geoia
 USER geoia
 ENV GEOIA_DB_PATH=/var/data/geoia.sqlite3 PORT=8000
 EXPOSE 8000
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --proxy-headers --workers 1"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --proxy-headers --forwarded-allow-ips='*' --workers 1"]

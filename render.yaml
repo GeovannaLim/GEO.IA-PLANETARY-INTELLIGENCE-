@@ -1,28 +1,37 @@
 # Render blueprint — GEØ.IA Planetary Intelligence backend.
-# A single instance with a persistent disk: jobs and reports live in SQLite on
-# the disk, so restarts/redeploys keep them. (Jobs run in-process; scale
-# vertically, not horizontally, until a shared queue/DB is introduced.)
+#
+# DEFAULT = FREE PLAN (no cost). Consequences, documented in docs/DEPLOY.md:
+#   * the container filesystem is ephemeral: the SQLite database (jobs and
+#     reports) is lost on every redeploy/restart and when the free instance
+#     spins down after ~15 min without traffic;
+#   * jobs interrupted by a restart are resumed only while the database
+#     survives (i.e. not on free-plan restarts).
+# For durable jobs/reports choose ONE (requires your authorization if paid):
+#   A) plan: starter + the `disk:` block below (SQLite on a persistent disk);
+#   B) keep free and point GEOIA_DB_PATH at nothing persistent (demo only).
 services:
   - type: web
     name: geoia-planetary-backend
     runtime: docker
-    plan: starter            # persistent disks require a paid instance
+    plan: free
+    region: oregon
     dockerfilePath: ./Dockerfile
     healthCheckPath: /health
     autoDeploy: true
-    disk:
-      name: geoia-data
-      mountPath: /var/data
-      sizeGB: 1
+    # --- option A (paid): uncomment together with `plan: starter`
+    # disk:
+    #   name: geoia-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
     envVars:
       - key: GEOIA_ENVIRONMENT
         value: production
       - key: GEOIA_DB_PATH
         value: /var/data/geoia.sqlite3
-      - key: GEOIA_CORS_ORIGINS          # comma-separated frontend origins
+      - key: GEOIA_CORS_ORIGINS          # exact Skip platform origin(s), comma-separated
         sync: false
       - key: GEOIA_MAX_CONCURRENT_JOBS
-        value: "3"
+        value: "2"
       - key: GEE_PROJECT                 # Earth endpoint only
         sync: false
       - key: GEE_SERVICE_ACCOUNT_JSON    # full service-account JSON; dashboard only
