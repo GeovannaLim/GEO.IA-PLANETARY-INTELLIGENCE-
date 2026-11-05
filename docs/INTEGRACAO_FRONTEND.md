@@ -4,7 +4,10 @@ Fluxo: **Vercel** (site institucional, não chama a API) → **Skip** (plataform
 Todas as consultas científicas ficam no backend; o Skip só chama os endpoints abaixo por HTTPS.
 
 ## 1. URL base
-`https://<servico>.onrender.com` — **pendente**: preencher após o deploy (o nome do serviço no `render.yaml` é `geoia-planetary-backend`, então o padrão esperado é `https://geoia-planetary-backend.onrender.com`, se o nome estiver livre). Configure no Skip como variável (ex.: `GEOIA_API_BASE`), nunca hard-coded em vários lugares.
+```
+https://geoia-planetary-backend.onrender.com
+```
+Em produção desde 2026-11-05 (Render, plano Free). Configure no Skip como variável (ex.: `GEOIA_API_BASE`). Documentação interativa: https://geoia-planetary-backend.onrender.com/docs
 
 ## 2. Endpoints
 | Método | Caminho | Uso |
@@ -97,7 +100,7 @@ Se o Skip fizer as chamadas a partir do servidor (não do navegador), CORS não 
 
 ## 10. Exemplo TypeScript (fetch, sem dependências)
 ```ts
-const API = process.env.GEOIA_API_BASE ?? "https://geoia-planetary-backend.onrender.com";
+const API = "https://geoia-planetary-backend.onrender.com"; // ou a variável de ambiente do Skip
 type Body = "lunar" | "mars" | "earth";
 
 export async function runAnalysis(
@@ -143,8 +146,9 @@ async function fetchRetry(url: string, init?: RequestInit, tries = 3): Promise<R
 ## 11. Exemplos reais
 * `examples/response_lunar_accepted_202.json`, `examples/response_lunar_25.8N_15.2W.json`, `examples/response_mars_jezero.json`, `examples/report_lunar_25.8N_15.2W.pdf`
 * `examples/local_validation_run.json` — 27 verificações reais (testes A–F) contra servidor local em modo produção.
+* `examples/production_validation_render.json` — as mesmas 27 verificações contra o Render em produção (27/27, 2026-11-05).
 
 ## 12. Teste de integração (pendente — requer acesso ao Skip)
 1. Configurar `GEOIA_CORS_ORIGINS=https://geoai-interplanetary.goskip.app` no Render.
-2. `PYTHONPATH=. python scripts/validate_production.py https://<render> --origin https://geoai-interplanetary.goskip.app` (verifica o preflight CORS).
+2. ~~Preflight CORS do Skip contra o Render~~ — **feito**: 200 com `access-control-allow-origin: https://geoai-interplanetary.goskip.app`; origem desconhecida recusada.
 3. No Skip: iniciar uma análise, confirmar criação do job (202), acompanhar `progress`, exibir resultado, abrir o PDF.

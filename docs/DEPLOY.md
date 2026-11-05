@@ -1,5 +1,15 @@
 # Deploy — GitHub + Render
 
+## Produção (2026-11-05)
+| Item | Valor |
+|---|---|
+| GitHub | https://github.com/GeovannaLim/GEO.IA-PLANETARY-INTELLIGENCE- (privado, branch `main`) |
+| Render | https://geoia-planetary-backend.onrender.com (plano Free, Docker) |
+| Health | 200, `environment: production`, `database: ok`, Earth Engine `initialized: true` (service account) |
+| CORS | `https://geoai-interplanetary.goskip.app` |
+| Validação real A–F | **27/27** (`examples/production_validation_render.json`) |
+
+
 ## Estado da verificação (2026-11-05, nesta máquina)
 | Item | Resultado |
 |---|---|
