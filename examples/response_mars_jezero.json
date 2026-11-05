@@ -1,0 +1,927 @@
+{
+  "schema_version": "1.0.0",
+  "analysis_id": "24c05336d79d4419962d679c867756a6",
+  "planet": "mars",
+  "status": "completed",
+  "created_at": "2026-11-05T20:51:31.807953Z",
+  "completed_at": "2026-11-05T20:51:37.917433Z",
+  "progress": [
+    "pds_discovery",
+    "usgs_discovery",
+    "crism_discovery",
+    "imagery",
+    "crism_extraction",
+    "topography"
+  ],
+  "coordinates": {
+    "latitude": 18.44,
+    "longitude": 77.44999999999999,
+    "radius_km": 5.0,
+    "longitude_east_360": 77.44999999999999,
+    "latitude_type": "planetocentric",
+    "reference_frame": "IAU 2000 Mars body-fixed, planetocentric, east-positive",
+    "reference_radius_km": 3396.19,
+    "bounding_box": {
+      "minlat": 18.355647,
+      "maxlat": 18.524353,
+      "westernlon": 77.361038,
+      "easternlon": 77.538962
+    }
+  },
+  "data_sources": [
+    {
+      "source_id": "src-01",
+      "provider": "NASA PDS",
+      "service": "PDS Registry API (spatial, PDS4 cart:Bounding_Coordinates)",
+      "instrument": "CRISM",
+      "mission": null,
+      "product_type": null,
+      "product_id": null,
+      "url": null,
+      "observation_start": null,
+      "observation_end": null,
+      "spatial_resolution_m": null,
+      "processing": [],
+      "query": {
+        "endpoint": "https://pds.nasa.gov/api/search/1/products",
+        "params": {
+          "q": "(ref_lid_instrument eq \"urn:nasa:pds:context:instrument:mro.crism\" and cart:Bounding_Coordinates.cart:west_bounding_coordinate le 77.4500 and cart:Bounding_Coordinates.cart:east_bounding_coordinate ge 77.4500 and cart:Bounding_Coordinates.cart:south_bounding_coordinate le 18.4400 and cart:Bounding_Coordinates.cart:north_bounding_coordinate ge 18.4400)",
+          "limit": "5",
+          "fields": "lid,title,pds:Time_Coordinates.pds:start_date_time,pds:Time_Coordinates.pds:stop_date_time,ref_lid_instrument,cart:Bounding_Coordinates.cart:west_bounding_coordinate,cart:Bounding_Coordinates.cart:east_bounding_coordinate,cart:Bounding_Coordinates.cart:north_bounding_coordinate,cart:Bounding_Coordinates.cart:south_bounding_coordinate"
+        }
+      },
+      "retrieved_at": "2026-11-05T20:51:32.599196Z",
+      "status": "empty",
+      "message": "No PDS4 products indexed for this point. The PDS registry does not index every node's PDS3 holdings; ODE results are authoritative for coverage.",
+      "limitations": [
+        "discovery only; products are not downloaded"
+      ]
+    },
+    {
+      "source_id": "src-02",
+      "provider": "USGS Astrogeology",
+      "service": "STAC API (high-resolution DTMs)",
+      "instrument": null,
+      "mission": null,
+      "product_type": null,
+      "product_id": null,
+      "url": null,
+      "observation_start": null,
+      "observation_end": null,
+      "spatial_resolution_m": null,
+      "processing": [],
+      "query": {
+        "endpoint": "https://stac.astrogeology.usgs.gov/api/search",
+        "params": {
+          "collections": "mro_ctx_controlled_usgs_dtms,mro_hirise_socet_dtms",
+          "intersects": "{\"type\":\"Point\",\"coordinates\":[77.450000,18.440000]}",
+          "limit": "5"
+        }
+      },
+      "retrieved_at": "2026-11-05T20:51:32.794245Z",
+      "status": "ok",
+      "message": "5 DTM(s) intersect the point: mro_ctx_controlled_usgs_dtms/P18_007925_1987_XN_18N282W__P19_008650_1987_XI_18N282W; mro_ctx_controlled_usgs_dtms/P02_001820_1984_XI_18N282W__P06_003442_1987_XI_18N282W; mro_ctx_controlled_usgs_dtms/N01_062952_1988_XN_18N282W__N01_062662_1988_XN_18N282W; mro_ctx_controlled_usgs_dtms/N01_062741_1988_XN_18N282W__N03_063387_1988_XN_18N282W; mro_ctx_controlled_usgs_dtms/K23_062530_1986_XN_18N282W__K23_062319_1986_XN_18N282W",
+      "limitations": [
+        "listed for follow-up analysis; not read by the MVP pipeline"
+      ]
+    },
+    {
+      "source_id": "src-03",
+      "provider": "PDS Geosciences Node",
+      "service": "ODE REST product search",
+      "instrument": "CRISM",
+      "mission": "Mars Reconnaissance Orbiter",
+      "product_type": "MTRDR (mro-m-crism-5-rdr-mptargeted-v1)",
+      "product_id": null,
+      "url": null,
+      "observation_start": null,
+      "observation_end": null,
+      "spatial_resolution_m": null,
+      "processing": [],
+      "query": {
+        "endpoint": "https://oderest.rsl.wustl.edu/live2/",
+        "requests": [
+          {
+            "query": "product",
+            "results": "opmf",
+            "output": "JSON",
+            "target": "mars",
+            "ihid": "MRO",
+            "iid": "CRISM",
+            "pt": "MTRDR",
+            "loc": "f",
+            "limit": "25",
+            "minlat": 18.431565,
+            "maxlat": 18.448435,
+            "westernlon": 77.441108,
+            "easternlon": 77.458892
+          }
+        ]
+      },
+      "retrieved_at": "2026-11-05T20:51:33.263373Z",
+      "status": "ok",
+      "message": "4 MTRDR footprints intersect the search box; 3 contain the point",
+      "limitations": []
+    },
+    {
+      "source_id": "src-04",
+      "provider": "NASA Trek",
+      "service": "WMTS GetCapabilities + layer catalogue",
+      "instrument": null,
+      "mission": null,
+      "product_type": null,
+      "product_id": null,
+      "url": "https://trek.nasa.gov/mars/TrekServices/ws/index/eq/searchItems?start=0&rows=2147483647&facetKeys=itemType%7CproductCat2%7CserviceTypes%7CthumbnailURLDir&facetValues=product%7C-%28DEM%20ConfidenceRaw%20Slope%29%7CMosaic%7C%5B%2A%20TO%20%2A%5D",
+      "observation_start": null,
+      "observation_end": null,
+      "spatial_resolution_m": null,
+      "processing": [
+        "curated global layers verified in catalogue and capabilities",
+        "regional layers selected by catalogue bbox containing the point"
+      ],
+      "query": {
+        "catalog_size": 146
+      },
+      "retrieved_at": "2026-11-05T20:51:33.763370Z",
+      "status": "ok",
+      "message": null,
+      "limitations": [
+        "WMTS tiles are rendered imagery for visualisation; not physical values"
+      ]
+    },
+    {
+      "source_id": "src-05",
+      "provider": "PDS Geosciences Node",
+      "service": "HTTP byte-range read of CRISM MTRDR SU/IF cubes",
+      "instrument": "CRISM",
+      "mission": "Mars Reconnaissance Orbiter",
+      "product_type": "MTRDR",
+      "product_id": "frt0001fb74_07_if166j_mtr3",
+      "url": "https://pds-geosciences.wustl.edu/mro/mro-m-crism-5-rdr-mptargeted-v1/mrocr_4001/mtrdr/2011/2011_226/frt0001fb74/frt0001fb74_07_su166j_mtr3.img",
+      "observation_start": "2011-08-14T19:33:12.670Z",
+      "observation_end": "2011-08-14T19:35:20.404Z",
+      "spatial_resolution_m": 18.0,
+      "processing": [
+        "map projection from SU header (Equirectangular, R=3394839.8 m, std parallel 15.0°); target pixel row 236, col 164",
+        "window 61x61 px (18 m/px); pixels > 5.0 km masked; ignore value 65535 and non-finite masked",
+        "I/F bands nearest 800, 1000, 1300, 1700, 2000, 2300 nm read (actual 801, 997, 1303, 1697, 2001, 2298 nm) for legacy band depths"
+      ],
+      "query": {},
+      "retrieved_at": "2026-11-05T20:51:37.014499Z",
+      "status": "ok",
+      "message": null,
+      "limitations": [
+        "MTRDR summary parameters are screening products; positive values can arise from noise, residual atmospheric CO2 or detector artefacts (Viviano-Beck et al. 2014).",
+        "CRISM targeted footprints are ~10 km wide; the analysis window covers only the part of the region imaged by the selected observation.",
+        "MTRDR I/F includes CRISM team photometric and volcano-scan atmospheric corrections; legacy band depths therefore differ in calibration from the terrestrial EMIT surface reflectance."
+      ]
+    },
+    {
+      "source_id": "src-06",
+      "provider": "PDS Geosciences Node",
+      "service": "ODE Granular Data System (GDS)",
+      "instrument": "MOLA",
+      "mission": "Mars Global Surveyor",
+      "product_type": "MOLA PEDR (GDS molapedr)",
+      "product_id": null,
+      "url": "https://oderest.rsl.wustl.edu/output/20261105t145132978/MolaPEDR_18N19N_77E78E_20261105T145136909_topo_csv.csv",
+      "observation_start": "1999-11-07T18:46:08.539",
+      "observation_end": "2001-05-23T20:20:42.757",
+      "spatial_resolution_m": 168.0,
+      "processing": [
+        "GDS topography CSV (valid shots only, quality flag 0)",
+        "points clipped to the circular region; azimuthal-equidistant local projection",
+        "least-squares plane for regional slope; gridded central differences for local slope"
+      ],
+      "query": {
+        "endpoint": "https://oderest.rsl.wustl.edu/livegds/",
+        "requests": [
+          {
+            "query": "molapedr",
+            "results": "v",
+            "output": "JSON",
+            "minlat": 18.355647,
+            "maxlat": 18.524353,
+            "westernlon": 77.361038,
+            "easternlon": 77.538962
+          }
+        ]
+      },
+      "retrieved_at": "2026-11-05T20:51:37.912318Z",
+      "status": "ok",
+      "message": "Query found 393 observations  out of an estimated 200 observations (based on area only) (out of a total 594,828,146 observations)",
+      "limitations": [
+        "MOLA shot spacing leaves gaps between ground tracks"
+      ]
+    }
+  ],
+  "imagery": {
+    "status": "available",
+    "reason": null,
+    "layers": [
+      {
+        "layer_id": "Mars_Viking_MDIM21_ClrMosaic_global_232m",
+        "title": "Viking VIS, Global Color Mosaic",
+        "provider": "NASA Trek",
+        "role": "basemap",
+        "protocol": "WMTS",
+        "capabilities_url": "https://trek.nasa.gov/tiles/Mars/EQ/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0/WMTSCapabilities.xml",
+        "tile_url_template": "https://trek.nasa.gov/tiles/Mars/EQ/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0//{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+        "image_format": "image/jpeg",
+        "tile_matrix_set": "default028mm",
+        "zoom_levels": 8,
+        "projection": "urn:ogc:def:crs:EPSG::104905",
+        "bbox_east_180": [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ],
+        "instrument": "MDIM21",
+        "note": "Visual layer only; pixel values are not physical measurements."
+      },
+      {
+        "layer_id": "Mars_MGS_MOLA_ClrShade_merge_global_463m",
+        "title": "MGS MOLA, Global Color Hillshade",
+        "provider": "NASA Trek",
+        "role": "shaded_relief",
+        "protocol": "WMTS",
+        "capabilities_url": "https://trek.nasa.gov/tiles/Mars/EQ/Mars_MGS_MOLA_ClrShade_merge_global_463m/1.0.0/WMTSCapabilities.xml",
+        "tile_url_template": "https://trek.nasa.gov/tiles/Mars/EQ/Mars_MGS_MOLA_ClrShade_merge_global_463m/1.0.0//{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+        "image_format": "image/jpeg",
+        "tile_matrix_set": "default028mm",
+        "zoom_levels": 8,
+        "projection": "urn:ogc:def:crs:EPSG::104905",
+        "bbox_east_180": [
+          -180.0,
+          -89.9991635,
+          179.9983271,
+          90.0
+        ],
+        "instrument": "MOLA",
+        "note": "Visual layer only; pixel values are not physical measurements."
+      },
+      {
+        "layer_id": "JEZ_hirise_soc_006_orthoMosaic_25cm_Eqc_latTs0_lon0_first_dd",
+        "title": "MRO HiRISE, Jezero Mosaic, Controlled",
+        "provider": "NASA Trek",
+        "role": "regional_product",
+        "protocol": "WMTS",
+        "capabilities_url": "https://trek.nasa.gov/tiles/Mars/EQ/JEZ_hirise_soc_006_orthoMosaic_25cm_Eqc_latTs0_lon0_first_dd/1.0.0/WMTSCapabilities.xml",
+        "tile_url_template": "https://trek.nasa.gov/tiles/Mars/EQ/JEZ_hirise_soc_006_orthoMosaic_25cm_Eqc_latTs0_lon0_first_dd/1.0.0//{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.png",
+        "image_format": "image/png",
+        "tile_matrix_set": "default028mm",
+        "zoom_levels": 18,
+        "projection": "urn:ogc:def:crs:EPSG::104905",
+        "bbox_east_180": [
+          77.2229331,
+          18.3067994,
+          77.583964,
+          18.669315
+        ],
+        "instrument": "HiRISE",
+        "note": "Visual layer only; pixel values are not physical measurements."
+      },
+      {
+        "layer_id": "JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0",
+        "title": "MRO CTX, Jezero Mosaic, Controlled",
+        "provider": "NASA Trek",
+        "role": "regional_product",
+        "protocol": "WMTS",
+        "capabilities_url": "https://trek.nasa.gov/tiles/Mars/EQ/JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0/1.0.0/WMTSCapabilities.xml",
+        "tile_url_template": "https://trek.nasa.gov/tiles/Mars/EQ/JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0/1.0.0//{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.png",
+        "image_format": "image/png",
+        "tile_matrix_set": "default028mm",
+        "zoom_levels": 14,
+        "projection": "urn:ogc:def:crs:EPSG::104905",
+        "bbox_east_180": [
+          77.1604655,
+          18.2110274,
+          77.6991776,
+          18.7211945
+        ],
+        "instrument": "CTX",
+        "note": "Visual layer only; pixel values are not physical measurements."
+      }
+    ],
+    "regional_layers_covering_point": 2,
+    "source_ids": [
+      "src-04"
+    ]
+  },
+  "topography": {
+    "status": "available",
+    "reason": null,
+    "method": "MOLA laser altimeter shots via ODE GDS",
+    "datum": "radius minus MOLA areoid (PEDR topography)",
+    "n_points": 329,
+    "sampled_radius_km": 5.0,
+    "elevation_m": {
+      "mean": -2558.6289665653494,
+      "median": -2567.85,
+      "min": -2650.76,
+      "max": -2411.13,
+      "std": 57.216264814252,
+      "p05": -2633.614,
+      "p95": -2444.3340000000003
+    },
+    "relief_m": 189.27999999999975,
+    "regional_slope_degrees": 1.232368362379809,
+    "regional_aspect_degrees": 122.25065957381702,
+    "local_slope_degrees": {
+      "mean": 1.2933096313379737,
+      "median": 1.1690205640040396,
+      "min": 0.2702621110050285,
+      "max": 3.1738228123226078,
+      "std": 0.8953675032333981,
+      "p05": 0.3262854361772515,
+      "p95": 2.971576791939378
+    },
+    "slope_baseline_m": 977.2,
+    "roughness_m": 20.6957486007262,
+    "coverage_fraction": 0.8333333333333334,
+    "source_ids": [
+      "src-06"
+    ],
+    "limitations": [],
+    "elevation_m_mean": -2558.6289665653494,
+    "slope_degrees": 1.1690205640040396
+  },
+  "mineralogy": {
+    "status": "available",
+    "reason": null,
+    "instrument": "CRISM (Compact Reconnaissance Imaging Spectrometer for Mars)",
+    "method": "CRISM MTRDR summary parameters (CRISM team) over a pixel window",
+    "products_found": 4,
+    "products_containing_point": 3,
+    "product_used": "frt0001fb74_07_if166j_mtr3",
+    "pixel_distance_m": 9.0,
+    "window_pixels": 3721,
+    "valid_pixels": 3721,
+    "indicators": [
+      {
+        "name": "OLINDEX3",
+        "value": {
+          "mean": 0.06729403085049539,
+          "median": 0.06715226918458939,
+          "min": 0.024921363219618797,
+          "max": 0.09991402179002762,
+          "std": 0.01097607105686553,
+          "p05": 0.049323633313179016,
+          "p95": 0.08538270741701126
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter OLINDEX3 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "olivine (broad 1 µm band)",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 1.0,
+        "n_pixels": 3721,
+        "interpretation": "Positive parameter value detected (statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification). Sensitive to olivine (broad 1 µm band); confirmation requires ratioed-spectrum analysis.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "LCPINDEX2",
+        "value": {
+          "mean": -0.04023719888137445,
+          "median": -0.04126916080713272,
+          "min": -0.05381256341934204,
+          "max": -0.024898089468479156,
+          "std": 0.005517280421540044,
+          "p05": -0.0478273406624794,
+          "p95": -0.029591264203190804
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter LCPINDEX2 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "low-Ca pyroxene",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.0,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "HCPINDEX2",
+        "value": {
+          "mean": -0.0063694477679151415,
+          "median": -0.0066352784633636475,
+          "min": -0.015432246029376984,
+          "max": 0.0035150647163391113,
+          "std": 0.0033293305894772697,
+          "p05": -0.011592864990234375,
+          "p95": -0.00031612810562364757
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter HCPINDEX2 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "high-Ca pyroxene",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.04138672399892502,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "BDI1000IR",
+        "value": {
+          "mean": 0.031799531952487754,
+          "median": 0.03164492920041084,
+          "min": 0.027874821797013283,
+          "max": 0.03737112879753113,
+          "std": 0.0017666478293573429,
+          "p05": 0.029074136167764664,
+          "p95": 0.035123907029628754
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter BDI1000IR (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "Fe2+ 1 µm absorption (mafic minerals)",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 1.0,
+        "n_pixels": 3721,
+        "interpretation": "Positive parameter value detected (statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification). Sensitive to Fe2+ 1 µm absorption (mafic minerals); confirmation requires ratioed-spectrum analysis.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "BD1900_2",
+        "value": {
+          "mean": -0.0008848510708612833,
+          "median": -0.0012232065200805664,
+          "min": -0.013015389442443848,
+          "max": 0.011092126369476318,
+          "std": 0.002842613165515324,
+          "p05": -0.004828810691833496,
+          "p95": 0.004147827625274658
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter BD1900_2 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "H2O in hydrated minerals",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.34238108035474335,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "D2300",
+        "value": {
+          "mean": 0.0027802946650190593,
+          "median": 0.0028843283653259277,
+          "min": -0.011327266693115234,
+          "max": 0.010588526725769043,
+          "std": 0.0022016313106436383,
+          "p05": -0.0009014606475830078,
+          "p95": 0.00616377592086792
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter D2300 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "Fe/Mg-OH (Fe/Mg phyllosilicates)",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.9142703574307982,
+        "n_pixels": 3721,
+        "interpretation": "Positive parameter value detected (statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification). Sensitive to Fe/Mg-OH (Fe/Mg phyllosilicates); confirmation requires ratioed-spectrum analysis.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "BD2210_2",
+        "value": {
+          "mean": 0.0018531206922164625,
+          "median": 0.001863241195678711,
+          "min": -0.004656434059143066,
+          "max": 0.007340550422668457,
+          "std": 0.001558288349482843,
+          "p05": -0.0007290840148925781,
+          "p95": 0.0043953657150268555
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter BD2210_2 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "Al-OH (Al phyllosilicates, hydrated silica)",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.8830959419510884,
+        "n_pixels": 3721,
+        "interpretation": "Positive parameter value detected (statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification). Sensitive to Al-OH (Al phyllosilicates, hydrated silica); confirmation requires ratioed-spectrum analysis.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "BD2290",
+        "value": {
+          "mean": -0.0006716082859218713,
+          "median": -0.0006135702133178711,
+          "min": -0.008356094360351562,
+          "max": 0.007231533527374268,
+          "std": 0.0018667000110113516,
+          "p05": -0.0036652088165283203,
+          "p95": 0.0023764967918395996
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter BD2290 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "Mg/Fe-OH; CO2 ice",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.36092448266595,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "MIN2295_2480",
+        "value": {
+          "mean": -0.004046922311831533,
+          "median": -0.004221081733703613,
+          "min": -0.010987281799316406,
+          "max": 0.0066925883293151855,
+          "std": 0.0025597026200655376,
+          "p05": -0.008056998252868652,
+          "p95": 0.0004583597183227539
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter MIN2295_2480 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "Mg carbonate",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.06423004568664338,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "MIN2345_2537",
+        "value": {
+          "mean": -3.8003078938427553e-05,
+          "median": -1.8835067749023438e-05,
+          "min": -0.010317564010620117,
+          "max": 0.006830275058746338,
+          "std": 0.002487487946148499,
+          "p05": -0.004233598709106445,
+          "p95": 0.003924965858459473
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter MIN2345_2537 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "Fe/Ca carbonate",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.49798441279226013,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "BD2100_2",
+        "value": {
+          "mean": -0.0010410678928111773,
+          "median": -0.0010828971862792969,
+          "min": -0.010849833488464355,
+          "max": 0.009720206260681152,
+          "std": 0.00284419541933442,
+          "p05": -0.005497097969055176,
+          "p95": 0.003478407859802246
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter BD2100_2 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "monohydrated sulfates",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.3399623757054555,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "SINDEX2",
+        "value": {
+          "mean": -0.00220921061366388,
+          "median": -0.0022999048233032227,
+          "min": -0.013649940490722656,
+          "max": 0.007394075393676758,
+          "std": 0.002309645729682495,
+          "p05": -0.005772709846496582,
+          "p95": 0.0015867352485656738
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter SINDEX2 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "polyhydrated sulfates (convexity at 2.29 µm)",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.14807847352862133,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "BD530_2",
+        "value": {
+          "mean": 0.15104468613342392,
+          "median": 0.1512131690979004,
+          "min": 0.13358831405639648,
+          "max": 0.1676262617111206,
+          "std": 0.004307119541042258,
+          "p05": 0.14388227462768555,
+          "p95": 0.1581142544746399
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter BD530_2 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "crystalline ferric oxides",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 1.0,
+        "n_pixels": 3721,
+        "interpretation": "Positive parameter value detected (statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification). Sensitive to crystalline ferric oxides; confirmation requires ratioed-spectrum analysis.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "BD1435",
+        "value": {
+          "mean": 0.0053292503122423516,
+          "median": 0.005177915096282959,
+          "min": -0.0026731491088867188,
+          "max": 0.016167819499969482,
+          "std": 0.002601849996789758,
+          "p05": 0.001453399658203125,
+          "p95": 0.010002553462982178
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter BD1435 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "CO2 ice",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.9854877721042731,
+        "n_pixels": 3721,
+        "interpretation": "Positive parameter value detected (statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification). Sensitive to CO2 ice; confirmation requires ratioed-spectrum analysis.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "BD1500_2",
+        "value": {
+          "mean": 1.5119012085797485e-06,
+          "median": -2.8848648071289062e-05,
+          "min": -0.014392733573913574,
+          "max": 0.012149631977081299,
+          "std": 0.0036428302602326346,
+          "p05": -0.006449341773986816,
+          "p95": 0.005791783332824707
+        },
+        "unit": "dimensionless",
+        "definition": "CRISM MTRDR summary parameter BD1500_2 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "H2O ice",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.4961031980650363,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant positive value in the window.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "R770",
+        "value": {
+          "mean": 0.19847271833503735,
+          "median": 0.19867318868637085,
+          "min": 0.1925005167722702,
+          "max": 0.20496337115764618,
+          "std": 0.00202728064717171,
+          "p05": 0.19491763412952423,
+          "p95": 0.20161865651607513
+        },
+        "unit": "I/F",
+        "definition": "CRISM MTRDR summary parameter R770 (computed by the CRISM team)",
+        "reference": "Viviano-Beck et al. (2014) JGR Planets 119, 1403-1431 (CRISM summary products)",
+        "sensitive_to": "albedo at 770 nm (descriptive)",
+        "screening_threshold": null,
+        "threshold_basis": null,
+        "fraction_above_threshold": null,
+        "n_pixels": 3721,
+        "interpretation": "Descriptive I/F value; no detection test applies.",
+        "comparability": "body_specific"
+      },
+      {
+        "name": "legacy_bd1000",
+        "value": {
+          "mean": 0.061792195836470463,
+          "median": 0.06183600831640839,
+          "min": 0.04597304825874845,
+          "max": 0.07925069199552175,
+          "std": 0.0051955020815105234,
+          "p05": 0.05331667499460257,
+          "p95": 0.07037869035697483
+        },
+        "unit": "dimensionless",
+        "definition": "(C - R1000)/C, C = mean(R800, R1300) on MTRDR I/F; clamped >= 0",
+        "reference": "GEØ.IA terrestrial EMIT library definition",
+        "sensitive_to": "Fe2+ absorption (coarse)",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 1.0,
+        "n_pixels": 3721,
+        "interpretation": "Positive absorption detected.",
+        "comparability": "direct"
+      },
+      {
+        "name": "legacy_bd2000",
+        "value": {
+          "mean": 9.183909804192609e-05,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.008499459137221606,
+          "std": 0.0006045258325349674,
+          "p05": 0.0,
+          "p95": 0.0
+        },
+        "unit": "dimensionless",
+        "definition": "(C - R2000)/C, C = mean(R1700, R2300) on MTRDR I/F; clamped >= 0",
+        "reference": "GEØ.IA terrestrial EMIT library definition",
+        "sensitive_to": "Fe2+ absorption (coarse)",
+        "screening_threshold": 0.0,
+        "threshold_basis": "statistical screening: window mean > 3 x standard error (effective n = pixels/25 for spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band depth; not a mineral abundance or identification",
+        "fraction_above_threshold": 0.03224939532383768,
+        "n_pixels": 3721,
+        "interpretation": "No statistically significant absorption.",
+        "comparability": "direct"
+      }
+    ],
+    "spectral_character": "Positive summary parameters: OLINDEX3 (olivine (broad 1 µm band)); BDI1000IR (Fe2+ 1 µm absorption (mafic minerals)); D2300 (Fe/Mg-OH (Fe/Mg phyllosilicates)); BD2210_2 (Al-OH (Al phyllosilicates, hydrated silica)); BD530_2 (crystalline ferric oxides); BD1435 (CO2 ice). Screening only; mineral identification requires ratioed spectra.",
+    "mean_spectrum": null,
+    "source_ids": [
+      "src-03",
+      "src-05"
+    ],
+    "limitations": [
+      "MTRDR summary parameters are screening products; positive values can arise from noise, residual atmospheric CO2 or detector artefacts (Viviano-Beck et al. 2014).",
+      "CRISM targeted footprints are ~10 km wide; the analysis window covers only the part of the region imaged by the selected observation.",
+      "MTRDR I/F includes CRISM team photometric and volcano-scan atmospheric corrections; legacy band depths therefore differ in calibration from the terrestrial EMIT surface reflectance."
+    ]
+  },
+  "earth_analogs": {
+    "status": "available",
+    "reason": null,
+    "method": "Euclidean distance over directly comparable band depths (legacy definition)",
+    "reference_library": "GEØ.IA terrestrial EMIT band-depth reference library v1.0.0 (90 sites)",
+    "directly_comparable": [
+      "legacy_bd1000",
+      "legacy_bd2000"
+    ],
+    "approximate_proxies": [
+      "BDI1000IR / LCPINDEX2 / HCPINDEX2 (Fe2+ absorptions; CRISM-specific definitions)"
+    ],
+    "not_comparable": [
+      "BD1900_2, D2300, BD2210_2, carbonate and sulfate parameters (no equivalent attribute in the terrestrial reference library)",
+      "CO2/H2O ice parameters (no terrestrial counterpart in the library)",
+      "ASTER TIR indices, NDVI (not measured on Mars here)"
+    ],
+    "missing": [],
+    "query_values": {
+      "legacy_bd1000": 0.06179,
+      "legacy_bd2000": 9e-05
+    },
+    "matches": [
+      {
+        "name": "Etendeka",
+        "country": "Namibia",
+        "setting": "Flood Basalt",
+        "distance": 0.00503,
+        "similarity": 0.9911,
+        "attributes_used": [
+          "legacy_bd1000",
+          "legacy_bd2000"
+        ],
+        "earth_values": {
+          "legacy_bd1000": 0.05806,
+          "legacy_bd2000": 0.00347
+        }
+      },
+      {
+        "name": "Hamersley (Mt Whaleback)",
+        "country": "Australia",
+        "setting": "Banded Iron Formation",
+        "distance": 0.00703,
+        "similarity": 0.9876,
+        "attributes_used": [
+          "legacy_bd1000",
+          "legacy_bd2000"
+        ],
+        "earth_values": {
+          "legacy_bd1000": 0.06448,
+          "legacy_bd2000": 0.00659
+        }
+      },
+      {
+        "name": "Escondida",
+        "country": "Chile",
+        "setting": "Pórfiro Cu-Au",
+        "distance": 0.02422,
+        "similarity": 0.9572,
+        "attributes_used": [
+          "legacy_bd1000",
+          "legacy_bd2000"
+        ],
+        "earth_values": {
+          "legacy_bd1000": 0.03757,
+          "legacy_bd2000": 0.0
+        }
+      },
+      {
+        "name": "Candelaria",
+        "country": "Chile",
+        "setting": "IOCG",
+        "distance": 0.02776,
+        "similarity": 0.9509,
+        "attributes_used": [
+          "legacy_bd1000",
+          "legacy_bd2000"
+        ],
+        "earth_values": {
+          "legacy_bd1000": 0.03403,
+          "legacy_bd2000": 0.0
+        }
+      },
+      {
+        "name": "Carrapateena",
+        "country": "Australia",
+        "setting": "IOCG",
+        "distance": 0.03383,
+        "similarity": 0.9402,
+        "attributes_used": [
+          "legacy_bd1000",
+          "legacy_bd2000"
+        ],
+        "earth_values": {
+          "legacy_bd1000": 0.02875,
+          "legacy_bd2000": 0.00735
+        }
+      }
+    ],
+    "disclaimer": "Similarity of a few band-depth attributes. It is not a probability of mineral occurrence and does not indicate a deposit. Low discrimination: the top 5 sites lie within 0.029 band-depth units of each other. Only two attributes are compared; many geologically unrelated sites can match equally well (the library is dominated by hydrothermal ore systems)."
+  },
+  "earth_observation": null,
+  "confidence": {
+    "level": "high",
+    "basis": "Rule-based; see docs/SCIENCE.md#confidence",
+    "criteria": [
+      {
+        "criterion": "altimetry_points>=30",
+        "met": true,
+        "detail": "329 valid shots in the sampled circle"
+      },
+      {
+        "criterion": "altimetry_cell_coverage>=0.3",
+        "met": true,
+        "detail": "coverage 0.8333333333333334"
+      },
+      {
+        "criterion": "altimetry_covers_requested_radius",
+        "met": true,
+        "detail": "sampled radius 5.0 km"
+      },
+      {
+        "criterion": "spectral_pixel_within_tolerance",
+        "met": true,
+        "detail": "nearest pixel 9.0 m from target"
+      },
+      {
+        "criterion": "valid_spectral_pixels>=25",
+        "met": true,
+        "detail": "3721 valid pixels"
+      },
+      {
+        "criterion": "solar_incidence<=70deg",
+        "met": true,
+        "detail": "incidence 39.1°"
+      }
+    ],
+    "limitations": [
+      "MTRDR summary parameters are screening products; positive values can arise from noise, residual atmospheric CO2 or detector artefacts (Viviano-Beck et al. 2014).",
+      "CRISM targeted footprints are ~10 km wide; the analysis window covers only the part of the region imaged by the selected observation.",
+      "MTRDR I/F includes CRISM team photometric and volcano-scan atmospheric corrections; legacy band depths therefore differ in calibration from the terrestrial EMIT surface reflectance.",
+      "CRISM I/F and terrestrial EMIT reflectance differ in atmospheric/photometric correction; band-depth comparison is a shape comparison, not a compositional match."
+    ]
+  },
+  "problems": [],
+  "cache": {
+    "hit": false,
+    "original_analysis_id": null,
+    "computed_at": null
+  },
+  "report_id": "24c05336d79d4419962d679c867756a6",
+  "links": {
+    "self": "/v1/jobs/24c05336d79d4419962d679c867756a6",
+    "report": "/v1/reports/24c05336d79d4419962d679c867756a6",
+    "report_pdf": "/v1/reports/24c05336d79d4419962d679c867756a6?format=pdf"
+  }
+}

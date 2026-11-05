@@ -1,0 +1,11 @@
+# GEØ.IA Planetary Intelligence backend — runtime dependencies
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+pydantic==2.10.4
+pydantic-settings==2.7.0
+httpx==0.28.1
+numpy==2.2.1
+reportlab==4.2.5
+# Optional at runtime: only needed for POST /v1/earth/analyze with live data.
+# Lunar and Martian endpoints never import it.
+earthengine-api==1.4.3

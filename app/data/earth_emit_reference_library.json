@@ -1,0 +1,921 @@
+{
+ "name": "GEØ.IA terrestrial EMIT band-depth reference library",
+ "version": "1.0.0",
+ "derived_from": {
+  "file": "earth_proxy_library_100.json",
+  "sha256": "2a730716687af0ac73f17a19b0b952be61aca04c8d69870afa135cc1d3b91ba3"
+ },
+ "measurement": "NASA/EMIT/L2A/RFL (Earth Engine) median composite over a 10 km buffer around each site centroid; band depth per pixel then buffer mean; extracted by the legacy GEØ.IA pipeline (run_earth_pipeline.extract_gee_indices).",
+ "definition": {
+  "legacy_bd1000": "(C - R1000)/C, C = (R800 + R1300)/2, EMIT bands nearest to each wavelength, clamped >= 0",
+  "legacy_bd2000": "(C - R2000)/C, C = (R1700 + R2300)/2, clamped >= 0"
+ },
+ "limitations": [
+  "Extraction date and exact EMIT scene list were not archived by the legacy pipeline.",
+  "Most entries are hydrothermal ore systems; many 2 µm depths are affected by alteration minerals and vegetation residue, not only by Fe2+ in mafic silicates.",
+  "Site centroids were not stored with the vectors, so entries cannot be re-measured without the original site list."
+ ],
+ "n_entries": 90,
+ "entries": [
+  {
+   "name": "Escondida",
+   "country": "Chile",
+   "setting": "Pórfiro Cu-Au",
+   "legacy_bd1000": 0.03757,
+   "legacy_bd2000": 0.0,
+   "raw_bd1000": 0.03757,
+   "raw_bd2000": -0.08684,
+   "emit_scene_count": 25
+  },
+  {
+   "name": "Chuquicamata",
+   "country": "Chile",
+   "setting": "Pórfiro Cu-Mo",
+   "legacy_bd1000": 0.02159,
+   "legacy_bd2000": 0.0,
+   "raw_bd1000": 0.02159,
+   "raw_bd2000": -0.01742,
+   "emit_scene_count": 24
+  },
+  {
+   "name": "El Teniente",
+   "country": "Chile",
+   "setting": "Pórfiro Cu-Mo",
+   "legacy_bd1000": 0.04934,
+   "legacy_bd2000": 0.17914,
+   "raw_bd1000": 0.04934,
+   "raw_bd2000": 0.17914,
+   "emit_scene_count": 35
+  },
+  {
+   "name": "Los Bronces",
+   "country": "Chile",
+   "setting": "Pórfiro Cu-Mo-Au",
+   "legacy_bd1000": 0.02649,
+   "legacy_bd2000": 0.10233,
+   "raw_bd1000": 0.02649,
+   "raw_bd2000": 0.10233,
+   "emit_scene_count": 46
+  },
+  {
+   "name": "Bingham Canyon",
+   "country": "EE.UU.",
+   "setting": "Pórfiro Cu-Au-Mo",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.42166,
+   "raw_bd1000": -0.03141,
+   "raw_bd2000": 0.42166,
+   "emit_scene_count": 44
+  },
+  {
+   "name": "Grasberg",
+   "country": "Indonesia",
+   "setting": "Pórfiro Cu-Au",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.66999,
+   "raw_bd1000": -0.05736,
+   "raw_bd2000": 0.66999,
+   "emit_scene_count": 6
+  },
+  {
+   "name": "Yanacocha",
+   "country": "Perú",
+   "setting": "Epitermal HS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.3066,
+   "raw_bd1000": -0.04077,
+   "raw_bd2000": 0.3066,
+   "emit_scene_count": 8
+  },
+  {
+   "name": "Pascua-Lama",
+   "country": "Chile/Arg",
+   "setting": "Epitermal HS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.0,
+   "raw_bd1000": -0.00062,
+   "raw_bd2000": -0.04253,
+   "emit_scene_count": 17
+  },
+  {
+   "name": "El Indio",
+   "country": "Chile",
+   "setting": "Epitermal HS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.00632,
+   "raw_bd1000": -0.018,
+   "raw_bd2000": 0.00632,
+   "emit_scene_count": 26
+  },
+  {
+   "name": "Pierina",
+   "country": "Perú",
+   "setting": "Epitermal HS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.22053,
+   "raw_bd1000": -0.04898,
+   "raw_bd2000": 0.22053,
+   "emit_scene_count": 21
+  },
+  {
+   "name": "Hishikari",
+   "country": "Japón",
+   "setting": "Epitermal LS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.36229,
+   "raw_bd1000": -0.1165,
+   "raw_bd2000": 0.36229,
+   "emit_scene_count": 5
+  },
+  {
+   "name": "Comstock Lode",
+   "country": "EE.UU.",
+   "setting": "Epitermal LS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.10031,
+   "raw_bd1000": -0.00521,
+   "raw_bd2000": 0.10031,
+   "emit_scene_count": 37
+  },
+  {
+   "name": "Round Mountain",
+   "country": "EE.UU.",
+   "setting": "Epitermal LS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.18798,
+   "raw_bd1000": -0.00765,
+   "raw_bd2000": 0.18798,
+   "emit_scene_count": 35
+  },
+  {
+   "name": "Olympic Dam",
+   "country": "Australia",
+   "setting": "IOCG",
+   "legacy_bd1000": 0.02015,
+   "legacy_bd2000": 0.0,
+   "raw_bd1000": 0.02015,
+   "raw_bd2000": -0.02453,
+   "emit_scene_count": 32
+  },
+  {
+   "name": "Candelaria",
+   "country": "Chile",
+   "setting": "IOCG",
+   "legacy_bd1000": 0.03403,
+   "legacy_bd2000": 0.0,
+   "raw_bd1000": 0.03403,
+   "raw_bd2000": -0.02641,
+   "emit_scene_count": 20
+  },
+  {
+   "name": "Ernest Henry",
+   "country": "Australia",
+   "setting": "IOCG",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.13046,
+   "raw_bd1000": -0.02678,
+   "raw_bd2000": 0.13046,
+   "emit_scene_count": 22
+  },
+  {
+   "name": "Antamina",
+   "country": "Perú",
+   "setting": "Skarn Cu-Zn",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.50444,
+   "raw_bd1000": -0.04828,
+   "raw_bd2000": 0.50444,
+   "emit_scene_count": 15
+  },
+  {
+   "name": "Tintaya",
+   "country": "Perú",
+   "setting": "Skarn Cu-Au",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.33794,
+   "raw_bd1000": -0.04164,
+   "raw_bd2000": 0.33794,
+   "emit_scene_count": 9
+  },
+  {
+   "name": "Kidd Creek",
+   "country": "Canadá",
+   "setting": "VMS Zn-Cu",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.52945,
+   "raw_bd1000": -0.01611,
+   "raw_bd2000": 0.52945,
+   "emit_scene_count": 2
+  },
+  {
+   "name": "Neves Corvo",
+   "country": "Portugal",
+   "setting": "VMS Cu-Zn-Sn",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.24663,
+   "raw_bd1000": -0.02665,
+   "raw_bd2000": 0.24663,
+   "emit_scene_count": 13
+  },
+  {
+   "name": "Bajo de la Alumbrera",
+   "country": "Argentina",
+   "setting": "Porphyry Cu-Au",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.09614,
+   "raw_bd1000": -0.0038,
+   "raw_bd2000": 0.09614,
+   "emit_scene_count": 31
+  },
+  {
+   "name": "Cerro Verde",
+   "country": "Peru",
+   "setting": "Porphyry Cu-Mo",
+   "legacy_bd1000": 0.01702,
+   "legacy_bd2000": 0.0863,
+   "raw_bd1000": 0.01702,
+   "raw_bd2000": 0.0863,
+   "emit_scene_count": 39
+  },
+  {
+   "name": "Toquepala",
+   "country": "Peru",
+   "setting": "Porphyry Cu-Mo",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.14383,
+   "raw_bd1000": -0.04218,
+   "raw_bd2000": 0.14383,
+   "emit_scene_count": 31
+  },
+  {
+   "name": "Cuajone",
+   "country": "Peru",
+   "setting": "Porphyry Cu-Mo",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.09177,
+   "raw_bd1000": -0.03159,
+   "raw_bd2000": 0.09177,
+   "emit_scene_count": 31
+  },
+  {
+   "name": "Morenci",
+   "country": "USA",
+   "setting": "Porphyry Cu",
+   "legacy_bd1000": 0.01421,
+   "legacy_bd2000": 0.02221,
+   "raw_bd1000": 0.01421,
+   "raw_bd2000": 0.02221,
+   "emit_scene_count": 32
+  },
+  {
+   "name": "Butte",
+   "country": "USA",
+   "setting": "Porphyry Cu-Mo",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.26318,
+   "raw_bd1000": -0.02118,
+   "raw_bd2000": 0.26318,
+   "emit_scene_count": 18
+  },
+  {
+   "name": "Oyu Tolgoi",
+   "country": "Mongolia",
+   "setting": "Porphyry Cu-Au",
+   "legacy_bd1000": 0.01604,
+   "legacy_bd2000": 0.15891,
+   "raw_bd1000": 0.01604,
+   "raw_bd2000": 0.15891,
+   "emit_scene_count": 24
+  },
+  {
+   "name": "Collahuasi",
+   "country": "Chile",
+   "setting": "Porphyry Cu-Mo",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.06001,
+   "raw_bd1000": -0.02197,
+   "raw_bd2000": 0.06001,
+   "emit_scene_count": 14
+  },
+  {
+   "name": "Prominent Hill",
+   "country": "Australia",
+   "setting": "IOCG",
+   "legacy_bd1000": 0.09864,
+   "legacy_bd2000": 0.0,
+   "raw_bd1000": 0.09864,
+   "raw_bd2000": -0.06304,
+   "emit_scene_count": 23
+  },
+  {
+   "name": "Carrapateena",
+   "country": "Australia",
+   "setting": "IOCG",
+   "legacy_bd1000": 0.02875,
+   "legacy_bd2000": 0.00735,
+   "raw_bd1000": 0.02875,
+   "raw_bd2000": 0.00735,
+   "emit_scene_count": 28
+  },
+  {
+   "name": "Salobo",
+   "country": "Brazil",
+   "setting": "IOCG",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.44523,
+   "raw_bd1000": -0.04889,
+   "raw_bd2000": 0.44523,
+   "emit_scene_count": 10
+  },
+  {
+   "name": "Sossego",
+   "country": "Brazil",
+   "setting": "IOCG",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.38878,
+   "raw_bd1000": -0.04697,
+   "raw_bd2000": 0.38878,
+   "emit_scene_count": 11
+  },
+  {
+   "name": "Mantoverde",
+   "country": "Chile",
+   "setting": "IOCG",
+   "legacy_bd1000": 0.04128,
+   "legacy_bd2000": 0.05268,
+   "raw_bd1000": 0.04128,
+   "raw_bd2000": 0.05268,
+   "emit_scene_count": 22
+  },
+  {
+   "name": "Rio Tinto",
+   "country": "Spain",
+   "setting": "VMS (Iberian Pyrite Belt)",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.23004,
+   "raw_bd1000": -0.01582,
+   "raw_bd2000": 0.23004,
+   "emit_scene_count": 33
+  },
+  {
+   "name": "Bathurst (Brunswick)",
+   "country": "Canada",
+   "setting": "VMS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.46624,
+   "raw_bd1000": -0.05233,
+   "raw_bd2000": 0.46624,
+   "emit_scene_count": 1
+  },
+  {
+   "name": "Rouyn-Noranda (Horne)",
+   "country": "Canada",
+   "setting": "VMS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.51538,
+   "raw_bd1000": -0.00513,
+   "raw_bd2000": 0.51538,
+   "emit_scene_count": 4
+  },
+  {
+   "name": "Bisha",
+   "country": "Eritrea",
+   "setting": "VMS",
+   "legacy_bd1000": 0.01055,
+   "legacy_bd2000": 0.00861,
+   "raw_bd1000": 0.01055,
+   "raw_bd2000": 0.00861,
+   "emit_scene_count": 21
+  },
+  {
+   "name": "Cananea",
+   "country": "Mexico",
+   "setting": "Skarn / Porphyry Cu",
+   "legacy_bd1000": 0.0017,
+   "legacy_bd2000": 0.08972,
+   "raw_bd1000": 0.0017,
+   "raw_bd2000": 0.08972,
+   "emit_scene_count": 26
+  },
+  {
+   "name": "Ok Tedi",
+   "country": "Papua New Guinea",
+   "setting": "Skarn / Porphyry",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.64012,
+   "raw_bd1000": -0.08777,
+   "raw_bd2000": 0.64012,
+   "emit_scene_count": 11
+  },
+  {
+   "name": "Pine Creek",
+   "country": "USA",
+   "setting": "Skarn W",
+   "legacy_bd1000": 0.03177,
+   "legacy_bd2000": 0.2718,
+   "raw_bd1000": 0.03177,
+   "raw_bd2000": 0.2718,
+   "emit_scene_count": 38
+  },
+  {
+   "name": "Hedley (Nickel Plate)",
+   "country": "Canada",
+   "setting": "Skarn Au",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.40795,
+   "raw_bd1000": -0.0366,
+   "raw_bd2000": 0.40795,
+   "emit_scene_count": 20
+  },
+  {
+   "name": "King Island (Dolphin)",
+   "country": "Australia",
+   "setting": "Skarn W",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.42785,
+   "raw_bd1000": -0.0724,
+   "raw_bd2000": 0.42785,
+   "emit_scene_count": 18
+  },
+  {
+   "name": "Empire (Mackay)",
+   "country": "USA",
+   "setting": "Skarn Cu-Au",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.1984,
+   "raw_bd1000": -0.02885,
+   "raw_bd2000": 0.1984,
+   "emit_scene_count": 19
+  },
+  {
+   "name": "Lihir (Ladolam)",
+   "country": "Papua New Guinea",
+   "setting": "Epithermal / alkalic",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.68799,
+   "raw_bd1000": -0.24783,
+   "raw_bd2000": 0.68799,
+   "emit_scene_count": 9
+  },
+  {
+   "name": "Waihi (Martha)",
+   "country": "New Zealand",
+   "setting": "Epithermal LS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.57604,
+   "raw_bd1000": -0.06698,
+   "raw_bd2000": 0.57604,
+   "emit_scene_count": 22
+  },
+  {
+   "name": "El Peñón",
+   "country": "Chile",
+   "setting": "Epithermal LS",
+   "legacy_bd1000": 0.02389,
+   "legacy_bd2000": 0.0,
+   "raw_bd1000": 0.02389,
+   "raw_bd2000": -0.10656,
+   "emit_scene_count": 26
+  },
+  {
+   "name": "Veladero",
+   "country": "Argentina",
+   "setting": "Epithermal HS",
+   "legacy_bd1000": 0.00383,
+   "legacy_bd2000": 0.0,
+   "raw_bd1000": 0.00383,
+   "raw_bd2000": -0.07297,
+   "emit_scene_count": 17
+  },
+  {
+   "name": "Fresnillo",
+   "country": "Mexico",
+   "setting": "Epithermal LS",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.03696,
+   "raw_bd1000": -0.01714,
+   "raw_bd2000": 0.03696,
+   "emit_scene_count": 14
+  },
+  {
+   "name": "Cripple Creek",
+   "country": "USA",
+   "setting": "Epithermal alkalic",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.35189,
+   "raw_bd1000": -0.07185,
+   "raw_bd2000": 0.35189,
+   "emit_scene_count": 27
+  },
+  {
+   "name": "Mountain Pass",
+   "country": "USA",
+   "setting": "Carbonatite REE",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.10583,
+   "raw_bd1000": -0.01633,
+   "raw_bd2000": 0.10583,
+   "emit_scene_count": 31
+  },
+  {
+   "name": "Bayan Obo",
+   "country": "China",
+   "setting": "Carbonatite REE-Fe-Nb",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.20976,
+   "raw_bd1000": -0.01789,
+   "raw_bd2000": 0.20976,
+   "emit_scene_count": 25
+  },
+  {
+   "name": "Mount Weld",
+   "country": "Australia",
+   "setting": "Carbonatite REE",
+   "legacy_bd1000": 0.05112,
+   "legacy_bd2000": 0.11537,
+   "raw_bd1000": 0.05112,
+   "raw_bd2000": 0.11537,
+   "emit_scene_count": 16
+  },
+  {
+   "name": "Palabora (Phalaborwa)",
+   "country": "South Africa",
+   "setting": "Carbonatite",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.25044,
+   "raw_bd1000": -0.02005,
+   "raw_bd2000": 0.25044,
+   "emit_scene_count": 13
+  },
+  {
+   "name": "Oka",
+   "country": "Canada",
+   "setting": "Carbonatite",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.53414,
+   "raw_bd1000": -0.02656,
+   "raw_bd2000": 0.53414,
+   "emit_scene_count": 16
+  },
+  {
+   "name": "Araxá",
+   "country": "Brazil",
+   "setting": "Carbonatite",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.43581,
+   "raw_bd1000": -0.04912,
+   "raw_bd2000": 0.43581,
+   "emit_scene_count": 16
+  },
+  {
+   "name": "Songwe Hill",
+   "country": "Malawi",
+   "setting": "Carbonatite REE",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.32739,
+   "raw_bd1000": -0.02518,
+   "raw_bd2000": 0.32739,
+   "emit_scene_count": 19
+  },
+  {
+   "name": "Bushveld (Rustenburg)",
+   "country": "South Africa",
+   "setting": "Layered Mafic Intrusion",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.24063,
+   "raw_bd1000": -0.00147,
+   "raw_bd2000": 0.24063,
+   "emit_scene_count": 27
+  },
+  {
+   "name": "Stillwater Complex",
+   "country": "USA",
+   "setting": "Layered Mafic Intrusion",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.46723,
+   "raw_bd1000": -0.04451,
+   "raw_bd2000": 0.46723,
+   "emit_scene_count": 27
+  },
+  {
+   "name": "Great Dyke",
+   "country": "Zimbabwe",
+   "setting": "Layered Mafic Intrusion",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.14806,
+   "raw_bd1000": -0.02077,
+   "raw_bd2000": 0.14806,
+   "emit_scene_count": 13
+  },
+  {
+   "name": "Sudbury",
+   "country": "Canada",
+   "setting": "Ni-Cu-PGE (impact/mafic)",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.62259,
+   "raw_bd1000": -0.03045,
+   "raw_bd2000": 0.62259,
+   "emit_scene_count": 11
+  },
+  {
+   "name": "Duluth Complex",
+   "country": "USA",
+   "setting": "Layered Mafic Intrusion",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.49458,
+   "raw_bd1000": -0.04185,
+   "raw_bd2000": 0.49458,
+   "emit_scene_count": 26
+  },
+  {
+   "name": "Jinchuan",
+   "country": "China",
+   "setting": "Mafic-ultramafic Ni-Cu",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.32987,
+   "raw_bd1000": -0.01107,
+   "raw_bd2000": 0.32987,
+   "emit_scene_count": 15
+  },
+  {
+   "name": "Deccan Traps",
+   "country": "India",
+   "setting": "Flood Basalt",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.22114,
+   "raw_bd1000": -0.00742,
+   "raw_bd2000": 0.22114,
+   "emit_scene_count": 28
+  },
+  {
+   "name": "Columbia River Basalt",
+   "country": "USA",
+   "setting": "Flood Basalt",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.32079,
+   "raw_bd1000": -0.02504,
+   "raw_bd2000": 0.32079,
+   "emit_scene_count": 38
+  },
+  {
+   "name": "Karoo (Drakensberg)",
+   "country": "South Africa",
+   "setting": "Flood Basalt",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.22179,
+   "raw_bd1000": -0.03099,
+   "raw_bd2000": 0.22179,
+   "emit_scene_count": 21
+  },
+  {
+   "name": "Paraná Basalt",
+   "country": "Brazil",
+   "setting": "Flood Basalt",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.50169,
+   "raw_bd1000": -0.04658,
+   "raw_bd2000": 0.50169,
+   "emit_scene_count": 9
+  },
+  {
+   "name": "Etendeka",
+   "country": "Namibia",
+   "setting": "Flood Basalt",
+   "legacy_bd1000": 0.05806,
+   "legacy_bd2000": 0.00347,
+   "raw_bd1000": 0.05806,
+   "raw_bd2000": 0.00347,
+   "emit_scene_count": 23
+  },
+  {
+   "name": "Emeishan",
+   "country": "China",
+   "setting": "Flood Basalt",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.27378,
+   "raw_bd1000": -0.04185,
+   "raw_bd2000": 0.27378,
+   "emit_scene_count": 7
+  },
+  {
+   "name": "Ethiopian Traps",
+   "country": "Ethiopia",
+   "setting": "Flood Basalt",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.18878,
+   "raw_bd1000": -0.04566,
+   "raw_bd2000": 0.18878,
+   "emit_scene_count": 24
+  },
+  {
+   "name": "Pilbara Craton (Marble Bar)",
+   "country": "Australia",
+   "setting": "Archean greenstone",
+   "legacy_bd1000": 0.02576,
+   "legacy_bd2000": 0.12046,
+   "raw_bd1000": 0.02576,
+   "raw_bd2000": 0.12046,
+   "emit_scene_count": 24
+  },
+  {
+   "name": "Kalgoorlie (Yilgarn)",
+   "country": "Australia",
+   "setting": "Archean greenstone",
+   "legacy_bd1000": 0.02163,
+   "legacy_bd2000": 0.04099,
+   "raw_bd1000": 0.02163,
+   "raw_bd2000": 0.04099,
+   "emit_scene_count": 37
+  },
+  {
+   "name": "Barberton Greenstone",
+   "country": "South Africa",
+   "setting": "Archean greenstone",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.27665,
+   "raw_bd1000": -0.04726,
+   "raw_bd2000": 0.27665,
+   "emit_scene_count": 14
+  },
+  {
+   "name": "Abitibi (Timmins)",
+   "country": "Canada",
+   "setting": "Archean greenstone",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.48354,
+   "raw_bd1000": -0.0215,
+   "raw_bd2000": 0.48354,
+   "emit_scene_count": 2
+  },
+  {
+   "name": "Kolar (Dharwar)",
+   "country": "India",
+   "setting": "Archean greenstone",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.23145,
+   "raw_bd1000": -0.01107,
+   "raw_bd2000": 0.23145,
+   "emit_scene_count": 12
+  },
+  {
+   "name": "Las Cristinas (Guiana Shield)",
+   "country": "Venezuela",
+   "setting": "Greenstone belt",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.49008,
+   "raw_bd1000": -0.03812,
+   "raw_bd2000": 0.49008,
+   "emit_scene_count": 10
+  },
+  {
+   "name": "Geita (Tanzania Craton)",
+   "country": "Tanzania",
+   "setting": "Archean greenstone",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.37178,
+   "raw_bd1000": -0.03499,
+   "raw_bd2000": 0.37178,
+   "emit_scene_count": 11
+  },
+  {
+   "name": "Troodos Ophiolite",
+   "country": "Cyprus",
+   "setting": "Ophiolite",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.34977,
+   "raw_bd1000": -0.02201,
+   "raw_bd2000": 0.34977,
+   "emit_scene_count": 37
+  },
+  {
+   "name": "Semail Ophiolite",
+   "country": "Oman",
+   "setting": "Ophiolite",
+   "legacy_bd1000": 0.02339,
+   "legacy_bd2000": 0.08424,
+   "raw_bd1000": 0.02339,
+   "raw_bd2000": 0.08424,
+   "emit_scene_count": 33
+  },
+  {
+   "name": "New Caledonia Ophiolite",
+   "country": "New Caledonia",
+   "setting": "Ophiolite / Ni laterite",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.48024,
+   "raw_bd1000": -0.0432,
+   "raw_bd2000": 0.48024,
+   "emit_scene_count": 20
+  },
+  {
+   "name": "Kilauea (Hawaii)",
+   "country": "USA",
+   "setting": "Ocean-island basalt",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.38532,
+   "raw_bd1000": -0.03309,
+   "raw_bd2000": 0.38532,
+   "emit_scene_count": 26
+  },
+  {
+   "name": "Yellowstone",
+   "country": "USA",
+   "setting": "Silicic volcanic field",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.51504,
+   "raw_bd1000": -0.0098,
+   "raw_bd2000": 0.51504,
+   "emit_scene_count": 22
+  },
+  {
+   "name": "Long Valley Caldera",
+   "country": "USA",
+   "setting": "Silicic volcanic field",
+   "legacy_bd1000": 0.01469,
+   "legacy_bd2000": 0.24105,
+   "raw_bd1000": 0.01469,
+   "raw_bd2000": 0.24105,
+   "emit_scene_count": 33
+  },
+  {
+   "name": "Valles Caldera",
+   "country": "USA",
+   "setting": "Silicic volcanic field",
+   "legacy_bd1000": 0.0075,
+   "legacy_bd2000": 0.33073,
+   "raw_bd1000": 0.0075,
+   "raw_bd2000": 0.33073,
+   "emit_scene_count": 37
+  },
+  {
+   "name": "Taupo Volcanic Zone",
+   "country": "New Zealand",
+   "setting": "Silicic volcanic field",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.43945,
+   "raw_bd1000": -0.0516,
+   "raw_bd2000": 0.43945,
+   "emit_scene_count": 31
+  },
+  {
+   "name": "Láscar",
+   "country": "Chile",
+   "setting": "Andean stratovolcano",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.01078,
+   "raw_bd1000": -0.03533,
+   "raw_bd2000": 0.01078,
+   "emit_scene_count": 25
+  },
+  {
+   "name": "Erta Ale",
+   "country": "Ethiopia",
+   "setting": "Basaltic shield/rift",
+   "legacy_bd1000": 0.02843,
+   "legacy_bd2000": 0.0874,
+   "raw_bd1000": 0.02843,
+   "raw_bd2000": 0.0874,
+   "emit_scene_count": 35
+  },
+  {
+   "name": "Hamersley (Mt Whaleback)",
+   "country": "Australia",
+   "setting": "Banded Iron Formation",
+   "legacy_bd1000": 0.06448,
+   "legacy_bd2000": 0.00659,
+   "raw_bd1000": 0.06448,
+   "raw_bd2000": 0.00659,
+   "emit_scene_count": 29
+  },
+  {
+   "name": "Mesabi Range",
+   "country": "USA",
+   "setting": "Banded Iron Formation",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.48283,
+   "raw_bd1000": -0.0564,
+   "raw_bd2000": 0.48283,
+   "emit_scene_count": 28
+  },
+  {
+   "name": "Quadrilátero Ferrífero",
+   "country": "Brazil",
+   "setting": "Banded Iron Formation",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.3407,
+   "raw_bd1000": -0.04038,
+   "raw_bd2000": 0.3407,
+   "emit_scene_count": 15
+  },
+  {
+   "name": "Kryvyi Rih",
+   "country": "Ukraine",
+   "setting": "Banded Iron Formation",
+   "legacy_bd1000": 0.0,
+   "legacy_bd2000": 0.36919,
+   "raw_bd1000": -0.04185,
+   "raw_bd2000": 0.36919,
+   "emit_scene_count": 16
+  }
+ ]
+}

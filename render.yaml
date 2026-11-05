@@ -1,0 +1,29 @@
+# Render blueprint — GEØ.IA Planetary Intelligence backend.
+# A single instance with a persistent disk: jobs and reports live in SQLite on
+# the disk, so restarts/redeploys keep them. (Jobs run in-process; scale
+# vertically, not horizontally, until a shared queue/DB is introduced.)
+services:
+  - type: web
+    name: geoia-planetary-backend
+    runtime: docker
+    plan: starter            # persistent disks require a paid instance
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    disk:
+      name: geoia-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: GEOIA_ENVIRONMENT
+        value: production
+      - key: GEOIA_DB_PATH
+        value: /var/data/geoia.sqlite3
+      - key: GEOIA_CORS_ORIGINS          # comma-separated frontend origins
+        sync: false
+      - key: GEOIA_MAX_CONCURRENT_JOBS
+        value: "3"
+      - key: GEE_PROJECT                 # Earth endpoint only
+        sync: false
+      - key: GEE_SERVICE_ACCOUNT_JSON    # full service-account JSON; dashboard only
+        sync: false
