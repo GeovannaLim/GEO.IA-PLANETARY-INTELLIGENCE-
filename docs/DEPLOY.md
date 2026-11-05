@@ -38,7 +38,10 @@ Não há CLI/API do Render autenticada nesta máquina — o deploy é feito pelo
    curl -i https://<servico>.onrender.com/health
    ```
 
-### Persistência — decisão necessária
+### Persistência — decisão: **plano Free (demonstração)**, escolhido em 2026-11-05
+Jobs e relatórios ficam em SQLite efêmero: baixe/abra o PDF logo após cada análise da demonstração. Antes da demo, chame `/health` para acordar a instância.
+
+Opções avaliadas:
 | Opção | Custo | Jobs/relatórios sobrevivem a redeploy/reinício | Observação |
 |---|---|---|---|
 | **Free (padrão)** | 0 | **Não** — SQLite no disco efêmero; instância dorme após ~15 min sem tráfego (primeira requisição leva ~1 min) | Aceitável para demonstração; relatórios devem ser baixados logo após a análise |
