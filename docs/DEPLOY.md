@@ -32,7 +32,7 @@ Não há CLI/API do Render autenticada nesta máquina — o deploy é feito pelo
 
 1. https://dashboard.render.com → **New → Blueprint** → conectar o GitHub → escolher `geoia-planetary-backend`.
 2. O `render.yaml` cria o serviço web Docker no plano **free** (sem custo).
-3. Preencher no painel: `GEOIA_CORS_ORIGINS` = origem exata da plataforma Skip (ex.: `https://<app>.<dominio-skip>`); opcional `GEE_PROJECT` + `GEE_SERVICE_ACCOUNT_JSON`.
+3. Preencher no painel: `GEOIA_CORS_ORIGINS` = `https://geoai-interplanetary.goskip.app` (plataforma Skip); opcional `GEE_PROJECT` = `geoia-505304` + `GEE_SERVICE_ACCOUNT_JSON` (conteúdo da chave JSON da service account `geoia-render`).
 4. Após “Live”: verificar
    ```bash
    curl -i https://<servico>.onrender.com/health

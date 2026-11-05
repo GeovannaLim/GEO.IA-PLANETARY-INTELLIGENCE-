@@ -86,7 +86,13 @@ Schema completo (OpenAPI): `GET /openapi.json`, UI em `/docs`.
 | 5xx / rede | instância acordando ou indisponível | retry com backoff (ex.: 3 tentativas, 2/4/8 s) |
 
 ## 9. CORS
-O backend só aceita as origens em `GEOIA_CORS_ORIGINS` (sem curinga). **Pendente**: confirmar a origem exata da plataforma Skip (esquema + host + porta, ex.: `https://geoia.<dominio>`), configurá-la no painel do Render e redeployar. A URL da Vercel não é adicionada porque o site institucional não chama a API.
+O backend só aceita as origens em `GEOIA_CORS_ORIGINS` (sem curinga). Origem da plataforma Skip, confirmada em 2026-11-05 (HTTPS 200; HTTP redireciona para HTTPS):
+
+```
+GEOIA_CORS_ORIGINS=https://geoai-interplanetary.goskip.app
+```
+
+Se o Skip usar outro domínio para pré-visualização, acrescentá-lo separado por vírgula. A URL da Vercel não é adicionada porque o site institucional não chama a API.
 Se o Skip fizer as chamadas a partir do servidor (não do navegador), CORS não se aplica.
 
 ## 10. Exemplo TypeScript (fetch, sem dependências)
@@ -139,6 +145,6 @@ async function fetchRetry(url: string, init?: RequestInit, tries = 3): Promise<R
 * `examples/local_validation_run.json` — 27 verificações reais (testes A–F) contra servidor local em modo produção.
 
 ## 12. Teste de integração (pendente — requer acesso ao Skip)
-1. Confirmar a origem real do Skip e configurar `GEOIA_CORS_ORIGINS`.
-2. `PYTHONPATH=. python scripts/validate_production.py https://<render> --origin https://<skip>` (verifica o preflight CORS).
+1. Configurar `GEOIA_CORS_ORIGINS=https://geoai-interplanetary.goskip.app` no Render.
+2. `PYTHONPATH=. python scripts/validate_production.py https://<render> --origin https://geoai-interplanetary.goskip.app` (verifica o preflight CORS).
 3. No Skip: iniciar uma análise, confirmar criação do job (202), acompanhar `progress`, exibir resultado, abrir o PDF.
