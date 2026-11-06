@@ -155,6 +155,6 @@ async function fetchRetry(url: string, init?: RequestInit, tries = 3): Promise<R
    * Mesmo ponto, raio 8 → nova análise, topografia com selo “dados esparsos”.
    * 40.25°S 347.49°E → mineralogia “Nenhuma observação deste instrumento cobre este ponto.”, análogos “Depende de dados espectrais indisponíveis.”, sem números.
    * `/health` chamado ao abrir; PDF da análise exibida: 200 `application/pdf` (o botão abre `geoia-planetary-backend.onrender.com` em nova aba).
-3. **Lua — não integrada:** a tela `/moon` ainda mostra o painel demonstrativo antigo (porcentagens fixas, “Resource Potential”) e não chama a API.
-4. Não exercitado pela interface: polling via `links.self` (todas as análises de Marte terminaram dentro de `wait_s=20`). Terra não tem tela no Skip.
-5. Pendências de UI: selos “ANÁLISE DEMONSTRATIVA”/“DEMO” no painel real de Marte; “Demo score” nos candidatos; campos nulos de metadados das fontes exibidos como “não medido”.
+3. **Lua — integrada e verificada pela interface** (bundle `index-qmj_GhG5.js`): 14.64°N 24.07°W, raio 10 → `POST /v1/lunar/analyze?wait_s=20` **202**, polling de `/v1/jobs/{id}` a cada ~3,3 s (9 × 202, depois 200; ~63 s com a instância recém-acordada), passos de `progress` em português. Resultado: LOLA 28.710 pontos; M3 `M3G20090610T113334_V01_RFL` (1.681 pixels), IBD1000/IBD2000 positivos, gráfico do espectro médio (541–2577 nm), análogos com aviso, 5 camadas WMTS, confiança “Alta”, fontes; PDF 200 (9,9 KB). Painel demonstrativo antigo removido.
+4. Ajustes de UI aplicados: selos “ANÁLISE DEMONSTRATIVA”/“DEMO” e “Demo score” removidos; campos nulos das fontes ocultados.
+5. Terra não tem tela no Skip (fora do escopo deste teste).
