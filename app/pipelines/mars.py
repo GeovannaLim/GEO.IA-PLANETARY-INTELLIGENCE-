@@ -16,9 +16,10 @@ from app.providers import crism, ode
 from app.providers.http import HttpClient, ProviderError
 from app.schemas.analysis import (AnalysisResult, AnalyzeRequest, ImagerySection, MineralogySection, Reason,
                                   SectionStatus, TopographySection)
-from app.science import similarity, spectral
+from app.science import analog_sites, similarity, spectral
 from app.science.coordinates import footprint_contains, region_box
 from app.pipelines.common import (Context, ProgressFn, assess_confidence, build_coordinates, finalize, guarded,
+                                  guarded_sync,
                                   imagery_step, pds_step, topography_step, usgs_step)
 
 CRISM_IIPT = dict(target="mars", ihid="MRO", iid="CRISM", pt="MTRDR")
@@ -117,7 +118,7 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
                         fraction_above_threshold=float(np.mean(arr[np.isfinite(arr)] > 0)),
                         n_pixels=int(np.isfinite(arr).sum()),
                         interpretation=spectral.legacy_interpretation(arr, detailed=False),
-                        comparability="direct")
+                        comparability="direct", detected=spectral.detected(arr))
                     indicators.append(ind)
         if sems:
             analog_inputs["_sem"] = sems
@@ -166,4 +167,6 @@ async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_a
     extra = ["CRISM I/F and terrestrial EMIT reflectance differ in atmospheric/photometric correction; "
              "band-depth comparison is a shape comparison, not a compositional match."]
     conf = assess_confidence(topo_s, min_s, extra, incidence)
-    return finalize(ctx, analysis_id, created_at, imagery, topo_s, min_s, analogs, conf, done)
+    terrestrial = guarded_sync(ctx, lambda: analog_sites.match("mars", min_s, ctx.lat))
+    return finalize(ctx, analysis_id, created_at, imagery, topo_s, min_s, analogs, conf, done,
+                    terrestrial=terrestrial)

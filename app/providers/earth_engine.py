@@ -174,4 +174,123 @@ def extract(lat: float, lon: float, radius_m: int) -> dict:
     except Exception as exc:  # noqa: BLE001 - EMIT is optional, failure recorded
         emit["status"] = "error"
         emit["error"] = f"{type(exc).__name__}: {str(exc)[:200]}"
-    return {"core": core, "topography": topo_stats, "emit": emit, "counts": counts}
+    try:
+        emit_masked = extract_emit_masked(ee, roi)
+    except Exception as exc:  # noqa: BLE001 - recorded, never substituted
+        emit_masked = {"status": "error", "error": f"{type(exc).__name__}: {str(exc)[:200]}"}
+    return {"core": core, "topography": topo_stats, "emit": emit, "counts": counts, "emit_masked": emit_masked}
+
+
+# --------------------------------------------------------------------------- #
+# Quality-masked EMIT measurement (remeasurement of the terrestrial library)
+# --------------------------------------------------------------------------- #
+EMIT_SCALE_M = 60
+# Spectral-index thresholds are conventional screening values, reported with every result:
+# NDVI < 0.2 bare/sparsely vegetated surface; NDSI > 0.4 snow (Hall et al. 1995, MODIS);
+# NDWI (McFeeters 1996, green/NIR) > 0 open water.
+MASK_RULES = {"reflectance_valid_range": [0.0, 1.5], "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, "
+              "spacecraft, dilated cloud)", "ndvi_max": 0.2, "ndsi_snow_min": 0.4, "ndwi_water_min": 0.0}
+EMIT_BANDS_NM = {"g": 560, "r": 660, "nir": 860, "swir1": 1640, "c800": 800, "b1000": 1000, "c1300": 1300,
+                 "c1700": 1700, "b2000": 2000, "c2300": 2300}
+VARIANTS = ("raw", "quality", "rock")
+
+
+def _nearest(wavelengths: list[float], nm: float) -> int:
+    return min(range(len(wavelengths)), key=lambda i: abs(wavelengths[i] - nm))
+
+
+def extract_emit_masked(ee, roi) -> dict:
+    """Band depths from NASA/EMIT/L2A/RFL in three variants over the same ROI and scale:
+
+    raw      median of all scenes, no mask (same composite as the legacy library)
+    quality  per-scene invalid-reflectance and EMIT aggregate_flag mask, then median
+    rock     quality mask + vegetation (NDVI), snow (NDSI) and water (NDWI) masks, then median
+
+    Band depth per pixel (unclamped), then ROI statistics. Scene ids, dates and the actual band
+    wavelengths are returned for provenance. Missing values stay None.
+    """
+    ic = ee.ImageCollection("NASA/EMIT/L2A/RFL").filterBounds(roi)
+    n = ic.size().getInfo()
+    out: dict[str, Any] = {"status": "unavailable", "scene_count": n, "scale_m": EMIT_SCALE_M,
+                           "mask_rules": MASK_RULES, "scenes": [], "variants": {}}
+    if not n:
+        return out
+    wl = [float(w) for w in ee.List(ic.first().get("reflectance_wavelengths")).getInfo()]
+    idx = {k: _nearest(wl, nm) for k, nm in EMIT_BANDS_NM.items()}
+    out["band_wavelengths_nm"] = {k: round(wl[i], 2) for k, i in idx.items()}
+    src, dst = [f"reflectance_{i}" for i in idx.values()], list(idx.keys())
+
+    feats = ee.FeatureCollection(ic.map(lambda i: ee.Feature(None, {
+        "id": i.get("system:index"), "time_start": i.get("system:time_start"),
+        "solar_zenith": i.get("SOLAR_ZENITH")}))).getInfo()["features"]
+    from datetime import datetime, timezone
+    for f in feats:
+        p = f.get("properties", {})
+        t = p.get("time_start")
+        out["scenes"].append({"id": p.get("id"), "solar_zenith": p.get("solar_zenith"),
+                              "date": datetime.fromtimestamp(t / 1000, timezone.utc).date().isoformat()
+                              if isinstance(t, (int, float)) else None})
+
+    lo, hi = MASK_RULES["reflectance_valid_range"]
+
+    def prep(img):
+        s = img.select(src, dst)
+        valid = s.gt(lo).And(s.lt(hi)).reduce(ee.Reducer.min())
+        quality = valid.And(img.select("aggregate_flag").eq(0))
+        ndvi = s.normalizedDifference(["nir", "r"])
+        ndsi = s.normalizedDifference(["g", "swir1"])
+        ndwi = s.normalizedDifference(["g", "nir"])
+        rock = quality.And(ndvi.lt(MASK_RULES["ndvi_max"])).And(ndsi.lte(MASK_RULES["ndsi_snow_min"])) \
+            .And(ndwi.lte(MASK_RULES["ndwi_water_min"]))
+        return s.addBands(valid.rename("m_valid")).addBands(quality.rename("m_quality")) \
+            .addBands(rock.rename("m_rock"))
+
+    pc = ic.map(prep)
+    comps = {"raw": pc.select(dst).median(),
+             "quality": pc.map(lambda i: i.select(dst).updateMask(i.select("m_quality"))).median(),
+             "rock": pc.map(lambda i: i.select(dst).updateMask(i.select("m_rock"))).median()}
+
+    def depths(img, tag):
+        c1 = img.select("c800").add(img.select("c1300")).divide(2)
+        c2 = img.select("c1700").add(img.select("c2300")).divide(2)
+        d1 = c1.subtract(img.select("b1000")).divide(c1).rename(f"{tag}_bd1000")
+        d2 = c2.subtract(img.select("b2000")).divide(c2).rename(f"{tag}_bd2000")
+        return d1.addBands(d2)
+
+    stats_img = ee.Image.cat([depths(comps[v], v) for v in VARIANTS])
+    pos_img = ee.Image.cat([stats_img.select(b).gt(0).rename(f"pos_{b}") for b in
+                            [f"{v}_bd{w}" for v in VARIANTS for w in (1000, 2000)]])
+    q = comps["quality"]
+    ctx_img = ee.Image.cat([
+        q.normalizedDifference(["nir", "r"]).rename("ndvi_quality"),
+        q.normalizedDifference(["nir", "r"]).gte(MASK_RULES["ndvi_max"]).rename("frac_vegetated"),
+        q.normalizedDifference(["g", "swir1"]).gt(MASK_RULES["ndsi_snow_min"]).rename("frac_snow"),
+        q.normalizedDifference(["g", "nir"]).gt(MASK_RULES["ndwi_water_min"]).rename("frac_water")])
+    reducer = (ee.Reducer.mean().combine(ee.Reducer.stdDev(), sharedInputs=True)
+               .combine(ee.Reducer.median(), sharedInputs=True).combine(ee.Reducer.count(), sharedInputs=True))
+    common = dict(geometry=roi, scale=EMIT_SCALE_M, maxPixels=1e9, bestEffort=False, tileScale=4)
+    st = stats_img.reduceRegion(reducer=reducer, **common).getInfo()
+    pos = pos_img.addBands(ctx_img).reduceRegion(reducer=ee.Reducer.mean(), **common).getInfo()
+    cover = ee.Image.cat([ee.Image.constant(1).rename("roi"), pc.select("m_valid").max().rename("valid"),
+                          pc.select("m_quality").max().rename("quality"), pc.select("m_rock").max().rename("rock")]) \
+        .selfMask().reduceRegion(reducer=ee.Reducer.count(), **common).getInfo()
+    roi_px = cover.get("roi") or 0
+
+    def num(v):
+        return float(v) if isinstance(v, (int, float)) else None
+
+    for v in VARIANTS:
+        out["variants"][v] = {
+            w: {"mean": num(st.get(f"{v}_{w}_mean")), "std": num(st.get(f"{v}_{w}_stdDev")),
+                "median": num(st.get(f"{v}_{w}_median")), "n_pixels": int(st.get(f"{v}_{w}_count") or 0),
+                "fraction_positive": num(pos.get(f"pos_{v}_{w}"))}
+            for w in ("bd1000", "bd2000")}
+    out["coverage"] = {"roi_pixels": int(roi_px),
+                       **{f"{k}_pixels": int(cover.get(k) or 0) for k in ("valid", "quality", "rock")},
+                       **{f"{k}_fraction": (round((cover.get(k) or 0) / roi_px, 4) if roi_px else None)
+                          for k in ("quality", "rock")}}
+    out["surface"] = {"ndvi_mean": num(pos.get("ndvi_quality")), "vegetated_fraction": num(pos.get("frac_vegetated")),
+                      "snow_fraction": num(pos.get("frac_snow")), "water_fraction": num(pos.get("frac_water")),
+                      "basis": "quality-masked median composite"}
+    out["status"] = "ok" if out["variants"]["rock"]["bd1000"]["n_pixels"] else "no_rock_pixels"
+    return out

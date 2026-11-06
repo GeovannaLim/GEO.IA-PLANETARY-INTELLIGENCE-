@@ -19,7 +19,7 @@ from app.providers.http import HttpClient, ProviderError
 from app.schemas.analysis import (
     AnalysisResult, AnalysisStatus, AnalyzeRequest, ConfidenceSection, Coordinates, Criterion,
     EarthAnalogSection, ImagerySection, MineralogySection, ProblemDetail, Reason, SectionStatus,
-    SourceRecord, TopographySection)
+    SourceRecord, TerrestrialAnalogSection, TopographySection)
 from app.science import topography as topo
 from app.science.coordinates import (BODY_RADIUS_KM, REFERENCE_FRAME, region_box, to_east_180,
                                      to_east_360)
@@ -239,18 +239,29 @@ def assess_confidence(topo_s: TopographySection, min_s: MineralogySection, extra
 
 def finalize(ctx: Context, analysis_id: str, created_at: datetime, imagery: ImagerySection,
              topo_s: TopographySection, min_s: MineralogySection, analogs: EarthAnalogSection,
-             confidence: ConfidenceSection, progress: list[str], earth_obs: dict | None = None) -> AnalysisResult:
+             confidence: ConfidenceSection, progress: list[str], earth_obs: dict | None = None,
+             terrestrial: TerrestrialAnalogSection | None = None) -> AnalysisResult:
     return AnalysisResult(
         analysis_id=analysis_id, planet=ctx.body, status=AnalysisStatus.completed, created_at=created_at,
         completed_at=now(), progress=progress, coordinates=ctx.coords, data_sources=ctx.sources,
         imagery=imagery, topography=topo_s, mineralogy=min_s, earth_analogs=analogs,
-        earth_observation=earth_obs, confidence=confidence, problems=ctx.problems, report_id=analysis_id,
+        terrestrial_analogs=terrestrial, earth_observation=earth_obs, confidence=confidence, problems=ctx.problems, report_id=analysis_id,
         links={"self": f"/v1/jobs/{analysis_id}", "report": f"/v1/reports/{analysis_id}",
                "report_pdf": f"/v1/reports/{analysis_id}?format=pdf"})
 
 
 def safe_float(x: float | None) -> float | None:
     return None if x is None or not math.isfinite(x) else float(x)
+
+
+def guarded_sync(ctx: Context, fn):
+    """Optional derived section: a bug is recorded as a problem and the section is omitted (None)."""
+    try:
+        return fn()
+    except Exception as exc:  # noqa: BLE001 - optional section boundary
+        log.exception("derived section crashed", extra={"body": ctx.body})
+        ctx.problem("terrestrial_analogs", Reason.invalid_data, f"internal error: {type(exc).__name__}: {exc}")
+        return None
 
 
 async def guarded(ctx: Context, section: str, coro, fallback):

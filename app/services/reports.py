@@ -133,6 +133,27 @@ def render_pdf(doc: dict) -> bytes:
         story.append(_table(rows, [55 * mm, 55 * mm, 25 * mm, W - 135 * mm], st, header=True))
     story.append(_p(a.get("disclaimer", ""), st["small"]))
 
+    ta = doc.get("terrestrial_analogs") or {}
+    if ta:
+        story.append(_p("Terrestrial analog sites (documented geology)", st["h2"]))
+        ev = "; ".join(e.get("label", "") for e in ta.get("region_evidence") or []) or "—"
+        story.append(_p(f"Status: {_status(ta)}. Basis: {ta.get('basis') or '—'}. Region evidence: {ev}.", st["body"]))
+        for n in ta.get("notes") or []:
+            story.append(_p(n, st["small"]))
+        for s in ta.get("sites") or []:
+            refs = "; ".join(f"{r.get('citation')}" + (f" doi:{r['doi']}" if r.get("doi") else "")
+                             for r in s.get("references") or [])
+            story.append(_p(f"{s['name']} ({s['country']}) — {s['latitude']:.4f}, {s['longitude']:.4f} "
+                            f"(±{_fmt(s.get('coordinate_precision_km'), 2)} km). {s.get('setting', '')}", st["body"]))
+            for label, key in (("Why", "justification"), ("Similar", "similarities"), ("Different", "differences"),
+                               ("Limits", "limitations")):
+                if s.get(key):
+                    story.append(_p(f"{label}: " + " ".join(s[key]), st["small"]))
+            if refs:
+                story.append(_p(f"References: {refs}", st["small"]))
+        if ta.get("disclaimer"):
+            story.append(_p(ta["disclaimer"], st["small"]))
+
     conf = doc.get("confidence", {})
     story.append(_p(f"Confidence: {conf.get('level')}", st["h2"]))
     if conf.get("criteria"):

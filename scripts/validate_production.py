@@ -74,6 +74,11 @@ if check("B lunar job created", first in (200, 202) and d and "analysis_id" in d
     check("B provenance links", numbers_have_sources(d))
     check("B no Imbrium fixed vector", "M3G20090418T132620" not in json.dumps(d))
     lunar_id = d["analysis_id"]
+    ta = d.get("terrestrial_analogs") or {}
+    check("H lunar terrestrial analog sites", ta.get("status") in ("available", "partial", "unavailable")
+          and all(s["references"] and -90 <= s["latitude"] <= 90 and s["matched_classes"] for s in ta.get("sites", []))
+          and (ta.get("sites") or ta.get("status") == "unavailable"),
+          evidence=[e["class"] for e in ta.get("region_evidence", [])], sites=[s["id"] for s in ta.get("sites", [])])
 else:
     lunar_id = None
 
@@ -88,12 +93,21 @@ if check("C mars job", first in (200, 202) and d and "analysis_id" in d, first_s
     check("C no lunar indices on Mars", not {"IBD1000", "IBD2000", "R750"} & {i["name"] for i in m["indicators"]})
     check("C provenance links", numbers_have_sources(d))
     mars_id = d["analysis_id"]
+    ta = d.get("terrestrial_analogs") or {}
+    check("H mars terrestrial analog sites", ta.get("basis") == "regional_spectral_evidence"
+          and all(s["references"] for s in ta.get("sites", [])),
+          evidence=[e["class"] for e in ta.get("region_evidence", [])], sites=[s["id"] for s in ta.get("sites", [])])
 else:
     mars_id = None
 d, dt, _ = analyze("/v1/mars/analyze", {"latitude": -85.0, "longitude": 150.0, "radius_km": 10})
 check("C no spectral coverage is explicit", d and d["mineralogy"]["status"] == "unavailable"
       and d["mineralogy"]["reason"] in ("no_coverage", "no_compatible_observations") and not d["mineralogy"]["indicators"],
       seconds=round(dt, 1), mineralogy=d and (d["mineralogy"]["status"], d["mineralogy"]["reason"]))
+check("H polar no-coverage gives no analog sites", d and not (d.get("terrestrial_analogs") or {}).get("sites"))
+d, dt, _ = analyze("/v1/mars/analyze", {"latitude": 0.99, "longitude": -31.47, "radius_km": 10})
+ta = (d or {}).get("terrestrial_analogs") or {}
+check("H mars without CRISM is global context", ta.get("basis") == "global_context" and ta.get("status") == "partial"
+      and ta.get("notes"), seconds=round(dt, 1), sites=[s["id"] for s in ta.get("sites", [])])
 
 # D — Earth
 d, dt, _ = analyze("/v1/earth/analyze", {"latitude": -24.27, "longitude": -69.07, "radius_km": 5}, timeout_s=240)
@@ -101,6 +115,10 @@ if d and d.get("status") == "completed":
     configured = d["topography"]["reason"] != "not_configured"
     if configured:
         check("D earth real analysis", d["topography"]["status"] in ("available", "partial"), sections=sections(d))
+        em = (d.get("earth_observation") or {}).get("emit_masked") or {}
+        check("D earth masked EMIT record", em.get("status") in ("ok", "no_rock_pixels", "unavailable")
+              and isinstance(em.get("scenes"), list), status=em.get("status"), scenes=em.get("scene_count"),
+              coverage=em.get("coverage"), error=em.get("error"))
     else:
         check("D earth explicit not_configured", all(d[k]["reason"] == "not_configured"
                                                    for k in ("topography", "mineralogy", "earth_analogs"))

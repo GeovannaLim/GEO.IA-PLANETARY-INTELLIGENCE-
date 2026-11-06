@@ -57,6 +57,16 @@ def stats(values: np.ndarray) -> Stats:
                  std=float(v.std(ddof=1)) if v.size > 1 else 0.0, p05=float(p05), p95=float(p95))
 
 
+def detected_from_stats(mean: float | None, std: float | None, median: float | None, n: int,
+                        fraction_positive: float | None) -> bool | None:
+    """Same screening as :func:`detected`, from ROI summary statistics (Earth Engine reductions).
+    None when the statistics are incomplete."""
+    if None in (mean, std, median, fraction_positive) or n < 4:
+        return None
+    sem = std / math.sqrt(max(2.0, n / CORRELATION_PIXELS))
+    return bool(mean > DETECTION_SIGMA * sem and median > 0 and fraction_positive >= MIN_POSITIVE_FRACTION)
+
+
 def detected(values: np.ndarray) -> bool:
     v = values[np.isfinite(values)]
     if v.size < 4:
@@ -154,7 +164,7 @@ def m3_indicators(spec: np.ndarray, wl: np.ndarray) -> tuple[list[SpectralIndica
             sensitive_to=sensitive, screening_threshold=0.0 if with_detection else None,
             threshold_basis=DETECTION_BASIS if with_detection else None,
             fraction_above_threshold=float(np.mean(arr[np.isfinite(arr)] > 0)) if with_detection and np.isfinite(arr).any() else None,
-            n_pixels=int(np.isfinite(arr).sum()), interpretation=interp, comparability=comparability))
+            n_pixels=int(np.isfinite(arr).sum()), interpretation=interp, comparability=comparability, detected=det))
 
     add("IBD1000", integrated_band_depth(spec, wl, 789, 1308, 699, 1579),
         "Integrated band depth 789-1308 nm, linear continuum ~699-1579 nm", ref_m3,
@@ -241,7 +251,7 @@ def crism_indicator(name: str, arr: np.ndarray) -> SpectralIndicator:
         screening_threshold=None if descriptive else 0.0,
         threshold_basis=None if descriptive else DETECTION_BASIS,
         fraction_above_threshold=None if descriptive or finite.size == 0 else float(np.mean(finite > 0)),
-        n_pixels=int(finite.size), interpretation=interp, comparability="body_specific")
+        n_pixels=int(finite.size), interpretation=interp, comparability="body_specific", detected=det)
 
 
 def crism_character(indicators: list[SpectralIndicator], values: dict[str, np.ndarray]) -> str | None:

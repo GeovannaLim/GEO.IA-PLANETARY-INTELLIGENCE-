@@ -1,0 +1,1172 @@
+{
+ "name": "GEØ.IA terrestrial analog sites",
+ "version": "1.0.0",
+ "curated_on": "2026-11-06",
+ "method": "Sites selected from published analog studies; coordinates from the cited source; DOIs resolved on Crossref/DataCite. Unverified entries are kept for transparency but never offered by the matcher.",
+ "site_classes": [
+  "al_phyllosilicate_silica",
+  "altered_basaltic_soil",
+  "anorthosite",
+  "carbonate",
+  "fe_mg_phyllosilicate",
+  "ferric_oxide",
+  "norite",
+  "olivine_rich",
+  "pyroxene_basalt",
+  "sulfate",
+  "volcanic_glass"
+ ],
+ "sites": [
+  {
+   "id": "samail_bt1b",
+   "name": "Samail Ophiolite — Wadi Mansah listvenite (OmanDP Hole BT1B)",
+   "country": "Oman",
+   "lat": 23.364496,
+   "lon": 58.182396,
+   "coordinate_precision_km": 0.5,
+   "coordinate_source": "PANGAEA dataset doi:10.1594/PANGAEA.915753 (Oman Drilling Project Hole BT1B collar)",
+   "verification": "verified",
+   "measurement_radius_km": 2,
+   "setting_en": "Mantle peridotite of the Samail ophiolite altered to serpentinite and listvenite (magnesite, dolomite).",
+   "setting_pt": "Peridotito do manto do ofiolito de Samail alterado para serpentinito e listvenito (magnesita, dolomita).",
+   "key_minerals": [
+    "serpentine",
+    "magnesite",
+    "dolomite",
+    "olivine (relict)",
+    "spinel"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "published_analog",
+     "classes": [
+      "carbonate",
+      "fe_mg_phyllosilicate",
+      "olivine_rich"
+     ],
+     "reference_ids": [
+      "leask2021",
+      "lafay2020"
+     ],
+     "rationale_en": "Leask et al. (2021) treat the Samail ophiolite as a Mars analog system: ultramafic rocks with serpentine and Mg-carbonate alteration exposed in a semi-arid setting, the assemblage seen from orbit at Nili Fossae and Jezero.",
+     "rationale_pt": "Leask et al. (2021) tratam o ofiolito de Samail como sistema análogo de Marte: rochas ultramáficas com alteração para serpentina e carbonato de Mg expostas em clima semiárido, o conjunto visto da órbita em Nili Fossae e Jezero."
+    }
+   ],
+   "similarities_en": [
+    "Olivine → serpentine → Mg-carbonate alteration sequence documented on both bodies."
+   ],
+   "similarities_pt": [
+    "Sequência de alteração olivina → serpentina → carbonato de Mg documentada nos dois corpos."
+   ],
+   "differences_en": [
+    "Leask et al. found carbonate and serpentine in mixtures separable only at cm-scale pixels; Fe2+ in magnesite can mimic the 1 µm olivine band."
+   ],
+   "differences_pt": [
+    "Leask et al. só separaram carbonato e serpentina em mistura com pixels de escala centimétrica; Fe2+ na magnesita pode imitar a banda de olivina em 1 µm."
+   ],
+   "limitations_en": [
+    "Point is a borehole collar; listvenite outcrops are hundreds of metres across (a few 60 m pixels). Wadi gravels and travertine nearby."
+   ],
+   "limitations_pt": [
+    "O ponto é a boca de um furo de sondagem; os afloramentos de listvenito têm centenas de metros (poucos pixels de 60 m). Cascalho de wadi e travertino por perto."
+   ],
+   "references": [
+    {
+     "id": "leask2021",
+     "doi": "10.1029/2021EA001637",
+     "citation": "Leask E.K. et al. (2021) Tracing carbonate formation, serpentinization, and biological materials with micro-/meso-scale infrared imaging spectroscopy in a Mars analog system, Samail Ophiolite, Oman. Earth and Space Science 8, e2021EA001637",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "lafay2020",
+     "doi": "10.1594/PANGAEA.915753",
+     "citation": "Lafay R. et al. (2020) Electron microprobe data for Hole BT1B, Oman Drilling Project. PANGAEA",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "lake_salda",
+   "name": "Lake Salda (Salda Gölü)",
+   "country": "Turkey",
+   "lat": 37.55,
+   "lon": 29.683,
+   "coordinate_precision_km": 4,
+   "coordinate_source": "Wikipedia (lake centroid)",
+   "verification": "unverified: no published coordinate on the hydromagnesite unit; lake centroid is open water",
+   "measurement_radius_km": 3,
+   "setting_en": "Alkaline lake with hydromagnesite beaches and microbialites.",
+   "setting_pt": "Lago alcalino com praias e microbialitos de hidromagnesita.",
+   "key_minerals": [
+    "hydromagnesite"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "published_analog",
+     "classes": [
+      "carbonate"
+     ],
+     "reference_ids": [
+      "russell1999",
+      "gunes2024"
+     ],
+     "rationale_en": "Hydromagnesite microbialites proposed as a model for Mars carbonates (Russell et al. 1999); compared with Jezero carbonates.",
+     "rationale_pt": "Microbialitos de hidromagnesita propostos como modelo para carbonatos de Marte (Russell et al. 1999); comparados aos carbonatos de Jezero."
+    }
+   ],
+   "limitations_en": [
+    "Excluded from matching until an on-unit coordinate is verified."
+   ],
+   "limitations_pt": [
+    "Fora da correspondência até que uma coordenada sobre a unidade seja verificada."
+   ],
+   "references": [
+    {
+     "id": "russell1999",
+     "doi": "10.1144/gsjgs.156.5.0869",
+     "citation": "Russell M.J. et al. (1999) Search for signs of ancient life on Mars: expectations from hydromagnesite microbialites, Salda Lake, Turkey. J. Geol. Soc. 156, 869-888",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "gunes2024",
+     "doi": "10.1111/gbi.12619",
+     "citation": "Gunes Y. et al. (2024) Morphological and microbial diversity of hydromagnesite microbialites in Lake Salda: a Mars analog alkaline lake. Geobiology 22",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "rio_tinto",
+   "name": "Río Tinto headwaters — Peña de Hierro",
+   "country": "Spain",
+   "lat": 37.72512,
+   "lon": -6.55643,
+   "coordinate_precision_km": 0.5,
+   "coordinate_source": "Waymarking record WM19T97 (Peña de Hierro mine)",
+   "verification": "verified",
+   "measurement_radius_km": 2,
+   "setting_en": "Iberian Pyrite Belt massive sulfides with a gossan cap; acid (pH ~2) river precipitating jarosite and schwertmannite; goethite converting to hematite on terraces.",
+   "setting_pt": "Sulfetos maciços da Faixa Piritosa Ibérica com chapéu de gossan; rio ácido (pH ~2) que precipita jarosita e schwertmannita; goethita que vira hematita nos terraços.",
+   "key_minerals": [
+    "jarosite",
+    "schwertmannite",
+    "goethite",
+    "hematite"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "published_analog",
+     "classes": [
+      "sulfate",
+      "ferric_oxide"
+     ],
+     "reference_ids": [
+      "fernandez2005"
+     ],
+     "rationale_en": "Fernández-Remolar et al. (2005) use Río Tinto to interpret the jarosite- and hematite-bearing outcrop of Meridiani Planum: evaporitic jarosite and goethite-to-hematite conversion.",
+     "rationale_pt": "Fernández-Remolar et al. (2005) usam o Río Tinto para interpretar o afloramento com jarosita e hematita de Meridiani Planum: jarosita evaporítica e conversão de goethita em hematita."
+    }
+   ],
+   "similarities_en": [
+    "Acid-sulfate mineralogy (jarosite) with ferric oxides, as at Meridiani."
+   ],
+   "similarities_pt": [
+    "Mineralogia ácido-sulfatada (jarosita) com óxidos férricos, como em Meridiani."
+   ],
+   "differences_en": [
+    "Driven by sulfide mining waste and microbial activity; heavy anthropogenic disturbance."
+   ],
+   "differences_pt": [
+    "Controlado por rejeito de mineração de sulfetos e atividade microbiana; forte perturbação humana."
+   ],
+   "limitations_en": [
+    "Open pit, spoil and channels mixed in each pixel; Mediterranean vegetation around."
+   ],
+   "limitations_pt": [
+    "Cava, rejeito e canais misturados em cada pixel; vegetação mediterrânea em volta."
+   ],
+   "references": [
+    {
+     "id": "fernandez2005",
+     "doi": "10.1016/j.epsl.2005.09.043",
+     "citation": "Fernández-Remolar D.C. et al. (2005) The Río Tinto Basin, Spain: mineralogy, sedimentary geobiology, and implications for interpretation of outcrop rocks at Meridiani Planum, Mars. EPSL 240, 149-167",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "el_tatio",
+   "name": "El Tatio geyser field",
+   "country": "Chile",
+   "lat": -22.33139,
+   "lon": -68.01028,
+   "coordinate_precision_km": 2,
+   "coordinate_source": "Wikipedia (field reference point)",
+   "verification": "verified",
+   "measurement_radius_km": 2,
+   "setting_en": "Hot-spring siliceous sinter (opal-A) over ~30 km² at ~4,300 m.",
+   "setting_pt": "Sínter silicoso de fontes termais (opala-A) em ~30 km² a ~4.300 m.",
+   "key_minerals": [
+    "opal-A"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "published_analog",
+     "classes": [
+      "al_phyllosilicate_silica"
+     ],
+     "reference_ids": [
+      "ruff2016"
+     ],
+     "rationale_en": "Ruff & Farmer (2016) compare opaline silica at Home Plate (Gusev, Spirit rover) with biomediated sinter textures at El Tatio.",
+     "rationale_pt": "Ruff & Farmer (2016) comparam a sílica opalina de Home Plate (Gusev, rover Spirit) com texturas de sínter biomediadas de El Tatio."
+    }
+   ],
+   "similarities_en": [
+    "Hydrated (opaline) silica of hydrothermal origin."
+   ],
+   "similarities_pt": [
+    "Sílica hidratada (opalina) de origem hidrotermal."
+   ],
+   "differences_en": [
+    "BD2210_2 also responds to Al-OH clays; the site matches only the silica branch."
+   ],
+   "differences_pt": [
+    "BD2210_2 também responde a argilas de Al-OH; o sítio só corresponde ao ramo da sílica."
+   ],
+   "limitations_en": [
+    "Coordinate is the field reference point; sinter aprons (0.1–1 km) mix with volcanic soils; tourist and drilling scars."
+   ],
+   "limitations_pt": [
+    "A coordenada é o ponto de referência do campo; os leques de sínter (0,1–1 km) se misturam a solos vulcânicos; marcas de turismo e perfuração."
+   ],
+   "references": [
+    {
+     "id": "ruff2016",
+     "doi": "10.1038/ncomms13554",
+     "citation": "Ruff S.W., Farmer J.D. (2016) Silica deposits on Mars with features resembling hot spring biosignatures at El Tatio in Chile. Nat. Commun. 7, 13554",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "cuprite",
+   "name": "Cuprite mining district",
+   "country": "USA (Nevada)",
+   "lat": 37.55,
+   "lon": -117.21389,
+   "coordinate_precision_km": 1,
+   "coordinate_source": "USGS MRDS record via westernmininghistory.com/10009264",
+   "verification": "verified",
+   "measurement_radius_km": 3,
+   "setting_en": "Acid-sulfate (advanced argillic) alteration of Tertiary volcanics: alunite, kaolinite, dickite, opal, silicified rock.",
+   "setting_pt": "Alteração ácido-sulfatada (argílica avançada) de vulcânicas terciárias: alunita, caulinita, dickita, opala, rocha silicificada.",
+   "key_minerals": [
+    "alunite",
+    "kaolinite",
+    "dickite",
+    "opal",
+    "muscovite"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "mineralogical_reference",
+     "classes": [
+      "al_phyllosilicate_silica",
+      "sulfate"
+     ],
+     "reference_ids": [
+      "swayze2014"
+     ],
+     "rationale_en": "Mineralogical reference rather than a published Mars analog: Swayze et al. (2014) map alunite, kaolinite and opal here with imaging spectroscopy, the mineral families CRISM BD2210_2 and sulfate parameters target.",
+     "rationale_pt": "Referência mineralógica, não um análogo de Marte publicado: Swayze et al. (2014) mapeiam alunita, caulinita e opala aqui com espectroscopia de imageamento, as famílias que BD2210_2 e os parâmetros de sulfato do CRISM buscam."
+    }
+   ],
+   "similarities_en": [
+    "Al-OH and sulfate (alunite) absorptions near 2.2 µm and 1.76 µm are well characterised."
+   ],
+   "similarities_pt": [
+    "Absorções de Al-OH e de sulfato (alunita) perto de 2,2 µm e 1,76 µm bem caracterizadas."
+   ],
+   "differences_en": [
+    "The cited paper does not frame Cuprite as a Mars analog."
+   ],
+   "differences_pt": [
+    "O artigo citado não apresenta Cuprite como análogo de Marte."
+   ],
+   "limitations_en": [
+    "Small historic pits; US-95 crosses the district; sparse shrubs."
+   ],
+   "limitations_pt": [
+    "Pequenas cavas históricas; a rodovia US-95 cruza o distrito; arbustos esparsos."
+   ],
+   "references": [
+    {
+     "id": "swayze2014",
+     "doi": "10.2113/econgeo.109.5.1179",
+     "citation": "Swayze G.A. et al. (2014) Mapping advanced argillic alteration at Cuprite, Nevada, using imaging spectroscopy. Econ. Geol. 109, 1179-1221",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "puu_nene",
+   "name": "Puʻu Nēnē cinder cone (JSC Mars-1 source)",
+   "country": "USA (Hawaiʻi)",
+   "lat": 19.69743,
+   "lon": -155.49697,
+   "coordinate_precision_km": 0.3,
+   "coordinate_source": "Colorado School of Mines sample list (mars.mines.edu, PNeHIBc)",
+   "verification": "verified",
+   "measurement_radius_km": 1,
+   "setting_en": "Palagonitic basaltic tephra, largely X-ray amorphous, minor plagioclase and magnetite.",
+   "setting_pt": "Tefra basáltica palagonítica, em grande parte amorfa aos raios X, com pouco plagioclásio e magnetita.",
+   "key_minerals": [
+    "palagonite",
+    "plagioclase",
+    "magnetite"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "simulant_source",
+     "classes": [
+      "altered_basaltic_soil"
+     ],
+     "reference_ids": [
+      "allen1998"
+     ],
+     "rationale_en": "Allen et al. (1998) quarried this tephra as JSC Mars-1, a simulant of Martian bright-region soil.",
+     "rationale_pt": "Allen et al. (1998) extraíram esta tefra como JSC Mars-1, simulante do solo das regiões claras de Marte."
+    }
+   ],
+   "similarities_en": [
+    "Poorly crystalline Fe-bearing alteration of basaltic glass, as in Martian dust."
+   ],
+   "similarities_pt": [
+    "Alteração pouco cristalina de vidro basáltico com Fe, como na poeira marciana."
+   ],
+   "differences_en": [
+    "Its suitability as a simulant was debated (Allen & Morris 1999)."
+   ],
+   "differences_pt": [
+    "Sua adequação como simulante foi debatida (Allen & Morris 1999)."
+   ],
+   "limitations_en": [
+    "Cone is a few hundred metres across (2–5 EMIT pixels); grassland around."
+   ],
+   "limitations_pt": [
+    "O cone tem poucas centenas de metros (2–5 pixels EMIT); pasto em volta."
+   ],
+   "references": [
+    {
+     "id": "allen1998",
+     "doi": "10.1029/98EO00309",
+     "citation": "Allen C.C. et al. (1998) Martian soil simulant available for scientific, educational study. Eos 79, 405-409",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "allen1999",
+     "doi": "10.1029/99EO00123",
+     "citation": "Allen C.C., Morris R.V. (1999) Reply. Eos 80, 169",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "kau_desert",
+   "name": "Kaʻū Desert, Kīlauea",
+   "country": "USA (Hawaiʻi)",
+   "lat": 19.40861,
+   "lon": -155.29667,
+   "coordinate_precision_km": 3,
+   "coordinate_source": "Wikipedia (Crater Rim Drive trailhead, NE edge)",
+   "verification": "verified",
+   "measurement_radius_km": 3,
+   "setting_en": "Basaltic flows and tephra altered by SO2-acidified rain: opaline silica coatings, jarosite.",
+   "setting_pt": "Derrames e tefra basálticos alterados por chuva acidificada por SO2: películas de sílica opalina, jarosita.",
+   "key_minerals": [
+    "basalt",
+    "opaline silica",
+    "jarosite",
+    "Fe-Ti oxide"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "published_analog",
+     "classes": [
+      "al_phyllosilicate_silica",
+      "sulfate",
+      "altered_basaltic_soil",
+      "pyroxene_basalt"
+     ],
+     "reference_ids": [
+      "seelos2010",
+      "chemtob2010"
+     ],
+     "rationale_en": "Seelos et al. (2010) map opaline silica with AVIRIS and Chemtob et al. (2010) link the coatings to acid-sulfate leaching like that proposed for Gusev silica.",
+     "rationale_pt": "Seelos et al. (2010) mapeiam sílica opalina com AVIRIS e Chemtob et al. (2010) ligam as películas a lixiviação ácido-sulfatada como a proposta para a sílica de Gusev."
+    },
+    {
+     "body": "moon",
+     "basis": "published_analog_general",
+     "classes": [
+      "pyroxene_basalt"
+     ],
+     "reference_ids": [
+      "neish2017",
+      "hughes2020"
+     ],
+     "rationale_en": "Hawaiian basalt lavas are among the terrestrial end-members compared with lunar lava surfaces (Neish et al. 2017) and fissure volcanism (Hughes et al. 2020). The opened sources name Hawaiian basalts in general, not the Kaʻū Desert itself.",
+     "rationale_pt": "Lavas basálticas havaianas estão entre os membros terrestres comparados a superfícies de lava lunares (Neish et al. 2017) e ao vulcanismo fissural (Hughes et al. 2020). As fontes consultadas citam basaltos havaianos em geral, não o deserto de Kaʻū em si."
+    }
+   ],
+   "similarities_en": [
+    "Basalt (pyroxene + plagioclase by definition); the opened sources do not document the pyroxene composition."
+   ],
+   "similarities_pt": [
+    "Basalto (piroxênio + plagioclásio por definição); as fontes consultadas não documentam a composição do piroxênio."
+   ],
+   "differences_en": [
+    "Coatings are ~10 µm thick: weak orbital signal mixed with fresh basalt."
+   ],
+   "differences_pt": [
+    "As películas têm ~10 µm: sinal orbital fraco misturado a basalto fresco."
+   ],
+   "limitations_en": [
+    "Coordinate is a trailhead on the desert's NE edge; the interior extends km to the SW."
+   ],
+   "limitations_pt": [
+    "A coordenada é um início de trilha na borda NE do deserto; o interior se estende por km a SW."
+   ],
+   "references": [
+    {
+     "id": "seelos2010",
+     "doi": "10.1029/2009JE003347",
+     "citation": "Seelos K.D. et al. (2010) Silica in a Mars analog environment: Kaʻū Desert, Kīlauea Volcano, Hawaii. JGR Planets 115, E00D15",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "chemtob2010",
+     "doi": "10.1029/2009JE003473",
+     "citation": "Chemtob S.M. et al. (2010) Silica coatings in the Kaʻū Desert, Hawaii, a Mars analog terrain. JGR Planets 115, E04001",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "neish2017",
+     "doi": "10.1016/j.icarus.2016.08.008",
+     "citation": "Neish C.D. et al. (2017) Terrestrial analogues for lunar impact melt flows. Icarus 281, 73-89",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "hughes2020",
+     "doi": "10.1016/j.pss.2020.105091",
+     "citation": "Hughes S.S. et al. (2020) Basaltic fissure types on Earth: suitable analogs to evaluate the origins of volcanic terrains on the Moon and Mars? PSS 193, 105091",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "dresser",
+   "name": "Dresser Formation, North Pole Dome, Pilbara",
+   "country": "Australia",
+   "lat": -21.151759,
+   "lon": 119.437252,
+   "coordinate_precision_km": 5,
+   "coordinate_source": "Wikipedia (formation)",
+   "verification": "verified",
+   "measurement_radius_km": 3,
+   "setting_en": "~3.48 Ga hydrothermally altered chert, barite, hematitic chert, geyserite and sinter.",
+   "setting_pt": "Chert alterado hidrotermalmente de ~3,48 Ga, barita, chert hematítico, geiserito e sínter.",
+   "key_minerals": [
+    "chert (quartz)",
+    "barite",
+    "hematite",
+    "kaolinite"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "published_analog",
+     "classes": [
+      "ferric_oxide",
+      "al_phyllosilicate_silica"
+     ],
+     "reference_ids": [
+      "djokic2017"
+     ],
+     "rationale_en": "Djokic et al. (2017) propose the Dresser hot-spring deposits as an analog for fossil-life searches in ancient Martian hot springs.",
+     "rationale_pt": "Djokic et al. (2017) propõem os depósitos de fontes termais de Dresser como análogo para a busca de vida fóssil em fontes termais antigas de Marte."
+    }
+   ],
+   "differences_en": [
+    "Silica is recrystallised chert, not hydrated opal: the analogy is geological and biological, weak for BD2210_2."
+   ],
+   "differences_pt": [
+    "A sílica é chert recristalizado, não opala hidratada: a analogia é geológica e biológica, fraca para BD2210_2."
+   ],
+   "limitations_en": [
+    "Coordinate is for the formation, ±5 km; narrow ridges, spinifex and laterite cover."
+   ],
+   "limitations_pt": [
+    "Coordenada da formação, ±5 km; cristas estreitas, cobertura de spinifex e laterita."
+   ],
+   "references": [
+    {
+     "id": "djokic2017",
+     "doi": "10.1038/ncomms15263",
+     "citation": "Djokic T. et al. (2017) Earliest signs of life on land preserved in ca. 3.5 Ga hot spring deposits. Nat. Commun. 8, 15263",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "lonar",
+   "name": "Lonar Crater",
+   "country": "India",
+   "lat": 19.975,
+   "lon": 76.5075,
+   "coordinate_precision_km": 1,
+   "coordinate_source": "Wikipedia (crater centre; lake)",
+   "verification": "verified",
+   "measurement_radius_km": 2,
+   "setting_en": "~1.8 km simple impact crater formed entirely in Deccan flood basalt, with breccia and ejecta.",
+   "setting_pt": "Cratera de impacto simples de ~1,8 km formada inteiramente em basalto de derrame do Deccan, com brecha e ejecta.",
+   "key_minerals": [
+    "basalt"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "published_analog",
+     "classes": [
+      "pyroxene_basalt"
+     ],
+     "reference_ids": [
+      "maloof2010"
+     ],
+     "rationale_en": "Maloof et al. (2010) describe Lonar as the only well-preserved terrestrial impact crater formed entirely in basalt, an analog for craters in Martian basaltic plains.",
+     "rationale_pt": "Maloof et al. (2010) descrevem Lonar como a única cratera de impacto terrestre bem preservada formada inteiramente em basalto, análoga às crateras das planícies basálticas de Marte."
+    }
+   ],
+   "similarities_en": [
+    "Basalt (pyroxene + plagioclase by definition); the opened sources do not document the pyroxene composition."
+   ],
+   "similarities_pt": [
+    "Basalto (piroxênio + plagioclásio por definição); as fontes consultadas não documentam a composição do piroxênio."
+   ],
+   "differences_en": [
+    "Crater floor and rim are forested and surrounded by farmland; a lake fills the centre."
+   ],
+   "differences_pt": [
+    "Fundo e borda da cratera são florestados e cercados de lavoura; um lago ocupa o centro."
+   ],
+   "limitations_en": [
+    "Vegetation strongly masks the basalt in optical data."
+   ],
+   "limitations_pt": [
+    "A vegetação encobre fortemente o basalto nos dados ópticos."
+   ],
+   "references": [
+    {
+     "id": "maloof2010",
+     "doi": "10.1130/B26474.1",
+     "citation": "Maloof A.C. et al. (2010) Geology of Lonar Crater, India. GSA Bull. 122, 109-126",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "twin_sisters",
+   "name": "Twin Sisters dunite",
+   "country": "USA (Washington)",
+   "lat": 48.7045599,
+   "lon": -121.9873731,
+   "coordinate_precision_km": 2,
+   "coordinate_source": "Wikipedia / GNIS (summit)",
+   "verification": "verified",
+   "measurement_radius_km": 2,
+   "setting_en": "Relatively unaltered dunite (olivine ~Fo91) with local serpentinite; USGS olivine standard GDS71 locality.",
+   "setting_pt": "Dunito pouco alterado (olivina ~Fo91) com serpentinito local; localidade do padrão de olivina GDS71 do USGS.",
+   "key_minerals": [
+    "olivine (Fo91)",
+    "enstatite",
+    "chromite",
+    "serpentine"
+   ],
+   "analog_for": [
+    {
+     "body": "mars",
+     "basis": "published_analog",
+     "classes": [
+      "olivine_rich",
+      "fe_mg_phyllosilicate"
+     ],
+     "reference_ids": [
+      "curtis2021",
+      "king1987"
+     ],
+     "rationale_en": "Curtis et al. (2021) study weathered Twin Sisters dunite as an analog for Martian ultramafic rocks; King & Ridley (1987) use its olivine to relate reflectance to composition.",
+     "rationale_pt": "Curtis et al. (2021) estudam o dunito intemperizado de Twin Sisters como análogo de rochas ultramáficas de Marte; King & Ridley (1987) usam sua olivina para relacionar reflectância e composição."
+    }
+   ],
+   "similarities_en": [
+    "Olivine-dominated rock with the broad 1 µm olivine band."
+   ],
+   "similarities_pt": [
+    "Rocha dominada por olivina, com a banda larga de olivina em 1 µm."
+   ],
+   "differences_en": [
+    "Olivine is far more Mg-rich (Fo91) than typical Martian olivine."
+   ],
+   "differences_pt": [
+    "A olivina é muito mais rica em Mg (Fo91) que a olivina típica de Marte."
+   ],
+   "limitations_en": [
+    "Alpine terrain: seasonal snow, forest on lower slopes, steep shadows."
+   ],
+   "limitations_pt": [
+    "Terreno alpino: neve sazonal, floresta nas encostas baixas, sombras fortes."
+   ],
+   "references": [
+    {
+     "id": "curtis2021",
+     "doi": "10.1130/abs/2021AM-370626",
+     "citation": "Curtis S. et al. (2021) Spectral variability in weathered ultramafic terrestrial analogs for Martian rocks. GSA Abstracts with Programs 53(6)",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "king1987",
+     "doi": "10.1029/JB092iB11p11457",
+     "citation": "King T.V.V., Ridley W.I. (1987) Relation of the spectroscopic reflectance of olivine to mineral chemistry and some remote sensing implications. JGR 92, 11457-11469",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "merriam_jsc1",
+   "name": "Merriam Crater cinder quarry, San Francisco Volcanic Field (JSC-1 source)",
+   "country": "USA (Arizona)",
+   "lat": 35.3333,
+   "lon": -111.2833,
+   "coordinate_precision_km": 2,
+   "coordinate_source": "Lunarpedia transcription of McKay et al. (1994): 35°20'N, 111°17'W",
+   "verification": "verified",
+   "measurement_radius_km": 2,
+   "setting_en": "Basaltic ash and cinder: plagioclase, pyroxene and olivine with ~50% basaltic glass.",
+   "setting_pt": "Cinza e escória basálticas: plagioclásio, piroxênio e olivina com ~50% de vidro basáltico.",
+   "key_minerals": [
+    "plagioclase",
+    "pyroxene",
+    "olivine",
+    "basaltic glass",
+    "ilmenite"
+   ],
+   "analog_for": [
+    {
+     "body": "moon",
+     "basis": "simulant_source",
+     "classes": [
+      "pyroxene_basalt",
+      "volcanic_glass"
+     ],
+     "reference_ids": [
+      "mckay1994",
+      "willman1995",
+      "ray2010"
+     ],
+     "rationale_en": "NASA JSC made the JSC-1 simulant from this ash to approximate a low-Ti mare soil (Apollo 14 sample 14163) in chemistry, mineralogy and grain size.",
+     "rationale_pt": "A NASA JSC fez o simulante JSC-1 com esta cinza para aproximar um solo de mare com baixo Ti (amostra 14163 da Apollo 14) em química, mineralogia e granulometria."
+    }
+   ],
+   "similarities_en": [
+    "Pyroxene + plagioclase + olivine with abundant glass, like low-Ti mare soil."
+   ],
+   "similarities_pt": [
+    "Piroxênio + plagioclásio + olivina com muito vidro, como solo de mare com baixo Ti."
+   ],
+   "differences_en": [
+    "No agglutinates, no nanophase iron and no space weathering; terrestrial oxidation and clay traces."
+   ],
+   "differences_pt": [
+    "Sem aglutinados, sem ferro nanofásico e sem intemperismo espacial; oxidação terrestre e traços de argila."
+   ],
+   "limitations_en": [
+    "Active cinder quarry; sparse juniper and grass around; pit within 1–2 km of the point."
+   ],
+   "limitations_pt": [
+    "Pedreira de escória ativa; zimbro e capim esparsos em volta; cava a 1–2 km do ponto."
+   ],
+   "references": [
+    {
+     "id": "mckay1994",
+     "doi": null,
+     "url": "https://lunarpedia.org/w/JSC-1",
+     "citation": "McKay D.S. et al. (1994) JSC-1: a new lunar soil simulant. Engineering, Construction, and Operations in Space IV, ASCE, 857-866",
+     "doi_verified": null
+    },
+    {
+     "id": "willman1995",
+     "doi": "10.1061/(ASCE)0893-1321(1995)8:2(77)",
+     "citation": "Willman B.M. et al. (1995) Properties of lunar soil simulant JSC-1. J. Aerosp. Eng. 8, 77-87",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "ray2010",
+     "doi": "10.1016/j.jnoncrysol.2010.04.049",
+     "citation": "Ray C.S. et al. (2010) JSC-1A lunar soil simulant: characterization, glass formation, and selected glass properties. J. Non-Cryst. Solids 356, 2369-2374",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "craters_of_the_moon",
+   "name": "Craters of the Moon lava field (Snake River Plain)",
+   "country": "USA (Idaho)",
+   "lat": 43.46167,
+   "lon": -113.56271,
+   "coordinate_precision_km": 5,
+   "coordinate_source": "Wikipedia (monument reference point inside the Holocene lava field)",
+   "verification": "verified",
+   "measurement_radius_km": 5,
+   "setting_en": "Holocene Great Rift lavas, basalt to trachyte; Fe-rich olivine, plagioclase, rare pyroxene, glassy crusts.",
+   "setting_pt": "Lavas holocênicas da Great Rift, de basalto a traquito; olivina rica em Fe, plagioclásio, piroxênio raro, crostas vítreas.",
+   "key_minerals": [
+    "Fe-rich olivine",
+    "plagioclase",
+    "Fe-Ti oxides",
+    "glass"
+   ],
+   "analog_for": [
+    {
+     "body": "moon",
+     "basis": "published_analog",
+     "classes": [
+      "olivine_rich",
+      "volcanic_glass"
+     ],
+     "reference_ids": [
+      "neish2017",
+      "stout1994"
+     ],
+     "rationale_en": "NASA FINESSE used these lavas as analogs for lunar lava-flow surfaces (Neish et al. 2017); Stout et al. (1994) document Fe-rich olivine and glassy crusts with rare pyroxene.",
+     "rationale_pt": "O projeto FINESSE da NASA usou estas lavas como análogos de superfícies de derrames lunares (Neish et al. 2017); Stout et al. (1994) documentam olivina rica em Fe e crostas vítreas com piroxênio raro."
+    }
+   ],
+   "differences_en": [
+    "Alkaline, Fe-Ti-P-rich lavas, not low-Ti mare tholeiite: mainly a morphological analog. Neish et al. found no terrestrial flow matching lunar melt-flow properties."
+   ],
+   "differences_pt": [
+    "Lavas alcalinas ricas em Fe-Ti-P, não toleíto de mare com baixo Ti: análogo sobretudo morfológico. Neish et al. não acharam derrame terrestre com as propriedades lunares."
+   ],
+   "limitations_en": [
+    "Point is ±5 km within a 1,600 km² field; sagebrush and lichen on older flows."
+   ],
+   "limitations_pt": [
+    "Ponto com ±5 km num campo de 1.600 km²; artemísia e líquen nos derrames mais antigos."
+   ],
+   "references": [
+    {
+     "id": "neish2017",
+     "doi": "10.1016/j.icarus.2016.08.008",
+     "citation": "Neish C.D. et al. (2017) Terrestrial analogues for lunar impact melt flows. Icarus 281, 73-89",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "stout1994",
+     "doi": "10.1093/petrology/35.6.1681",
+     "citation": "Stout M.Z. et al. (1994) Petrological and mineralogical variations in 2500-2000 yr B.P. lava flows, Craters of the Moon lava field, Idaho. J. Petrol. 35, 1681-1715",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "timanfaya",
+   "name": "Timanfaya lava field (1730–1736), Lanzarote",
+   "country": "Spain",
+   "lat": 28.99417,
+   "lon": -13.79333,
+   "coordinate_precision_km": 3,
+   "coordinate_source": "Wikipedia (national park)",
+   "verification": "verified",
+   "measurement_radius_km": 3,
+   "setting_en": "Basaltic fissure-eruption lavas and tephra, basanite evolving to tholeiite.",
+   "setting_pt": "Lavas e tefra de erupção fissural basáltica, de basanito a toleíto.",
+   "key_minerals": [
+    "basalt"
+   ],
+   "analog_for": [
+    {
+     "body": "moon",
+     "basis": "outreach",
+     "classes": [
+      "pyroxene_basalt"
+     ],
+     "reference_ids": [
+      "esa2017",
+      "muller2024"
+     ],
+     "rationale_en": "ESA's PANGAEA astronaut course trains here because the arid climate preserves lava plains resembling lunar maria (ESA, not peer reviewed); Muller & Longpré (2024) document the basaltic composition.",
+     "rationale_pt": "O curso PANGAEA da ESA treina astronautas aqui porque o clima árido preserva planícies de lava parecidas com os mares lunares (ESA, sem revisão por pares); Muller & Longpré (2024) documentam a composição basáltica."
+    }
+   ],
+   "similarities_en": [
+    "Fresh, arid basalt plains with little vegetation."
+   ],
+   "similarities_pt": [
+    "Planícies de basalto recente e árido, com pouca vegetação."
+   ],
+   "differences_en": [
+    "Alkaline-transitional Canary basalt, not mare chemistry; the lunar link is from ESA outreach only."
+   ],
+   "differences_pt": [
+    "Basalto alcalino-transicional das Canárias, não química de mare; o vínculo lunar vem só de divulgação da ESA."
+   ],
+   "limitations_en": [
+    "National park (restricted); lichen on lava; agriculture on tephra."
+   ],
+   "limitations_pt": [
+    "Parque nacional (acesso restrito); líquen na lava; agricultura sobre a tefra."
+   ],
+   "references": [
+    {
+     "id": "esa2017",
+     "doi": null,
+     "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/CAVES_and_Pangaea/Astronaut_meets_volcano",
+     "citation": "ESA (2017) Astronaut meets volcano",
+     "doi_verified": null
+    },
+    {
+     "id": "muller2024",
+     "doi": "10.1007/s00445-024-01729-5",
+     "citation": "Muller J.K., Longpré M.-A. (2024) Tephra dispersal and composition reveal the explosive onset of a large basaltic fissure eruption: Timanfaya, Lanzarote, 1730-1736 CE. Bull. Volcanol. 86",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "stillwater",
+   "name": "Stillwater Complex, Beartooth Mountains (NU-LHT simulant source)",
+   "country": "USA (Montana)",
+   "lat": 45.3861,
+   "lon": -109.9031,
+   "coordinate_precision_km": 5,
+   "coordinate_source": "Wikipedia (complex reference point); anorthosite bands a few km away",
+   "verification": "verified",
+   "measurement_radius_km": 5,
+   "setting_en": "Layered mafic–ultramafic intrusion; Banded Series of norite, gabbro and anorthosite.",
+   "setting_pt": "Intrusão máfica–ultramáfica acamadada; Série Bandada de norito, gabro e anortosito.",
+   "key_minerals": [
+    "calcic plagioclase",
+    "orthopyroxene",
+    "clinopyroxene"
+   ],
+   "analog_for": [
+    {
+     "body": "moon",
+     "basis": "published_analog",
+     "classes": [
+      "anorthosite",
+      "norite"
+     ],
+     "reference_ids": [
+      "salpas1983",
+      "carli2014",
+      "rickman2024"
+     ],
+     "rationale_en": "Salpas et al. (1983) test Stillwater anorthosites as lunar analogs; Carli et al. (2014) use their VNIR spectra to map lunar highlands; Stillwater anorthosite and norite are the feedstock of the NU-LHT highland simulants.",
+     "rationale_pt": "Salpas et al. (1983) testam os anortositos de Stillwater como análogos lunares; Carli et al. (2014) usam seus espectros VNIR para mapear as terras altas; anortosito e norito de Stillwater são a matéria-prima dos simulantes NU-LHT."
+    }
+   ],
+   "similarities_en": [
+    "Plagioclase-dominated anorthosite and plagioclase–orthopyroxene norite, as in the lunar highland crust."
+   ],
+   "similarities_pt": [
+    "Anortosito dominado por plagioclásio e norito de plagioclásio–ortopiroxênio, como na crosta das terras altas."
+   ],
+   "differences_en": [
+    "Not shocked or space weathered; plagioclase less calcic than lunar ferroan anorthosite."
+   ],
+   "differences_pt": [
+    "Sem choque nem intemperismo espacial; plagioclásio menos cálcico que o anortosito ferroano lunar."
+   ],
+   "limitations_en": [
+    "Mountain forest, winter snow and lichen; active Pt-Pd mining."
+   ],
+   "limitations_pt": [
+    "Floresta de montanha, neve no inverno e líquen; mineração ativa de Pt-Pd."
+   ],
+   "references": [
+    {
+     "id": "salpas1983",
+     "doi": "10.1029/JB088iS01p00B27",
+     "citation": "Salpas P.A., Haskin L.A., McCallum I.S. (1983) Stillwater anorthosites: a lunar analog? JGR 88, B27-B39",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "carli2014",
+     "doi": "10.2138/am-2014-4808",
+     "citation": "Carli C., Serventi G., Sgavetti M. (2014) VNIR spectral variability of the igneous stratified Stillwater Complex: a tool to map lunar highlands. Am. Mineral. 99, 1834-1848",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "rickman2024",
+     "doi": null,
+     "url": "https://ntrs.nasa.gov/citations/20240007991",
+     "citation": "Rickman D.L. et al. (2024) Characterization of NUW-LHT-5M, a lunar highland simulant. NASA TP",
+     "doi_verified": null
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "shawmere",
+   "name": "Shawmere Anorthosite, Kapuskasing Structural Zone (OB-1 simulant source)",
+   "country": "Canada (Ontario)",
+   "lat": 48.1324,
+   "lon": -82.7886,
+   "coordinate_precision_km": 0.5,
+   "coordinate_source": "Ontario Geological Survey MDI record MDI42B02NW00001",
+   "verification": "verified",
+   "measurement_radius_km": 3,
+   "setting_en": "Coarse Archean anorthosite, plagioclase ~An78 with 2–5% diopside, hypersthene, hornblende.",
+   "setting_pt": "Anortosito arqueano grosso, plagioclásio ~An78 com 2–5% de diopsídio, hiperstênio, hornblenda.",
+   "key_minerals": [
+    "plagioclase (~An78)",
+    "diopside",
+    "hypersthene",
+    "hornblende"
+   ],
+   "analog_for": [
+    {
+     "body": "moon",
+     "basis": "simulant_source",
+     "classes": [
+      "anorthosite"
+     ],
+     "reference_ids": [
+      "battler2009"
+     ],
+     "rationale_en": "Battler & Spray (2009) chose the Shawmere for its calcic, homogeneous plagioclase as the anorthosite component of the OB-1 highland simulant.",
+     "rationale_pt": "Battler & Spray (2009) escolheram o Shawmere pelo plagioclásio cálcico e homogêneo como componente anortosítico do simulante OB-1 das terras altas."
+    }
+   ],
+   "similarities_en": [
+    "Nearly monomineralic calcic plagioclase, like lunar highland anorthosite."
+   ],
+   "similarities_pt": [
+    "Plagioclásio cálcico quase monomineral, como o anortosito das terras altas lunares."
+   ],
+   "differences_en": [
+    "Metamorphosed and hornblende-bearing; plagioclase less calcic than lunar anorthosite."
+   ],
+   "differences_pt": [
+    "Metamorfizado e com hornblenda; plagioclásio menos cálcico que o anortosito lunar."
+   ],
+   "limitations_en": [
+    "Boreal forest, lakes and till cover most of the area: few bare-rock pixels."
+   ],
+   "limitations_pt": [
+    "Floresta boreal, lagos e till cobrem a maior parte da área: poucos pixels de rocha nua."
+   ],
+   "references": [
+    {
+     "id": "battler2009",
+     "doi": "10.1016/j.pss.2009.09.003",
+     "citation": "Battler M.M., Spray J.G. (2009) The Shawmere anorthosite and OB-1 as lunar highland regolith simulants. PSS 57, 2128-2131",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "sittampundi",
+   "name": "Sittampundi Anorthosite Complex (LSS-ISAC-1 simulant source)",
+   "country": "India (Tamil Nadu)",
+   "lat": 11.275,
+   "lon": 77.917,
+   "coordinate_precision_km": 15,
+   "coordinate_source": "Centre of the study-area box in Naidu, MSA Special Paper 1, pp. 116-123",
+   "verification": "verified",
+   "measurement_radius_km": 5,
+   "setting_en": "Neoarchean layered anorthosite–gabbro complex at granulite facies; anorthite-rich plagioclase.",
+   "setting_pt": "Complexo acamadado neoarqueano de anortosito–gabro em fácies granulito; plagioclásio rico em anortita.",
+   "key_minerals": [
+    "calcic plagioclase",
+    "amphibole",
+    "garnet",
+    "pyroxene",
+    "Cr-spinel"
+   ],
+   "analog_for": [
+    {
+     "body": "moon",
+     "basis": "published_analog",
+     "classes": [
+      "anorthosite"
+     ],
+     "reference_ids": [
+      "anbazhagan2010",
+      "anbazhagan2021"
+     ],
+     "rationale_en": "Anbazhagan & Arivazhagan (2010) use its anorthosites as lunar highland spectral analogs; ISRO quarried it for the LSS-ISAC-1 simulant (Anbazhagan et al. 2021).",
+     "rationale_pt": "Anbazhagan & Arivazhagan (2010) usam seus anortositos como análogos espectrais das terras altas; a ISRO o extraiu para o simulante LSS-ISAC-1 (Anbazhagan et al. 2021)."
+    }
+   ],
+   "differences_en": [
+    "High-grade metamorphism; tropical weathering."
+   ],
+   "differences_pt": [
+    "Metamorfismo de alto grau; intemperismo tropical."
+   ],
+   "limitations_en": [
+    "Coordinate is the centre of a ~15 km study box; the anorthosite band is narrow; farmland and vegetation."
+   ],
+   "limitations_pt": [
+    "A coordenada é o centro de uma área de estudo de ~15 km; a faixa de anortosito é estreita; lavoura e vegetação."
+   ],
+   "references": [
+    {
+     "id": "anbazhagan2010",
+     "doi": "10.1016/j.pss.2009.12.002",
+     "citation": "Anbazhagan S., Arivazhagan S. (2010) Reflectance spectra of analog anorthosites: implications for lunar highland mapping. PSS 58, 752-760",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "anbazhagan2021",
+     "doi": "10.1016/j.icarus.2021.114511",
+     "citation": "Anbazhagan S. et al. (2021) A lunar soil simulant (LSS-ISAC-1) for the lunar exploration programme of ISRO. Icarus 366, 114511",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "sudbury_creighton",
+   "name": "Sudbury Igneous Complex norite, South Range (Creighton)",
+   "country": "Canada (Ontario)",
+   "lat": 46.46389,
+   "lon": -81.17472,
+   "coordinate_precision_km": 2,
+   "coordinate_source": "Wikipedia (Creighton Mine; norite base within 1–2 km)",
+   "verification": "verified",
+   "measurement_radius_km": 3,
+   "setting_en": "~1.85 Ga differentiated impact melt sheet: quartz norite, norite, gabbro, granophyre; breccias.",
+   "setting_pt": "Lençol de fusão de impacto diferenciado de ~1,85 Ga: quartzo-norito, norito, gabro, granófiro; brechas.",
+   "key_minerals": [
+    "plagioclase",
+    "orthopyroxene",
+    "quartz"
+   ],
+   "analog_for": [
+    {
+     "body": "moon",
+     "basis": "published_analog",
+     "classes": [
+      "norite"
+     ],
+     "reference_ids": [
+      "norman1992",
+      "therriault2002"
+     ],
+     "rationale_en": "Norman (1992) discusses the Sudbury melt sheet as a model for lunar noritic crust; Therriault et al. (2002) document its differentiation. Apollo 15–17 crews trained here.",
+     "rationale_pt": "Norman (1992) discute o lençol de fusão de Sudbury como modelo para a crosta norítica lunar; Therriault et al. (2002) documentam sua diferenciação. As tripulações das Apollo 15–17 treinaram aqui."
+    }
+   ],
+   "differences_en": [
+    "Quartz-bearing, crust-contaminated norite, unlike pristine lunar norite."
+   ],
+   "differences_pt": [
+    "Norito com quartzo e contaminado pela crosta, diferente do norito lunar primitivo."
+   ],
+   "limitations_en": [
+    "Boreal forest, lakes; a century of mining and smelting (slag, tailings, regreening)."
+   ],
+   "limitations_pt": [
+    "Floresta boreal, lagos; um século de mineração e fundição (escória, rejeito, reflorestamento)."
+   ],
+   "references": [
+    {
+     "id": "norman1992",
+     "doi": "10.1130/SPE293-p331",
+     "citation": "Norman M.D. (1992) Sudbury Igneous Complex: impact melt or endogenous magma? Implications for lunar crustal evolution. GSA Spec. Pap. 293, 331-342",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    },
+    {
+     "id": "therriault2002",
+     "doi": "10.2113/gsecongeo.97.7.1521",
+     "citation": "Therriault A.M., Fowler A.D., Grieve R.A.F. (2002) The Sudbury Igneous Complex: a differentiated impact melt sheet. Econ. Geol. 97, 1521-1540",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  },
+  {
+   "id": "kunene_zebra",
+   "name": "Kunene Complex, Zebra Mountains lobe",
+   "country": "Namibia",
+   "lat": -17.12322,
+   "lon": 13.49802,
+   "coordinate_precision_km": 0.2,
+   "coordinate_source": "GPS of sample Ku-97-93, Table A.1.1, Drüppel (2003) Würzburg dissertation appendix",
+   "verification": "unverified: no published lunar-analog reference (lithology and coordinate verified)",
+   "measurement_radius_km": 3,
+   "setting_en": "Mesoproterozoic massif anorthosite and leucotroctolite in an arid setting.",
+   "setting_pt": "Anortosito maciço e leucotroctolito mesoproterozoicos em ambiente árido.",
+   "key_minerals": [
+    "plagioclase (~An57–76)",
+    "pyroxene",
+    "olivine",
+    "ilmenite"
+   ],
+   "analog_for": [
+    {
+     "body": "moon",
+     "basis": "candidate",
+     "classes": [
+      "anorthosite"
+     ],
+     "reference_ids": [
+      "lehmann2023"
+     ],
+     "rationale_en": "Candidate only: well-exposed arid anorthosite, but no paper uses it as a lunar analog.",
+     "rationale_pt": "Apenas candidato: anortosito árido bem exposto, mas nenhum artigo o usa como análogo lunar."
+    }
+   ],
+   "limitations_en": [
+    "Excluded from matching until a lunar-analog reference exists; measured for the library."
+   ],
+   "limitations_pt": [
+    "Fora da correspondência até existir referência como análogo lunar; medido para a biblioteca."
+   ],
+   "references": [
+    {
+     "id": "lehmann2023",
+     "doi": "10.1016/j.gsf.2023.101620",
+     "citation": "Lehmann J. et al. (2023) Landsat 8 and Alos DEM geological mapping reveals the architecture of the giant Mesoproterozoic Kunene Complex anorthosite suite. Geosci. Front. 14, 101620",
+     "doi_verified": "Crossref/DataCite 2026-11-06"
+    }
+   ],
+   "emit": null
+  }
+ ]
+}

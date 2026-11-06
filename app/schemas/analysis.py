@@ -193,6 +193,8 @@ class SpectralIndicator(BaseModel):
     n_pixels: int
     interpretation: str
     comparability: Literal["direct", "proxy", "body_specific"] = "body_specific"
+    detected: bool | None = Field(None, description="result of the statistical screening (see threshold_basis); "
+                                                    "None for descriptive values")
 
 
 class MineralogySection(BaseModel):
@@ -249,6 +251,42 @@ class EarthAnalogSection(BaseModel):
                        "of mineral occurrence and does not indicate a deposit.")
 
 
+class TerrestrialAnalogSite(BaseModel):
+    id: str
+    name: str
+    country: str
+    latitude: float
+    longitude: float
+    coordinate_source: str
+    coordinate_precision_km: float | None = None
+    setting: str
+    key_minerals: list[str] = Field(default_factory=list)
+    matched_classes: list[str] = Field(description="region evidence classes this site's documented geology explains")
+    analog_basis: str | None = Field(None, description="published_analog | simulant_source | published_analog_general"
+                                                       " | mineralogical_reference | outreach")
+    justification: list[str] = Field(default_factory=list)
+    similarities: list[str] = Field(default_factory=list)
+    differences: list[str] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
+    references: list[dict[str, Any]] = Field(default_factory=list)
+    emit: dict[str, Any] | None = Field(None, description="masked EMIT remeasurement of the site (provenance)")
+    region_bands: dict[str, bool | None] = Field(default_factory=dict)
+
+
+class TerrestrialAnalogSection(BaseModel):
+    status: SectionStatus
+    reason: Reason | None = None
+    body: Literal["moon", "mars"] | None = None
+    basis: Literal["regional_spectral_evidence", "global_context"] | None = None
+    method: str | None = None
+    catalog: str | None = None
+    region_evidence: list[dict[str, Any]] = Field(default_factory=list)
+    unexplained_evidence: list[str] = Field(default_factory=list)
+    sites: list[TerrestrialAnalogSite] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+    disclaimer: str | None = None
+
+
 class Criterion(BaseModel):
     criterion: str
     met: bool
@@ -282,6 +320,8 @@ class AnalysisResult(BaseModel):
     topography: TopographySection
     mineralogy: MineralogySection
     earth_analogs: EarthAnalogSection
+    terrestrial_analogs: TerrestrialAnalogSection | None = Field(
+        None, description="Moon/Mars: documented terrestrial analog sites matched by mineral family")
     earth_observation: dict[str, Any] | None = Field(
         None, description="Earth only: Sentinel-2/ASTER/EMIT indices with provenance")
     confidence: ConfidenceSection

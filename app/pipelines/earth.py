@@ -11,6 +11,7 @@ from app.schemas.analysis import (AnalysisResult, AnalyzeRequest, EarthAnalogSec
                                   MineralogySection, Reason, SectionStatus, SpectralIndicator, Stats,
                                   TopographySection)
 from app.science import similarity
+from app.science.spectral import DETECTION_BASIS, detected_from_stats
 from app.pipelines.common import (Context, ProgressFn, assess_confidence, build_coordinates, finalize, safe_float)
 
 
@@ -93,10 +94,38 @@ async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_a
             interpretation=("ROI-mean value is negative (convex continuum): no absorption at this wavelength. "
                             "The analog comparison uses 0, as in the reference library." if v < 0 else
                             "ROI-mean value; per-pixel distribution not retrieved"), comparability="direct"))
+    masked = data.get("emit_masked") or {"status": "unavailable"}
+    masked_rec = ctx.source(
+        provider="Google Earth Engine", service="reduceRegion", instrument="EMIT", mission="ISS",
+        product_type="NASA/EMIT/L2A/RFL", spatial_resolution_m=gee.EMIT_SCALE_M,
+        status="ok" if masked.get("status") == "ok" else "empty" if masked.get("status") != "error" else "error",
+        message=f"{masked.get('scene_count', 0)} scenes; status {masked.get('status')}"
+        + (f"; {masked['error']}" if masked.get("error") else ""),
+        processing=["per-scene mask: reflectance range, EMIT aggregate_flag (cloud/cirrus/water/spacecraft)",
+                    "rock mask: + NDVI < 0.2, NDSI <= 0.4, NDWI <= 0", "median composite of unmasked pixels",
+                    "per-pixel 3-band depths (unclamped), ROI statistics at 60 m"])
+    rock = (masked.get("variants") or {}).get("rock") or {}
+    for w in ("bd1000", "bd2000"):
+        r = rock.get(w) or {}
+        if not r.get("n_pixels") or r.get("mean") is None:
+            continue
+        det = detected_from_stats(r["mean"], r.get("std"), r.get("median"), r["n_pixels"], r.get("fraction_positive"))
+        indicators.append(SpectralIndicator(
+            name=f"rock_{w}", value=Stats(mean=r["mean"], median=r.get("median"), std=r.get("std")),
+            definition=f"3-band depth at {w[2:]} nm on EMIT median composite of rock pixels (cloud/water/vegetation/"
+                       "snow masked); per-pixel, unclamped", reference="GEØ.IA remeasurement (EMIT L2A, masked)",
+            sensitive_to="Fe2+ absorption (coarse)" if w == "bd1000" else
+            "Fe2+ absorption near 2 µm; residual atmospheric CO2 near 2.0 µm",
+            screening_threshold=0.0, threshold_basis=DETECTION_BASIS,
+            fraction_above_threshold=r.get("fraction_positive"), n_pixels=r["n_pixels"],
+            interpretation=("Positive absorption detected." if det else
+                            "No statistically significant absorption." if det is False else
+                            "Detection not assessed (incomplete statistics)."),
+            comparability="proxy", detected=det))
     min_s = MineralogySection(
         status=SectionStatus.available if indicators else SectionStatus.unavailable,
         reason=None if indicators else Reason.no_coverage, instrument="EMIT (imaging spectrometer)",
-        method="EMIT L2A surface reflectance band depths", indicators=indicators, source_ids=[emit_rec.source_id],
+        method="EMIT L2A surface reflectance band depths", indicators=indicators, source_ids=[emit_rec.source_id, masked_rec.source_id],
         limitations=["EMIT coverage is limited to arid regions within ±52° latitude"])
     core_rec = ctx.source(provider="Google Earth Engine", service="reduceRegion",
                           product_type="COPERNICUS/S2_SR_HARMONIZED + ASTER/AST_L1T_003",
@@ -107,7 +136,8 @@ async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_a
     earth_obs = {"values": {k: _num(data["core"], k) for k in
                             ("ndvi", "vnir_ferric_ratio", "vnir_slope", "aster_mafic_index", "aster_silica_index")},
                  "source_ids": [core_rec.source_id],
-                 "note": "Earth-only context indices; not compared with lunar or Martian data."}
+                 "note": "Earth-only context indices; not compared with lunar or Martian data.",
+                 "emit_masked": masked, "emit_masked_source_id": masked_rec.source_id}
     analogs = similarity.compare("earth", analog_inputs) if analog_inputs else EarthAnalogSection(
         status=SectionStatus.unavailable, reason=Reason.not_attempted)
     conf = assess_confidence(topo_s, MineralogySection(status=SectionStatus.unavailable), [])

@@ -52,6 +52,8 @@ SENSITIVE_TO = {
     "1 µm Fe2+ absorption (coarse, 3-band)": "absorção de Fe²⁺ em 1 µm (grosseira, 3 bandas)",
     "2 µm Fe2+ absorption (coarse, 3-band)": "absorção de Fe²⁺ em 2 µm (grosseira, 3 bandas)",
     "Fe2+ absorption (coarse)": "absorção de Fe²⁺ (grosseira)",
+    "Fe2+ absorption near 2 µm; residual atmospheric CO2 near 2.0 µm":
+        "absorção de Fe²⁺ perto de 2 µm; CO₂ atmosférico residual perto de 2,0 µm",
     "albedo; space-weathering maturity": "albedo; maturidade por intemperismo espacial",
     "space weathering / maturity": "intemperismo espacial / maturidade",
 }
@@ -76,6 +78,7 @@ RULES: list[_Rule] = [
                 f"{SENSITIVE_TO.get(m.group(2), m.group(2))}; a confirmação exige análise de espectros em razão.")),
     (re.compile(r"Positive absorption detected \((.+?)\)\."), r"Absorção positiva detectada (\1)."),
     _lit("Positive absorption detected.", "Absorção positiva detectada."),
+    _lit("Detection not assessed (incomplete statistics).", "Detecção não avaliada (estatísticas incompletas)."),
     _lit("No statistically significant absorption in the window.",
          "Nenhuma absorção estatisticamente significativa na janela."),
     _lit("No statistically significant absorption.", "Nenhuma absorção estatisticamente significativa."),
@@ -328,4 +331,10 @@ def localize(doc: dict, lang: str | None) -> dict:
     if out.get("status") != "processing":
         for path in PATHS:
             _walk(out, path.split("."), lang)
+        if isinstance(out.get("terrestrial_analogs"), dict):
+            from app.science import analog_sites   # catalog-driven prose, rebuilt in the target language
+            try:
+                analog_sites.localize(out["terrestrial_analogs"], lang)
+            except Exception:  # noqa: BLE001 - never fail a response over translation
+                pass
     return out
