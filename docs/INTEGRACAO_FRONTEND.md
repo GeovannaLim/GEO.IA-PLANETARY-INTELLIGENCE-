@@ -148,7 +148,13 @@ async function fetchRetry(url: string, init?: RequestInit, tries = 3): Promise<R
 * `examples/local_validation_run.json` — 27 verificações reais (testes A–F) contra servidor local em modo produção.
 * `examples/production_validation_render.json` — as mesmas 27 verificações contra o Render em produção (27/27, 2026-11-05).
 
-## 12. Teste de integração (pendente — requer acesso ao Skip)
-1. Configurar `GEOIA_CORS_ORIGINS=https://geoai-interplanetary.goskip.app` no Render.
-2. ~~Preflight CORS do Skip contra o Render~~ — **feito**: 200 com `access-control-allow-origin: https://geoai-interplanetary.goskip.app`; origem desconhecida recusada.
-3. No Skip: iniciar uma análise, confirmar criação do job (202), acompanhar `progress`, exibir resultado, abrir o PDF.
+## 12. Teste de integração (2026-11-05, Skip publicado, usuário logado)
+1. `GEOIA_CORS_ORIGINS=https://geoai-interplanetary.goskip.app` configurado no Render; preflight 200, origem desconhecida recusada.
+2. **Marte — integrado e verificado pela interface:**
+   * 5.81°N 328.34°E (exibido 0–360) enviado como −31.66 → `POST /v1/mars/analyze?wait_s=20` 200; MOLA 615 pontos, CRISM `hrl0000c0cb_07_if182j_mtr3` (2.040 pixels), análogos com aviso, confiança, fontes, coordenadas usadas.
+   * Mesmo ponto, raio 8 → nova análise, topografia com selo “dados esparsos”.
+   * 40.25°S 347.49°E → mineralogia “Nenhuma observação deste instrumento cobre este ponto.”, análogos “Depende de dados espectrais indisponíveis.”, sem números.
+   * `/health` chamado ao abrir; PDF da análise exibida: 200 `application/pdf` (o botão abre `geoia-planetary-backend.onrender.com` em nova aba).
+3. **Lua — não integrada:** a tela `/moon` ainda mostra o painel demonstrativo antigo (porcentagens fixas, “Resource Potential”) e não chama a API.
+4. Não exercitado pela interface: polling via `links.self` (todas as análises de Marte terminaram dentro de `wait_s=20`). Terra não tem tela no Skip.
+5. Pendências de UI: selos “ANÁLISE DEMONSTRATIVA”/“DEMO” no painel real de Marte; “Demo score” nos candidatos; campos nulos de metadados das fontes exibidos como “não medido”.
