@@ -85,7 +85,244 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 25,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20220828T065812_2224005_023",
+      "solar_zenith": "9.65",
+      "date": "2022-08-28"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230206T053232_2303704_015",
+      "solar_zenith": "5.12",
+      "date": "2023-02-06"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230303T050046_2306203_007",
+      "solar_zenith": "7.08",
+      "date": "2023-03-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230430T055818_2312004_018",
+      "solar_zenith": "30.59",
+      "date": "2023-04-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230605T062135_2315605_023",
+      "solar_zenith": "23.50",
+      "date": "2023-06-05"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231005T060719_2327804_024",
+      "solar_zenith": "38.87",
+      "date": "2023-10-05"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231009T043059_2328203_012",
+      "solar_zenith": "57.60",
+      "date": "2023-10-09"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231022T084126_2329506_026",
+      "solar_zenith": "36.23",
+      "date": "2023-10-22"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231026T070609_2329905_027",
+      "solar_zenith": "37.36",
+      "date": "2023-10-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231226T065718_2336005_011",
+      "solar_zenith": "49.45",
+      "date": "2023-12-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240608T041803_2416003_014",
+      "solar_zenith": "52.17",
+      "date": "2024-06-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240625T065259_2417705_035",
+      "solar_zenith": "17.90",
+      "date": "2024-06-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240625T065311_2417705_036",
+      "solar_zenith": "17.40",
+      "date": "2024-06-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240825T064509_2423804_029",
+      "solar_zenith": "24.02",
+      "date": "2024-08-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241005T051210_2427904_004",
+      "solar_zenith": "49.20",
+      "date": "2024-10-05"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241026T061204_2430004_003",
+      "solar_zenith": "43.24",
+      "date": "2024-10-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250414T104549_2510407_037",
+      "solar_zenith": "40.30",
+      "date": "2025-04-14"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250517T121848_2513708_011",
+      "solar_zenith": "59.55",
+      "date": "2025-05-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250801T062008_2521304_010",
+      "solar_zenith": "26.68",
+      "date": "2025-08-01"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260129T064120_2602904_030",
+      "solar_zenith": "47.87",
+      "date": "2026-01-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260216T085347_2604706_019",
+      "solar_zenith": "36.67",
+      "date": "2026-02-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260216T085359_2604706_020",
+      "solar_zenith": "36.24",
+      "date": "2026-02-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260619T081649_2617005_052",
+      "solar_zenith": "2.17",
+      "date": "2026-06-19"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260627T050747_2617803_010",
+      "solar_zenith": "41.84",
+      "date": "2026-06-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260627T050759_2617803_011",
+      "solar_zenith": "41.42",
+      "date": "2026-06-27"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.08325233233769297,
+       "std": 0.01676849168038504,
+       "median": 0.08347292616852443,
+       "n_pixels": 3893,
+       "fraction_positive": 1.0,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.05229469511132557,
+       "std": 0.02702563399738835,
+       "median": -0.0537193145212446,
+       "n_pixels": 3893,
+       "fraction_positive": 0.03154002780829979,
+       "detected": false
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.08393047907624404,
+       "std": 0.01755593622475363,
+       "median": 0.08346260694779258,
+       "n_pixels": 3893,
+       "fraction_positive": 1.0,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.06466790456978286,
+       "std": 0.023904146327475978,
+       "median": -0.06149830036208613,
+       "n_pixels": 3893,
+       "fraction_positive": 0.00468783360846539,
+       "detected": false
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.08398600668965961,
+       "std": 0.017340047381584945,
+       "median": 0.08375199204689601,
+       "n_pixels": 3893,
+       "fraction_positive": 1.0,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.06442375114766981,
+       "std": 0.02394347447449349,
+       "median": -0.06150921129294349,
+       "n_pixels": 3893,
+       "fraction_positive": 0.006015758036546565,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 3764,
+     "valid_pixels": 3764,
+     "quality_pixels": 3764,
+     "rock_pixels": 3764,
+     "quality_fraction": 1.0,
+     "rock_fraction": 1.0
+    },
+    "surface": {
+     "ndvi_mean": 0.0360413185233402,
+     "vegetated_fraction": 0.0,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.00026558488561623516,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.08473139598752807,
+     "legacy_bd2000": -0.060137639039949294
+    },
+    "s2_ndvi": 0.04700071430196232,
+    "analysis_id": "2e9e78b0b4b64137966ee6d31e271f6c",
+    "radius_km": 2,
+    "measured_at": "2026-11-06T23:30:53+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/2e9e78b0b4b64137966ee6d31e271f6c"
+   }
   },
   {
    "id": "lake_salda",
@@ -137,7 +374,164 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 9,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230221T093744_2305206_005",
+      "solar_zenith": "7.08",
+      "date": "2023-02-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240623T082158_2417506_019",
+      "solar_zenith": "25.69",
+      "date": "2024-06-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240728T112526_2421008_010",
+      "solar_zenith": "25.42",
+      "date": "2024-07-28"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240823T081439_2423605_014",
+      "solar_zenith": "35.99",
+      "date": "2024-08-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250405T080436_2509505_016",
+      "solar_zenith": "41.24",
+      "date": "2025-04-05"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260327T110801_2608607_025",
+      "solar_zenith": "37.41",
+      "date": "2026-03-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260617T094448_2616806_015",
+      "solar_zenith": "14.79",
+      "date": "2026-06-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260621T081041_2617205_026",
+      "solar_zenith": "27.70",
+      "date": "2026-06-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260723T122431_2620408_027",
+      "solar_zenith": "34.64",
+      "date": "2026-07-23"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": -0.11753301301551479,
+       "std": 0.11824438853621723,
+       "median": -0.11908647389489775,
+       "n_pixels": 10018,
+       "fraction_positive": 0.18502360437555432,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.24145965196121896,
+       "std": 0.1295640791278544,
+       "median": 0.25408750488707355,
+       "n_pixels": 10018,
+       "fraction_positive": 0.9595325578076337,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": -0.0023497344588446927,
+       "std": 0.059284420395513925,
+       "median": 0.01280422414718328,
+       "n_pixels": 6725,
+       "fraction_positive": 0.8006319023048757,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.01763139835923571,
+       "std": 0.15311268321960225,
+       "median": -0.043427291530155315,
+       "n_pixels": 6725,
+       "fraction_positive": 0.2916072383270622,
+       "detected": false
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.007783950218031305,
+       "std": 0.024777481702193887,
+       "median": 0.01418435043019279,
+       "n_pixels": 143,
+       "fraction_positive": 0.6620429518768632,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.2719208958450535,
+       "std": 0.24690438939401138,
+       "median": 0.4315178811380398,
+       "n_pixels": 143,
+       "fraction_positive": 0.837105311188173,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 9811,
+     "valid_pixels": 9811,
+     "quality_pixels": 6579,
+     "rock_pixels": 128,
+     "quality_fraction": 0.6706,
+     "rock_fraction": 0.013
+    },
+    "surface": {
+     "ndvi_mean": 0.003077354025423128,
+     "vegetated_fraction": 0.0,
+     "snow_fraction": 0.0012313810242157695,
+     "water_fraction": 0.9857258740808599,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": false,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": -0.13519477612894418,
+     "legacy_bd2000": -0.20530274597600967
+    },
+    "s2_ndvi": -0.11618667034580425,
+    "analysis_id": "077f82430d244be29acea0e4e58665b5",
+    "radius_km": 3,
+    "measured_at": "2026-11-06T23:31:05+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/077f82430d244be29acea0e4e58665b5"
+   }
   },
   {
    "id": "rio_tinto",
@@ -198,7 +592,249 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 26,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230219T124418_2305008_005",
+      "solar_zenith": "7.02",
+      "date": "2023-02-19"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230223T111003_2305407_005",
+      "solar_zenith": "7.05",
+      "date": "2023-02-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230422T121403_2311208_005",
+      "solar_zenith": "11.44",
+      "date": "2023-04-22"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230426T103623_2311607_005",
+      "solar_zenith": "33.99",
+      "date": "2023-04-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230607T110234_2315807_003",
+      "solar_zenith": "23.40",
+      "date": "2023-06-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230629T091938_2318006_005",
+      "solar_zenith": "42.64",
+      "date": "2023-06-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230726T153306_2320710_004",
+      "solar_zenith": "43.13",
+      "date": "2023-07-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230730T135648_2321109_003",
+      "solar_zenith": "26.96",
+      "date": "2023-07-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231014T145449_2328710_006",
+      "solar_zenith": "59.34",
+      "date": "2023-10-14"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240415T140522_2410609_005",
+      "solar_zenith": "35.17",
+      "date": "2024-04-15"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240419T122724_2411008_006",
+      "solar_zenith": "26.42",
+      "date": "2024-04-19"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240821T112243_2423408_005",
+      "solar_zenith": "30.05",
+      "date": "2024-08-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250326T142509_2508509_010",
+      "solar_zenith": "43.48",
+      "date": "2025-03-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250326T142521_2508509_011",
+      "solar_zenith": "44.50",
+      "date": "2025-03-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250330T124733_2508908_003",
+      "solar_zenith": "33.59",
+      "date": "2025-03-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250523T152616_2514310_004",
+      "solar_zenith": "42.84",
+      "date": "2025-05-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250527T135026_2514709_002",
+      "solar_zenith": "24.63",
+      "date": "2025-05-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250622T103845_2517307_006",
+      "solar_zenith": "27.77",
+      "date": "2025-06-22"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260402T110958_2609207_004",
+      "solar_zenith": "37.20",
+      "date": "2026-04-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260523T150031_2614310_004",
+      "solar_zenith": "37.79",
+      "date": "2026-05-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260527T132614_2614709_001",
+      "solar_zenith": "21.61",
+      "date": "2026-05-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260531T115121_2615108_005",
+      "solar_zenith": "17.27",
+      "date": "2026-05-31"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260604T101611_2615507_003",
+      "solar_zenith": "31.50",
+      "date": "2026-06-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260604T101623_2615507_004",
+      "solar_zenith": "31.07",
+      "date": "2026-06-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260611T142442_2616209_005",
+      "solar_zenith": "29.59",
+      "date": "2026-06-11"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260615T125054_2616608_006",
+      "solar_zenith": "15.73",
+      "date": "2026-06-15"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.03076011310598509,
+       "std": 0.05054601621245296,
+       "median": 0.026450367004734406,
+       "n_pixels": 4517,
+       "fraction_positive": 0.7740690454760414,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.11311268795992191,
+       "std": 0.10377015236473669,
+       "median": 0.09574414922447175,
+       "n_pixels": 4517,
+       "fraction_positive": 0.9184353090139962,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.035915990571844886,
+       "std": 0.05216989561264139,
+       "median": 0.032258453363136985,
+       "n_pixels": 4517,
+       "fraction_positive": 0.8013024434499587,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.07451349045673286,
+       "std": 0.10153640278241788,
+       "median": 0.052706221907990305,
+       "n_pixels": 4517,
+       "fraction_positive": 0.7949526502489757,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.0403018872102895,
+       "std": 0.07171405694385634,
+       "median": 0.002722529760589187,
+       "n_pixels": 1981,
+       "fraction_positive": 0.5291461801276793,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.3222622372724792,
+       "std": 0.3243315961292478,
+       "median": 0.558830968242007,
+       "n_pixels": 1981,
+       "fraction_positive": 0.716179179769122,
+       "detected": true
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 4369,
+     "valid_pixels": 4369,
+     "quality_pixels": 4369,
+     "rock_pixels": 1902,
+     "quality_fraction": 1.0,
+     "rock_fraction": 0.4353
+    },
+    "surface": {
+     "ndvi_mean": 0.39056995558373075,
+     "vegetated_fraction": 0.9204436240484507,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.0,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": false,
+     "bd2000": true
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.029731748232759016,
+     "legacy_bd2000": 0.10295398270951017
+    },
+    "s2_ndvi": 0.3465348006844503,
+    "analysis_id": "138b20d9c6464c05b4f1cfaa2b0bb60e",
+    "radius_km": 2,
+    "measured_at": "2026-11-06T23:31:13+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/138b20d9c6464c05b4f1cfaa2b0bb60e"
+   }
   },
   {
    "id": "el_tatio",
@@ -255,7 +891,184 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 13,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230126T153220_2302610_045",
+      "solar_zenith": "6.21",
+      "date": "2023-01-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230317T193856_2307612_013",
+      "solar_zenith": "5.66",
+      "date": "2023-03-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230525T162328_2314510_044",
+      "solar_zenith": "43.30",
+      "date": "2023-05-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230903T145633_2324610_030",
+      "solar_zenith": "37.67",
+      "date": "2023-09-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230916T191229_2325912_009",
+      "solar_zenith": "47.52",
+      "date": "2023-09-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230920T173811_2326311_030",
+      "solar_zenith": "29.57",
+      "date": "2023-09-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240916T181812_2426011_010",
+      "solar_zenith": "36.79",
+      "date": "2024-09-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251103T132158_2530709_014",
+      "solar_zenith": "41.84",
+      "date": "2025-11-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251120T160253_2532410_005",
+      "solar_zenith": "3.91",
+      "date": "2025-11-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251124T142955_2532809_006",
+      "solar_zenith": "25.14",
+      "date": "2025-11-24"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260225T161240_2605611_018",
+      "solar_zenith": "15.53",
+      "date": "2026-02-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260323T152439_2608210_006",
+      "solar_zenith": "29.75",
+      "date": "2026-03-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260715T181617_2619612_005",
+      "solar_zenith": "49.90",
+      "date": "2026-07-15"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": -0.018463853886661545,
+       "std": 0.03973941348700397,
+       "median": -0.010624439018164606,
+       "n_pixels": 3861,
+       "fraction_positive": 0.35089547617923156,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": -0.051720078703578115,
+       "std": 0.13275274843543475,
+       "median": -0.09200552001986975,
+       "n_pixels": 3861,
+       "fraction_positive": 0.21928225472138702,
+       "detected": false
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": -0.002898936377767911,
+       "std": 0.02940588328661207,
+       "median": 0.0028985794481923926,
+       "n_pixels": 3861,
+       "fraction_positive": 0.538656339698482,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": -0.08929366639783205,
+       "std": 0.12371225502154154,
+       "median": -0.11122685133290526,
+       "n_pixels": 3861,
+       "fraction_positive": 0.1411950527105668,
+       "detected": false
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": -0.002840734482032482,
+       "std": 0.029388904003709707,
+       "median": 0.002896437545183566,
+       "n_pixels": 3861,
+       "fraction_positive": 0.5391915789031795,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": -0.08964915175109729,
+       "std": 0.12336088878360618,
+       "median": -0.1112275623590666,
+       "n_pixels": 3861,
+       "fraction_positive": 0.14039219390352053,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 3736,
+     "valid_pixels": 3736,
+     "quality_pixels": 3736,
+     "rock_pixels": 3736,
+     "quality_fraction": 1.0,
+     "rock_fraction": 1.0
+    },
+    "surface": {
+     "ndvi_mean": 0.08172573392985982,
+     "vegetated_fraction": 0.0024085764211388,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.0,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": false,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": -0.018935382935822368,
+     "legacy_bd2000": -0.03835471780956409
+    },
+    "s2_ndvi": 0.07716697542828592,
+    "analysis_id": "c505a26dffdc4b70a7fb9a886dfe377d",
+    "radius_km": 2,
+    "measured_at": "2026-11-06T23:31:23+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/c505a26dffdc4b70a7fb9a886dfe377d"
+   }
   },
   {
    "id": "cuprite",
@@ -317,7 +1130,284 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 33,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230129T211407_2302914_008",
+      "solar_zenith": "6.00",
+      "date": "2023-01-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230427T173257_2311711_009",
+      "solar_zenith": "38.27",
+      "date": "2023-04-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230427T173309_2311711_010",
+      "solar_zenith": "37.52",
+      "date": "2023-04-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230804T191650_2321613_007",
+      "solar_zenith": "22.19",
+      "date": "2023-08-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230808T173953_2322012_011",
+      "solar_zenith": "36.31",
+      "date": "2023-08-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231023T183905_2329612_009",
+      "solar_zenith": "50.92",
+      "date": "2023-10-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231201T201058_2333513_006",
+      "solar_zenith": "59.95",
+      "date": "2023-12-01"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240127T213427_2402714_008",
+      "solar_zenith": "60.36",
+      "date": "2024-01-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240325T223340_2408515_004",
+      "solar_zenith": "50.57",
+      "date": "2024-03-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240329T205844_2408914_009",
+      "solar_zenith": "36.98",
+      "date": "2024-03-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240420T192349_2411113_010",
+      "solar_zenith": "26.18",
+      "date": "2024-04-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240622T182611_2417412_011",
+      "solar_zenith": "23.36",
+      "date": "2024-06-22"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240622T182623_2417412_012",
+      "solar_zenith": "22.60",
+      "date": "2024-06-22"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240626T165035_2417811_009",
+      "solar_zenith": "41.06",
+      "date": "2024-06-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240727T213005_2420914_007",
+      "solar_zenith": "27.55",
+      "date": "2024-07-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250129T194925_2502913_007",
+      "solar_zenith": "55.09",
+      "date": "2025-01-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250129T194937_2502913_008",
+      "solar_zenith": "55.54",
+      "date": "2025-01-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250404T180835_2509412_008",
+      "solar_zenith": "39.51",
+      "date": "2025-04-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250411T221835_2510114_012",
+      "solar_zenith": "44.32",
+      "date": "2025-04-11"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250601T191130_2515213_008",
+      "solar_zenith": "17.48",
+      "date": "2025-06-01"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250605T173448_2515612_008",
+      "solar_zenith": "32.15",
+      "date": "2025-06-05"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250811T220050_2522314_012",
+      "solar_zenith": "35.94",
+      "date": "2025-08-11"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250926T204537_2526913_002",
+      "solar_zenith": "41.79",
+      "date": "2025-09-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250930T191103_2527312_005",
+      "solar_zenith": "40.83",
+      "date": "2025-09-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250930T191115_2527312_006",
+      "solar_zenith": "41.20",
+      "date": "2025-09-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251127T201515_2533113_009",
+      "solar_zenith": "59.74",
+      "date": "2025-11-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260326T211147_2608514_008",
+      "solar_zenith": "39.28",
+      "date": "2026-03-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260612T212243_2616314_014",
+      "solar_zenith": "24.37",
+      "date": "2026-06-12"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260616T194859_2616713_011",
+      "solar_zenith": "13.84",
+      "date": "2026-06-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260624T164029_2617511_006",
+      "solar_zenith": "42.85",
+      "date": "2026-06-24"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260726T205455_2620714_007",
+      "solar_zenith": "22.20",
+      "date": "2026-07-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260803T174655_2621512_008",
+      "solar_zenith": "34.65",
+      "date": "2026-08-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260810T215645_2622214_012",
+      "solar_zenith": "35.34",
+      "date": "2026-08-10"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.061218063491794206,
+       "std": 0.029919021548409596,
+       "median": 0.058096393907916107,
+       "n_pixels": 10013,
+       "fraction_positive": 0.9940570231546629,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.03546737235438331,
+       "std": 0.03519648616678662,
+       "median": -0.036148148408511487,
+       "n_pixels": 10013,
+       "fraction_positive": 0.1347895612127415,
+       "detected": false
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.06946043576038155,
+       "std": 0.030965628141288393,
+       "median": 0.06683863166424489,
+       "n_pixels": 9728,
+       "fraction_positive": 0.9961238574601571,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.05979314749827436,
+       "std": 0.028939226439901312,
+       "median": -0.059569313790501933,
+       "n_pixels": 9728,
+       "fraction_positive": 0.02215102907147984,
+       "detected": false
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.0694662515314547,
+       "std": 0.030955619961003555,
+       "median": 0.06684284328471204,
+       "n_pixels": 9728,
+       "fraction_positive": 0.9962286069671156,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.05979321224632293,
+       "std": 0.028950122469325556,
+       "median": -0.059569313790501933,
+       "n_pixels": 9728,
+       "fraction_positive": 0.02204627956452139,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 9804,
+     "valid_pixels": 9804,
+     "quality_pixels": 9541,
+     "rock_pixels": 9541,
+     "quality_fraction": 0.9732,
+     "rock_fraction": 0.9732
+    },
+    "surface": {
+     "ndvi_mean": 0.09009237721484745,
+     "vegetated_fraction": 0.0,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.0,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.06251926228909191,
+     "legacy_bd2000": -0.03809433949540681
+    },
+    "s2_ndvi": 0.0796333445952856,
+    "analysis_id": "3b7da5dc344946818a42c71e186afd9a",
+    "radius_km": 3,
+    "measured_at": "2026-11-06T23:31:34+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/3b7da5dc344946818a42c71e186afd9a"
+   }
   },
   {
    "id": "puu_nene",
@@ -382,7 +1472,229 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 22,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230123T010728_2302301_003",
+      "solar_zenith": "6.10",
+      "date": "2023-01-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230728T230858_2320915_003",
+      "solar_zenith": "9.40",
+      "date": "2023-07-28"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230801T213228_2321314_003",
+      "solar_zenith": "13.01",
+      "date": "2023-08-01"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230818T005938_2323001_006",
+      "solar_zenith": "37.51",
+      "date": "2023-08-18"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231125T000223_2332816_003",
+      "solar_zenith": "48.99",
+      "date": "2023-11-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231128T222624_2333215_001",
+      "solar_zenith": "41.32",
+      "date": "2023-11-28"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240121T012518_2402101_003",
+      "solar_zenith": "57.76",
+      "date": "2024-01-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240214T014417_2404501_005",
+      "solar_zenith": "56.80",
+      "date": "2024-02-14"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240426T205325_2411714_006",
+      "solar_zenith": "21.29",
+      "date": "2024-04-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241127T215417_2433215_005",
+      "solar_zenith": "41.24",
+      "date": "2024-11-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250126T220648_2502615_003",
+      "solar_zenith": "38.63",
+      "date": "2025-01-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250328T220028_2508714_003",
+      "solar_zenith": "17.82",
+      "date": "2025-03-28"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250421T221908_2511114_005",
+      "solar_zenith": "7.71",
+      "date": "2025-04-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250425T204404_2511513_006",
+      "solar_zenith": "23.69",
+      "date": "2025-04-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250525T230238_2514515_003",
+      "solar_zenith": "10.26",
+      "date": "2025-05-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250529T212638_2514914_003",
+      "solar_zenith": "12.52",
+      "date": "2025-05-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250817T233345_2522915_006",
+      "solar_zenith": "17.49",
+      "date": "2025-08-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251218T225242_2535215_005",
+      "solar_zenith": "43.86",
+      "date": "2025-12-18"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260331T202020_2609013_004",
+      "solar_zenith": "33.89",
+      "date": "2026-03-31"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260602T192801_2615313_003",
+      "solar_zenith": "40.36",
+      "date": "2026-06-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260816T233350_2622815_006",
+      "solar_zenith": "17.17",
+      "date": "2026-08-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260824T202341_2623613_004",
+      "solar_zenith": "30.46",
+      "date": "2026-08-24"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.01709069347712551,
+       "std": 0.025418052335590705,
+       "median": 0.018366392958069827,
+       "n_pixels": 980,
+       "fraction_positive": 0.8622540326888153,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.17380975953905428,
+       "std": 0.10158449539598126,
+       "median": 0.15819961539815225,
+       "n_pixels": 980,
+       "fraction_positive": 0.9973421642986859,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.00048199475323224645,
+       "std": 0.041365040297747215,
+       "median": 0.00862426917425331,
+       "n_pixels": 980,
+       "fraction_positive": 0.630706121140904,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.2154218572746544,
+       "std": 0.0997606122800065,
+       "median": 0.20946785586538386,
+       "n_pixels": 980,
+       "fraction_positive": 0.9966328383719688,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.023309508718447752,
+       "std": 0.032321006421390595,
+       "median": 0.024348250651530644,
+       "n_pixels": 854,
+       "fraction_positive": 0.8066863371455049,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.08499074747456418,
+       "std": 0.1068971079395694,
+       "median": 0.09984408490456782,
+       "n_pixels": 854,
+       "fraction_positive": 0.7992196834841137,
+       "detected": true
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 917,
+     "valid_pixels": 917,
+     "quality_pixels": 917,
+     "rock_pixels": 802,
+     "quality_fraction": 1.0,
+     "rock_fraction": 0.8746
+    },
+    "surface": {
+     "ndvi_mean": 0.13557001946839695,
+     "vegetated_fraction": 0.36673432325606226,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.26085674607413745,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": true
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.016407870655670908,
+     "legacy_bd2000": 0.15865858161957874
+    },
+    "s2_ndvi": 0.14648061670276744,
+    "analysis_id": "eff06fe669b84e38ae63cd1bd4a50fcf",
+    "radius_km": 1,
+    "measured_at": "2026-11-06T23:31:49+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/eff06fe669b84e38ae63cd1bd4a50fcf"
+   }
   },
   {
    "id": "kau_desert",
@@ -477,7 +1789,214 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 19,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230801T213228_2321314_003",
+      "solar_zenith": "13.01",
+      "date": "2023-08-01"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230818T005938_2323001_006",
+      "solar_zenith": "37.51",
+      "date": "2023-08-18"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231128T222624_2333215_001",
+      "solar_zenith": "41.32",
+      "date": "2023-11-28"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231202T204936_2333614_002",
+      "solar_zenith": "45.52",
+      "date": "2023-12-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240214T014417_2404501_005",
+      "solar_zenith": "56.80",
+      "date": "2024-02-14"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240426T205325_2411714_006",
+      "solar_zenith": "21.29",
+      "date": "2024-04-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240702T182623_2418412_008",
+      "solar_zenith": "55.74",
+      "date": "2024-07-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241127T215417_2433215_005",
+      "solar_zenith": "41.24",
+      "date": "2024-11-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250126T220648_2502615_003",
+      "solar_zenith": "38.63",
+      "date": "2025-01-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250421T221919_2511114_006",
+      "solar_zenith": "7.11",
+      "date": "2025-04-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250425T204416_2511513_007",
+      "solar_zenith": "22.81",
+      "date": "2025-04-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250529T212638_2514914_003",
+      "solar_zenith": "12.52",
+      "date": "2025-05-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250817T233345_2522915_006",
+      "solar_zenith": "17.49",
+      "date": "2025-08-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250817T233356_2522915_007",
+      "solar_zenith": "17.94",
+      "date": "2025-08-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250923T230246_2526615_007",
+      "solar_zenith": "23.20",
+      "date": "2025-09-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251218T225253_2535215_006",
+      "solar_zenith": "43.28",
+      "date": "2025-12-18"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260331T202020_2609013_004",
+      "solar_zenith": "33.89",
+      "date": "2026-03-31"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260816T233350_2622815_006",
+      "solar_zenith": "17.17",
+      "date": "2026-08-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260824T202353_2623613_005",
+      "solar_zenith": "29.84",
+      "date": "2026-08-24"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.05769658375349269,
+       "std": 0.040004168941652145,
+       "median": 0.057575551142108355,
+       "n_pixels": 8429,
+       "fraction_positive": 0.9242484699266694,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.13859133475981306,
+       "std": 0.08923601787160525,
+       "median": 0.12303791971902237,
+       "n_pixels": 8429,
+       "fraction_positive": 0.9841421197834948,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.07001112222246711,
+       "std": 0.0404292042710805,
+       "median": 0.07076193889061068,
+       "n_pixels": 8097,
+       "fraction_positive": 0.9672792647435576,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.06376247001568182,
+       "std": 0.07252590909416687,
+       "median": 0.033180740279704246,
+       "n_pixels": 8097,
+       "fraction_positive": 0.9212632995658612,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.09328504692814862,
+       "std": 0.02692311275428797,
+       "median": 0.10006890076172047,
+       "n_pixels": 5290,
+       "fraction_positive": 1.0,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.01935159609190728,
+       "std": 0.029413323209644227,
+       "median": 0.014627230754373412,
+       "n_pixels": 5290,
+       "fraction_positive": 0.8374956013687327,
+       "detected": true
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 8240,
+     "valid_pixels": 8240,
+     "quality_pixels": 7908,
+     "rock_pixels": 5169,
+     "quality_fraction": 0.9597,
+     "rock_fraction": 0.6273
+    },
+    "surface": {
+     "ndvi_mean": 0.129924142280988,
+     "vegetated_fraction": 0.3480966711380532,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.08553248064808183,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": true
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.05695853327947747,
+     "legacy_bd2000": 0.1264375332682943
+    },
+    "s2_ndvi": 0.10003366376419782,
+    "analysis_id": "412d07f3925044e98c5b43844edf95c6",
+    "radius_km": 3,
+    "measured_at": "2026-11-06T23:32:02+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/412d07f3925044e98c5b43844edf95c6"
+   }
   },
   {
    "id": "dresser",
@@ -532,7 +2051,209 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 18,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20240112T081408_2401205_014",
+      "solar_zenith": "56.31",
+      "date": "2024-01-12"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240226T045227_2405703_031",
+      "solar_zenith": "15.08",
+      "date": "2024-02-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240301T031747_2406102_010",
+      "solar_zenith": "19.17",
+      "date": "2024-03-01"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240720T050319_2420203_008",
+      "solar_zenith": "43.80",
+      "date": "2024-07-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241119T044603_2432403_016",
+      "solar_zenith": "13.64",
+      "date": "2024-11-19"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250122T032514_2502202_016",
+      "solar_zenith": "11.12",
+      "date": "2025-01-22"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250521T041719_2514103_009",
+      "solar_zenith": "41.76",
+      "date": "2025-05-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250830T023946_2524201_033",
+      "solar_zenith": "35.95",
+      "date": "2025-08-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250830T023958_2524201_034",
+      "solar_zenith": "36.11",
+      "date": "2025-08-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251030T023413_2530302_026",
+      "solar_zenith": "18.88",
+      "date": "2025-10-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251103T005843_2530701_006",
+      "solar_zenith": "40.00",
+      "date": "2025-11-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260109T080039_2600905_014",
+      "solar_zenith": "53.26",
+      "date": "2026-01-09"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260113T062644_2601304_014",
+      "solar_zenith": "31.26",
+      "date": "2026-01-13"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260117T045239_2601703_011",
+      "solar_zenith": "9.34",
+      "date": "2026-01-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260121T031812_2602102_010",
+      "solar_zenith": "12.76",
+      "date": "2026-01-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260125T014443_2602501_008",
+      "solar_zenith": "35.27",
+      "date": "2026-01-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260125T014455_2602501_009",
+      "solar_zenith": "34.79",
+      "date": "2026-01-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260513T065826_2613305_013",
+      "solar_zenith": "59.18",
+      "date": "2026-05-13"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.06841912935896355,
+       "std": 0.026640779991806647,
+       "median": 0.06786548943955224,
+       "n_pixels": 8533,
+       "fraction_positive": 0.9955897934144116,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.03531747164224693,
+       "std": 0.04816388544309739,
+       "median": -0.038064024266662264,
+       "n_pixels": 8533,
+       "fraction_positive": 0.2271877150022739,
+       "detected": false
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.07898212508982508,
+       "std": 0.024845247872544163,
+       "median": 0.07715625342112636,
+       "n_pixels": 8533,
+       "fraction_positive": 0.9992654358406174,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.06843210194025716,
+       "std": 0.036231432896540676,
+       "median": -0.07326380687379676,
+       "n_pixels": 8533,
+       "fraction_positive": 0.03129233913538695,
+       "detected": false
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.08239461909161547,
+       "std": 0.025860317257627958,
+       "median": 0.08004786783589334,
+       "n_pixels": 8524,
+       "fraction_positive": 0.9979593479516516,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.069233408082913,
+       "std": 0.040685109219735664,
+       "median": -0.07217802820086139,
+       "n_pixels": 8524,
+       "fraction_positive": 0.01958508153899529,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 8336,
+     "valid_pixels": 8336,
+     "quality_pixels": 8336,
+     "rock_pixels": 8328,
+     "quality_fraction": 1.0,
+     "rock_fraction": 0.999
+    },
+    "surface": {
+     "ndvi_mean": 0.1559820534524576,
+     "vegetated_fraction": 0.08753869747008017,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.0,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.06963790756172773,
+     "legacy_bd2000": -0.041728140753530575
+    },
+    "s2_ndvi": 0.19242902942951573,
+    "analysis_id": "3f82d14f9da04ac5975c0a8f6919acc1",
+    "radius_km": 3,
+    "measured_at": "2026-11-06T23:32:14+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/3f82d14f9da04ac5975c0a8f6919acc1"
+   }
   },
   {
    "id": "lonar",
@@ -589,7 +2310,134 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 3,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20240520T101642_2414107_008",
+      "solar_zenith": "48.22",
+      "date": "2024-05-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250129T054752_2502904_008",
+      "solar_zenith": "42.71",
+      "date": "2025-01-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251127T061242_2533104_015",
+      "solar_zenith": "41.95",
+      "date": "2025-11-27"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.014492488745418078,
+       "std": 0.04602487375587418,
+       "median": 0.0047872823767930745,
+       "n_pixels": 3805,
+       "fraction_positive": 0.5706251979301172,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.4467167824347132,
+       "std": 0.16078137085011768,
+       "median": 0.4627429120715328,
+       "n_pixels": 3805,
+       "fraction_positive": 0.9959214400035827,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.0057011455915829,
+       "std": 0.024912790824571457,
+       "median": 0.004992565041368373,
+       "n_pixels": 3454,
+       "fraction_positive": 0.6006844064375654,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.12059339222703844,
+       "std": 0.13019128036379296,
+       "median": 0.08217557091953502,
+       "n_pixels": 3454,
+       "fraction_positive": 0.9233575481951899,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.047333737120900596,
+       "std": 0.026999517428269407,
+       "median": 0.052701909610987537,
+       "n_pixels": 205,
+       "fraction_positive": 0.8996229385928566,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.004150389402856376,
+       "std": 0.11291577006480878,
+       "median": -0.012058933701583539,
+       "n_pixels": 205,
+       "fraction_positive": 0.35205519184552914,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 3676,
+     "valid_pixels": 3676,
+     "quality_pixels": 3329,
+     "rock_pixels": 189,
+     "quality_fraction": 0.9056,
+     "rock_fraction": 0.0514
+    },
+    "surface": {
+     "ndvi_mean": 0.34004740087745267,
+     "vegetated_fraction": 0.9316512070729848,
+     "snow_fraction": 0.0018016893487187394,
+     "water_fraction": 0.011809897044640678,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.01092652842084889,
+     "legacy_bd2000": 0.42632653895812206
+    },
+    "s2_ndvi": 0.33022597965765815,
+    "analysis_id": "3d237c2fd9ae4259aa5281e767823d19",
+    "radius_km": 2,
+    "measured_at": "2026-11-06T23:32:21+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/3d237c2fd9ae4259aa5281e767823d19"
+   }
   },
   {
    "id": "twin_sisters",
@@ -657,7 +2505,194 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 15,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20240412T210033_2410314_003",
+      "solar_zenith": "41.31",
+      "date": "2024-04-12"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240803T204231_2421614_007",
+      "solar_zenith": "31.85",
+      "date": "2024-08-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240807T190657_2422013_005",
+      "solar_zenith": "34.97",
+      "date": "2024-08-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240810T213307_2422314_005",
+      "solar_zenith": "37.21",
+      "date": "2024-08-10"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241011T205800_2428514_004",
+      "solar_zenith": "57.98",
+      "date": "2024-10-11"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250407T185943_2509712_005",
+      "solar_zenith": "44.12",
+      "date": "2025-04-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250608T182349_2515912_006",
+      "solar_zenith": "32.72",
+      "date": "2025-06-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250807T184613_2521912_005",
+      "solar_zenith": "37.49",
+      "date": "2025-08-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260402T203322_2609213_005",
+      "solar_zenith": "44.16",
+      "date": "2026-04-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260406T190112_2609612_002",
+      "solar_zenith": "44.82",
+      "date": "2026-04-06"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260414T191021_2610412_004",
+      "solar_zenith": "41.25",
+      "date": "2026-04-14"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260604T193918_2615513_005",
+      "solar_zenith": "27.01",
+      "date": "2026-06-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260729T214623_2621014_003",
+      "solar_zenith": "35.35",
+      "date": "2026-07-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260802T201221_2621413_006",
+      "solar_zenith": "31.12",
+      "date": "2026-08-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260817T175609_2622912_003",
+      "solar_zenith": "45.22",
+      "date": "2026-08-17"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.09154956902041636,
+       "std": 0.08617396922741455,
+       "median": 0.09958512546077945,
+       "n_pixels": 5390,
+       "fraction_positive": 0.8344709386516754,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.527061084536865,
+       "std": 0.15814739025362656,
+       "median": 0.5174511786920876,
+       "n_pixels": 5390,
+       "fraction_positive": 1.0,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.10800154849536496,
+       "std": 0.08841893481107956,
+       "median": 0.13075533973579442,
+       "n_pixels": 5324,
+       "fraction_positive": 0.8293676311343392,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.22983858136573357,
+       "std": 0.25380311602252303,
+       "median": 0.12057563135935319,
+       "n_pixels": 5324,
+       "fraction_positive": 0.8138837239634676,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.14848788656288442,
+       "std": 0.058278712623536885,
+       "median": 0.15718678133220912,
+       "n_pixels": 2517,
+       "fraction_positive": 0.9830149716889288,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.052210075664592,
+       "std": 0.11120466116165034,
+       "median": 0.027142435120700623,
+       "n_pixels": 2517,
+       "fraction_positive": 0.6010988602916838,
+       "detected": true
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 5238,
+     "valid_pixels": 5238,
+     "quality_pixels": 5172,
+     "rock_pixels": 2428,
+     "quality_fraction": 0.9874,
+     "rock_fraction": 0.4635
+    },
+    "surface": {
+     "ndvi_mean": 0.11977296309623979,
+     "vegetated_fraction": 0.2615232603638062,
+     "snow_fraction": 0.1574832944573694,
+     "water_fraction": 0.3765329212177832,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": true
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.09078546490893334,
+     "legacy_bd2000": 0.5365700197747306
+    },
+    "s2_ndvi": 0.11051194477179176,
+    "analysis_id": "846fdffbe15644278c9bb0bacd429626",
+    "radius_km": 2,
+    "measured_at": "2026-11-06T23:32:29+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/846fdffbe15644278c9bb0bacd429626"
+   }
   },
   {
    "id": "merriam_jsc1",
@@ -734,7 +2769,229 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 22,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20220814T223730_2222615_015",
+      "solar_zenith": "8.51",
+      "date": "2022-08-14"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230213T220828_2304414_011",
+      "solar_zenith": "5.72",
+      "date": "2023-02-13"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230416T213735_2310614_015",
+      "solar_zenith": "11.04",
+      "date": "2023-04-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230606T180029_2315712_009",
+      "solar_zenith": "22.02",
+      "date": "2023-06-06"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230606T180041_2315712_010",
+      "solar_zenith": "21.76",
+      "date": "2023-06-06"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230623T184533_2317412_016",
+      "solar_zenith": "14.96",
+      "date": "2023-06-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230725T223053_2320615_011",
+      "solar_zenith": "42.75",
+      "date": "2023-07-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230823T183934_2323512_014",
+      "solar_zenith": "26.33",
+      "date": "2023-08-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230827T170328_2323911_005",
+      "solar_zenith": "40.92",
+      "date": "2023-08-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231010T161045_2328311_004",
+      "solar_zenith": "59.92",
+      "date": "2023-10-10"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240609T155716_2416111_011",
+      "solar_zenith": "46.26",
+      "date": "2024-06-09"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240811T222522_2422415_019",
+      "solar_zenith": "44.03",
+      "date": "2024-08-11"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240815T204812_2422814_019",
+      "solar_zenith": "28.13",
+      "date": "2024-08-15"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241012T215017_2428614_019",
+      "solar_zenith": "57.24",
+      "date": "2024-10-12"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250213T204214_2504414_020",
+      "solar_zenith": "50.88",
+      "date": "2025-02-13"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250325T212255_2508414_007",
+      "solar_zenith": "42.06",
+      "date": "2025-03-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250522T222347_2514215_008",
+      "solar_zenith": "42.63",
+      "date": "2025-05-22"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250616T200328_2516713_019",
+      "solar_zenith": "14.50",
+      "date": "2025-06-16"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250823T171037_2523511_011",
+      "solar_zenith": "39.64",
+      "date": "2025-08-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260423T165847_2611311_010",
+      "solar_zenith": "39.60",
+      "date": "2026-04-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260522T215741_2614214_010",
+      "solar_zenith": "37.19",
+      "date": "2026-05-22"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260526T202321_2614613_010",
+      "solar_zenith": "19.34",
+      "date": "2026-05-26"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.011650313589156677,
+       "std": 0.0343186503019345,
+       "median": 0.014689245800532064,
+       "n_pixels": 4379,
+       "fraction_positive": 0.6980100331352626,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.06351340696930875,
+       "std": 0.06394301752247916,
+       "median": 0.05363355188337809,
+       "n_pixels": 4379,
+       "fraction_positive": 0.8537485422335762,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.02950020697443481,
+       "std": 0.024878560009932167,
+       "median": 0.024873232393930616,
+       "n_pixels": 4379,
+       "fraction_positive": 0.954641713407749,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.031764406509551424,
+       "std": 0.02717897958136335,
+       "median": -0.032708525064682886,
+       "n_pixels": 4379,
+       "fraction_positive": 0.1283436071157513,
+       "detected": false
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.030130908365785806,
+       "std": 0.025082456692795914,
+       "median": 0.025875008284930986,
+       "n_pixels": 4368,
+       "fraction_positive": 0.9506957494095758,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.03497282017336896,
+       "std": 0.02674904413959537,
+       "median": -0.03667932170526053,
+       "n_pixels": 4368,
+       "fraction_positive": 0.10487140583603607,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 4240,
+     "valid_pixels": 4240,
+     "quality_pixels": 4240,
+     "rock_pixels": 4229,
+     "quality_fraction": 1.0,
+     "rock_fraction": 0.9974
+    },
+    "surface": {
+     "ndvi_mean": 0.11448487828046458,
+     "vegetated_fraction": 0.00047203865163547516,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.009912811684344979,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.012906220263581082,
+     "legacy_bd2000": 0.06624330306095653
+    },
+    "s2_ndvi": 0.1022532690549997,
+    "analysis_id": "7477638f70eb4f6b9cad615698abcad5",
+    "radius_km": 2,
+    "measured_at": "2026-11-06T23:32:39+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/7477638f70eb4f6b9cad615698abcad5"
+   }
   },
   {
    "id": "craters_of_the_moon",
@@ -796,7 +3053,259 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 28,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230611T171011_2316211_013",
+      "solar_zenith": "35.78",
+      "date": "2023-06-11"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230617T202156_2316813_005",
+      "solar_zenith": "22.00",
+      "date": "2023-06-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230730T214330_2321114_012",
+      "solar_zenith": "35.50",
+      "date": "2023-07-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230803T200646_2321513_013",
+      "solar_zenith": "26.38",
+      "date": "2023-08-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230813T214616_2322514_004",
+      "solar_zenith": "39.40",
+      "date": "2023-08-13"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230817T201156_2322913_002",
+      "solar_zenith": "30.82",
+      "date": "2023-08-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240203T191450_2403413_015",
+      "solar_zenith": "60.11",
+      "date": "2024-02-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240726T222025_2420815_015",
+      "solar_zenith": "41.32",
+      "date": "2024-07-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240809T222328_2422215_014",
+      "solar_zenith": "44.66",
+      "date": "2024-08-09"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250211T204041_2504214_010",
+      "solar_zenith": "58.69",
+      "date": "2025-02-11"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250330T203432_2508913_016",
+      "solar_zenith": "41.57",
+      "date": "2025-03-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250421T173133_2511111_008",
+      "solar_zenith": "40.84",
+      "date": "2025-04-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250527T213728_2514714_014",
+      "solar_zenith": "33.77",
+      "date": "2025-05-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250527T213740_2514714_015",
+      "solar_zenith": "34.54",
+      "date": "2025-05-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250531T200118_2515113_014",
+      "solar_zenith": "22.06",
+      "date": "2025-05-31"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250610T213941_2516114_015",
+      "solar_zenith": "32.82",
+      "date": "2025-06-10"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250614T200209_2516513_014",
+      "solar_zenith": "21.13",
+      "date": "2025-06-14"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250614T200221_2516513_015",
+      "solar_zenith": "20.95",
+      "date": "2025-06-14"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250807T171017_2521911_010",
+      "solar_zenith": "42.12",
+      "date": "2025-08-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250817T184611_2522912_015",
+      "solar_zenith": "32.00",
+      "date": "2025-08-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250821T170914_2523311_003",
+      "solar_zenith": "44.87",
+      "date": "2025-08-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260329T202855_2608813_015",
+      "solar_zenith": "41.22",
+      "date": "2026-03-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260604T180321_2615512_015",
+      "solar_zenith": "28.14",
+      "date": "2026-06-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260608T162749_2615911_006",
+      "solar_zenith": "43.52",
+      "date": "2026-06-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260608T162801_2615911_007",
+      "solar_zenith": "42.98",
+      "date": "2026-06-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260725T214403_2620614_014",
+      "solar_zenith": "34.85",
+      "date": "2026-07-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260725T214415_2620614_015",
+      "solar_zenith": "35.61",
+      "date": "2026-07-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260802T183613_2621412_015",
+      "solar_zenith": "28.88",
+      "date": "2026-08-02"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.013618439358030546,
+       "std": 0.020629125817250564,
+       "median": 0.01465486779487901,
+       "n_pixels": 30118,
+       "fraction_positive": 0.7738455009462033,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.09570643408461121,
+       "std": 0.07918244182696436,
+       "median": 0.08398790756041878,
+       "n_pixels": 30118,
+       "fraction_positive": 0.9223064565409897,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.014111300770798797,
+       "std": 0.02010399752179623,
+       "median": 0.014683885425035424,
+       "n_pixels": 30118,
+       "fraction_positive": 0.7832428413528834,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.01215988374215189,
+       "std": 0.07214975784944644,
+       "median": -0.005875752019901095,
+       "n_pixels": 30118,
+       "fraction_positive": 0.44849401308887005,
+       "detected": false
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.023408707223089322,
+       "std": 0.024998560358761936,
+       "median": 0.02247314685604099,
+       "n_pixels": 27871,
+       "fraction_positive": 0.8578991385894345,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.04616788702198708,
+       "std": 0.13407834595270113,
+       "median": -0.001950911297043893,
+       "n_pixels": 27871,
+       "fraction_positive": 0.4875118098446355,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 29769,
+     "valid_pixels": 29769,
+     "quality_pixels": 29769,
+     "rock_pixels": 27557,
+     "quality_fraction": 1.0,
+     "rock_fraction": 0.9257
+    },
+    "surface": {
+     "ndvi_mean": 0.2398162522463916,
+     "vegetated_fraction": 0.6072892235599661,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.000907137691380031,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.014338453697087646,
+     "legacy_bd2000": 0.09487356774821333
+    },
+    "s2_ndvi": 0.20263909227685936,
+    "analysis_id": "dd40d9ccedf5467b95167fb9589b6ccc",
+    "radius_km": 5,
+    "measured_at": "2026-11-06T23:32:53+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/dd40d9ccedf5467b95167fb9589b6ccc"
+   }
   },
   {
    "id": "timanfaya",
@@ -861,7 +3370,134 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 3,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230220T133321_2305109_004",
+      "solar_zenith": "7.02",
+      "date": "2023-02-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230423T130242_2311309_002",
+      "solar_zenith": "11.30",
+      "date": "2023-04-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241004T103923_2427807_003",
+      "solar_zenith": "44.77",
+      "date": "2024-10-04"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.007278227499167898,
+       "std": 0.016735255158629003,
+       "median": 0.0024339868435404753,
+       "n_pixels": 8072,
+       "fraction_positive": 0.6342698802284434,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.013691319436997959,
+       "std": 0.03970547104296435,
+       "median": 0.005803473293862284,
+       "n_pixels": 8072,
+       "fraction_positive": 0.6132383826932228,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.008060718399105098,
+       "std": 0.019841131282170462,
+       "median": 0.004300253743747556,
+       "n_pixels": 1197,
+       "fraction_positive": 0.6057588526403374,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.01863445270362796,
+       "std": 0.033948765719658436,
+       "median": 0.009331841348306912,
+       "n_pixels": 1197,
+       "fraction_positive": 0.6331630249180482,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.016515792686559325,
+       "std": 0.022739711258558462,
+       "median": 0.014221875444748911,
+       "n_pixels": 441,
+       "fraction_positive": 0.7756038195094552,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.025722119293461056,
+       "std": 0.03237983859360199,
+       "median": 0.026871196128377735,
+       "n_pixels": 441,
+       "fraction_positive": 0.724255757348811,
+       "detected": true
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 8897,
+     "valid_pixels": 7933,
+     "quality_pixels": 1175,
+     "rock_pixels": 419,
+     "quality_fraction": 0.1321,
+     "rock_fraction": 0.0471
+    },
+    "surface": {
+     "ndvi_mean": 0.007524534581616992,
+     "vegetated_fraction": 0.025352451538957637,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.6177016049535355,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": true
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.0067161720218255816,
+     "legacy_bd2000": 0.011262791005992579
+    },
+    "s2_ndvi": 0.022068332866882815,
+    "analysis_id": "40bffd8fc8bc4d1fbfbcb1ade50af736",
+    "radius_km": 3,
+    "measured_at": "2026-11-06T23:33:00+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/40bffd8fc8bc4d1fbfbcb1ade50af736"
+   }
   },
   {
    "id": "stillwater",
@@ -936,7 +3572,249 @@
      "doi_verified": null
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 26,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20230607T185004_2315812_012",
+      "solar_zenith": "23.45",
+      "date": "2023-06-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230607T185016_2315812_013",
+      "solar_zenith": "23.65",
+      "date": "2023-06-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230611T171059_2316211_017",
+      "solar_zenith": "34.00",
+      "date": "2023-06-11"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230626T161759_2317711_003",
+      "solar_zenith": "42.91",
+      "date": "2023-06-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230730T214421_2321114_014",
+      "solar_zenith": "38.94",
+      "date": "2023-07-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230803T200734_2321513_017",
+      "solar_zenith": "28.78",
+      "date": "2023-08-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240412T210255_2410314_015",
+      "solar_zenith": "42.09",
+      "date": "2024-04-12"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240412T210307_2410314_016",
+      "solar_zenith": "42.23",
+      "date": "2024-04-12"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240420T174714_2411112_011",
+      "solar_zenith": "38.65",
+      "date": "2024-04-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240726T222112_2420815_019",
+      "solar_zenith": "44.35",
+      "date": "2024-07-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241015T192415_2428913_019",
+      "solar_zenith": "54.27",
+      "date": "2024-10-15"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250527T213827_2514714_019",
+      "solar_zenith": "37.59",
+      "date": "2025-05-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250531T200217_2515113_019",
+      "solar_zenith": "25.07",
+      "date": "2025-05-31"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250619T173617_2517011_013",
+      "solar_zenith": "30.74",
+      "date": "2025-06-19"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250803T184915_2521512_019",
+      "solar_zenith": "29.43",
+      "date": "2025-08-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250807T171116_2521911_015",
+      "solar_zenith": "40.33",
+      "date": "2025-08-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250807T220234_2521914_014",
+      "solar_zenith": "44.05",
+      "date": "2025-08-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260329T202954_2608813_020",
+      "solar_zenith": "44.21",
+      "date": "2026-03-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260410T204513_2610013_019",
+      "solar_zenith": "41.38",
+      "date": "2026-04-10"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260410T204525_2610013_020",
+      "solar_zenith": "41.43",
+      "date": "2026-04-10"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260418T174027_2610811_010",
+      "solar_zenith": "40.03",
+      "date": "2026-04-18"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260531T193922_2615113_020",
+      "solar_zenith": "23.98",
+      "date": "2026-05-31"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260608T162848_2615911_011",
+      "solar_zenith": "40.86",
+      "date": "2026-06-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260608T212016_2615914_015",
+      "solar_zenith": "33.55",
+      "date": "2026-06-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260612T194556_2616313_015",
+      "solar_zenith": "23.26",
+      "date": "2026-06-12"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260616T181212_2616712_013",
+      "solar_zenith": "26.10",
+      "date": "2026-06-16"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": -0.06225904047066722,
+       "std": 0.06982632686918833,
+       "median": -0.05268506050720279,
+       "n_pixels": 31119,
+       "fraction_positive": 0.15835006402453491,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.40444507704095234,
+       "std": 0.13195030736458294,
+       "median": 0.41205867932460066,
+       "n_pixels": 31119,
+       "fraction_positive": 0.9983095075031859,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": -0.024520639891200565,
+       "std": 0.053749317802537694,
+       "median": -0.02151082645026463,
+       "n_pixels": 31119,
+       "fraction_positive": 0.2670108675974661,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.2591397931914943,
+       "std": 0.13156845039894707,
+       "median": 0.2715067606875476,
+       "n_pixels": 31119,
+       "fraction_positive": 0.9638452610370293,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": -0.43008133671567395,
+       "std": 0.31475832979505175,
+       "median": -0.5274931279907883,
+       "n_pixels": 5648,
+       "fraction_positive": 0.1830431762204493,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.551176734218021,
+       "std": 0.26931865038998853,
+       "median": 0.6443826303314747,
+       "n_pixels": 5648,
+       "fraction_positive": 0.9395855700341734,
+       "detected": true
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 30753,
+     "valid_pixels": 30753,
+     "quality_pixels": 30753,
+     "rock_pixels": 5586,
+     "quality_fraction": 1.0,
+     "rock_fraction": 0.1816
+    },
+    "surface": {
+     "ndvi_mean": 0.6216394946430027,
+     "vegetated_fraction": 0.985793871085031,
+     "snow_fraction": 0.00016254735546289157,
+     "water_fraction": 0.002990871340517205,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": false,
+     "bd2000": true
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": -0.07037951296069782,
+     "legacy_bd2000": 0.4020218279527525
+    },
+    "s2_ndvi": 0.5474670913588289,
+    "analysis_id": "db1ea4c47c1d41b7b4185465724ef5c3",
+    "radius_km": 5,
+    "measured_at": "2026-11-06T23:33:11+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/db1ea4c47c1d41b7b4185465724ef5c3"
+   }
   },
   {
    "id": "shawmere",
@@ -996,7 +3874,134 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 3,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20240617T124906_2416909_003",
+      "solar_zenith": "60.02",
+      "date": "2024-06-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260603T172009_2615411_040",
+      "solar_zenith": "26.09",
+      "date": "2026-06-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260728T192648_2620913_025",
+      "solar_zenith": "36.66",
+      "date": "2026-07-28"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": -0.036170507685378606,
+       "std": 0.014864330798154399,
+       "median": -0.037379810773343264,
+       "n_pixels": 11886,
+       "fraction_positive": 0.016019761362699413,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.4500500863791156,
+       "std": 0.12305101191363767,
+       "median": 0.4707039284536733,
+       "n_pixels": 11886,
+       "fraction_positive": 0.9989702014669581,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": -0.03132760586025916,
+       "std": 0.015947439251083405,
+       "median": -0.03147772987343141,
+       "n_pixels": 11701,
+       "fraction_positive": 0.022067271895130153,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.43261791114665094,
+       "std": 0.10252485203819335,
+       "median": 0.4315705931154574,
+       "n_pixels": 11701,
+       "fraction_positive": 1.0,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.011298517577528205,
+       "std": 0.00254875014074479,
+       "median": 0.009496279069457401,
+       "n_pixels": 3,
+       "fraction_positive": 1.0,
+       "detected": null
+      },
+      "bd2000": {
+       "mean": 0.09032342415121852,
+       "std": 0.014773574905644274,
+       "median": 0.10076991914936705,
+       "n_pixels": 3,
+       "fraction_positive": 1.0,
+       "detected": null
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 11661,
+     "valid_pixels": 11661,
+     "quality_pixels": 11489,
+     "rock_pixels": 3,
+     "quality_fraction": 0.9852,
+     "rock_fraction": 0.0003
+    },
+    "surface": {
+     "ndvi_mean": 0.7688594145987772,
+     "vegetated_fraction": 0.9997387134454987,
+     "snow_fraction": 0.0,
+     "water_fraction": 0.0,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": null,
+     "bd2000": null
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": -0.0441019418074049,
+     "legacy_bd2000": 0.4287265197565982
+    },
+    "s2_ndvi": 0.6900964403815156,
+    "analysis_id": "dc80cde018bf416296ed6c0f63fa9707",
+    "radius_km": 3,
+    "measured_at": "2026-11-06T23:33:19+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/dc80cde018bf416296ed6c0f63fa9707"
+   }
   },
   {
    "id": "sittampundi",
@@ -1058,7 +4063,174 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 11,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20240502T034545_2412302_006",
+      "solar_zenith": "44.00",
+      "date": "2024-05-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240717T104147_2419907_005",
+      "solar_zenith": "55.39",
+      "date": "2024-07-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241020T075601_2429405_016",
+      "solar_zenith": "30.30",
+      "date": "2024-10-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241215T094554_2435006_014",
+      "solar_zenith": "56.11",
+      "date": "2024-12-15"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250119T090433_2501906_006",
+      "solar_zenith": "44.54",
+      "date": "2025-01-19"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250217T082341_2504806_015",
+      "solar_zenith": "30.86",
+      "date": "2025-02-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250321T085507_2508006_005",
+      "solar_zenith": "31.64",
+      "date": "2025-03-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250620T074450_2517105_030",
+      "solar_zenith": "17.98",
+      "date": "2025-06-20"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250802T035531_2521403_006",
+      "solar_zenith": "43.50",
+      "date": "2025-08-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260126T054836_2602603_011",
+      "solar_zenith": "34.50",
+      "date": "2026-01-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260226T042505_2605703_004",
+      "solar_zenith": "43.68",
+      "date": "2026-02-26"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.0032676617942969757,
+       "std": 0.02489075960301906,
+       "median": 0.0029416151026705815,
+       "n_pixels": 22344,
+       "fraction_positive": 0.5537965793810808,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.21697967726655695,
+       "std": 0.11970273273991187,
+       "median": 0.21671580118357595,
+       "n_pixels": 22344,
+       "fraction_positive": 0.9716456846347007,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.005114100153202082,
+       "std": 0.023530712847669676,
+       "median": 0.006845212182118967,
+       "n_pixels": 21772,
+       "fraction_positive": 0.5907306463688952,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.07027661197276129,
+       "std": 0.12498085113922006,
+       "median": 0.0350673757084973,
+       "n_pixels": 21772,
+       "fraction_positive": 0.6269588962466195,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.032699311916586586,
+       "std": 0.020603591740507497,
+       "median": 0.030222156113344993,
+       "n_pixels": 3782,
+       "fraction_positive": 0.998196048306867,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.058610658918471475,
+       "std": 0.050293239163227976,
+       "median": -0.05855410974876663,
+       "n_pixels": 3782,
+       "fraction_positive": 0.01581999521464821,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 22030,
+     "valid_pixels": 22030,
+     "quality_pixels": 21480,
+     "rock_pixels": 3740,
+     "quality_fraction": 0.975,
+     "rock_fraction": 0.1698
+    },
+    "surface": {
+     "ndvi_mean": 0.34051449301953945,
+     "vegetated_fraction": 0.9495680692768791,
+     "snow_fraction": 0.00018622031725734704,
+     "water_fraction": 0.0003184002287223659,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.0013571771947371808,
+     "legacy_bd2000": 0.20744598363290667
+    },
+    "s2_ndvi": 0.37722398795198664,
+    "analysis_id": "710a3b033db842f3a916f56a06fad073",
+    "radius_km": 5,
+    "measured_at": "2026-11-06T23:33:29+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/710a3b033db842f3a916f56a06fad073"
+   }
   },
   {
    "id": "sudbury_creighton",
@@ -1118,7 +4290,209 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 18,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20240421T152614_2411210_006",
+      "solar_zenith": "41.90",
+      "date": "2024-04-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240604T214729_2415614_023",
+      "solar_zenith": "57.68",
+      "date": "2024-06-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240623T142915_2417510_006",
+      "solar_zenith": "42.61",
+      "date": "2024-06-23"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240730T191109_2421213_040",
+      "solar_zenith": "35.26",
+      "date": "2024-07-30"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240803T173522_2421612_041",
+      "solar_zenith": "29.12",
+      "date": "2024-08-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240807T155949_2422011_031",
+      "solar_zenith": "35.54",
+      "date": "2024-08-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250407T155243_2509710_008",
+      "solar_zenith": "44.55",
+      "date": "2025-04-07"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250412T182153_2510212_011",
+      "solar_zenith": "39.28",
+      "date": "2025-04-12"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250604T165351_2515511_039",
+      "solar_zenith": "25.04",
+      "date": "2025-06-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250608T151647_2515910_024",
+      "solar_zenith": "34.82",
+      "date": "2025-06-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250727T194417_2520813_037",
+      "solar_zenith": "38.77",
+      "date": "2025-07-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20251003T165410_2527610_038",
+      "solar_zenith": "50.70",
+      "date": "2025-10-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260613T172613_2616411_025",
+      "solar_zenith": "22.90",
+      "date": "2026-06-13"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260621T141811_2617209_004",
+      "solar_zenith": "43.93",
+      "date": "2026-06-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260725T201310_2620613_039",
+      "solar_zenith": "42.97",
+      "date": "2026-07-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260729T183920_2621012_034",
+      "solar_zenith": "31.39",
+      "date": "2026-07-29"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260802T170518_2621411_037",
+      "solar_zenith": "29.59",
+      "date": "2026-08-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20260807T193434_2621913_018",
+      "solar_zenith": "39.82",
+      "date": "2026-08-07"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": -0.03637460410881339,
+       "std": 0.07675365086950536,
+       "median": -0.025446371767265653,
+       "n_pixels": 11517,
+       "fraction_positive": 0.2394841497257852,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.4682475064762718,
+       "std": 0.16063028856051756,
+       "median": 0.4901232764989021,
+       "n_pixels": 11517,
+       "fraction_positive": 0.993763393802989,
+       "detected": true
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": -0.016973726725033784,
+       "std": 0.0455385011657373,
+       "median": -0.033276105920325046,
+       "n_pixels": 11441,
+       "fraction_positive": 0.24741763369543518,
+       "detected": false
+      },
+      "bd2000": {
+       "mean": 0.4223589270481913,
+       "std": 0.24412413230892674,
+       "median": 0.5040928910114406,
+       "n_pixels": 11441,
+       "fraction_positive": 0.8927824518327184,
+       "detected": true
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.037270671848994325,
+       "std": 0.040547023484987565,
+       "median": 0.044421986919152424,
+       "n_pixels": 2068,
+       "fraction_positive": 0.8202725674489105,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": 0.13442100925472691,
+       "std": 0.29780748663602535,
+       "median": 0.011633241295481347,
+       "n_pixels": 2068,
+       "fraction_positive": 0.5277985071010587,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 11286,
+     "valid_pixels": 11286,
+     "quality_pixels": 11211,
+     "rock_pixels": 2027,
+     "quality_fraction": 0.9934,
+     "rock_fraction": 0.1796
+    },
+    "surface": {
+     "ndvi_mean": 0.6299914185326722,
+     "vegetated_fraction": 0.8405966410443524,
+     "snow_fraction": 0.025131850076069703,
+     "water_fraction": 0.07526232771549267,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": -0.04513363564724928,
+     "legacy_bd2000": 0.4504677218001523
+    },
+    "s2_ndvi": 0.5299149123377102,
+    "analysis_id": "6e83cd3416e14e57ae1eb747236cfd68",
+    "radius_km": 3,
+    "measured_at": "2026-11-06T23:33:37+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/6e83cd3416e14e57ae1eb747236cfd68"
+   }
   },
   {
    "id": "kunene_zebra",
@@ -1166,7 +4540,204 @@
      "doi_verified": "Crossref/DataCite 2026-11-06"
     }
    ],
-   "emit": null
+   "emit": {
+    "status": "ok",
+    "scene_count": 17,
+    "scale_m": 60,
+    "mask_rules": {
+     "reflectance_valid_range": [
+      0.0,
+      1.5
+     ],
+     "aggregate_flag": "== 0 (EMIT L2A: cloud, cirrus, water, spacecraft, dilated cloud)",
+     "ndvi_max": 0.2,
+     "ndsi_snow_min": 0.4,
+     "ndwi_water_min": 0.0
+    },
+    "scenes": [
+     {
+      "id": "EMIT_L2A_RFL_001_20220904T092420_2224706_030",
+      "solar_zenith": "9.38",
+      "date": "2022-09-04"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230108T073328_2300805_006",
+      "solar_zenith": "6.65",
+      "date": "2023-01-08"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230127T100809_2302706_026",
+      "solar_zenith": "6.15",
+      "date": "2023-01-27"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230503T100140_2312306_028",
+      "solar_zenith": "36.56",
+      "date": "2023-05-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230526T105908_2314607_029",
+      "solar_zenith": "38.51",
+      "date": "2023-05-26"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230917T134904_2326008_006",
+      "solar_zenith": "45.80",
+      "date": "2023-09-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20230921T121423_2326407_012",
+      "solar_zenith": "25.79",
+      "date": "2023-09-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20231102T093319_2330606_024",
+      "solar_zenith": "18.66",
+      "date": "2023-11-02"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240913T142814_2425709_006",
+      "solar_zenith": "54.92",
+      "date": "2024-09-13"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240917T125434_2426108_006",
+      "solar_zenith": "33.80",
+      "date": "2024-09-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240917T125446_2426108_007",
+      "solar_zenith": "33.92",
+      "date": "2024-09-17"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240921T112024_2426507_006",
+      "solar_zenith": "18.25",
+      "date": "2024-09-21"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20240925T094518_2426906_018",
+      "solar_zenith": "24.07",
+      "date": "2024-09-25"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20241228T102339_2436307_008",
+      "solar_zenith": "11.94",
+      "date": "2024-12-28"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250131T070510_2503104_033",
+      "solar_zenith": "59.99",
+      "date": "2025-01-31"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250503T083032_2512305_010",
+      "solar_zenith": "49.54",
+      "date": "2025-05-03"
+     },
+     {
+      "id": "EMIT_L2A_RFL_001_20250703T082514_2518405_009",
+      "solar_zenith": "57.16",
+      "date": "2025-07-03"
+     }
+    ],
+    "variants": {
+     "raw": {
+      "bd1000": {
+       "mean": 0.02083574050886287,
+       "std": 0.019651528918770225,
+       "median": 0.022437148515929775,
+       "n_pixels": 8322,
+       "fraction_positive": 0.8703232786142653,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.08578142070521524,
+       "std": 0.06799298338261246,
+       "median": -0.09959007636034828,
+       "n_pixels": 8322,
+       "fraction_positive": 0.05768127046543735,
+       "detected": false
+      }
+     },
+     "quality": {
+      "bd1000": {
+       "mean": 0.02041707815454745,
+       "std": 0.018324919979570527,
+       "median": 0.02245201153936064,
+       "n_pixels": 8322,
+       "fraction_positive": 0.877030279811772,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.0921237349204102,
+       "std": 0.06151370518416425,
+       "median": -0.10360397825580346,
+       "n_pixels": 8322,
+       "fraction_positive": 0.05451426285873999,
+       "detected": false
+      }
+     },
+     "rock": {
+      "bd1000": {
+       "mean": 0.0218824627952173,
+       "std": 0.01661708009825195,
+       "median": 0.02446201652945851,
+       "n_pixels": 8241,
+       "fraction_positive": 0.9080470842364136,
+       "detected": true
+      },
+      "bd2000": {
+       "mean": -0.09750596801646237,
+       "std": 0.05710507716947502,
+       "median": -0.10742928052968187,
+       "n_pixels": 8241,
+       "fraction_positive": 0.03650998679131,
+       "detected": false
+      }
+     }
+    },
+    "band_wavelengths_nm": {
+     "g": 559.31,
+     "r": 663.64,
+     "nir": 857.59,
+     "swir1": 1640.29,
+     "c800": 797.9,
+     "b1000": 999.37,
+     "c1300": 1297.71,
+     "c1700": 1699.8,
+     "b2000": 1996.94,
+     "c2300": 2300.74
+    },
+    "coverage": {
+     "roi_pixels": 8141,
+     "valid_pixels": 8141,
+     "quality_pixels": 8141,
+     "rock_pixels": 8063,
+     "quality_fraction": 1.0,
+     "rock_fraction": 0.9904
+    },
+    "surface": {
+     "ndvi_mean": 0.15578850188058468,
+     "vegetated_fraction": 0.07993465516867496,
+     "snow_fraction": 0.0003985263680369324,
+     "water_fraction": 0.0021188880777005944,
+     "basis": "quality-masked median composite"
+    },
+    "detected": {
+     "bd1000": true,
+     "bd2000": false
+    },
+    "legacy_endpoint": {
+     "legacy_bd1000": 0.02217260320289584,
+     "legacy_bd2000": -0.08918698722210426
+    },
+    "s2_ndvi": 0.1599460016976155,
+    "analysis_id": "956803aa0e06434ab3bd5116abacd43f",
+    "radius_km": 3,
+    "measured_at": "2026-11-06T23:33:47+00:00",
+    "endpoint": "https://geoia-planetary-backend.onrender.com/v1/reports/956803aa0e06434ab3bd5116abacd43f"
+   }
   }
  ]
 }

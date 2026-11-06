@@ -100,9 +100,9 @@ if check("C mars job", first in (200, 202) and d and "analysis_id" in d, first_s
 else:
     mars_id = None
 d, dt, _ = analyze("/v1/mars/analyze", {"latitude": -85.0, "longitude": 150.0, "radius_km": 10})
-check("C no spectral coverage is explicit", d and d["mineralogy"]["status"] == "unavailable"
+check("C no spectral coverage is explicit", bool(d) and "mineralogy" in d and d["mineralogy"]["status"] == "unavailable"
       and d["mineralogy"]["reason"] in ("no_coverage", "no_compatible_observations") and not d["mineralogy"]["indicators"],
-      seconds=round(dt, 1), mineralogy=d and (d["mineralogy"]["status"], d["mineralogy"]["reason"]))
+      seconds=round(dt, 1), mineralogy=(d or {}).get("mineralogy", {}).get("status"))
 check("H polar no-coverage gives no analog sites", d and not (d.get("terrestrial_analogs") or {}).get("sites"))
 d, dt, _ = analyze("/v1/mars/analyze", {"latitude": 0.99, "longitude": -31.47, "radius_km": 10})
 ta = (d or {}).get("terrestrial_analogs") or {}

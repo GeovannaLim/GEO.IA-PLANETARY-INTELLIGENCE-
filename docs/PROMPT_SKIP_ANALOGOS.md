@@ -22,6 +22,7 @@ Mostre um cartão por sítio com:
 * `name` e `country`.
 * Coordenadas `latitude`, `longitude` com 4 casas e a precisão `± coordinate_precision_km km`. Torne as coordenadas um link para `https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map=11/{lat}/{lon}` (abre em nova aba). **Não crie globo nem mapa da Terra embutido.**
 * `setting` (descrição geológica) e `key_minerals` como chips.
+* Selo pequeno com `analog_basis`: `published_analog` → "Análogo publicado"; `simulant_source` → "Fonte de simulante"; `published_analog_general` → "Análogo regional"; `mineralogical_reference` → "Referência mineralógica"; `outreach` → "Fonte de divulgação".
 * "Por que é análogo": lista `justification`.
 * "Semelhanças": lista `similarities`. "Diferenças": lista `differences`. "Limitações": lista `limitations`.
 * "Fontes": `references[]` — `citation` e, se houver, link `https://doi.org/{doi}`; senão `url`.

@@ -77,6 +77,8 @@ Nunca preencher valores ausentes na UI: `null` significa “não medido”.
 | `topography` | `elevation_m{mean,median,min,max,p05,p95}`, `relief_m`, `regional_slope_degrees`, `local_slope_degrees.median`, `roughness_m`, `n_points`, `datum` |
 | `mineralogy` | `instrument`, `product_used`, `valid_pixels`, `indicators[]` (`name`, `value.median`, `sensitive_to`, `interpretation`), `spectral_character`, `mean_spectrum` (Lua) |
 | `earth_analogs` | `matches[]` (`name`, `country`, `setting`, `similarity`, `attributes_used`, `earth_values`, `differences`), `query_values`, `query_uncertainty`, `discrimination` (`low`/`moderate`/`adequate`), `discrimination_note`, `indistinguishable_sites`, `top5_distance_spread`, `disclaimer` — **ranking, não probabilidade** |
+| `terrestrial_analogs` (Lua/Marte; `null` em análises antigas) | `status`, `basis` (`regional_spectral_evidence` / `global_context`), `region_evidence[]` (`class`, `label`, `indicators`, `strength`), `unexplained_evidence`, `sites[]` (`id`, `name`, `country`, `latitude`, `longitude`, `coordinate_precision_km`, `coordinate_source`, `setting`, `key_minerals`, `matched_classes`, `analog_basis`, `justification[]`, `similarities[]`, `differences[]`, `limitations[]`, `references[]` com `citation`/`doi`/`url`, `emit`), `notes[]`, `disclaimer` — **sem pontuação; ordem por famílias explicadas**. Prompt do Skip: `docs/PROMPT_SKIP_ANALOGOS.md` |
+| `mineralogy.indicators[].detected` | resultado da triagem estatística (`true`/`false`; `null` para valores descritivos) |
 | `confidence` | `level`, `criteria[]`, `limitations[]` |
 | `data_sources[]` | painel de proveniência (provedor, instrumento, produto, datas, URL) |
 | `problems[]` | avisos |

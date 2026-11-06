@@ -72,6 +72,76 @@ O teste estatístico de detecção passou a usar os valores sem corte.
 * **Riscos:** ruído instrumental tratado como sinal; vieses de seleção da biblioteca; leitura do ranking como indício de jazida.
 * **Não fazer:** aprendizado de máquina sem rótulos de verdade de campo; converter similaridade em probabilidade.
 
+## Sítios análogos terrestres (`terrestrial_analogs`, 2026-11-06)
+Seção nova, separada do ranking por similaridade (que continua igual). Responde à pergunta "que lugares reais da Terra têm as famílias minerais que a região mostra?", com justificativa documentada.
+
+**1. Evidência da região.** Usa só as detecções triadas que os pipelines já calculam (`detected` em cada indicador; critério da seção "Detecção"):
+* Lua (M3): IBD1000 e IBD2000 detectados → piroxênio (basalto de mare ou norito); só IBD1000 → olivina ou vidro (ambíguo); nenhum → feldspático *ou* solo maduro (ambíguo, evidência "ampla").
+* Marte (CRISM): cada parâmetro detectado indica sua família (OLINDEX3 olivina; LCP/HCPINDEX2 piroxênio; D2300 filossilicato Fe/Mg; BD2210_2 Al-OH/sílica hidratada; MIN2295_2480/MIN2345_2537 carbonato; BD2100_2/SINDEX2 sulfato; BD530_2 óxido férrico; BD1900_2 hidratação genérica; BDI1000IR máfico genérico; BD1435/BD1500_2 gelo). Famílias genéricas são descartadas quando uma específica explica a mesma absorção. A triagem não é identificação mineral (Viviano-Beck et al. 2014).
+* Marte sem cobertura CRISM (e só por falta de cobertura, nunca por falha de provedor), entre ±60° de latitude: "contexto global" — a crosta marciana é basáltica (Bandfield et al. 2000); os sítios mostrados **não** são específicos da região e o aviso aparece em `notes`.
+
+**2. Catálogo curado** (`app/data/terrestrial_analog_sites.json`, gerado por `scripts/build_analog_catalog.py`): 18 sítios, 16 verificados.
+* Coordenadas tiradas da fonte citada em `coordinate_source`, com precisão declarada.
+* Referências: cada DOI conferido no Crossref ou DataCite em 2026-11-06.
+* `analog_basis` registra a força da afirmação:
+  * artigo que usa o sítio como análogo daquele corpo;
+  * fonte de simulante oficial;
+  * análogo citado só de forma regional;
+  * referência mineralógica;
+  * divulgação.
+* Entradas não verificadas (Lake Salda: coordenada sobre a unidade não publicada; Kunene: sem referência como análogo lunar) ficam no arquivo por transparência, mas o algoritmo nunca as oferece.
+* Descartados na pesquisa por falta de fonte verificável:
+  * Duluth;
+  * San Gabriel;
+  * Lac-Saint-Jean;
+  * Bushveld (não pesquisado);
+  * Yungay e MDRS (sem família mineral documentada em fonte aberta);
+  * cones do cume do Mauna Kea;
+  * picritos do Havaí.
+
+**3. Correspondência.**
+* Um sítio entra quando sua geologia documentada explica pelo menos uma família da região.
+* A ordem segue, nesta prioridade:
+  1. famílias específicas explicadas;
+  2. total de famílias explicadas;
+  3. força documental (`analog_basis`);
+  4. concordância EMIT (abaixo);
+  5. precisão da coordenada.
+* No máximo 5 sítios, sem pontuação nem porcentagem.
+* Famílias sem sítio no catálogo (ex.: gelo) aparecem em `unexplained_evidence`; não são preenchidas.
+
+**4. Espectro, só onde é comparável.**
+* O único atributo espectral com a mesma definição nos três corpos é a presença da banda de 3 pontos em 1 µm e 2 µm (`legacy_bd*` na região; `rock_bd*` no composto EMIT mascarado do sítio).
+* Ela só é comparada quando o sítio tem medição EMIT com status `ok`, pelo menos 200 pixels de rocha e pelo menos 20% da área.
+* Na Terra, a banda de 2 µm divide a janela com CO₂ atmosférico residual (~2,0 µm): por isso só se compara presença, nunca profundidade.
+* NDVI, ASTER e Sentinel-2 nunca são usados como evidência de equivalência.
+
+**5. Limitações.**
+* A analogia é de família mineral, não de origem, abundância ou condição de formação.
+* Superfícies terrestres têm intemperismo químico e não têm intemperismo espacial.
+* Vários sítios são pequenos em relação ao pixel de 60 m, ou parcialmente vegetados.
+* A ambiguidade lunar "feldspático × solo maduro" só se resolve com centro de banda, ainda não implementado.
+
+## Remedição EMIT com máscaras (Terra)
+O endpoint da Terra passou a devolver, em `earth_observation.emit_masked`, três variantes calculadas sobre a mesma região e escala (60 m, `bestEffort=False`):
+* `raw`: mediana de todas as cenas, sem máscara (o mesmo composto da biblioteca antiga);
+* `quality`: máscara por cena de reflectância fora de [0; 1,5] e de `aggregate_flag ≠ 0` do próprio EMIT L2A (nuvem, cirro, água, estrutura da estação, nuvem dilatada);
+* `rock`: a máscara `quality` mais vegetação (NDVI ≥ 0,2), neve (NDSI > 0,4; Hall et al. 1995) e água (NDWI > 0; McFeeters 1996), todos calculados com bandas do próprio EMIT na mesma cena.
+
+Em cada variante, a profundidade de banda é calculada por pixel e sem corte. Depois vêm média, desvio-padrão, mediana, contagem de pixels e fração positiva.
+
+Proveniência registrada:
+* id, data e zênite solar de cada cena;
+* comprimento de onda real de cada banda usada (propriedade `reflectance_wavelengths`);
+* pixels da região: válidos, de qualidade e de rocha;
+* frações vegetada, de neve e de água (no composto de qualidade).
+
+A fração de rocha é a parte da região com pelo menos uma cena que passa em todas as máscaras. Por isso, vegetação sazonal é removida pela cena seca, e vegetação esparsa com NDVI < 0,2 continua presente.
+
+Os limiares são valores de triagem convencionais e vêm em `mask_rules`. Valores ausentes ficam ausentes: um sítio sem pixel de rocha devolve `no_rock_pixels`, nunca zero.
+
+`scripts/remeasure_library.py` remede os 90 sítios da biblioteca e os sítios análogos por esse endpoint, um de cada vez. A biblioteca de produção **não** é substituída. O resultado fica em `data/remeasurement/` como candidato, e a comparação antigo × corrigido está em `data/remeasurement/COMPARACAO.md`.
+
 ## Confiança
 `confidence.level` é calculado a partir dos critérios aplicáveis (lista em `confidence.criteria`):
 * altimetria: ≥ 30 tiros; cobertura de células ≥ 0,3; raio pedido integralmente amostrado;

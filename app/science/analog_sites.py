@@ -113,7 +113,8 @@ T = {
         emit_none="No masked EMIT measurement of the site is recorded.",
         why_cov="only {pct}% rock pixels after cloud/water/vegetation/snow masks",
         why_status="status {status}",
-        two_um="On Earth the 2 µm band shares the window with residual atmospheric CO2 (~2.0 µm); presence only.",
+        two_um="On Earth the 2 µm band shares the window with residual atmospheric CO2 (~2.0 µm), and dry "
+               "(non-photosynthetic) vegetation, not removed by the NDVI mask, absorbs near 2.1 µm; presence only.",
         matched="Explains the region's {label}.",
         weathering="Terrestrial surfaces are chemically weathered and lack space weathering; spectra are "
                    "not expected to match in band strength or slope.",
@@ -140,7 +141,8 @@ T = {
         emit_none="Não há medição EMIT mascarada registrada para o sítio.",
         why_cov="só {pct}% de pixels de rocha após máscaras de nuvem/água/vegetação/neve",
         why_status="status {status}",
-        two_um="Na Terra a banda de 2 µm divide a janela com CO2 atmosférico residual (~2,0 µm); só presença.",
+        two_um="Na Terra a banda de 2 µm divide a janela com CO2 atmosférico residual (~2,0 µm), e a vegetação "
+               "seca (não fotossintética), que a máscara de NDVI não remove, absorve perto de 2,1 µm; só presença.",
         matched="Explica, na região: {label}.",
         weathering="Superfícies terrestres sofrem intemperismo químico e não têm intemperismo espacial; não se "
                    "espera que os espectros coincidam em intensidade de banda ou inclinação.",

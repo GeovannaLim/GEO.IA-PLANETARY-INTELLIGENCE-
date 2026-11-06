@@ -1,0 +1,1806 @@
+{
+ "generated_at": "2026-11-06T22:44:28+00:00",
+ "note": "Coordinates recovered from the legacy deposits_master.json; precision graded from the decimals actually written.",
+ "sites": [
+  {
+   "name": "Escondida",
+   "country": "Chile",
+   "setting": "Pórfiro Cu-Au",
+   "old_library": {
+    "legacy_bd1000": 0.03757,
+    "legacy_bd2000": 0.0,
+    "raw_bd1000": 0.03757,
+    "raw_bd2000": -0.08684,
+    "emit_scene_count": 25
+   },
+   "lat": -24.267,
+   "lon": -69.067,
+   "deposit_id": "geoia-mn-0",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.021889140645466963
+  },
+  {
+   "name": "Chuquicamata",
+   "country": "Chile",
+   "setting": "Pórfiro Cu-Mo",
+   "old_library": {
+    "legacy_bd1000": 0.02159,
+    "legacy_bd2000": 0.0,
+    "raw_bd1000": 0.02159,
+    "raw_bd2000": -0.01742,
+    "emit_scene_count": 24
+   },
+   "lat": -22.3,
+   "lon": -68.933,
+   "deposit_id": "geoia-mn-1",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.020421971352684063
+  },
+  {
+   "name": "El Teniente",
+   "country": "Chile",
+   "setting": "Pórfiro Cu-Mo",
+   "old_library": {
+    "legacy_bd1000": 0.04934,
+    "legacy_bd2000": 0.17914,
+    "raw_bd1000": 0.04934,
+    "raw_bd2000": 0.17914,
+    "emit_scene_count": 35
+   },
+   "lat": -34.1,
+   "lon": -70.35,
+   "deposit_id": "geoia-mn-2",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.06535693722948535
+  },
+  {
+   "name": "Los Bronces",
+   "country": "Chile",
+   "setting": "Pórfiro Cu-Mo-Au",
+   "old_library": {
+    "legacy_bd1000": 0.02649,
+    "legacy_bd2000": 0.10233,
+    "raw_bd1000": 0.02649,
+    "raw_bd2000": 0.10233,
+    "emit_scene_count": 46
+   },
+   "lat": -33.167,
+   "lon": -70.3,
+   "deposit_id": "geoia-mn-3",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.03597060372425733
+  },
+  {
+   "name": "Bingham Canyon",
+   "country": "EE.UU.",
+   "setting": "Pórfiro Cu-Au-Mo",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.42166,
+    "raw_bd1000": -0.03141,
+    "raw_bd2000": 0.42166,
+    "emit_scene_count": 44
+   },
+   "lat": 40.517,
+   "lon": -112.15,
+   "deposit_id": "geoia-mn-4",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3758588464731321
+  },
+  {
+   "name": "Grasberg",
+   "country": "Indonesia",
+   "setting": "Pórfiro Cu-Au",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.66999,
+    "raw_bd1000": -0.05736,
+    "raw_bd2000": 0.66999,
+    "emit_scene_count": 6
+   },
+   "lat": -4.05,
+   "lon": 137.117,
+   "deposit_id": "geoia-mn-5",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.4242348146283956
+  },
+  {
+   "name": "Yanacocha",
+   "country": "Perú",
+   "setting": "Epitermal HS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.3066,
+    "raw_bd1000": -0.04077,
+    "raw_bd2000": 0.3066,
+    "emit_scene_count": 8
+   },
+   "lat": -6.967,
+   "lon": -78.583,
+   "deposit_id": "geoia-mn-6",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.4858729568059528
+  },
+  {
+   "name": "Pascua-Lama",
+   "country": "Chile/Arg",
+   "setting": "Epitermal HS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.0,
+    "raw_bd1000": -0.00062,
+    "raw_bd2000": -0.04253,
+    "emit_scene_count": 17
+   },
+   "lat": -29.317,
+   "lon": -70.017,
+   "deposit_id": "geoia-mn-7",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.052863816798760795
+  },
+  {
+   "name": "El Indio",
+   "country": "Chile",
+   "setting": "Epitermal HS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.00632,
+    "raw_bd1000": -0.018,
+    "raw_bd2000": 0.00632,
+    "emit_scene_count": 26
+   },
+   "lat": -29.767,
+   "lon": -70.133,
+   "deposit_id": "geoia-mn-8",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.06186198788798123
+  },
+  {
+   "name": "Pierina",
+   "country": "Perú",
+   "setting": "Epitermal HS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.22053,
+    "raw_bd1000": -0.04898,
+    "raw_bd2000": 0.22053,
+    "emit_scene_count": 21
+   },
+   "lat": -9.417,
+   "lon": -77.7,
+   "deposit_id": "geoia-mn-9",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.2965405584027756
+  },
+  {
+   "name": "Hishikari",
+   "country": "Japón",
+   "setting": "Epitermal LS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.36229,
+    "raw_bd1000": -0.1165,
+    "raw_bd2000": 0.36229,
+    "emit_scene_count": 5
+   },
+   "lat": 32.001,
+   "lon": 130.684,
+   "deposit_id": "geoia-mn-10",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.7222125260298394
+  },
+  {
+   "name": "Comstock Lode",
+   "country": "EE.UU.",
+   "setting": "Epitermal LS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.10031,
+    "raw_bd1000": -0.00521,
+    "raw_bd2000": 0.10031,
+    "emit_scene_count": 37
+   },
+   "lat": 39.301,
+   "lon": -119.65,
+   "deposit_id": "geoia-mn-11",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.22261560395510527
+  },
+  {
+   "name": "Round Mountain",
+   "country": "EE.UU.",
+   "setting": "Epitermal LS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.18798,
+    "raw_bd1000": -0.00765,
+    "raw_bd2000": 0.18798,
+    "emit_scene_count": 35
+   },
+   "lat": 38.704,
+   "lon": -117.074,
+   "deposit_id": "geoia-mn-12",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.14258519868718544
+  },
+  {
+   "name": "Olympic Dam",
+   "country": "Australia",
+   "setting": "IOCG",
+   "old_library": {
+    "legacy_bd1000": 0.02015,
+    "legacy_bd2000": 0.0,
+    "raw_bd1000": 0.02015,
+    "raw_bd2000": -0.02453,
+    "emit_scene_count": 32
+   },
+   "lat": -30.433,
+   "lon": 136.883,
+   "deposit_id": "geoia-mn-13",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.13959303702246248
+  },
+  {
+   "name": "Candelaria",
+   "country": "Chile",
+   "setting": "IOCG",
+   "old_library": {
+    "legacy_bd1000": 0.03403,
+    "legacy_bd2000": 0.0,
+    "raw_bd1000": 0.03403,
+    "raw_bd2000": -0.02641,
+    "emit_scene_count": 20
+   },
+   "lat": -27.512,
+   "lon": -70.285,
+   "deposit_id": "geoia-mn-14",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.05898913626003443
+  },
+  {
+   "name": "Ernest Henry",
+   "country": "Australia",
+   "setting": "IOCG",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.13046,
+    "raw_bd1000": -0.02678,
+    "raw_bd2000": 0.13046,
+    "emit_scene_count": 22
+   },
+   "lat": -20.443,
+   "lon": 140.712,
+   "deposit_id": "geoia-mn-15",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.17322418264228293
+  },
+  {
+   "name": "Antamina",
+   "country": "Perú",
+   "setting": "Skarn Cu-Zn",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.50444,
+    "raw_bd1000": -0.04828,
+    "raw_bd2000": 0.50444,
+    "emit_scene_count": 15
+   },
+   "lat": -9.533,
+   "lon": -77.05,
+   "deposit_id": "geoia-mn-16",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3568847820013148
+  },
+  {
+   "name": "Tintaya",
+   "country": "Perú",
+   "setting": "Skarn Cu-Au",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.33794,
+    "raw_bd1000": -0.04164,
+    "raw_bd2000": 0.33794,
+    "emit_scene_count": 9
+   },
+   "lat": -14.654,
+   "lon": -71.121,
+   "deposit_id": "geoia-mn-17",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.2433821824700847
+  },
+  {
+   "name": "Kidd Creek",
+   "country": "Canadá",
+   "setting": "VMS Zn-Cu",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.52945,
+    "raw_bd1000": -0.01611,
+    "raw_bd2000": 0.52945,
+    "emit_scene_count": 2
+   },
+   "lat": 48.683,
+   "lon": -81.367,
+   "deposit_id": "geoia-mn-18",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.7165661408903646
+  },
+  {
+   "name": "Neves Corvo",
+   "country": "Portugal",
+   "setting": "VMS Cu-Zn-Sn",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.24663,
+    "raw_bd1000": -0.02665,
+    "raw_bd2000": 0.24663,
+    "emit_scene_count": 13
+   },
+   "lat": 37.558,
+   "lon": -8.012,
+   "deposit_id": "geoia-mn-19",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3281780984179268
+  },
+  {
+   "name": "Bajo de la Alumbrera",
+   "country": "Argentina",
+   "setting": "Porphyry Cu-Au",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.09614,
+    "raw_bd1000": -0.0038,
+    "raw_bd2000": 0.09614,
+    "emit_scene_count": 31
+   },
+   "lat": -27.333,
+   "lon": -66.617,
+   "deposit_id": "geoia-mn-20",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.15614951921290154
+  },
+  {
+   "name": "Cerro Verde",
+   "country": "Peru",
+   "setting": "Porphyry Cu-Mo",
+   "old_library": {
+    "legacy_bd1000": 0.01702,
+    "legacy_bd2000": 0.0863,
+    "raw_bd1000": 0.01702,
+    "raw_bd2000": 0.0863,
+    "emit_scene_count": 39
+   },
+   "lat": -16.533,
+   "lon": -71.595,
+   "deposit_id": "geoia-mn-21",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.06099407476313122
+  },
+  {
+   "name": "Toquepala",
+   "country": "Peru",
+   "setting": "Porphyry Cu-Mo",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.14383,
+    "raw_bd1000": -0.04218,
+    "raw_bd2000": 0.14383,
+    "emit_scene_count": 31
+   },
+   "lat": -17.233,
+   "lon": -70.6,
+   "deposit_id": "geoia-mn-22",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.10188762954082886
+  },
+  {
+   "name": "Cuajone",
+   "country": "Peru",
+   "setting": "Porphyry Cu-Mo",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.09177,
+    "raw_bd1000": -0.03159,
+    "raw_bd2000": 0.09177,
+    "emit_scene_count": 31
+   },
+   "lat": -17.05,
+   "lon": -70.7,
+   "deposit_id": "geoia-mn-23",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.1259532255666674
+  },
+  {
+   "name": "Morenci",
+   "country": "USA",
+   "setting": "Porphyry Cu",
+   "old_library": {
+    "legacy_bd1000": 0.01421,
+    "legacy_bd2000": 0.02221,
+    "raw_bd1000": 0.01421,
+    "raw_bd2000": 0.02221,
+    "emit_scene_count": 32
+   },
+   "lat": 33.05,
+   "lon": -109.365,
+   "deposit_id": "geoia-mn-24",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.17086514853667034
+  },
+  {
+   "name": "Butte",
+   "country": "USA",
+   "setting": "Porphyry Cu-Mo",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.26318,
+    "raw_bd1000": -0.02118,
+    "raw_bd2000": 0.26318,
+    "emit_scene_count": 18
+   },
+   "lat": 46.003,
+   "lon": -112.533,
+   "deposit_id": "geoia-mn-25",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.330689410772752
+  },
+  {
+   "name": "Oyu Tolgoi",
+   "country": "Mongolia",
+   "setting": "Porphyry Cu-Au",
+   "old_library": {
+    "legacy_bd1000": 0.01604,
+    "legacy_bd2000": 0.15891,
+    "raw_bd1000": 0.01604,
+    "raw_bd2000": 0.15891,
+    "emit_scene_count": 24
+   },
+   "lat": 43.0,
+   "lon": 106.867,
+   "deposit_id": "geoia-mn-26",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.06949486716291384
+  },
+  {
+   "name": "Collahuasi",
+   "country": "Chile",
+   "setting": "Porphyry Cu-Mo",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.06001,
+    "raw_bd1000": -0.02197,
+    "raw_bd2000": 0.06001,
+    "emit_scene_count": 14
+   },
+   "lat": -20.983,
+   "lon": -68.7,
+   "deposit_id": "geoia-mn-27",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.06867067460920863
+  },
+  {
+   "name": "Prominent Hill",
+   "country": "Australia",
+   "setting": "IOCG",
+   "old_library": {
+    "legacy_bd1000": 0.09864,
+    "legacy_bd2000": 0.0,
+    "raw_bd1000": 0.09864,
+    "raw_bd2000": -0.06304,
+    "emit_scene_count": 23
+   },
+   "lat": -29.717,
+   "lon": 135.5,
+   "deposit_id": "geoia-mn-28",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.08712903422601402
+  },
+  {
+   "name": "Carrapateena",
+   "country": "Australia",
+   "setting": "IOCG",
+   "old_library": {
+    "legacy_bd1000": 0.02875,
+    "legacy_bd2000": 0.00735,
+    "raw_bd1000": 0.02875,
+    "raw_bd2000": 0.00735,
+    "emit_scene_count": 28
+   },
+   "lat": -31.267,
+   "lon": 137.35,
+   "deposit_id": "geoia-mn-29",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.1526799825931826
+  },
+  {
+   "name": "Salobo",
+   "country": "Brazil",
+   "setting": "IOCG",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.44523,
+    "raw_bd1000": -0.04889,
+    "raw_bd2000": 0.44523,
+    "emit_scene_count": 10
+   },
+   "lat": -5.8,
+   "lon": -50.5,
+   "deposit_id": "geoia-mn-30",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.7880154706693451
+  },
+  {
+   "name": "Sossego",
+   "country": "Brazil",
+   "setting": "IOCG",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.38878,
+    "raw_bd1000": -0.04697,
+    "raw_bd2000": 0.38878,
+    "emit_scene_count": 11
+   },
+   "lat": -6.433,
+   "lon": -50.067,
+   "deposit_id": "geoia-mn-31",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.6364980503695348
+  },
+  {
+   "name": "Mantoverde",
+   "country": "Chile",
+   "setting": "IOCG",
+   "old_library": {
+    "legacy_bd1000": 0.04128,
+    "legacy_bd2000": 0.05268,
+    "raw_bd1000": 0.04128,
+    "raw_bd2000": 0.05268,
+    "emit_scene_count": 22
+   },
+   "lat": -26.5,
+   "lon": -70.5,
+   "deposit_id": "geoia-mn-32",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.05179272812028336
+  },
+  {
+   "name": "Rio Tinto",
+   "country": "Spain",
+   "setting": "VMS (Iberian Pyrite Belt)",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.23004,
+    "raw_bd1000": -0.01582,
+    "raw_bd2000": 0.23004,
+    "emit_scene_count": 33
+   },
+   "lat": 37.7,
+   "lon": -6.6,
+   "deposit_id": "geoia-mn-34",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3897977594972203
+  },
+  {
+   "name": "Bathurst (Brunswick)",
+   "country": "Canada",
+   "setting": "VMS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.46624,
+    "raw_bd1000": -0.05233,
+    "raw_bd2000": 0.46624,
+    "emit_scene_count": 1
+   },
+   "lat": 47.5,
+   "lon": -65.9,
+   "deposit_id": "geoia-mn-36",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.7366884312490679
+  },
+  {
+   "name": "Rouyn-Noranda (Horne)",
+   "country": "Canada",
+   "setting": "VMS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.51538,
+    "raw_bd1000": -0.00513,
+    "raw_bd2000": 0.51538,
+    "emit_scene_count": 4
+   },
+   "lat": 48.25,
+   "lon": -79.017,
+   "deposit_id": "geoia-mn-37",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.6020982094671224
+  },
+  {
+   "name": "Bisha",
+   "country": "Eritrea",
+   "setting": "VMS",
+   "old_library": {
+    "legacy_bd1000": 0.01055,
+    "legacy_bd2000": 0.00861,
+    "raw_bd1000": 0.01055,
+    "raw_bd2000": 0.00861,
+    "emit_scene_count": 21
+   },
+   "lat": 15.717,
+   "lon": 38.15,
+   "deposit_id": "geoia-mn-38",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.14854345893523535
+  },
+  {
+   "name": "Cananea",
+   "country": "Mexico",
+   "setting": "Skarn / Porphyry Cu",
+   "old_library": {
+    "legacy_bd1000": 0.0017,
+    "legacy_bd2000": 0.08972,
+    "raw_bd1000": 0.0017,
+    "raw_bd2000": 0.08972,
+    "emit_scene_count": 26
+   },
+   "lat": 30.983,
+   "lon": -110.3,
+   "deposit_id": "geoia-mn-40",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.24038086897007263
+  },
+  {
+   "name": "Ok Tedi",
+   "country": "Papua New Guinea",
+   "setting": "Skarn / Porphyry",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.64012,
+    "raw_bd1000": -0.08777,
+    "raw_bd2000": 0.64012,
+    "emit_scene_count": 11
+   },
+   "lat": -5.217,
+   "lon": 141.133,
+   "deposit_id": "geoia-mn-41",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.691648673193298
+  },
+  {
+   "name": "Pine Creek",
+   "country": "USA",
+   "setting": "Skarn W",
+   "old_library": {
+    "legacy_bd1000": 0.03177,
+    "legacy_bd2000": 0.2718,
+    "raw_bd1000": 0.03177,
+    "raw_bd2000": 0.2718,
+    "emit_scene_count": 38
+   },
+   "lat": 37.367,
+   "lon": -118.7,
+   "deposit_id": "geoia-mn-42",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.13594374311520646
+  },
+  {
+   "name": "Hedley (Nickel Plate)",
+   "country": "Canada",
+   "setting": "Skarn Au",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.40795,
+    "raw_bd1000": -0.0366,
+    "raw_bd2000": 0.40795,
+    "emit_scene_count": 20
+   },
+   "lat": 49.35,
+   "lon": -120.067,
+   "deposit_id": "geoia-mn-43",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.6226690325528805
+  },
+  {
+   "name": "King Island (Dolphin)",
+   "country": "Australia",
+   "setting": "Skarn W",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.42785,
+    "raw_bd1000": -0.0724,
+    "raw_bd2000": 0.42785,
+    "emit_scene_count": 18
+   },
+   "lat": -39.933,
+   "lon": 143.917,
+   "deposit_id": "geoia-mn-44",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.6035318921503499
+  },
+  {
+   "name": "Empire (Mackay)",
+   "country": "USA",
+   "setting": "Skarn Cu-Au",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.1984,
+    "raw_bd1000": -0.02885,
+    "raw_bd2000": 0.1984,
+    "emit_scene_count": 19
+   },
+   "lat": 44.067,
+   "lon": -113.8,
+   "deposit_id": "geoia-mn-45",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.20099427476360482
+  },
+  {
+   "name": "Lihir (Ladolam)",
+   "country": "Papua New Guinea",
+   "setting": "Epithermal / alkalic",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.68799,
+    "raw_bd1000": -0.24783,
+    "raw_bd2000": 0.68799,
+    "emit_scene_count": 9
+   },
+   "lat": -3.117,
+   "lon": 152.642,
+   "deposit_id": "geoia-mn-46",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3962983767391649
+  },
+  {
+   "name": "Waihi (Martha)",
+   "country": "New Zealand",
+   "setting": "Epithermal LS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.57604,
+    "raw_bd1000": -0.06698,
+    "raw_bd2000": 0.57604,
+    "emit_scene_count": 22
+   },
+   "lat": -37.4,
+   "lon": 175.833,
+   "deposit_id": "geoia-mn-47",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.800326338869372
+  },
+  {
+   "name": "El Peñón",
+   "country": "Chile",
+   "setting": "Epithermal LS",
+   "old_library": {
+    "legacy_bd1000": 0.02389,
+    "legacy_bd2000": 0.0,
+    "raw_bd1000": 0.02389,
+    "raw_bd2000": -0.10656,
+    "emit_scene_count": 26
+   },
+   "lat": -24.383,
+   "lon": -69.317,
+   "deposit_id": "geoia-mn-48",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.05419269863690583
+  },
+  {
+   "name": "Veladero",
+   "country": "Argentina",
+   "setting": "Epithermal HS",
+   "old_library": {
+    "legacy_bd1000": 0.00383,
+    "legacy_bd2000": 0.0,
+    "raw_bd1000": 0.00383,
+    "raw_bd2000": -0.07297,
+    "emit_scene_count": 17
+   },
+   "lat": -29.367,
+   "lon": -70.0,
+   "deposit_id": "geoia-mn-49",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.04976165246143733
+  },
+  {
+   "name": "Fresnillo",
+   "country": "Mexico",
+   "setting": "Epithermal LS",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.03696,
+    "raw_bd1000": -0.01714,
+    "raw_bd2000": 0.03696,
+    "emit_scene_count": 14
+   },
+   "lat": 23.183,
+   "lon": -102.883,
+   "deposit_id": "geoia-mn-50",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.2082018410219662
+  },
+  {
+   "name": "Cripple Creek",
+   "country": "USA",
+   "setting": "Epithermal alkalic",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.35189,
+    "raw_bd1000": -0.07185,
+    "raw_bd2000": 0.35189,
+    "emit_scene_count": 27
+   },
+   "lat": 38.75,
+   "lon": -105.183,
+   "deposit_id": "geoia-mn-51",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.37412286934811806
+  },
+  {
+   "name": "Mountain Pass",
+   "country": "USA",
+   "setting": "Carbonatite REE",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.10583,
+    "raw_bd1000": -0.01633,
+    "raw_bd2000": 0.10583,
+    "emit_scene_count": 31
+   },
+   "lat": 35.478,
+   "lon": -115.533,
+   "deposit_id": "geoia-mn-52",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.13940679815759408
+  },
+  {
+   "name": "Bayan Obo",
+   "country": "China",
+   "setting": "Carbonatite REE-Fe-Nb",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.20976,
+    "raw_bd1000": -0.01789,
+    "raw_bd2000": 0.20976,
+    "emit_scene_count": 25
+   },
+   "lat": 41.767,
+   "lon": 109.967,
+   "deposit_id": "geoia-mn-53",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.12466038161936477
+  },
+  {
+   "name": "Mount Weld",
+   "country": "Australia",
+   "setting": "Carbonatite REE",
+   "old_library": {
+    "legacy_bd1000": 0.05112,
+    "legacy_bd2000": 0.11537,
+    "raw_bd1000": 0.05112,
+    "raw_bd2000": 0.11537,
+    "emit_scene_count": 16
+   },
+   "lat": -28.867,
+   "lon": 122.55,
+   "deposit_id": "geoia-mn-54",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.15059459384683227
+  },
+  {
+   "name": "Palabora (Phalaborwa)",
+   "country": "South Africa",
+   "setting": "Carbonatite",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.25044,
+    "raw_bd1000": -0.02005,
+    "raw_bd2000": 0.25044,
+    "emit_scene_count": 13
+   },
+   "lat": -23.983,
+   "lon": 31.133,
+   "deposit_id": "geoia-mn-55",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.32427140308543156
+  },
+  {
+   "name": "Oka",
+   "country": "Canada",
+   "setting": "Carbonatite",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.53414,
+    "raw_bd1000": -0.02656,
+    "raw_bd2000": 0.53414,
+    "emit_scene_count": 16
+   },
+   "lat": 45.467,
+   "lon": -74.083,
+   "deposit_id": "geoia-mn-56",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.41449763641801807
+  },
+  {
+   "name": "Araxá",
+   "country": "Brazil",
+   "setting": "Carbonatite",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.43581,
+    "raw_bd1000": -0.04912,
+    "raw_bd2000": 0.43581,
+    "emit_scene_count": 16
+   },
+   "lat": -19.6,
+   "lon": -46.967,
+   "deposit_id": "geoia-mn-57",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.5154073314412815
+  },
+  {
+   "name": "Songwe Hill",
+   "country": "Malawi",
+   "setting": "Carbonatite REE",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.32739,
+    "raw_bd1000": -0.02518,
+    "raw_bd2000": 0.32739,
+    "emit_scene_count": 19
+   },
+   "lat": -15.5,
+   "lon": 35.367,
+   "deposit_id": "geoia-mn-59",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3483406160743368
+  },
+  {
+   "name": "Bushveld (Rustenburg)",
+   "country": "South Africa",
+   "setting": "Layered Mafic Intrusion",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.24063,
+    "raw_bd1000": -0.00147,
+    "raw_bd2000": 0.24063,
+    "emit_scene_count": 27
+   },
+   "lat": -25.667,
+   "lon": 27.243,
+   "deposit_id": "geoia-mn-60",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3263393763624604
+  },
+  {
+   "name": "Stillwater Complex",
+   "country": "USA",
+   "setting": "Layered Mafic Intrusion",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.46723,
+    "raw_bd1000": -0.04451,
+    "raw_bd2000": 0.46723,
+    "emit_scene_count": 27
+   },
+   "lat": 45.383,
+   "lon": -110.0,
+   "deposit_id": "geoia-mn-61",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.5181437287354019
+  },
+  {
+   "name": "Great Dyke",
+   "country": "Zimbabwe",
+   "setting": "Layered Mafic Intrusion",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.14806,
+    "raw_bd1000": -0.02077,
+    "raw_bd2000": 0.14806,
+    "emit_scene_count": 13
+   },
+   "lat": -18.5,
+   "lon": 30.0,
+   "deposit_id": "geoia-mn-62",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.35388325828705697
+  },
+  {
+   "name": "Sudbury",
+   "country": "Canada",
+   "setting": "Ni-Cu-PGE (impact/mafic)",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.62259,
+    "raw_bd1000": -0.03045,
+    "raw_bd2000": 0.62259,
+    "emit_scene_count": 11
+   },
+   "lat": 46.6,
+   "lon": -81.0,
+   "deposit_id": "geoia-mn-64",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.674950104488816
+  },
+  {
+   "name": "Duluth Complex",
+   "country": "USA",
+   "setting": "Layered Mafic Intrusion",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.49458,
+    "raw_bd1000": -0.04185,
+    "raw_bd2000": 0.49458,
+    "emit_scene_count": 26
+   },
+   "lat": 47.5,
+   "lon": -91.5,
+   "deposit_id": "geoia-mn-65",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.71892505647858
+  },
+  {
+   "name": "Jinchuan",
+   "country": "China",
+   "setting": "Mafic-ultramafic Ni-Cu",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.32987,
+    "raw_bd1000": -0.01107,
+    "raw_bd2000": 0.32987,
+    "emit_scene_count": 15
+   },
+   "lat": 38.483,
+   "lon": 102.183,
+   "deposit_id": "geoia-mn-67",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.10425468351744233
+  },
+  {
+   "name": "Deccan Traps",
+   "country": "India",
+   "setting": "Flood Basalt",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.22114,
+    "raw_bd1000": -0.00742,
+    "raw_bd2000": 0.22114,
+    "emit_scene_count": 28
+   },
+   "lat": 18.52,
+   "lon": 73.8,
+   "deposit_id": "geoia-mn-68",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3286094798922033
+  },
+  {
+   "name": "Columbia River Basalt",
+   "country": "USA",
+   "setting": "Flood Basalt",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.32079,
+    "raw_bd1000": -0.02504,
+    "raw_bd2000": 0.32079,
+    "emit_scene_count": 38
+   },
+   "lat": 46.0,
+   "lon": -119.5,
+   "deposit_id": "geoia-mn-69",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.37577846504123746
+  },
+  {
+   "name": "Karoo (Drakensberg)",
+   "country": "South Africa",
+   "setting": "Flood Basalt",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.22179,
+    "raw_bd1000": -0.03099,
+    "raw_bd2000": 0.22179,
+    "emit_scene_count": 21
+   },
+   "lat": -29.5,
+   "lon": 29.0,
+   "deposit_id": "geoia-mn-71",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3485188627629693
+  },
+  {
+   "name": "Paraná Basalt",
+   "country": "Brazil",
+   "setting": "Flood Basalt",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.50169,
+    "raw_bd1000": -0.04658,
+    "raw_bd2000": 0.50169,
+    "emit_scene_count": 9
+   },
+   "lat": -27.0,
+   "lon": -51.0,
+   "deposit_id": "geoia-mn-72",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.7016336794151196
+  },
+  {
+   "name": "Etendeka",
+   "country": "Namibia",
+   "setting": "Flood Basalt",
+   "old_library": {
+    "legacy_bd1000": 0.05806,
+    "legacy_bd2000": 0.00347,
+    "raw_bd1000": 0.05806,
+    "raw_bd2000": 0.00347,
+    "emit_scene_count": 23
+   },
+   "lat": -20.5,
+   "lon": 13.5,
+   "deposit_id": "geoia-mn-73",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.07674693129071299
+  },
+  {
+   "name": "Emeishan",
+   "country": "China",
+   "setting": "Flood Basalt",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.27378,
+    "raw_bd1000": -0.04185,
+    "raw_bd2000": 0.27378,
+    "emit_scene_count": 7
+   },
+   "lat": 26.5,
+   "lon": 102.5,
+   "deposit_id": "geoia-mn-74",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.48456570551871914
+  },
+  {
+   "name": "Ethiopian Traps",
+   "country": "Ethiopia",
+   "setting": "Flood Basalt",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.18878,
+    "raw_bd1000": -0.04566,
+    "raw_bd2000": 0.18878,
+    "emit_scene_count": 24
+   },
+   "lat": 9.5,
+   "lon": 39.5,
+   "deposit_id": "geoia-mn-75",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.3345425660737022
+  },
+  {
+   "name": "Pilbara Craton (Marble Bar)",
+   "country": "Australia",
+   "setting": "Archean greenstone",
+   "old_library": {
+    "legacy_bd1000": 0.02576,
+    "legacy_bd2000": 0.12046,
+    "raw_bd1000": 0.02576,
+    "raw_bd2000": 0.12046,
+    "emit_scene_count": 24
+   },
+   "lat": -21.17,
+   "lon": 119.74,
+   "deposit_id": "geoia-mn-76",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.18510943276674652
+  },
+  {
+   "name": "Kalgoorlie (Yilgarn)",
+   "country": "Australia",
+   "setting": "Archean greenstone",
+   "old_library": {
+    "legacy_bd1000": 0.02163,
+    "legacy_bd2000": 0.04099,
+    "raw_bd1000": 0.02163,
+    "raw_bd2000": 0.04099,
+    "emit_scene_count": 37
+   },
+   "lat": -30.75,
+   "lon": 121.467,
+   "deposit_id": "geoia-mn-77",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.2225163077976699
+  },
+  {
+   "name": "Barberton Greenstone",
+   "country": "South Africa",
+   "setting": "Archean greenstone",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.27665,
+    "raw_bd1000": -0.04726,
+    "raw_bd2000": 0.27665,
+    "emit_scene_count": 14
+   },
+   "lat": -25.8,
+   "lon": 31.0,
+   "deposit_id": "geoia-mn-78",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.5658777350158789
+  },
+  {
+   "name": "Abitibi (Timmins)",
+   "country": "Canada",
+   "setting": "Archean greenstone",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.48354,
+    "raw_bd1000": -0.0215,
+    "raw_bd2000": 0.48354,
+    "emit_scene_count": 2
+   },
+   "lat": 48.47,
+   "lon": -81.33,
+   "deposit_id": "geoia-mn-79",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.6471071781934739
+  },
+  {
+   "name": "Kolar (Dharwar)",
+   "country": "India",
+   "setting": "Archean greenstone",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.23145,
+    "raw_bd1000": -0.01107,
+    "raw_bd2000": 0.23145,
+    "emit_scene_count": 12
+   },
+   "lat": 12.95,
+   "lon": 78.27,
+   "deposit_id": "geoia-mn-81",
+   "coordinate_decimals": 2,
+   "coordinate_half_step_km": 0.557,
+   "coordinate_quality": "moderate",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.40791798334712676
+  },
+  {
+   "name": "Las Cristinas (Guiana Shield)",
+   "country": "Venezuela",
+   "setting": "Greenstone belt",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.49008,
+    "raw_bd1000": -0.03812,
+    "raw_bd2000": 0.49008,
+    "emit_scene_count": 10
+   },
+   "lat": 6.717,
+   "lon": -61.5,
+   "deposit_id": "geoia-mn-82",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.8097865733667732
+  },
+  {
+   "name": "Geita (Tanzania Craton)",
+   "country": "Tanzania",
+   "setting": "Archean greenstone",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.37178,
+    "raw_bd1000": -0.03499,
+    "raw_bd2000": 0.37178,
+    "emit_scene_count": 11
+   },
+   "lat": -2.87,
+   "lon": 32.2,
+   "deposit_id": "geoia-mn-83",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.4735216113597323
+  },
+  {
+   "name": "Troodos Ophiolite",
+   "country": "Cyprus",
+   "setting": "Ophiolite",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.34977,
+    "raw_bd1000": -0.02201,
+    "raw_bd2000": 0.34977,
+    "emit_scene_count": 37
+   },
+   "lat": 34.933,
+   "lon": 32.867,
+   "deposit_id": "geoia-mn-84",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.4957779764979327
+  },
+  {
+   "name": "Semail Ophiolite",
+   "country": "Oman",
+   "setting": "Ophiolite",
+   "old_library": {
+    "legacy_bd1000": 0.02339,
+    "legacy_bd2000": 0.08424,
+    "raw_bd1000": 0.02339,
+    "raw_bd2000": 0.08424,
+    "emit_scene_count": 33
+   },
+   "lat": 23.0,
+   "lon": 57.5,
+   "deposit_id": "geoia-mn-85",
+   "coordinate_decimals": 0,
+   "coordinate_half_step_km": 55.66,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.08208572108014475
+  },
+  {
+   "name": "New Caledonia Ophiolite",
+   "country": "New Caledonia",
+   "setting": "Ophiolite / Ni laterite",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.48024,
+    "raw_bd1000": -0.0432,
+    "raw_bd2000": 0.48024,
+    "emit_scene_count": 20
+   },
+   "lat": -21.5,
+   "lon": 165.8,
+   "deposit_id": "geoia-mn-86",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.7597451537582238
+  },
+  {
+   "name": "Kilauea (Hawaii)",
+   "country": "USA",
+   "setting": "Ocean-island basalt",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.38532,
+    "raw_bd1000": -0.03309,
+    "raw_bd2000": 0.38532,
+    "emit_scene_count": 26
+   },
+   "lat": 19.421,
+   "lon": -155.287,
+   "deposit_id": "geoia-mn-88",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.44838905893217784
+  },
+  {
+   "name": "Yellowstone",
+   "country": "USA",
+   "setting": "Silicic volcanic field",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.51504,
+    "raw_bd1000": -0.0098,
+    "raw_bd2000": 0.51504,
+    "emit_scene_count": 22
+   },
+   "lat": 44.428,
+   "lon": -110.583,
+   "deposit_id": "geoia-mn-90",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.4570953884363349
+  },
+  {
+   "name": "Long Valley Caldera",
+   "country": "USA",
+   "setting": "Silicic volcanic field",
+   "old_library": {
+    "legacy_bd1000": 0.01469,
+    "legacy_bd2000": 0.24105,
+    "raw_bd1000": 0.01469,
+    "raw_bd2000": 0.24105,
+    "emit_scene_count": 33
+   },
+   "lat": 37.7,
+   "lon": -118.88,
+   "deposit_id": "geoia-mn-91",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.2935781451560799
+  },
+  {
+   "name": "Valles Caldera",
+   "country": "USA",
+   "setting": "Silicic volcanic field",
+   "old_library": {
+    "legacy_bd1000": 0.0075,
+    "legacy_bd2000": 0.33073,
+    "raw_bd1000": 0.0075,
+    "raw_bd2000": 0.33073,
+    "emit_scene_count": 37
+   },
+   "lat": 35.9,
+   "lon": -106.533,
+   "deposit_id": "geoia-mn-92",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.384525527602243
+  },
+  {
+   "name": "Taupo Volcanic Zone",
+   "country": "New Zealand",
+   "setting": "Silicic volcanic field",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.43945,
+    "raw_bd1000": -0.0516,
+    "raw_bd2000": 0.43945,
+    "emit_scene_count": 31
+   },
+   "lat": -38.8,
+   "lon": 176.083,
+   "deposit_id": "geoia-mn-93",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.4860202722560186
+  },
+  {
+   "name": "Láscar",
+   "country": "Chile",
+   "setting": "Andean stratovolcano",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.01078,
+    "raw_bd1000": -0.03533,
+    "raw_bd2000": 0.01078,
+    "emit_scene_count": 25
+   },
+   "lat": -23.367,
+   "lon": -67.733,
+   "deposit_id": "geoia-mn-94",
+   "coordinate_decimals": 3,
+   "coordinate_half_step_km": 0.056,
+   "coordinate_quality": "high",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.04387164750343588
+  },
+  {
+   "name": "Erta Ale",
+   "country": "Ethiopia",
+   "setting": "Basaltic shield/rift",
+   "old_library": {
+    "legacy_bd1000": 0.02843,
+    "legacy_bd2000": 0.0874,
+    "raw_bd1000": 0.02843,
+    "raw_bd2000": 0.0874,
+    "emit_scene_count": 35
+   },
+   "lat": 13.6,
+   "lon": 40.667,
+   "deposit_id": "geoia-mn-95",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.00716180939894163
+  },
+  {
+   "name": "Hamersley (Mt Whaleback)",
+   "country": "Australia",
+   "setting": "Banded Iron Formation",
+   "old_library": {
+    "legacy_bd1000": 0.06448,
+    "legacy_bd2000": 0.00659,
+    "raw_bd1000": 0.06448,
+    "raw_bd2000": 0.00659,
+    "emit_scene_count": 29
+   },
+   "lat": -23.367,
+   "lon": 119.7,
+   "deposit_id": "geoia-mn-96",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.14792419072904164
+  },
+  {
+   "name": "Mesabi Range",
+   "country": "USA",
+   "setting": "Banded Iron Formation",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.48283,
+    "raw_bd1000": -0.0564,
+    "raw_bd2000": 0.48283,
+    "emit_scene_count": 28
+   },
+   "lat": 47.5,
+   "lon": -92.7,
+   "deposit_id": "geoia-mn-97",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.6215487029518957
+  },
+  {
+   "name": "Quadrilátero Ferrífero",
+   "country": "Brazil",
+   "setting": "Banded Iron Formation",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.3407,
+    "raw_bd1000": -0.04038,
+    "raw_bd2000": 0.3407,
+    "emit_scene_count": 15
+   },
+   "lat": -20.25,
+   "lon": -43.7,
+   "deposit_id": "geoia-mn-98",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.6351791432163045
+  },
+  {
+   "name": "Kryvyi Rih",
+   "country": "Ukraine",
+   "setting": "Banded Iron Formation",
+   "old_library": {
+    "legacy_bd1000": 0.0,
+    "legacy_bd2000": 0.36919,
+    "raw_bd1000": -0.04185,
+    "raw_bd2000": 0.36919,
+    "emit_scene_count": 16
+   },
+   "lat": 47.9,
+   "lon": 33.35,
+   "deposit_id": "geoia-mn-99",
+   "coordinate_decimals": 1,
+   "coordinate_half_step_km": 5.566,
+   "coordinate_quality": "low",
+   "coordinate_source": "legacy deposits_master.json (300_enrichments.geojson); original citation not recorded",
+   "legacy_master_ndvi": 0.39663534724206806
+  }
+ ]
+}
