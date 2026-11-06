@@ -28,10 +28,48 @@ Sem MTRDR no ponto: se existirem TRDR não projetados → `no_compatible_observa
 Um indicador de profundidade de banda é marcado positivo quando: média da janela > 3 × erro-padrão (n efetivo = pixels/25, para correlação espacial ~5×5 px), mediana > 0 e ≥ 60 % dos pixels positivos. Isso detecta **uma absorção positiva**; não é abundância nem identificação mineral. Valores muito pequenos mas espacialmente consistentes podem passar — por isso o texto sempre diz “screening”.
 
 ## Análogos terrestres
-* **Diretamente comparáveis**: `legacy_bd1000`, `legacy_bd2000` (mesma fórmula, reflectância VSWIR nos dois lados).
-* **Proxies aproximados** (listados, nunca pontuados): IBD lunares, BDI1000IR/LCP/HCP do CRISM.
-* **Não comparáveis**: maturidade lunar, hidratação/filossilicatos/carbonatos/sulfatos/gelo do CRISM, índices ASTER TIR, NDVI.
-* Pontuação: distância euclidiana; `similarity = 1 − d / (0,4·√n)` serve **apenas para ordenar**. Com 2 atributos a discriminação é fraca, e a biblioteca (90 sítios EMIT) é dominada por sistemas hidrotermais — isso é avisado em `disclaimer`.
+
+### Como funciona hoje
+* **Atributos pontuados:** só `legacy_bd1000` e `legacy_bd2000`, as únicas profundidades de banda com **a mesma fórmula** nos três corpos: `BD = (C − R_centro)/C`, `C = (R_esq + R_dir)/2`, bandas mais próximas de (1000; 800, 1300) nm e (2000; 1700, 2300) nm.
+* **Origem lunar:** M3 L2 (reflectância, correção fotométrica e térmica da equipe M3), janela de pixels ao redor do ponto.
+* **Origem marciana:** CRISM MTRDR I/F (correções fotométrica e atmosférica *volcano-scan*), mesmas 6 bandas.
+* **Origem terrestre:** biblioteca de 90 sítios (`app/data/earth_emit_reference_library.json`), média de 10 km do composto mediano EMIT L2A (Earth Engine), herdada do backend anterior, com proveniência (sha256 do arquivo de origem).
+* **Normalização:** nenhuma além da própria profundidade de banda (razão ao contínuo, insensível a offsets de calibração absoluta). Corte em zero aplicado **uma vez, à média da janela** (ver correção abaixo).
+* **Similaridade:** distância euclidiana `d`; `similarity = 1 − d/(0,4·√n)`, pesos iguais. Serve **só para ordenar**; não é probabilidade.
+* **Dados ausentes:** se um dos dois atributos falta, a seção fica `unavailable / insufficient_data` (nada é imputado). Sítios da biblioteca sem o atributo são excluídos.
+* **Elegibilidade:** todos os 90 sítios entram; não há filtro por contexto geológico.
+* **Proxies e não comparáveis** (listados, nunca pontuados): IBD lunares, BDI1000IR/LCPINDEX2/HCPINDEX2 do CRISM; maturidade lunar, hidratação/filossilicatos/carbonatos/sulfatos/gelo, ASTER TIR, NDVI.
+
+### Correção aplicada (2026-11-06): ordem do corte em zero
+A biblioteca guarda `max(0, média(BD))` (o valor bruto da média é negativo em 64 dos 90 sítios para 1 µm e em 8 para 2 µm). O código lunar e marciano fazia `média(max(0, BD))`, cortando **cada pixel** antes da média. Em janelas ruidosas isso empurra o valor para cima (a média de valores cortados é sempre ≥ ao corte da média) e torna a consulta incomparável com a biblioteca. Agora:
+* o indicador mostra a profundidade **sem corte** (negativo = contínuo convexo = sem absorção, explicado em `interpretation`);
+* o valor usado nos análogos é `max(0, média)`, exatamente como na biblioteca (`spectral.legacy_analog_input`);
+* na Terra, o valor médio negativo é mostrado com o sinal e a mesma explicação; os análogos usam 0.
+O teste estatístico de detecção passou a usar os valores sem corte.
+
+### Explicabilidade acrescentada (sem mudar a pontuação)
+`query_values`, `query_uncertainty` (erro-padrão com correção de correlação espacial), `differences` por análogo e atributo, `top5_distance_spread`, `indistinguishable_sites` (sítios cuja distância fica a até 2σ da do melhor) e `discrimination`:
+* `low`: dispersão dos 5 primeiros < 0,05 **ou** ≥ 5 sítios indistinguíveis;
+* `moderate`: dispersão < 0,10 **ou** ≥ 3 indistinguíveis;
+* `adequate`: caso contrário.
+
+### Achados da auditoria (não corrigidos — exigem decisão)
+1. **A biblioteca mede mais vegetação/umidade que Fe²⁺.** 6 dos 7 basaltos de derrame (Deccan, Paraná, Karoo…) têm profundidade em 1 µm negativa e em 2 µm entre 0,19 e 0,50 — o contrário do esperado para piroxênio (bandas em 1 e 2 µm, 2 µm mais fraca). Esse padrão é típico de folhas e solo úmido (platô do infravermelho próximo; água líquida perto de 1,9–2,0 µm). Mediana de `legacy_bd2000` na biblioteca: 0,24; na Lua e em Marte: ~0–0,05.
+2. **Consequência:** Lua e Marte caem sempre no canto de baixa profundidade, onde só há ~19 sítios (áridos). Numa grade de consultas típicas (bd1000 0–0,10; bd2000 0–0,05), apenas 21 sítios aparecem no top-5, e Etendeka, Hamersley e Escondida aparecem na maioria. O ranking diz mais sobre "superfície árida e pouco vegetada" do que sobre litologia.
+3. **Instrumentos e correções diferentes:** EMIT (reflectância de superfície, 60 m), M3 (reflectância com correção térmica empírica que afeta 2 µm, 140–280 m) e CRISM (I/F com correção *volcano-scan*, 18–36 m). A comparação é de **forma**, não de composição, e não há validação cruzada entre instrumentos.
+4. **Ambientes:** intemperismo espacial (Lua) e poeira (Marte) reduzem profundidades de banda; a Terra tem vegetação, água e atmosfera residual. Não há correção para isso.
+5. **Proveniência incompleta da biblioteca:** datas e cenas EMIT não foram arquivadas; centroides dos sítios não foram guardados, então não dá para remedir.
+6. **Escala da similaridade:** com `d_max = 0,4·√2`, diferenças de 0,03 viram 0,95 — números altos que parecem fortes. Mantido para não alterar o comportamento validado; o selo de discriminação e o aviso compensam.
+
+### Evolução proposta (requer aprovação)
+* **Remedir a biblioteca** com centroides e datas arquivados, máscara de vegetação (NDVI < 0,2 no composto EMIT) e de água; guardar o espectro médio completo de cada sítio, não só duas profundidades.
+* **Escolher análogos pela geologia, não só por mineração:** basaltos áridos (Etendeka, Columbia em áreas secas), anortositos (Stillwater, Bushveld), vidros vulcânicos, regolitos de deserto, sítios de análogos marcianos consagrados (Atacama, Rio Tinto, Pilbara, Svalbard, Mojave).
+* **Atributos com justificativa:** centro de banda em 1 µm e em 2 µm (posição, não só profundidade — distingue olivina/piroxênio de baixo e alto Ca), razão de áreas de banda (BAR), inclinação do contínuo; em Marte, só parâmetros CRISM que tenham equivalente EMIT com a mesma definição.
+* **Comparação por espectro reamostrado** (ex.: ângulo espectral após remoção do contínuo) sobre a mesma grade de comprimentos de onda, com propagação de incerteza.
+* **Validação:** (a) consistência — o mesmo sítio terrestre medido por EMIT em datas diferentes deve ficar indistinguível de si mesmo; (b) controle positivo — áreas lunares de composição conhecida (mare vs. terra alta; sítios Apollo/Luna com amostras) devem se separar; (c) controle negativo — consultas com ruído puro devem resultar em `discrimination = low`.
+* **Critério de desempenho:** só exibir ranking como informativo quando a dispersão dos 5 primeiros superar 2σ da medida e o controle positivo separar mare de terra alta.
+* **Riscos:** ruído instrumental tratado como sinal; vieses de seleção da biblioteca; leitura do ranking como indício de jazida.
+* **Não fazer:** aprendizado de máquina sem rótulos de verdade de campo; converter similaridade em probabilidade.
 
 ## Confiança
 `confidence.level` é calculado a partir dos critérios aplicáveis (lista em `confidence.criteria`):

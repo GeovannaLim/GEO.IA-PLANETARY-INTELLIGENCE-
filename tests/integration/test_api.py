@@ -125,3 +125,30 @@ def test_jobs_interrupted_by_restart_are_resumed(tmp_path):
         for rid in ("noreq", "exhausted"):
             d = c.get(f"/v1/jobs/{rid}").json()
             assert d["status"] == "failed" and "could not be resumed" in d["problems"][-1]["message"]
+
+
+def test_lang_pt_br_on_analyze_poll_and_report():
+    world = FakeWorld(18.44, 77.45)
+    with _client_world(world), TestClient(create_app()) as c:
+        r = c.post("/v1/mars/analyze?lang=pt-BR", json={"latitude": 18.44, "longitude": 77.45, "radius_km": 0.5})
+        doc = r.json()
+        assert doc["language"] == "pt-BR" and doc["links"]["self"].endswith("?lang=pt-BR")
+        import time
+        for _ in range(200):
+            j = c.get(doc["links"]["self"])
+            if j.status_code == 200:
+                break
+            time.sleep(0.05)
+        pt = j.json()
+        assert pt["language"] == "pt-BR" and pt["status"] == "completed"
+        assert "Similaridade" in pt["earth_analogs"]["disclaimer"]
+        en = c.get(f"/v1/jobs/{doc['analysis_id']}").json()
+        assert "language" not in en and en["earth_analogs"]["disclaimer"].startswith("Similarity")
+        assert pt["mineralogy"]["indicators"] == [
+            {**i, "interpretation": p["interpretation"], "sensitive_to": p["sensitive_to"],
+             "threshold_basis": p["threshold_basis"]}
+            for i, p in zip(en["mineralogy"]["indicators"], pt["mineralogy"]["indicators"])]
+        assert c.get(f"/v1/reports/{doc['analysis_id']}?lang=pt-BR").json()["language"] == "pt-BR"
+        assert c.get(f"/v1/jobs/{doc['analysis_id']}?lang=fr").status_code == 422
+        pdf = c.get(f"/v1/reports/{doc['analysis_id']}?format=pdf&lang=pt-BR")
+        assert pdf.status_code == 200 and pdf.content[:5] == b"%PDF-"

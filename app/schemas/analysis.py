@@ -222,6 +222,8 @@ class AnalogMatch(BaseModel):
     similarity: float = Field(description="1 - distance/max_distance; ranking aid, NOT a probability")
     attributes_used: list[str]
     earth_values: dict[str, float]
+    differences: dict[str, float] = Field(default_factory=dict,
+                                          description="query value minus terrestrial value, per attribute")
 
 
 class EarthAnalogSection(BaseModel):
@@ -234,7 +236,15 @@ class EarthAnalogSection(BaseModel):
     not_comparable: list[str] = Field(default_factory=list)
     missing: list[str] = Field(default_factory=list)
     query_values: dict[str, float] = Field(default_factory=dict)
+    query_uncertainty: dict[str, float] = Field(
+        default_factory=dict, description="standard error of each query value (spatially corrected); empty if unknown")
     matches: list[AnalogMatch] = Field(default_factory=list)
+    discrimination: Literal["low", "moderate", "adequate"] | None = Field(
+        None, description="how well the ranking separates the top sites (see docs/CIENCIA.md#análogos)")
+    discrimination_note: str | None = None
+    top5_distance_spread: float | None = None
+    indistinguishable_sites: int | None = Field(
+        None, description="library sites whose distance is within 2 sigma (query uncertainty) of the best match")
     disclaimer: str = ("Similarity of a few band-depth attributes. It is not a probability "
                        "of mineral occurrence and does not indicate a deposit.")
 

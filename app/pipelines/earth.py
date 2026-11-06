@@ -88,9 +88,11 @@ async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_a
             continue
         analog_inputs[name] = max(0.0, v)
         indicators.append(SpectralIndicator(
-            name=name, value=Stats(mean=v), definition="legacy 3-band depth on EMIT median composite (ROI mean)",
+            name=name, value=Stats(mean=v), definition="legacy 3-band depth on EMIT median composite (ROI mean, unclamped; clamped at 0 for the analog comparison)",
             reference="GEØ.IA terrestrial EMIT library definition", n_pixels=0,
-            interpretation="ROI-mean value; per-pixel distribution not retrieved", comparability="direct"))
+            interpretation=("ROI-mean value is negative (convex continuum): no absorption at this wavelength. "
+                            "The analog comparison uses 0, as in the reference library." if v < 0 else
+                            "ROI-mean value; per-pixel distribution not retrieved"), comparability="direct"))
     min_s = MineralogySection(
         status=SectionStatus.available if indicators else SectionStatus.unavailable,
         reason=None if indicators else Reason.no_coverage, instrument="EMIT (imaging spectrometer)",

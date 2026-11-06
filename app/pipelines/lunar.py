@@ -95,7 +95,10 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
                                      limitations=ex.limitations, **base), {}, ex.incidence_deg
         indicators, values = spectral.m3_indicators(ex.spectra, ex.wavelengths)
         mean_spec = np.nanmean(ex.spectra, axis=0)
-        analog_inputs = {k: float(np.nanmean(values[k])) for k in ("legacy_bd1000", "legacy_bd2000") if k in values}
+        analog_inputs = {k: spectral.legacy_analog_input(values[k]) for k in ("legacy_bd1000", "legacy_bd2000")
+                         if k in values}
+        analog_inputs = {k: v for k, v in analog_inputs.items() if v is not None}
+        analog_inputs["_sem"] = {k: spectral.window_sem(values[k]) for k in analog_inputs}
         limitations = list(ex.limitations)
         if ex.incidence_deg is not None and ex.incidence_deg > 70:
             limitations.append(f"high solar incidence at the pixel ({ex.incidence_deg:.0f}°)")

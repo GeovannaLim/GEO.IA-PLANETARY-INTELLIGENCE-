@@ -20,8 +20,23 @@ def test_legacy_band_depth_matches_definition_exactly():
     spec[0, i(1000)] = 0.15
     bd = spectral.legacy_band_depth(spec, WL, 1000, 800, 1300)
     assert bd[0] == pytest.approx((0.2 - 0.15) / 0.2)
-    spec[0, i(1000)] = 0.25                        # convexity -> clamped to 0
-    assert spectral.legacy_band_depth(spec, WL, 1000, 800, 1300)[0] == 0.0
+    spec[0, i(1000)] = 0.25                        # convexity: kept negative per pixel (= no absorption)
+    assert spectral.legacy_band_depth(spec, WL, 1000, 800, 1300)[0] == pytest.approx(-0.25)
+
+
+def test_analog_input_clamps_after_the_mean_like_the_library():
+    """Library entries are max(0, mean(depth)); clamping per pixel first would bias noise upwards."""
+    noise = np.random.default_rng(3).normal(0.0, 0.03, 2000)       # no absorption, only noise
+    assert spectral.legacy_analog_input(noise) == pytest.approx(max(0.0, noise.mean()))
+    biased = float(np.mean(np.clip(noise, 0, None)))                # the previous behaviour
+    assert biased > 0.01 and spectral.legacy_analog_input(noise) < 0.003
+    assert spectral.legacy_analog_input(np.array([np.nan])) is None
+
+
+def test_negative_legacy_depth_is_explained_not_hidden():
+    arr = np.random.default_rng(4).normal(-0.03, 0.005, 500)
+    assert spectral.legacy_interpretation(arr) == spectral.LEGACY_NEGATIVE
+    assert spectral.stats(arr).median < 0                           # displayed with its sign
 
 
 def test_pyroxene_like_spectrum_detects_both_bands():
@@ -62,6 +77,22 @@ def test_similarity_requires_direct_attributes_only():
     d = [m.distance for m in sec.matches]
     assert d == sorted(d) and all(0 <= m.similarity <= 1 for m in sec.matches)
     assert "not a probability" in sec.disclaimer
+    m = sec.matches[0]
+    assert m.differences == {a: pytest.approx(sec.query_values[a] - m.earth_values[a], abs=1e-5)
+                             for a in m.attributes_used}
+
+
+def test_discrimination_uses_measurement_uncertainty():
+    q = {"legacy_bd1000": 0.05, "legacy_bd2000": 0.01}
+    precise = similarity.compare("moon", {**q, "_sem": {"legacy_bd1000": 1e-5, "legacy_bd2000": 1e-5}})
+    noisy = similarity.compare("moon", {**q, "_sem": {"legacy_bd1000": 0.05, "legacy_bd2000": 0.05}})
+    assert precise.query_uncertainty and noisy.indistinguishable_sites > precise.indistinguishable_sites >= 1
+    assert noisy.discrimination == "low" and "cannot be distinguished" in noisy.disclaimer
+    assert precise.matches == noisy.matches or [m.name for m in precise.matches] == [m.name for m in noisy.matches]
+    unknown = similarity.compare("moon", q)                         # no uncertainty -> not claimed
+    assert unknown.indistinguishable_sites is None and unknown.discrimination in ("low", "moderate", "adequate")
+    assert similarity.LIBRARY_CAVEAT in unknown.disclaimer
+    assert similarity.LIBRARY_CAVEAT not in similarity.compare("earth", q).disclaimer
 
 
 def test_reference_library_provenance():

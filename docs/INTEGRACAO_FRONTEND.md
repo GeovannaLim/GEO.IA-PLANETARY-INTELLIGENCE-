@@ -20,7 +20,13 @@ Em produção desde 2026-11-05 (Render, plano Free). Configure no Skip como vari
 | GET | `/v1/planetary/datasets` | fontes e convenções (opcional, painel “sobre os dados”) |
 | GET | `/health` | disponibilidade (útil para “acordar” a instância free) |
 
-Query opcionais do POST: `wait_s` (0–60, espera antes de responder), `use_cache` (padrão `true`).
+Query opcionais do POST: `wait_s` (0–60, espera antes de responder), `use_cache` (padrão `true`), `lang` (`en` padrão | `pt-BR`).
+
+### Idioma (`lang=pt-BR`)
+* Aceito em `POST /v1/{corpo}/analyze`, `GET /v1/jobs/{id}` e `GET /v1/reports/{id}` (JSON). Com `pt-BR`, a resposta traz `"language": "pt-BR"` e `links.self`/`links.report` já incluem `?lang=pt-BR` (o polling mantém o idioma).
+* Traduzidos: interpretações, `sensitive_to`, base do teste de detecção, caráter espectral, métodos, datum, limitações, avisos dos análogos, critérios de confiança e mensagens de cobertura.
+* **Nunca traduzidos:** números, unidades, nomes de instrumentos e missões, códigos de produto e de parâmetro (`IBD1000`, `BD2210_2`, `legacy_bd2000`), URLs, `data_sources` (proveniência) e mensagens de erro brutas dos provedores.
+* O resultado é calculado, guardado em cache e em relatório sempre em inglês (forma canônica); a tradução é aplicada só na resposta. O PDF continua em inglês.
 
 ## 3. Payload
 ```json
@@ -70,7 +76,7 @@ Nunca preencher valores ausentes na UI: `null` significa “não medido”.
 | `imagery.layers[]` | `tile_url_template` WMTS (substituir `{Style}`→`default`, `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, `{TileCol}`); `role`: `basemap`/`shaded_relief`/`regional_product` |
 | `topography` | `elevation_m{mean,median,min,max,p05,p95}`, `relief_m`, `regional_slope_degrees`, `local_slope_degrees.median`, `roughness_m`, `n_points`, `datum` |
 | `mineralogy` | `instrument`, `product_used`, `valid_pixels`, `indicators[]` (`name`, `value.median`, `sensitive_to`, `interpretation`), `spectral_character`, `mean_spectrum` (Lua) |
-| `earth_analogs` | `matches[]` (`name`, `country`, `setting`, `similarity`), `disclaimer` — **ranking, não probabilidade** |
+| `earth_analogs` | `matches[]` (`name`, `country`, `setting`, `similarity`, `attributes_used`, `earth_values`, `differences`), `query_values`, `query_uncertainty`, `discrimination` (`low`/`moderate`/`adequate`), `discrimination_note`, `indistinguishable_sites`, `top5_distance_spread`, `disclaimer` — **ranking, não probabilidade** |
 | `confidence` | `level`, `criteria[]`, `limitations[]` |
 | `data_sources[]` | painel de proveniência (provedor, instrumento, produto, datas, URL) |
 | `problems[]` | avisos |

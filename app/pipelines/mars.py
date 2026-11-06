@@ -100,24 +100,27 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
                                      source_ids=[search_rec.source_id, rec.source_id], limitations=ex.limitations,
                                      **base), {}, ex.incidence_deg
         indicators = [spectral.crism_indicator(n, v) for n, v in ex.params.items()]
-        analog_inputs: dict[str, float] = {}
+        analog_inputs: dict = {}
+        sems: dict[str, float | None] = {}
         if ex.legacy_spectra is not None and ex.legacy_spectra.shape[0] >= 4:
             wl = ex.legacy_wavelengths
             for name, (c, l, r) in {"legacy_bd1000": (1000, 800, 1300), "legacy_bd2000": (2000, 1700, 2300)}.items():
                 arr = spectral.legacy_band_depth(ex.legacy_spectra, wl, c, l, r)
                 if arr is not None and np.isfinite(arr).any():
-                    analog_inputs[name] = float(np.nanmean(arr))
+                    analog_inputs[name] = spectral.legacy_analog_input(arr)
+                    sems[name] = spectral.window_sem(arr)
                     ind = spectral.SpectralIndicator(
                         name=name, value=spectral.stats(arr),
-                        definition=f"(C - R{c})/C, C = mean(R{l}, R{r}) on MTRDR I/F; clamped >= 0",
+                        definition=spectral.LEGACY_DEF.format(c=c, l=l, r=r, on=" on MTRDR I/F"),
                         reference="GEØ.IA terrestrial EMIT library definition", sensitive_to="Fe2+ absorption (coarse)",
                         screening_threshold=0.0, threshold_basis=spectral.DETECTION_BASIS,
                         fraction_above_threshold=float(np.mean(arr[np.isfinite(arr)] > 0)),
                         n_pixels=int(np.isfinite(arr).sum()),
-                        interpretation=("Positive absorption detected." if spectral.detected(arr)
-                                        else "No statistically significant absorption."),
+                        interpretation=spectral.legacy_interpretation(arr, detailed=False),
                         comparability="direct")
                     indicators.append(ind)
+        if sems:
+            analog_inputs["_sem"] = sems
         limitations = list(ex.limitations)
         if ex.incidence_deg is not None and ex.incidence_deg > 70:
             limitations.append(f"high solar incidence ({ex.incidence_deg:.0f}°)")

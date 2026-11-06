@@ -108,6 +108,25 @@ if d and d.get("status") == "completed":
 else:
     check("D earth", False, doc=str(d)[:200])
 
+# G — localisation and analog explainability (added in the stabilisation mission)
+if lunar_id:
+    en = c.get(f"/v1/jobs/{lunar_id}").json()
+    pt = c.get(f"/v1/jobs/{lunar_id}?lang=pt-BR").json()
+    check("G pt-BR prose, science untouched", pt.get("language") == "pt-BR"
+          and pt["links"]["self"].endswith("lang=pt-BR")
+          and pt["mineralogy"]["indicators"][0]["value"] == en["mineralogy"]["indicators"][0]["value"]
+          and pt["coordinates"] == en["coordinates"] and pt["data_sources"] == en["data_sources"]
+          and pt["earth_analogs"]["disclaimer"] != en["earth_analogs"]["disclaimer"],
+          sample=(pt["mineralogy"].get("spectral_character") or "")[:80])
+    a = en["earth_analogs"]
+    if a["status"] == "available":
+        ok = a.get("discrimination") in ("low", "moderate", "adequate") and all(
+            set(m["differences"]) == set(m["attributes_used"]) for m in a["matches"])
+        leg = {i["name"]: i for i in en["mineralogy"]["indicators"] if i["name"].startswith("legacy_")}
+        ok = ok and all(abs(a["query_values"][k] - max(0.0, leg[k]["value"]["mean"])) < 1e-4 for k in a["query_values"])
+        check("G analog explainability + clamp after mean", ok, discrimination=a.get("discrimination"),
+              indistinguishable=a.get("indistinguishable_sites"), spread=a.get("top5_distance_spread"))
+
 # E — reports
 for rid, label in ((lunar_id, "lunar"), (mars_id, "mars")):
     if not rid:

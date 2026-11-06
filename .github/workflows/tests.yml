@@ -11,6 +11,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements-dev.txt
+      - run: python -m pyflakes app scripts tests
       - run: python -m pytest -q
   docker:
     runs-on: ubuntu-latest

@@ -10,8 +10,12 @@ Definitions
   the terrestrial EMIT reference library inherited from the previous backend
   (``run_earth_pipeline.extract_gee_indices``):
   ``BD = (C - R_c) / C`` with ``C = (R_left + R_right) / 2`` and bands nearest to
-  (1000; 800, 1300) nm and (2000; 1700, 2300) nm. Negative depth (convexity)
-  means no absorption and is clamped to 0, matching the library convention.
+  (1000; 800, 1300) nm and (2000; 1700, 2300) nm. Per-pixel depths are kept
+  unclamped (a negative depth is a convex continuum = no absorption). As in the
+  library, the clamp at 0 is applied once, to the window mean, when the value
+  enters the analog comparison (``legacy_analog_input``). Clamping per pixel
+  before averaging would bias noisy windows upwards (mean of max(0, x) > max(0,
+  mean x)) and make them incomparable with the library.
   This is the only attribute set that is computed identically on Earth, Moon
   and Mars, which is why it alone is used for cross-body comparison.
 * ``IBD1000`` / ``IBD2000`` — integrated band depths after Mustard et al.
@@ -65,7 +69,7 @@ def detected(values: np.ndarray) -> bool:
 
 def legacy_band_depth(spec: np.ndarray, wl: np.ndarray, center: float, left: float, right: float
                       ) -> np.ndarray | None:
-    """Per-pixel legacy band depth; ``spec`` is (n_pixels, n_bands)."""
+    """Per-pixel legacy band depth, unclamped; ``spec`` is (n_pixels, n_bands)."""
     ic, il, ir = (nearest_band(wl, x) for x in (center, left, right))
     if None in (ic, il, ir):
         return None
@@ -73,7 +77,40 @@ def legacy_band_depth(spec: np.ndarray, wl: np.ndarray, center: float, left: flo
     with np.errstate(divide="ignore", invalid="ignore"):
         bd = (cont - spec[:, ic]) / cont
     bd[~np.isfinite(bd)] = np.nan
-    return np.clip(bd, 0.0, None)
+    return bd
+
+
+def legacy_analog_input(arr: np.ndarray) -> float | None:
+    """Window value used for the analog comparison: mean of the unclamped
+    per-pixel depths, then clamped at 0 (same order as the EMIT library)."""
+    v = arr[np.isfinite(arr)]
+    return max(0.0, float(v.mean())) if v.size else None
+
+
+def window_sem(arr: np.ndarray) -> float | None:
+    """Standard error of the window mean with the spatial-correlation correction."""
+    v = arr[np.isfinite(arr)]
+    if v.size < 2:
+        return None
+    return float(v.std(ddof=1) / math.sqrt(max(2.0, v.size / CORRELATION_PIXELS)))
+
+
+LEGACY_NEGATIVE = ("Median depth is negative (convex continuum): no absorption at this wavelength. "
+                   "The analog comparison uses 0, as in the reference library.")
+
+
+def legacy_interpretation(arr: np.ndarray, detailed: bool = True) -> str:
+    v = arr[np.isfinite(arr)]
+    if detected(arr):
+        return f"Positive absorption detected ({DETECTION_BASIS})." if detailed else "Positive absorption detected."
+    if v.size and float(np.median(v)) < 0:
+        return LEGACY_NEGATIVE
+    return "No statistically significant absorption in the window." if detailed else \
+        "No statistically significant absorption."
+
+
+LEGACY_DEF = ("(C - R{c})/C, C = mean(R{l}, R{r}){on}; per-pixel values unclamped (negative = no absorption); "
+              "window mean clamped at 0 for the analog comparison")
 
 
 def integrated_band_depth(spec: np.ndarray, wl: np.ndarray, lo: float, hi: float,
@@ -105,7 +142,9 @@ def m3_indicators(spec: np.ndarray, wl: np.ndarray) -> tuple[list[SpectralIndica
             return
         values[name] = arr
         det = detected(arr) if with_detection else None
-        if with_detection:
+        if name.startswith("legacy_"):
+            interp = legacy_interpretation(arr)
+        elif with_detection:
             interp = (f"Positive absorption detected ({DETECTION_BASIS})." if det else
                       "No statistically significant absorption in the window.")
         else:
@@ -124,10 +163,10 @@ def m3_indicators(spec: np.ndarray, wl: np.ndarray) -> tuple[list[SpectralIndica
         "Integrated band depth 1658-2498 nm, linear continuum ~1579-2538 nm", ref_m3,
         "Fe2+ absorption near 2 µm (pyroxene; absent in olivine)", "body_specific")
     add("legacy_bd1000", legacy_band_depth(spec, wl, 1000, 800, 1300),
-        "(C - R1000)/C, C = mean(R800, R1300); clamped >= 0", "GEØ.IA terrestrial EMIT library definition",
+        LEGACY_DEF.format(c=1000, l=800, r=1300, on=""), "GEØ.IA terrestrial EMIT library definition",
         "1 µm Fe2+ absorption (coarse, 3-band)", "direct")
     add("legacy_bd2000", legacy_band_depth(spec, wl, 2000, 1700, 2300),
-        "(C - R2000)/C, C = mean(R1700, R2300); clamped >= 0", "GEØ.IA terrestrial EMIT library definition",
+        LEGACY_DEF.format(c=2000, l=1700, r=2300, on=""), "GEØ.IA terrestrial EMIT library definition",
         "2 µm Fe2+ absorption (coarse, 3-band)", "direct")
     i750, i1550 = nearest_band(wl, 750), nearest_band(wl, 1550)
     if i750 is not None:
