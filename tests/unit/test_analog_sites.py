@@ -8,6 +8,8 @@ from app import i18n
 from app.schemas.analysis import MineralogySection, SectionStatus, SpectralIndicator, Stats
 from app.science import analog_sites
 
+REAL_CATALOG = analog_sites.CATALOG_PATH      # captured before the autouse fixture swaps it
+
 FAKE = {
     "name": "test catalog", "version": "0",
     "sites": [
@@ -171,3 +173,28 @@ def test_earth_pipeline_records_masked_emit_without_substitution(monkeypatch):
     assert {i["name"]: i for i in pt["mineralogy"]["indicators"]}["rock_bd1000"]["interpretation"] == \
         "Absorção positiva detectada."
     assert d["terrestrial_analogs"] is None
+
+
+def test_real_catalog_countries_and_minerals_have_pt_br_names():
+    cat = json.loads(REAL_CATALOG.read_text(encoding="utf-8"))
+    for site in cat["sites"]:
+        assert site["country"] in analog_sites.COUNTRY_PT, site["country"]
+        for k in site["key_minerals"]:
+            assert k in analog_sites.MINERAL_PT, k
+
+
+def test_pt_br_translates_country_and_minerals_from_catalog_only(monkeypatch):
+    monkeypatch.setattr(analog_sites, "CATALOG_PATH", REAL_CATALOG)
+    analog_sites.catalog.cache_clear()
+    real = json.loads(REAL_CATALOG.read_text(encoding="utf-8"))
+    samail = next(s for s in real["sites"] if s["country"] == "Oman")
+    section = {"body": "mars", "basis": "regional_spectral_evidence", "region_evidence": [], "notes": [],
+               "unexplained_evidence": [], "disclaimer": "x",
+               "sites": [{"id": samail["id"], "name": samail["name"], "country": "Oman",
+                          "key_minerals": list(samail["key_minerals"]), "matched_classes": [],
+                          "region_bands": {}, "emit": None}]}
+    out = analog_sites.localize(section, "pt-BR")["sites"][0]
+    assert out["country"] == "Omã" and out["name"] == samail["name"]
+    assert out["key_minerals"] == [analog_sites.MINERAL_PT[k] for k in samail["key_minerals"]]
+    again = analog_sites.localize(section, "pt-BR")["sites"][0]     # idempotent
+    assert again["country"] == "Omã"

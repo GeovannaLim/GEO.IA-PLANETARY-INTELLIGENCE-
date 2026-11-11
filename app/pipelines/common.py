@@ -7,6 +7,7 @@ mineralogical assumptions: each body plugs in its own spectral step.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import math
 from dataclasses import dataclass, field
@@ -118,10 +119,24 @@ async def topography_step(ctx: Context) -> TopographySection:
     radius = ctx.req.radius_km
     box = region_box(ctx.lat, ctx.lon, radius, ctx.body)
     result, last_err = None, None
+    loop = asyncio.get_running_loop()
+    deadline = loop.time() + s.altimetry_deadline_s
     for _ in range(s.altimetry_shrink_steps + 1):
         try:
-            result = await ode.query_altimetry(ctx.http, ctx.body, box)
+            remaining = deadline - loop.time()
+            if remaining <= 0:
+                raise asyncio.TimeoutError
+            result = await asyncio.wait_for(ode.query_altimetry(ctx.http, ctx.body, box), timeout=remaining)
             break
+        except asyncio.TimeoutError:
+            msg = (f"ODE GDS did not return {meta['instrument']} altimetry within {s.altimetry_deadline_s:.0f} s; "
+                   "topography not computed (other sections unaffected)")
+            rec = ctx.source(provider="PDS Geosciences Node", service="ODE GDS", status="error",
+                             instrument=meta["instrument"], mission=meta["mission"],
+                             product_type=meta["product_type"], message=msg, query={"bbox": box.as_dict()})
+            ctx.problem("topography", Reason.provider_error, msg, rec.source_id)
+            return TopographySection(status=SectionStatus.failed, reason=Reason.provider_error,
+                                     source_ids=[rec.source_id])
         except ode.AltimetryTooLarge as exc:
             last_err = str(exc)
             radius /= 2.0
@@ -234,6 +249,8 @@ def assess_confidence(topo_s: TopographySection, min_s: MineralogySection, extra
     level = "high" if frac == 1.0 else "moderate" if frac >= 2 / 3 else "low"
     if min_s.status not in (SectionStatus.available, SectionStatus.partial) and level == "high":
         level = "moderate"  # mineralogy missing: never 'high' for the analysis as a whole
+    if topo_s.status not in (SectionStatus.available, SectionStatus.partial) and level == "high":
+        level = "moderate"  # same rule when the altimetry is missing (e.g. ODE GDS did not answer)
     return ConfidenceSection(level=level, criteria=crit, limitations=limitations)
 
 

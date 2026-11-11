@@ -70,6 +70,10 @@ def _sens(m: re.Match) -> str:
 
 
 RULES: list[_Rule] = [
+    # ---- slow altimetry service (topography deadline) ------------------------------------------
+    (re.compile(r"ODE GDS did not return (\w+) altimetry within (\d+) s; topography not computed "
+                r"\(other sections unaffected\)"),
+     r"O ODE GDS não devolveu a altimetria \1 em \2 s; topografia não calculada (as demais seções não são afetadas)"),
     # ---- detection basis and interpretations --------------------------------------------------
     _lit(_BASIS_EN, _BASIS_PT),
     (re.compile(r"Positive parameter value detected \((.+?)\)\. Sensitive to (.+?); confirmation requires "

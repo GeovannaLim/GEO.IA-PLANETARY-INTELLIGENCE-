@@ -36,6 +36,9 @@ class Settings(BaseSettings):
     # --- jobs
     max_concurrent_jobs: int = 3
     job_timeout_s: float = 240.0
+    # total budget for the ODE GDS altimetry step; a slow GDS fails only the topography section,
+    # never the whole job (must stay well below job_timeout_s)
+    altimetry_deadline_s: float = 150.0
     default_wait_s: float = 0.0
     result_cache_ttl_s: int = 24 * 3600
     metadata_cache_ttl_s: int = 12 * 3600

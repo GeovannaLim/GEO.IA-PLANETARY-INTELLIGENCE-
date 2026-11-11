@@ -84,3 +84,10 @@ def test_processing_doc_gets_localised_links():
     assert loc["links"]["self"] == "/v1/jobs/x?lang=pt-BR"
     assert loc["links"]["report_pdf"] == "/v1/reports/x?format=pdf"   # PDF stays canonical (English)
     assert doc["links"]["self"] == "/v1/jobs/x"
+
+
+def test_topography_deadline_message_is_translated():
+    from app import i18n
+    msg = "ODE GDS did not return MOLA altimetry within 150 s; topography not computed (other sections unaffected)"
+    assert i18n.translate(msg) == ("O ODE GDS não devolveu a altimetria MOLA em 150 s; topografia não calculada "
+                                   "(as demais seções não são afetadas)")

@@ -116,3 +116,30 @@ def test_mars_without_crism_distinguishes_no_coverage():
 def test_ode_outage_marks_mineralogy_failed_not_absent():
     d = _run("mars", FakeWorld(18.44, 77.45, ode_status=503), 18.44, 77.45, r=0.5)
     assert d["mineralogy"]["status"] == "failed" and d["mineralogy"]["reason"] == "provider_error"
+
+
+@pytest.mark.parametrize("body,lat,lon", [("moon", 10.0, -15.0), ("mars", 18.44, 77.45)])
+def test_slow_gds_fails_only_topography_within_deadline(monkeypatch, body, lat, lon):
+    """A hanging ODE GDS must not time out the whole job (seen in production, 2026-11-11)."""
+    import asyncio
+    import time
+
+    from app.config import get_settings
+    from app.providers import ode
+
+    monkeypatch.setenv("GEOIA_ALTIMETRY_DEADLINE_S", "0.3")
+    get_settings.cache_clear()
+
+    async def hang(*a, **k):
+        await asyncio.sleep(30)
+    monkeypatch.setattr(ode, "query_altimetry", hang)
+    t0 = time.time()
+    d = _run(body, FakeWorld(lat, lon), lat, lon)
+    assert time.time() - t0 < 10
+    assert d["topography"]["status"] == "failed" and d["topography"]["elevation_m"] is None
+    msgs = [p["message"] for p in d["problems"] if p["section"] == "topography"]
+    assert msgs and "did not return" in msgs[0] and "other sections unaffected" in msgs[0]
+    assert d["mineralogy"]["status"] in ("available", "partial")   # delivered despite the slow GDS
+    assert d["terrestrial_analogs"] is not None
+    assert d["confidence"]["level"] != "high"                      # no altimetry: never 'high'
+    assert d["terrestrial_analogs"] is not None

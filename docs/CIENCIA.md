@@ -147,7 +147,7 @@ Os limiares são valores de triagem convencionais e vêm em `mask_rules`. Valore
 * altimetria: ≥ 30 tiros; cobertura de células ≥ 0,3; raio pedido integralmente amostrado;
 * espectroscopia: pixel dentro da tolerância; ≥ 25 pixels válidos; incidência solar ≤ 70° (quando conhecida).
 
-Todos atendidos → `high`; ≥ 2/3 → `moderate`; abaixo → `low`; nenhum critério aplicável → `not_assessed`. Sem mineralogia disponível o nível máximo é `moderate`.
+Todos atendidos → `high`; ≥ 2/3 → `moderate`; abaixo → `low`; nenhum critério aplicável → `not_assessed`. Sem mineralogia disponível o nível máximo é `moderate`; o mesmo vale sem topografia (regra acrescentada em 2026-11-11). A topografia tem prazo próprio de 150 s (`GEOIA_ALTIMETRY_DEADLINE_S`): se o ODE GDS não responder, só a seção de topografia sai `failed`, com o motivo em `problems`, e as demais seções são entregues.
 
 ## Limitações conhecidas
 * M3: correção térmica empírica (região de 2 µm em terreno quente); ~140/280 m/px; correlação espacial.

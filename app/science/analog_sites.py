@@ -150,6 +150,33 @@ T = {
 }
 
 
+# Display names in Portuguese for the catalog's countries and key minerals (standard mineral names;
+# chemical qualifiers such as Fo91 or An57–76 are kept). Anything missing stays as in the catalog.
+COUNTRY_PT = {
+    "Australia": "Austrália", "Canada (Ontario)": "Canadá (Ontário)", "Chile": "Chile", "India": "Índia",
+    "India (Tamil Nadu)": "Índia (Tamil Nadu)", "Namibia": "Namíbia", "Oman": "Omã", "Spain": "Espanha",
+    "Turkey": "Turquia", "USA (Arizona)": "EUA (Arizona)", "USA (Hawaiʻi)": "EUA (Havaí)",
+    "USA (Idaho)": "EUA (Idaho)", "USA (Montana)": "EUA (Montana)", "USA (Nevada)": "EUA (Nevada)",
+    "USA (Washington)": "EUA (Washington)",
+}
+MINERAL_PT = {
+    "Cr-spinel": "espinélio de Cr", "Fe-Ti oxide": "óxido de Fe-Ti", "Fe-Ti oxides": "óxidos de Fe-Ti",
+    "Fe-rich olivine": "olivina rica em Fe", "alunite": "alunita", "amphibole": "anfibólio", "barite": "barita",
+    "basalt": "basalto", "basaltic glass": "vidro basáltico", "calcic plagioclase": "plagioclásio cálcico",
+    "chert (quartz)": "chert (quartzo)", "chromite": "cromita", "clinopyroxene": "clinopiroxênio",
+    "dickite": "dickita", "diopside": "diopsídio", "dolomite": "dolomita", "enstatite": "enstatita",
+    "garnet": "granada", "glass": "vidro", "goethite": "goethita", "hematite": "hematita",
+    "hornblende": "hornblenda", "hydromagnesite": "hidromagnesita", "hypersthene": "hiperstênio",
+    "ilmenite": "ilmenita", "jarosite": "jarosita", "kaolinite": "caulinita", "magnesite": "magnesita",
+    "magnetite": "magnetita", "muscovite": "muscovita", "olivine": "olivina", "olivine (Fo91)": "olivina (Fo91)",
+    "olivine (relict)": "olivina (relicta)", "opal": "opala", "opal-A": "opala-A",
+    "opaline silica": "sílica opalina", "orthopyroxene": "ortopiroxênio", "palagonite": "palagonita",
+    "plagioclase": "plagioclásio", "plagioclase (~An57–76)": "plagioclásio (~An57–76)",
+    "plagioclase (~An78)": "plagioclásio (~An78)", "pyroxene": "piroxênio", "quartz": "quartzo",
+    "schwertmannite": "schwertmannita", "serpentine": "serpentina", "spinel": "espinélio",
+}
+
+
 @lru_cache(maxsize=1)
 def catalog() -> dict:
     return json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
@@ -337,6 +364,9 @@ def localize(section: dict, lang: str) -> dict:
         comp = {"body": body, "emit": s.get("emit"), "region_bd1000": rb.get("bd1000"),
                 "region_bd2000": rb.get("bd2000")}
         s.update(_texts(site, s["matched_classes"], comp, lang))
+        pt = lang == "pt-BR"     # rebuilt from the catalog, so localizing twice is harmless
+        s["country"] = COUNTRY_PT.get(site["country"], site["country"]) if pt else site["country"]
+        s["key_minerals"] = [MINERAL_PT.get(k, k) if pt else k for k in site["key_minerals"]]
     key = "pt" if lang == "pt-BR" else "en"
     for e in section.get("region_evidence", []):
         if e.get("class") in EVIDENCE:
