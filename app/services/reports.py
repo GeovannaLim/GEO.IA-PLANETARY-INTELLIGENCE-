@@ -85,9 +85,10 @@ def render_pdf(doc: dict) -> bytes:
 
     story.append(_p("Section status", st["h2"]))
     story.append(_table([["Section", "Status"]] + [
-        [name, _status(doc.get(key, {}))] for name, key in
+        [name, _status(doc.get(key) or {})] for name, key in
         (("Imagery (WMTS)", "imagery"), ("Topography", "topography"), ("Mineralogy / spectroscopy", "mineralogy"),
-         ("Earth analogs", "earth_analogs"))], [60 * mm, W - 60 * mm], st, header=True))
+         ("Terrestrial analog sites", "terrestrial_analogs"),
+         ("Spectral comparison (appendix)", "earth_analogs"))], [60 * mm, W - 60 * mm], st, header=True))
 
     t = doc.get("topography", {})
     story.append(_p("Topography", st["h2"]))
@@ -121,17 +122,6 @@ def render_pdf(doc: dict) -> bytes:
                          _fmt(i.get("sensitive_to")), _fmt(i.get("interpretation"))])
         story.append(Spacer(1, 3))
         story.append(_table(rows, [24 * mm, 16 * mm, 16 * mm, 13 * mm, 45 * mm, W - 114 * mm], st, header=True))
-
-    a = doc.get("earth_analogs", {})
-    story.append(_p("Earth analogs", st["h2"]))
-    story.append(_p(f"Status: {_status(a)}. Directly comparable: {', '.join(a.get('directly_comparable') or []) or '—'}. "
-                    f"Missing: {', '.join(a.get('missing') or []) or '—'}.", st["body"]))
-    if a.get("matches"):
-        rows = [["Site", "Setting", "Distance", "Similarity (ranking aid)"]]
-        rows += [[f"{x['name']} ({x.get('country') or '—'})", _fmt(x.get("setting")), _fmt(x["distance"], 4),
-                  _fmt(x["similarity"], 3)] for x in a["matches"]]
-        story.append(_table(rows, [55 * mm, 55 * mm, 25 * mm, W - 135 * mm], st, header=True))
-    story.append(_p(a.get("disclaimer", ""), st["small"]))
 
     ta = doc.get("terrestrial_analogs") or {}
     if ta:
@@ -176,6 +166,21 @@ def render_pdf(doc: dict) -> bytes:
         story.append(_p("Problems reported", st["h2"]))
         for pb in doc["problems"]:
             story.append(_p(f"• [{pb['section']}/{pb['reason']}] {pb['message']}", st["small"]))
+
+    # The 2-attribute spectral ranking does not discriminate sites (docs/CIENCIA.md); it is kept for
+    # transparency as an appendix, after the documented terrestrial analog sites.
+    a = doc.get("earth_analogs", {})
+    story.append(_p("Appendix — illustrative spectral comparison (2 band-depth attributes)", st["h2"]))
+    story.append(_p("Not an analog result: two band depths do not discriminate between library sites, and the "
+                    "library mixes deposit types. The terrestrial analog sites above are the analog result.",
+                    st["small"]))
+    story.append(_p(f"Status: {_status(a)}. Directly comparable: {', '.join(a.get('directly_comparable') or []) or '—'}. "
+                    f"Missing: {', '.join(a.get('missing') or []) or '—'}.", st["body"]))
+    if a.get("matches"):
+        rows = [["Library site", "Distance", "Similarity (ranking aid)"]]
+        rows += [[x["name"], _fmt(x["distance"], 4), _fmt(x["similarity"], 3)] for x in a["matches"]]
+        story.append(_table(rows, [90 * mm, 30 * mm, W - 120 * mm], st, header=True))
+    story.append(_p(a.get("disclaimer", ""), st["small"]))
 
     story.append(Spacer(1, 8))
     story.append(_p("Generated from the stored analysis JSON. Similarity scores are ranking aids, not probabilities of "

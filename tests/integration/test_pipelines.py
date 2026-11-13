@@ -143,3 +143,21 @@ def test_slow_gds_fails_only_topography_within_deadline(monkeypatch, body, lat, 
     assert d["terrestrial_analogs"] is not None
     assert d["confidence"]["level"] != "high"                      # no altimetry: never 'high'
     assert d["terrestrial_analogs"] is not None
+
+
+def test_pdf_lists_analog_sites_before_the_illustrative_spectral_appendix():
+    import io
+
+    from pypdf import PdfReader
+
+    from app.services.reports import render_pdf
+
+    d = _run("mars", FakeWorld(18.44, 77.45), 18.44, 77.45)
+    text = " ".join(p.extract_text() for p in PdfReader(io.BytesIO(render_pdf(d))).pages)
+    text = " ".join(text.split())
+    i_sites = text.find("Terrestrial analog sites (documented geology)")
+    i_appx = text.find("Appendix — illustrative spectral comparison")
+    assert 0 <= i_sites < i_appx
+    assert "Earth analogs" not in text
+    earth = {**d, "terrestrial_analogs": None}            # Earth / old records have no analog-site section
+    assert render_pdf(earth)[:5] == b"%PDF-"
