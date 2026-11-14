@@ -101,6 +101,7 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
                 continue  # another observation may have valid pixels at the point
             return MineralogySection(status=SectionStatus.unavailable, reason=Reason.insufficient_data,
                                      product_used=ex.product_id, window_pixels=ex.n_window, valid_pixels=ex.n_valid,
+                                     analyzed_extent=ex.analyzed_extent,
                                      source_ids=[search_rec.source_id, rec.source_id], limitations=ex.limitations,
                                      **base), {}, ex.incidence_deg
         if ex.incidence_deg is not None and ex.incidence_deg >= spectral.MAX_USABLE_INCIDENCE_DEG:
@@ -112,6 +113,7 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
                 continue  # another observation may be illuminated
             return MineralogySection(status=SectionStatus.unavailable, reason=Reason.insufficient_data,
                                      product_used=ex.product_id, window_pixels=ex.n_window, valid_pixels=ex.n_valid,
+                                     analyzed_extent=ex.analyzed_extent,
                                      source_ids=[search_rec.source_id, rec.source_id], limitations=ex.limitations,
                                      **base), {}, ex.incidence_deg
         indicators = [spectral.crism_indicator(n, v) for n, v in ex.params.items()]
@@ -137,6 +139,13 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
         if sems:
             analog_inputs["_sem"] = sems
         limitations = list(ex.limitations)
+        ext = ex.analyzed_extent or {}
+        if ext.get("fraction_of_requested_area") is not None and ext["fraction_of_requested_area"] < 0.95:
+            w = ext["window_km"]
+            limitations.append(
+                f"CRISM mineralogy describes a {w[0]:.1f} x {w[1]:.1f} km window ({ext['area_km2']:.1f} km², "
+                f"{100 * ext['fraction_of_requested_area']:.0f}% of the requested {ext['requested_radius_km']:g} km "
+                f"circle) centred on the point; it is not representative of the whole region.")
         if ex.incidence_deg is not None and ex.incidence_deg > 70:
             limitations.append(f"high solar incidence ({ex.incidence_deg:.0f}°)")
         status = SectionStatus.available if ex.n_valid >= 25 else SectionStatus.partial
@@ -144,8 +153,8 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
             status=status, reason=None if status == SectionStatus.available else Reason.insufficient_data,
             method="CRISM MTRDR summary parameters (CRISM team) over a pixel window",
             product_used=ex.product_id, pixel_distance_m=round(ex.pixel_size_m / 2, 1),
-            window_pixels=ex.n_window, valid_pixels=ex.n_valid, indicators=indicators,
-            spectral_character=spectral.crism_character(indicators, ex.params),
+            window_pixels=ex.n_window, valid_pixels=ex.n_valid, analyzed_extent=ex.analyzed_extent,
+            indicators=indicators, spectral_character=spectral.crism_character(indicators, ex.params),
             source_ids=[search_rec.source_id, rec.source_id], limitations=limitations, **base), \
             analog_inputs, ex.incidence_deg
 

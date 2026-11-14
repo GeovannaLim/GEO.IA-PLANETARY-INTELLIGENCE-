@@ -70,6 +70,46 @@ def _sens(m: re.Match) -> str:
 
 
 RULES: list[_Rule] = [
+    # ---- 2026-11-14 science fixes (floors, coverage, illumination, polar, window) ---------------
+    (re.compile(r"window median must also reach ([\d.]+) \(floor calibrated on real CRISM negative controls "
+                r"such as dust-covered and ice-free surfaces; see docs/RELATORIO_TESTES_CIENTIFICOS\.md\)"),
+     r"a mediana da janela também precisa atingir \1 (mínimo calibrado em controles negativos reais do CRISM, "
+     r"como superfícies cobertas de poeira e sem gelo; ver docs/RELATORIO_TESTES_CIENTIFICOS.md)"),
+    (re.compile(r"Small positive value below the ([\d.]+) floor: not counted as a detection \(dust-covered or "
+                r"ice-free control surfaces reach similar values\)\."),
+     r"Valor positivo pequeno, abaixo do mínimo de \1: não conta como detecção (superfícies de controle cobertas "
+     r"de poeira ou sem gelo atingem valores parecidos)."),
+    (re.compile(r"Uncertain detection: the window median reaches the ([\d.]+) floor, but only (\d+)% of the "
+                r"pixels do \(provisional criterion: at least (\d+)%\)\. Shown for transparency; not used to choose "
+                r"analog sites\."),
+     r"Detecção incerta: a mediana da janela atinge o mínimo de \1, mas só \2% dos pixels o atingem (critério "
+     r"provisório: pelo menos \3%). Mostrada por transparência; não é usada para escolher sítios análogos."),
+    _lit(" [uncertain: low spatial coverage]", " [incerta: baixa cobertura espacial]"),
+    (re.compile(r"CRISM mineralogy describes a ([\d.]+) x ([\d.]+) km window \(([\d.]+) km², (\d+)% of the "
+                r"requested ([\d.]+) km circle\) centred on the point; it is not representative of the whole "
+                r"region\."),
+     r"A mineralogia do CRISM descreve uma janela de \1 × \2 km (\3 km², \4% do círculo de \5 km pedido) "
+     r"centrada no ponto; não representa a região inteira."),
+    _lit("Polar stereographic product: pixel positions use the ellipsoidal equations stated in MTR_MAP.CAT; "
+         "checked against product labels to 0.01-0.03 deg (about 1-2 km near the pole).",
+         "Produto em projeção estereográfica polar: posições calculadas com as equações elipsoidais de "
+         "MTR_MAP.CAT; conferidas com os rótulos dos produtos a 0,01-0,03° (cerca de 1-2 km perto do polo)."),
+    (re.compile(r"(\S+): solar incidence ([\d.]+)° >= (\d+)° \(surface unlit or grazing light\); reflectance band "
+                r"depths not computed"),
+     r"\1: incidência solar \2° ≥ \3° (superfície sem sol ou com luz rasante); profundidades de banda não "
+     r"calculadas"),
+    (re.compile(r"(\S+): solar incidence ([\d.]+)° >= (\d+)° \(surface unlit or grazing light\); summary parameters "
+                r"not used"),
+     r"\1: incidência solar \2° ≥ \3° (superfície sem sol ou com luz rasante); parâmetros-sumário não usados"),
+    (re.compile(r"(\S+): IBD1000 median (-?[\d.]+) \(convex 1 µm region, not a silicate absorption\); observation "
+                r"treated as spectrally suspect"),
+     r"\1: mediana de IBD1000 \2 (região de 1 µm convexa, não é absorção de silicato); observação tratada como "
+     r"espectralmente suspeita"),
+    _lit("Only available observation shows a convex 1 µm region (IBD1000 strongly negative): band depths are "
+         "unreliable here and no mineral family is inferred.",
+         "A única observação disponível mostra a região de 1 µm convexa (IBD1000 muito negativo): as "
+         "profundidades de banda não são confiáveis aqui e nenhuma família mineral é inferida."),
+    (re.compile(r"(\d+) valid CRISM pixels in (\S+)"), r"\1 pixels CRISM válidos em \2"),
     # ---- slow altimetry service (topography deadline) ------------------------------------------
     (re.compile(r"ODE GDS did not return (\w+) altimetry within (\d+) s; topography not computed "
                 r"\(other sections unaffected\)"),

@@ -195,6 +195,12 @@ class SpectralIndicator(BaseModel):
     comparability: Literal["direct", "proxy", "body_specific"] = "body_specific"
     detected: bool | None = Field(None, description="result of the statistical screening (see threshold_basis); "
                                                     "None for descriptive values")
+    spatial_coverage: float | None = Field(
+        None, description="fraction of window pixels at or above the magnitude floor (only for parameters with a "
+        "provisional spatial-coverage criterion)")
+    uncertain: bool | None = Field(
+        None, description="True when the value passes the floor but the spatial coverage is below the provisional "
+        "criterion: shown for transparency, not used to choose analog sites")
 
 
 class MineralogySection(BaseModel):
@@ -208,6 +214,9 @@ class MineralogySection(BaseModel):
     pixel_distance_m: float | None = None
     window_pixels: int | None = None
     valid_pixels: int | None = None
+    analyzed_extent: dict[str, Any] | None = Field(
+        None, description="Area actually analysed by the spectrometer (window side, area) versus the requested "
+        "circle; mineralogy describes this area only")
     indicators: list[SpectralIndicator] = Field(default_factory=list)
     spectral_character: str | None = None
     mean_spectrum: dict[str, list[float]] | None = Field(
@@ -284,6 +293,9 @@ class TerrestrialAnalogSection(BaseModel):
     catalog: str | None = None
     region_evidence: list[dict[str, Any]] = Field(default_factory=list)
     unexplained_evidence: list[str] = Field(default_factory=list)
+    uncertain_evidence: list[str] = Field(
+        default_factory=list, description="Families whose detection passes the value floor but fails the provisional "
+        "spatial-coverage criterion; reported, not used for matching")
     masked_evidence: list[str] = Field(
         default_factory=list, description="Detected families not used for matching because exposed ice "
         "dominates the spectrum (ice bands overlap their diagnostic absorptions)")

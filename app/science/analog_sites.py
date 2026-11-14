@@ -119,6 +119,8 @@ T = {
                      "doi:10.1126/science.287.5458.1626) and are NOT specific to the selected region.",
         no_evidence="The region's measurements show no screened detection that maps to a documented analog family.",
         no_site="No catalog site documents this family: {labels}.",
+        uncertain="Uncertain detection (provisional criterion: the value reaches the floor in fewer than 75% of "
+                  "the window pixels): {labels}. Shown, but not used to choose analog sites.",
         tie="Tied (same evidence strength, documentary basis and EMIT agreement): {names}. Their order is not "
             "meaningful.",
         ice_masked="Exposed ice dominates the spectrum; ice absorptions (1.25, 1.5, 2.0 um) overlap the "
@@ -149,6 +151,8 @@ T = {
                      "e NÃO são específicos da região selecionada.",
         no_evidence="As medições da região não têm detecção triada que corresponda a uma família análoga documentada.",
         no_site="Nenhum sítio do catálogo documenta esta família: {labels}.",
+        uncertain="Detecção incerta (critério provisório: o valor atinge o mínimo em menos de 75% dos pixels "
+                  "da janela): {labels}. Mostrada, mas não usada para escolher sítios análogos.",
         tie="Empatados (mesma força de evidência, base documental e concordância EMIT): {names}. A ordem entre "
             "eles não tem significado.",
         ice_masked="Gelo exposto domina o espectro; as absorções do gelo (1,25, 1,5 e 2,0 µm) se sobrepõem "
@@ -239,7 +243,7 @@ def region_evidence(body: str, min_s: MineralogySection, latitude: float | None 
         hits: dict[str, list[str]] = {}
         for name, cls in CRISM_CLASS.items():
             i = ind.get(name)
-            if i is not None and i.detected:
+            if i is not None and i.detected and not i.uncertain:   # uncertain detections: reported, not matched
                 hits.setdefault(cls, []).append(name)
         for broad, specific in SUBSUMED.items():
             if broad in hits and specific & hits.keys():
@@ -321,6 +325,11 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
     if basis is None:
         return TerrestrialAnalogSection(status=SectionStatus.unavailable, reason=Reason.not_attempted,
                                         catalog=f"{cat['name']} v{cat['version']}")
+    uncertain: list[str] = []
+    if body == "mars" and basis == "regional_spectral_evidence":
+        uncertain = sorted({CRISM_CLASS[i.name] for i in min_s.indicators
+                            if i.name in CRISM_CLASS and i.detected and i.uncertain}
+                           - {e["class"] for e in evidence})
     masked: list[str] = []
     if any(e["class"] == "ice" for e in evidence):
         # ice detections already passed the calibrated magnitude floor; on icy surfaces the other
@@ -381,6 +390,8 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
         notes.append(T["en"]["no_site"].format(labels="; ".join(EVIDENCE[c]["en"] for c in unexplained)))
     if masked:
         notes.append(T["en"]["ice_masked"].format(labels="; ".join(EVIDENCE[c]["en"] for c in masked)))
+    if uncertain:
+        notes.append(T["en"]["uncertain"].format(labels="; ".join(EVIDENCE[c]["en"] for c in uncertain)))
     notes += _tie_notes(sites, T["en"])
     status = (SectionStatus.available if sites and basis == "regional_spectral_evidence" else
               SectionStatus.partial if sites else SectionStatus.unavailable)
@@ -389,7 +400,8 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
         body=body, basis=basis, method=T["en"]["method"], catalog=f"{cat['name']} v{cat['version']}",
         region_evidence=[{"class": e["class"], "label": EVIDENCE[e["class"]]["en"], "indicators": e["indicators"],
                           "strength": EVIDENCE[e["class"]]["strength"]} for e in evidence],
-        unexplained_evidence=unexplained, masked_evidence=masked, sites=sites, notes=notes,
+        unexplained_evidence=unexplained, uncertain_evidence=uncertain, masked_evidence=masked, sites=sites,
+        notes=notes,
         disclaimer=T["en"]["disclaimer"])
 
 
@@ -425,6 +437,9 @@ def localize(section: dict, lang: str) -> dict:
     masked = section.get("masked_evidence") or []
     if masked:
         notes.append(t["ice_masked"].format(labels="; ".join(EVIDENCE[c][key] for c in masked if c in EVIDENCE)))
+    uncertain = section.get("uncertain_evidence") or []
+    if uncertain:
+        notes.append(t["uncertain"].format(labels="; ".join(EVIDENCE[c][key] for c in uncertain if c in EVIDENCE)))
     notes += _tie_notes(section.get("sites") or [], t)
     section["notes"] = notes
     if section.get("method"):

@@ -1,0 +1,595 @@
+{
+ "source": "scripts/olivine_study.py on real CRISM MTRDR windows, 2026-11-14 (docs/DIAGNOSTICO_OLIVINA.md)",
+ "controls": [
+  {
+   "group": "positive_lit",
+   "label": "Jezero (Caltech M2020; Ehlmann 2008)",
+   "lat": 18.4386,
+   "lon": 77.5031,
+   "product": "frt0001fb74_07_if166j_mtr3",
+   "olindex3": 0.07082273066043854,
+   "bdi1000ir": 0.02636231854557991,
+   "frac_ol_floor": 0.9884439666756248
+  },
+  {
+   "group": "positive_lit",
+   "label": "Nili Fossae trough (EPSC2018-578; Mangold 2007)",
+   "lat": 21.0,
+   "lon": 74.5,
+   "product": "frt00008fc1_07_if166j_mtr3",
+   "olindex3": 0.06301604211330414,
+   "bdi1000ir": 0.02695745974779129,
+   "frac_ol_floor": 0.889545821015856
+  },
+  {
+   "group": "positive_lit",
+   "label": "FRT00003E12 olivine ridges (ESS Open Archive preprint)",
+   "lat": 22.2605,
+   "lon": 77.0712,
+   "product": "frt0000b438_07_if166j_mtr3",
+   "olindex3": 0.11998091638088226,
+   "bdi1000ir": 0.03540874272584915,
+   "frac_ol_floor": 1.0
+  },
+  {
+   "group": "positive_lit",
+   "label": "olivine-rich dunes, 2006 CRISM image",
+   "lat": 20.5,
+   "lon": 78.5,
+   "product": "frt00011d4c_07_if166j_mtr3",
+   "olindex3": 0.09538313746452332,
+   "bdi1000ir": 0.023714156821370125,
+   "frac_ol_floor": 1.0
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 22.5009,
+   "lon": 74.2676,
+   "product": "frt0000a053_07_if166j_mtr3",
+   "olindex3": 0.10561741888523102,
+   "bdi1000ir": 0.036251287907361984,
+   "frac_ol_floor": 1.0
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 21.7224,
+   "lon": 78.9795,
+   "product": "frt0000c968_07_if166j_mtr3",
+   "olindex3": 0.13528917729854584,
+   "bdi1000ir": 0.04047718271613121,
+   "frac_ol_floor": 1.0
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 20.8447,
+   "lon": 78.4554,
+   "product": "frt00012149_07_if166j_mtr3",
+   "olindex3": 0.08522522449493408,
+   "bdi1000ir": 0.019636809825897217,
+   "frac_ol_floor": 0.971781779091642
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 20.7371,
+   "lon": 78.1255,
+   "product": "hrl00011a72_07_if183j_mtr3",
+   "olindex3": 0.10349567979574203,
+   "bdi1000ir": 0.025224793702363968,
+   "frac_ol_floor": 0.999731255038968
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 18.4649,
+   "lon": 77.5957,
+   "product": "frt00021da6_07_if166j_mtr3",
+   "olindex3": 0.06560647487640381,
+   "bdi1000ir": 0.022772712633013725,
+   "frac_ol_floor": 0.9400230680507498
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 21.7185,
+   "lon": 78.4596,
+   "product": "frt00018524_07_if166j_mtr3",
+   "olindex3": 0.09282223880290985,
+   "bdi1000ir": 0.02388305962085724,
+   "frac_ol_floor": 0.9752754635850578
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 22.1668,
+   "lon": 77.1723,
+   "product": "frt0000b438_07_if166j_mtr3",
+   "olindex3": 0.18187803030014038,
+   "bdi1000ir": 0.05611003562808037,
+   "frac_ol_floor": 1.0
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 20.9797,
+   "lon": 77.9215,
+   "product": "hrl0001d976_07_if183j_mtr3",
+   "olindex3": 0.13784712553024292,
+   "bdi1000ir": 0.03500065952539444,
+   "frac_ol_floor": 1.0
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 19.2265,
+   "lon": 76.4421,
+   "product": "frt000097e2_07_if166j_mtr3",
+   "olindex3": 0.07889316231012344,
+   "bdi1000ir": 0.01664152182638645,
+   "frac_ol_floor": 0.9911314162859446
+  },
+  {
+   "group": "positive_reg",
+   "label": "Nili Fossae regional olivine unit (Ody 2013; Mustard)",
+   "lat": 21.7229,
+   "lon": 78.7535,
+   "product": "frt0000c62b_07_if166j_mtr3",
+   "olindex3": 0.17502161860466003,
+   "bdi1000ir": 0.055512167513370514,
+   "frac_ol_floor": 1.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Elysium",
+   "lat": 19.1525,
+   "lon": 150.0168,
+   "product": "frt000059c6_07_if165j_mtr3",
+   "olindex3": 0.024527885019779205,
+   "bdi1000ir": 0.013255935162305832,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Elysium",
+   "lat": 29.8491,
+   "lon": 143.6653,
+   "product": "frt00007ca5_07_if166j_mtr3",
+   "olindex3": 0.01759270206093788,
+   "bdi1000ir": 0.014351178891956806,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Elysium",
+   "lat": 21.5847,
+   "lon": 142.4123,
+   "product": "hrl000134b7_07_if183j_mtr3",
+   "olindex3": 0.03168310225009918,
+   "bdi1000ir": 0.013213478028774261,
+   "frac_ol_floor": 0.06342381080354743
+  },
+  {
+   "group": "negative",
+   "label": "dust Elysium",
+   "lat": 23.7106,
+   "lon": 150.3083,
+   "product": "hrs000119fe_07_if175j_mtr3",
+   "olindex3": 0.0020659230649471283,
+   "bdi1000ir": 0.00732001755386591,
+   "frac_ol_floor": 0.0002687449610319806
+  },
+  {
+   "group": "negative",
+   "label": "dust Elysium",
+   "lat": 22.4745,
+   "lon": 151.464,
+   "product": "frt0000bb7a_07_if167j_mtr3",
+   "olindex3": 0.030244678258895874,
+   "bdi1000ir": 0.01136944442987442,
+   "frac_ol_floor": 0.060467616232195646
+  },
+  {
+   "group": "negative",
+   "label": "dust Elysium",
+   "lat": 21.513,
+   "lon": 151.4675,
+   "product": "hrl00019abb_07_if183j_mtr3",
+   "olindex3": 0.03553704172372818,
+   "bdi1000ir": 0.013761351816356182,
+   "frac_ol_floor": 0.09701693093254501
+  },
+  {
+   "group": "negative",
+   "label": "dust Elysium",
+   "lat": 27.4387,
+   "lon": 143.3358,
+   "product": "frt000061d1_07_if166j_mtr3",
+   "olindex3": 0.05212736874818802,
+   "bdi1000ir": 0.014776562340557575,
+   "frac_ol_floor": 0.662153449387492
+  },
+  {
+   "group": "negative",
+   "label": "dust Elysium",
+   "lat": 24.6076,
+   "lon": 146.7101,
+   "product": "hrl00007606_07_if182j_mtr3",
+   "olindex3": 0.01651100069284439,
+   "bdi1000ir": 0.014919225126504898,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Arabia",
+   "lat": 14.1943,
+   "lon": 33.2181,
+   "product": "frt000098a5_07_if165j_mtr3",
+   "olindex3": 0.01014182809740305,
+   "bdi1000ir": 0.016959063708782196,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Arabia",
+   "lat": 12.5642,
+   "lon": 28.2097,
+   "product": "frt00009848_07_if165j_mtr3",
+   "olindex3": 0.015137634240090847,
+   "bdi1000ir": 0.01814897172152996,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Arabia",
+   "lat": 35.0234,
+   "lon": 32.5219,
+   "product": "hrs000121f3_07_if175j_mtr3",
+   "olindex3": 0.0039125122129917145,
+   "bdi1000ir": 0.005560264922678471,
+   "frac_ol_floor": 0.0005374899220639613
+  },
+  {
+   "group": "negative",
+   "label": "dust Arabia",
+   "lat": 32.8705,
+   "lon": 27.7656,
+   "product": "frt0001171e_07_if166j_mtr3",
+   "olindex3": 0.036382827907800674,
+   "bdi1000ir": 0.01118231751024723,
+   "frac_ol_floor": 0.21499596882558453
+  },
+  {
+   "group": "negative",
+   "label": "dust Arabia",
+   "lat": 30.6177,
+   "lon": 40.9854,
+   "product": "frt0000c499_07_if166j_mtr3",
+   "olindex3": 0.03227880224585533,
+   "bdi1000ir": 0.017686132341623306,
+   "frac_ol_floor": 0.025799516259070142
+  },
+  {
+   "group": "negative",
+   "label": "dust Arabia",
+   "lat": 31.6743,
+   "lon": 16.0,
+   "product": "frt0000a1a3_07_if166j_mtr3",
+   "olindex3": 0.023358793929219246,
+   "bdi1000ir": 0.018368329852819443,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Arabia",
+   "lat": 11.5138,
+   "lon": 23.6486,
+   "product": "frt00009b18_07_if166j_mtr3",
+   "olindex3": 0.00757327675819397,
+   "bdi1000ir": 0.016608180478215218,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Arabia",
+   "lat": 33.8887,
+   "lon": 17.9759,
+   "product": "frt0000ba96_07_if167j_mtr3",
+   "olindex3": 0.03982387110590935,
+   "bdi1000ir": 0.015945477411150932,
+   "frac_ol_floor": 0.09379199140016124
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 22.2644,
+   "lon": -151.1331,
+   "product": "hrs000050dc_07_if175j_mtr3",
+   "olindex3": 0.00047938700299710035,
+   "bdi1000ir": 0.011939470656216145,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 25.0063,
+   "lon": -141.9451,
+   "product": "hrl00008e23_07_if183j_mtr3",
+   "olindex3": -0.01264399103820324,
+   "bdi1000ir": 0.01988399215042591,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 17.2162,
+   "lon": -141.8983,
+   "product": "frt00013d6d_07_if166j_mtr3",
+   "olindex3": 0.042639315128326416,
+   "bdi1000ir": 0.012436417862772942,
+   "frac_ol_floor": 0.29346949744692286
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 2.4969,
+   "lon": -135.8712,
+   "product": "frt0000895f_07_if165j_mtr3",
+   "olindex3": 0.02085462212562561,
+   "bdi1000ir": 0.01708003133535385,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 17.2889,
+   "lon": -128.8133,
+   "product": "frt00008d21_07_if165j_mtr3",
+   "olindex3": 0.004950974602252245,
+   "bdi1000ir": 0.019122978672385216,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 13.9017,
+   "lon": -151.3975,
+   "product": "frt00005f3e_07_if166j_mtr3",
+   "olindex3": 0.030338801443576813,
+   "bdi1000ir": 0.01710277423262596,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 24.8031,
+   "lon": -141.923,
+   "product": "hrl00008e23_07_if183j_mtr3",
+   "olindex3": -0.011523444205522537,
+   "bdi1000ir": 0.021037135273218155,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 16.935,
+   "lon": -138.736,
+   "product": "frt000085b2_07_if165j_mtr3",
+   "olindex3": 0.016577593982219696,
+   "bdi1000ir": 0.017554694786667824,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 17.3382,
+   "lon": -142.4734,
+   "product": "hrl00005c8d_07_if183j_mtr3",
+   "olindex3": 0.03617747128009796,
+   "bdi1000ir": 0.012743575498461723,
+   "frac_ol_floor": 0.03574307981725343
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 21.4371,
+   "lon": -137.7878,
+   "product": "frt00007704_07_if165j_mtr3",
+   "olindex3": 0.007736328989267349,
+   "bdi1000ir": 0.016276665031909943,
+   "frac_ol_floor": 0.0002687449610319806
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 27.5308,
+   "lon": -147.3998,
+   "product": "frt0000a4e2_07_if166j_mtr3",
+   "olindex3": 0.017499858513474464,
+   "bdi1000ir": 0.014477753080427647,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 16.4246,
+   "lon": -150.2823,
+   "product": "frt00006636_07_if166j_mtr3",
+   "olindex3": 0.02601659670472145,
+   "bdi1000ir": 0.01332474872469902,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 10.7869,
+   "lon": -135.0822,
+   "product": "hrl00008e72_07_if182j_mtr3",
+   "olindex3": -0.0038038468919694424,
+   "bdi1000ir": 0.018895700573921204,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 17.4084,
+   "lon": -133.0812,
+   "product": "frt000046a1_07_if164j_mtr3",
+   "olindex3": 0.012620077468454838,
+   "bdi1000ir": 0.01227659359574318,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 18.1973,
+   "lon": -133.0395,
+   "product": "frt000072d8_07_if165j_mtr3",
+   "olindex3": 0.022760864347219467,
+   "bdi1000ir": 0.018570195883512497,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 2.4451,
+   "lon": -129.3014,
+   "product": "frt00008ed5_07_if165j_mtr3",
+   "olindex3": -0.0017055294010788202,
+   "bdi1000ir": 0.01877378672361374,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 22.1294,
+   "lon": -127.6941,
+   "product": "hrs000084ab_07_if175j_mtr3",
+   "olindex3": 0.027366330847144127,
+   "bdi1000ir": 0.01667916029691696,
+   "frac_ol_floor": 0.0013437248051599033
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 11.2472,
+   "lon": -158.6731,
+   "product": "frt00008457_07_if165j_mtr3",
+   "olindex3": 0.005046559497714043,
+   "bdi1000ir": 0.015824314206838608,
+   "frac_ol_floor": 0.0064498790647675355
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 18.3274,
+   "lon": -131.9957,
+   "product": "frt000075f3_07_if165j_mtr3",
+   "olindex3": 0.022443782538175583,
+   "bdi1000ir": 0.018699711188673973,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 18.236,
+   "lon": -132.4161,
+   "product": "frt00007751_07_if164j_mtr3",
+   "olindex3": 0.022551195695996284,
+   "bdi1000ir": 0.018100902438163757,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 20.0645,
+   "lon": -138.0226,
+   "product": "frt0000906e_07_if165j_mtr3",
+   "olindex3": 0.020380906760692596,
+   "bdi1000ir": 0.020550645887851715,
+   "frac_ol_floor": 0.0002687449610319806
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 19.255,
+   "lon": -140.2769,
+   "product": "frt0000923e_07_if166j_mtr3",
+   "olindex3": 0.03347703441977501,
+   "bdi1000ir": 0.019651222974061966,
+   "frac_ol_floor": 0.0026874496103198066
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 16.5171,
+   "lon": -127.8124,
+   "product": "frt0000912b_07_if165j_mtr3",
+   "olindex3": -0.011613714508712292,
+   "bdi1000ir": 0.018462130799889565,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 10.5963,
+   "lon": -135.258,
+   "product": "frt00006044_07_if165j_mtr3",
+   "olindex3": 0.03141631931066513,
+   "bdi1000ir": 0.01637362129986286,
+   "frac_ol_floor": 0.0016124697661918839
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 18.1495,
+   "lon": -133.7934,
+   "product": "frt00006fbd_07_if164j_mtr3",
+   "olindex3": 0.01795908436179161,
+   "bdi1000ir": 0.01720956526696682,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 17.3088,
+   "lon": -133.3145,
+   "product": "frt00007c91_07_if164j_mtr3",
+   "olindex3": 0.04339767247438431,
+   "bdi1000ir": 0.022262316197156906,
+   "frac_ol_floor": 0.17629669443697932
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 1.4964,
+   "lon": -112.6714,
+   "product": "frt00007a58_07_if164j_mtr3",
+   "olindex3": 0.027349144220352173,
+   "bdi1000ir": 0.022056084126234055,
+   "frac_ol_floor": 0.0
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 5.3187,
+   "lon": -116.3102,
+   "product": "frt00003956_07_if165j_mtr3",
+   "olindex3": 0.011591949500143528,
+   "bdi1000ir": 0.017105456441640854,
+   "frac_ol_floor": 0.0013437248051599033
+  },
+  {
+   "group": "negative",
+   "label": "dust Tharsis/Amazonis",
+   "lat": 13.4321,
+   "lon": -128.5537,
+   "product": "hrs00005093_07_if174j_mtr3",
+   "olindex3": 0.02697579562664032,
+   "bdi1000ir": 0.01759711466729641,
+   "frac_ol_floor": 0.0
+  }
+ ]
+}

@@ -187,3 +187,19 @@ def test_moon_unlit_pixel_gives_no_mineralogy(monkeypatch):
     assert d["mineralogy"]["status"] == "unavailable" and d["mineralogy"]["indicators"] == []
     assert d["topography"]["status"] == "available"          # other sections unaffected
     assert not (d["terrestrial_analogs"] or {}).get("sites")
+
+
+def test_m3_indicators_never_carry_the_crism_coverage_rule():
+    d = _run("moon", FakeWorld(10.0, -15.0), 10.0, -15.0)
+    for i in d["mineralogy"]["indicators"]:
+        assert i.get("uncertain") is None and i.get("spatial_coverage") is None
+    assert d["mineralogy"].get("analyzed_extent") is None          # lunar window is not changed here
+
+
+def test_mars_reports_analysed_window_separately_from_requested_radius():
+    d = _run("mars", FakeWorld(18.44, 77.45), 18.44, 77.45, r=10.0)
+    ext = d["mineralogy"]["analyzed_extent"]
+    assert ext["requested_radius_km"] == 10.0 and ext["area_km2"] > 0
+    assert ext["fraction_of_requested_area"] <= 1.0
+    if ext["fraction_of_requested_area"] < 0.95:
+        assert any("not representative of the whole region" in x for x in d["mineralogy"]["limitations"])

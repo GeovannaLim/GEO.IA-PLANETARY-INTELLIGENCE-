@@ -56,6 +56,13 @@ MIN_POSITIVE_FRACTION = 0.6
 MAGNITUDE_FLOOR = {"OLINDEX3": 0.05, "BDI1000IR": 0.045, "D2300": 0.002, "BD2210_2": 0.007,
                    "MIN2345_2537": 0.0017, "BD2100_2": 0.0054, "SINDEX2": 0.019, "BD1900_2": 0.013,
                    "BD1435": 0.02, "BD1500_2": 0.025}
+# PROVISIONAL spatial-coverage criterion (docs/DIAGNOSTICO_OLIVINA.md, approved 2026-11-14 as experimental):
+# a Mars olivine detection whose window median reaches the floor is reported as UNCERTAIN when fewer than
+# 75% of the window pixels reach it. Calibrated on 59 controls (14 olivine positives: >= 0.89; 45 dust
+# negatives: <= 0.66, a single case above the floor). NOT independently validated; small outcrops that fill
+# only part of the ~2 km window can be missed (tests/unit/test_olivine_coverage.py). CRISM only, never M3.
+SPATIAL_COVERAGE_MIN = {"OLINDEX3": 0.75}
+
 FLOOR_BASIS = ("window median must also reach {floor} (floor calibrated on real CRISM negative controls "
                "such as dust-covered and ice-free surfaces; see docs/RELATORIO_TESTES_CIENTIFICOS.md)")
 # Above this solar incidence the surface is too dimly lit (or unlit) for reflectance band depths.
@@ -271,13 +278,38 @@ def crism_detected(name: str, arr: np.ndarray) -> bool:
     return bool(v.size and float(np.median(v)) >= floor)
 
 
+def floor_coverage(name: str, arr: np.ndarray) -> float | None:
+    """Fraction of finite window pixels at or above the parameter's magnitude floor."""
+    floor = MAGNITUDE_FLOOR.get(name)
+    v = arr[np.isfinite(arr)]
+    if floor is None or v.size == 0:
+        return None
+    return float(np.mean(v >= floor))
+
+
+def crism_uncertain(name: str, arr: np.ndarray, det: bool | None) -> bool | None:
+    """True when a detection fails the provisional spatial-coverage criterion (None when not applicable)."""
+    need = SPATIAL_COVERAGE_MIN.get(name)
+    if need is None or not det:
+        return None if need is None else False
+    cov = floor_coverage(name, arr)
+    return cov is not None and cov < need
+
+
 def crism_indicator(name: str, arr: np.ndarray) -> SpectralIndicator:
     descriptive = name.startswith("R")
     det = None if descriptive else crism_detected(name, arr)
     floor = MAGNITUDE_FLOOR.get(name)
     basis = DETECTION_BASIS + ("; " + FLOOR_BASIS.format(floor=floor) if floor is not None else "")
+    cov = None if descriptive or name not in SPATIAL_COVERAGE_MIN else floor_coverage(name, arr)
+    unc = None if descriptive else crism_uncertain(name, arr, det)
     if descriptive:
         interp = "Descriptive I/F value; no detection test applies."
+    elif det and unc:
+        interp = (f"Uncertain detection: the window median reaches the {floor} floor, but only "
+                  f"{round(100 * cov)}% of the pixels do (provisional criterion: at least "
+                  f"{round(100 * SPATIAL_COVERAGE_MIN[name])}%). Shown for transparency; not used to choose analog "
+                  f"sites.")
     elif det:
         interp = (f"Positive parameter value detected ({basis}). Sensitive to "
                   f"{CRISM_PARAMS[name]}; confirmation requires ratioed-spectrum analysis.")
@@ -294,16 +326,18 @@ def crism_indicator(name: str, arr: np.ndarray) -> SpectralIndicator:
         screening_threshold=None if descriptive else (floor if floor is not None else 0.0),
         threshold_basis=None if descriptive else basis,
         fraction_above_threshold=None if descriptive or finite.size == 0 else float(np.mean(finite > 0)),
-        n_pixels=int(finite.size), interpretation=interp, comparability="body_specific", detected=det)
+        n_pixels=int(finite.size), interpretation=interp, comparability="body_specific", detected=det,
+        spatial_coverage=cov, uncertain=unc)
 
 
 def crism_character(indicators: list[SpectralIndicator], values: dict[str, np.ndarray]) -> str | None:
     if not values:
         return None
-    hits = [i.name for i in indicators
+    hits = [i for i in indicators
             if i.name in values and not i.name.startswith("R") and crism_detected(i.name, values[i.name])]
     if not hits:
         return "No summary parameter shows a statistically significant positive value in the window."
-    parts = [f"{h} ({CRISM_PARAMS.get(h, '?')})" for h in hits]
+    parts = [f"{h.name} ({CRISM_PARAMS.get(h.name, '?')})" + (" [uncertain: low spatial coverage]" if h.uncertain else "")
+             for h in hits]
     return ("Positive summary parameters: " + "; ".join(parts) +
             ". Screening only; mineral identification requires ratioed spectra.")

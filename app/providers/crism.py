@@ -170,6 +170,7 @@ class CrismExtraction:
     legacy_wavelengths: np.ndarray | None
     n_window: int
     n_valid: int
+    analyzed_extent: dict | None
     incidence_deg: float | None
     emission_deg: float | None
     processing: list[str] = field(default_factory=list)
@@ -186,6 +187,20 @@ def locate(proj: MapProjection, h: EnviHeader, lat: float, lon: float) -> tuple[
         if 0 <= r < h.lines and 0 <= c < h.samples:
             return int(math.floor(r)), int(math.floor(c))
     raise OutsideImage("point falls outside the map-projected cube")
+
+
+def analyzed_extent(rows: int, cols: int, n_window: int, px_m: float, radius_km: float) -> dict:
+    """What the spectrometer window actually covers, versus the requested circle.
+
+    The window is capped at crism_max_half_window_px (range reads per band) and clipped by the image
+    edge, so it can be much smaller than the requested region; mineralogy describes this area only."""
+    area = n_window * (px_m / 1000.0) ** 2
+    requested = math.pi * radius_km ** 2
+    return {"shape": "square pixel window clipped to the requested circle",
+            "window_km": [round(rows * px_m / 1000.0, 2), round(cols * px_m / 1000.0, 2)],
+            "pixel_size_m": round(px_m, 1), "area_km2": round(area, 2),
+            "requested_radius_km": radius_km, "requested_area_km2": round(requested, 2),
+            "fraction_of_requested_area": round(min(1.0, area / requested), 4) if requested > 0 else None}
 
 
 async def _read_window(cube: RemoteCube, band: int, r0: int, r1: int, c0: int, c1: int) -> np.ndarray:
@@ -267,5 +282,6 @@ async def extract(http: HttpClient, product: ode.OdeProduct, lat: float, lon: fl
         row=row, col=col, pixel_size_m=px, half_window=half, params=params,
         legacy_spectra=legacy, legacy_wavelengths=legacy_wl,
         n_window=int(within.sum()), n_valid=int(valid.sum()),
+        analyzed_extent=analyzed_extent(r1 - r0 + 1, c1 - c0 + 1, int(within.sum()), px, radius_km),
         incidence_deg=product.incidence_deg, emission_deg=product.emission_deg, processing=processing,
         limitations=list(LIMITATIONS) + ([POLAR_LIMITATION] if isinstance(proj, PolarStereographic) else []))
