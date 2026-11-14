@@ -38,6 +38,17 @@ def _semaphore() -> asyncio.Semaphore:
     return _sem
 
 
+SECTIONS = ("imagery", "topography", "mineralogy", "earth_analogs", "terrestrial_analogs", "environment",
+            "geomorphology")
+
+
+def provider_failure(doc: dict) -> bool:
+    """True when a stored result has a section that failed because a remote service failed or timed out (e.g. a
+    slow PDS/M3). Such a result is still returned to the caller who requested it, but it is not reused from the
+    cache: the next request recomputes, so a temporary outage is not served as the analysis for 24 h."""
+    return any((doc.get(k) or {}).get("reason") == Reason.provider_error.value for k in SECTIONS)
+
+
 def request_key(planet: str, req: AnalyzeRequest) -> str:
     c = build_coordinates(req, planet)
     return f"{planet}:{c.latitude:.5f}:{c.longitude:.5f}:{req.radius_km:.3f}"
@@ -80,7 +91,7 @@ async def submit(planet: str, req: AnalyzeRequest, *, wait_s: float = 0.0, use_c
     s = get_settings()
     if use_cache:
         cached = store.find_recent(key, s.result_cache_ttl_s)
-        if cached:
+        if cached and not provider_failure(cached):   # a provider outage is not a result: recompute, never replay
             cached["cache"] = CacheInfo(hit=True, original_analysis_id=cached["analysis_id"],
                                         computed_at=cached.get("completed_at")).model_dump(mode="json")
             return cached

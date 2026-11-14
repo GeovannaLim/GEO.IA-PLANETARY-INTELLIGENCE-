@@ -279,6 +279,22 @@ class EnvironmentSection(BaseModel):
     notes: list[str] = Field(default_factory=list)
 
 
+class GeomorphologySection(BaseModel):
+    """Moon: harmonised terrain profile (LOLA RDR) and per-purpose geomorphological correspondences with
+    terrestrial catalog sites (Copernicus GLO-30). Independent of mineralogy; never a composition claim."""
+    status: SectionStatus
+    experimental: bool = Field(True, description="Always true: calculated geomorphological comparison, not a list "
+                               "of validated or documented analogs")
+    reason: Reason | None = None
+    method: str | None = None
+    moon_profile: dict[str, Any] | None = None
+    earth_reference: dict[str, Any] | None = None
+    comparisons: dict[str, Any] = Field(default_factory=dict)
+    limitations: list[str] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+    source_ids: list[str] = Field(default_factory=list)
+
+
 class TerrestrialAnalogSite(BaseModel):
     rank: int | None = Field(None, description="1 = explains the region best; tied sites share a rank and "
                              "their mutual order is not meaningful")
@@ -363,6 +379,9 @@ class AnalysisResult(BaseModel):
         None, description="Moon/Mars: documented terrestrial analog sites matched by mineral family")
     earth_observation: dict[str, Any] | None = Field(
         None, description="Earth only: Sentinel-2/ASTER/EMIT indices with provenance")
+    geomorphology: GeomorphologySection | None = Field(
+        None, description="Moon only: terrain profile and geomorphological (not compositional) correspondences "
+        "with terrestrial sites, by exploration purpose")
     environment: EnvironmentSection | None = Field(
         None, description="Moon only: south polar illumination (sunlit fraction, permanent shadow, Earth "
         "visibility), model-derived from LOLA topography")

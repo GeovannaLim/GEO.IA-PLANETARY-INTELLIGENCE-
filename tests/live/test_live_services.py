@@ -47,7 +47,11 @@ def test_live_lunar_imbrium():
                                uuid.uuid4().hex, datetime.now(timezone.utc), _noop)
     d = run(go()).model_dump(mode="json")
     assert d["topography"]["status"] in ("available", "partial") and d["topography"]["n_points"] > 100
-    assert d["mineralogy"]["status"] in ("available", "partial", "unavailable")
+    m = d["mineralogy"]
+    # a slow PDS may exhaust the M3 deadline: that must be a declared provider failure, never a scientific result
+    assert m["status"] in ("available", "partial", "unavailable") or (
+        m["status"] == "failed" and m["reason"] == "provider_error"
+        and any("not evidence that minerals are absent" in x for x in m["limitations"]))
 
 
 def test_live_mars_jezero():

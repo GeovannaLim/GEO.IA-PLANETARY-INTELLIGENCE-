@@ -7,6 +7,7 @@ mineralogy section says so and the rest of the analysis is still delivered.
 from __future__ import annotations
 
 import asyncio
+import logging
 import math
 
 import numpy as np
@@ -14,14 +15,16 @@ import numpy as np
 from app.config import get_settings
 from app.providers import lola_illumination, m3, ode
 from app.providers.http import HttpClient, ProviderError
-from app.schemas.analysis import (AnalysisResult, AnalyzeRequest, EnvironmentSection, ImagerySection,
+from app.schemas.analysis import (AnalysisResult, AnalyzeRequest, EnvironmentSection, GeomorphologySection,
+                                  ImagerySection,
                                   MineralogySection, Reason, SectionStatus, TopographySection)
-from app.science import analog_sites, similarity, spectral
+from app.science import analog_sites, geomorph_analogs, similarity, spectral
 from app.science.coordinates import footprint_contains, haversine_km, region_box
 from app.pipelines.common import (Context, ProgressFn, assess_confidence, build_coordinates, finalize, guarded,
                                   guarded_sync,
                                   imagery_step, pds_step, topography_step, usgs_step)
 
+log = logging.getLogger("geoia.lunar")
 M3_IIPT = dict(target="moon", ihid="CH1-ORB", iid="M3", pt="REFIMG")
 
 
@@ -77,6 +80,14 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
         except ProviderError as exc:
             errors.append((prod.pdsid, Reason.provider_error, str(exc)))
             continue
+        if errors:   # a preferred observation could not be read: say which one and why (provenance)
+            skipped = "; ".join(f"{pid} ({r.value})" for pid, r, _ in errors)
+            ex.limitations = list(ex.limitations) + [
+                f"Preferred M3 observation(s) could not be used: {skipped}. This result comes from {ex.product_id}, "
+                "another observation containing the point; values can differ from those of the preferred one."]
+            for pid, r, m in errors:
+                ctx.problem("mineralogy", r, f"{pid} skipped: {m}", search_rec.source_id)
+            errors = []
         rec = ctx.source(
             provider="PDS Imaging Node (via ODE)", service="HTTP byte-range read of M3 L2 RFL + L1B LOC",
             instrument="M3", mission="Chandrayaan-1", product_type="L2 reflectance", product_id=ex.product_id,
@@ -195,6 +206,27 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
     return MineralogySection(status=st, reason=reason, source_ids=[search_rec.source_id], **base), {}, None
 
 
+M3_TIMEOUT_MSG = ("M3 reads from the PDS Imaging Node did not finish within {s:.0f} s; mineralogy was not measured. "
+                  "A timeout is not evidence that minerals are absent; the other sections are unaffected.")
+
+
+async def mineralogy_with_deadline(ctx: Context) -> tuple[MineralogySection, dict[str, float], float | None]:
+    """mineralogy_step under its own budget (same pattern as the altimetry deadline): a slow PDS fails only the
+    mineralogy section instead of timing out the whole job and losing every other completed section."""
+    s = get_settings()
+    try:
+        return await asyncio.wait_for(mineralogy_step(ctx), timeout=s.mineralogy_deadline_s)
+    except asyncio.TimeoutError:
+        msg = M3_TIMEOUT_MSG.format(s=s.mineralogy_deadline_s)
+        rec = ctx.source(provider="PDS Imaging Node (via ODE)", service="HTTP byte-range read of M3 L2 RFL + L1B LOC",
+                         instrument="M3", mission="Chandrayaan-1", product_type="L2 reflectance", status="error",
+                         message=msg)
+        ctx.problem("mineralogy", Reason.provider_error, msg, rec.source_id)
+        return MineralogySection(status=SectionStatus.failed, reason=Reason.provider_error,
+                                 instrument="M3 (Moon Mineralogy Mapper)", source_ids=[rec.source_id],
+                                 limitations=[msg]), {}, None
+
+
 async def illumination_step(ctx: Context) -> EnvironmentSection:
     """South polar illumination context (model-derived, Mazarico et al. 2011). Independent of mineralogy."""
     L = lola_illumination
@@ -258,7 +290,7 @@ async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_a
         guarded(ctx, "imagery", imagery_step(ctx), lambda: ImagerySection(status=failed, reason=Reason.invalid_data)),
         guarded(ctx, "topography", topography_step(ctx),
                 lambda: TopographySection(status=failed, reason=Reason.invalid_data)),
-        guarded(ctx, "mineralogy", mineralogy_step(ctx),
+        guarded(ctx, "mineralogy", mineralogy_with_deadline(ctx),
                 lambda: (MineralogySection(status=failed, reason=Reason.invalid_data), {}, None)),
         guarded(ctx, "environment", illumination_step(ctx),
                 lambda: EnvironmentSection(status=failed, reason=Reason.invalid_data)),
@@ -271,5 +303,13 @@ async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_a
              "(space weathering, no water or vegetation, regolith grain size)."]
     conf = assess_confidence(topo_s, min_s, extra, incidence)
     terrestrial = guarded_sync(ctx, lambda: analog_sites.match("moon", min_s, ctx.lat))
+    try:   # CPU-bound (terrain families); off the event loop. Independent of mineralogy.
+        geomorph = await asyncio.to_thread(geomorph_analogs.section, ctx.lat, ctx.lon, ctx.altimetry,
+                                           ctx.altimetry_radius_km, ctx.altimetry_source_id)
+        await prog("geomorphology")
+    except Exception as exc:  # noqa: BLE001 - optional section boundary
+        log.exception("geomorphology crashed")
+        ctx.problem("geomorphology", Reason.invalid_data, f"internal error: {type(exc).__name__}: {exc}")
+        geomorph = GeomorphologySection(status=SectionStatus.failed, reason=Reason.invalid_data)
     return finalize(ctx, analysis_id, created_at, imagery, topo_s, min_s, analogs, conf, done,
-                    terrestrial=terrestrial, environment=environment)
+                    terrestrial=terrestrial, environment=environment, geomorphology=geomorph)

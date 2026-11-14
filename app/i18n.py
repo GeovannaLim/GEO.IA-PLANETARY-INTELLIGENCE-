@@ -70,6 +70,65 @@ def _sens(m: re.Match) -> str:
 
 
 RULES: list[_Rule] = [
+    # ---- Moon-Earth geomorphology ------------------------------------------------------------------
+    _lit("Terrain-unit profiles (9 windows of 1 km, offsets 1 km) on a common grid baseline; LOLA RDR shots for "
+         "the Moon and Copernicus GLO-30 for the Earth, aggregated with the same method; per-purpose comparison "
+         "with standardised differences (z <= 2), a discriminating-power check and a median-slope gate",
+         "Perfis de unidade de terreno (9 janelas de 1 km, deslocamentos de 1 km) numa grade de mesma escala; "
+         "disparos LOLA RDR para a Lua e Copernicus GLO-30 para a Terra, agregados pelo mesmo método; comparação "
+         "por finalidade com diferenças padronizadas (z ≤ 2), verificação de poder de discriminação e exigência "
+         "de declividade mediana compatível"),
+    _lit("A geomorphological correspondence means only that, at the stated scale, each listed terrain statistic and "
+         "the median slope differ by at most twice their combined spatial variability (an operational criterion, "
+         "not a statistical proof of equivalence). It does not imply similar composition, gravity, illumination, "
+         "temperature, regolith or operational conditions.",
+         "Uma correspondência geomorfológica significa apenas que, na escala indicada, cada estatística de terreno "
+         "listada e a declividade mediana diferem no máximo duas vezes a sua variabilidade espacial combinada "
+         "(critério operacional, não prova estatística de equivalência). Não implica composição, gravidade, "
+         "iluminação, temperatura, regolito ou condições operacionais semelhantes."),
+    _lit("These correspondences are calculated by this system; they are different from the documented analog "
+         "relationships of the mineral catalog.",
+         "Estas correspondências são calculadas por este sistema; são diferentes das relações de análogo "
+         "documentadas do catálogo mineral."),
+    _lit("No catalog site shows a demonstrable geomorphological correspondence for any purpose.",
+         "Nenhum sítio do catálogo mostra correspondência geomorfológica demonstrável para nenhuma finalidade."),
+    _lit("Sites listed under modified_relief_references have relief documented as modified by mining: their "
+         "correspondence is a reference to modified terrain, not evidence of a natural geomorphological analog.",
+         "Os sítios listados em modified_relief_references têm relevo documentado como modificado por mineração: "
+         "sua correspondência é uma referência de terreno modificado, não evidência de análogo geomorfológico "
+         "natural."),
+    _lit("Copernicus GLO-30 is a surface model (DSM): vegetation and buildings are included in Earth elevations.",
+         "O Copernicus GLO-30 é um modelo de superfície (DSM): vegetação e construções entram nas altitudes da Terra."),
+    _lit("Obstacles, rocks and regolith properties below the grid baseline are not resolved.",
+         "Obstáculos, rochas e propriedades do regolito menores que a escala da grade não são resolvidos."),
+    _lit("No route, traversability or safety assessment is made.",
+         "Nenhuma avaliação de rota, trafegabilidade ou segurança é feita."),
+    _lit("Uncertainties are the spatial heterogeneity across the 9 windows, not measurement errors; a very "
+         "heterogeneous site is reported as non-discriminating instead of matching.",
+         "As incertezas são a heterogeneidade espacial entre as 9 janelas, não erros de medição; um sítio muito "
+         "heterogêneo é informado como não discriminante em vez de corresponder."),
+    _lit("Discrimination is reliable between strongly contrasting terrains but limited between terrains of "
+         "intermediate relief (real-data audit: 22% of distinct catalog site pairs also correspond).",
+         "A discriminação é confiável entre terrenos muito contrastantes, mas limitada entre terrenos de relevo "
+         "intermediário (auditoria com dados reais: 22% dos pares de sítios distintos do catálogo também "
+         "correspondem)."),
+    _lit("No altimetry available for this request.", "Não há altimetria disponível para esta análise."),
+    (re.compile(r"Terrain comparison needs altimetry within ([\d.]+) km of the point \(sampled: ([\d.]+) km\); "
+                r"request a radius of at least ([\d.]+) km\."),
+     r"A comparação de terreno precisa de altimetria até \1 km do ponto (amostrado: \2 km); peça um raio de pelo "
+     r"menos \3 km."),
+    (re.compile(r"LOLA shot coverage is too sparse for a terrain profile at any baseline up to ([\d.]+) m \(median "
+                r"window coverage (\d+)% at ([\d.]+) m; at least (\d+)% of cells in (\d+) of 9 windows is required\)\. "
+                r"Result: inconclusive\."),
+     r"A cobertura de disparos do LOLA é esparsa demais para um perfil de terreno em qualquer escala até \1 m "
+     r"(cobertura mediana das janelas \2% em \3 m; são exigidos pelo menos \4% das células em \5 de 9 janelas). "
+     r"Resultado: inconclusivo."),
+    _lit("rover mobility (slopes and roughness resolved at baseline L)",
+         "mobilidade de rovers (declividades e rugosidade resolvidas na escala L)"),
+    _lit("traverse and route-planning studies (steep-slope tail, slope heterogeneity, relief)",
+         "estudos de travessia e planejamento de rotas (cauda de declives fortes, heterogeneidade de declividade, relevo)"),
+    _lit("operations in rugged terrain (relief amplitude and heterogeneity)",
+         "operações em terreno acidentado (amplitude e heterogeneidade do relevo)"),
     # ---- M3 vs permanent shadow (2026-11-14) ---------------------------------------------------
     (re.compile(r"(\d+) of (\d+) valid M3 pixels lie in permanent shadow \(LOLA/PGDA LPSR, Mazarico et al\. 2011\) "
                 r"and were excluded: reflectance there is not direct sunlight\."),
@@ -147,6 +206,19 @@ RULES: list[_Rule] = [
          "profundidades de banda não são confiáveis aqui e nenhuma família mineral é inferida."),
     (re.compile(r"(\d+) valid CRISM pixels in (\S+)"), r"\1 pixels CRISM válidos em \2"),
     # ---- slow altimetry service (topography deadline) ------------------------------------------
+    (re.compile(r"M3 reads from the PDS Imaging Node did not finish within (\d+) s; mineralogy was not measured\. "
+                r"A timeout is not evidence that minerals are absent; the other sections are unaffected\."),
+     r"As leituras do M3 no PDS Imaging Node não terminaram em \1 s; a mineralogia não foi medida. Um tempo "
+     r"esgotado não é evidência de ausência de minerais; as demais seções não são afetadas."),
+    (re.compile(r"Preferred M3 observation\(s\) could not be used: (.+?)\. This result comes from (\S+), another "
+                r"observation containing the point; values can differ from those of the preferred one\."),
+     r"A(s) observação(ões) M3 preferida(s) não pôde(puderam) ser usada(s): \1. Este resultado vem de \2, outra "
+     r"observação que contém o ponto; os valores podem diferir dos da preferida."),
+    (re.compile(r"^(M3G\w+) skipped: (.+)$"), r"\1 ignorada: \2"),
+    _lit("Experimental section: calculated geomorphological comparison. Its correspondences are not validated or "
+         "documented analogs and must not be read as recommendations.",
+         "Seção experimental: comparação geomorfológica calculada. Suas correspondências não são análogos "
+         "validados nem documentados e não devem ser lidas como recomendações."),
     (re.compile(r"ODE GDS did not return (\w+) altimetry within (\d+) s; topography not computed "
                 r"\(other sections unaffected\)"),
      r"O ODE GDS não devolveu a altimetria \1 em \2 s; topografia não calculada (as demais seções não são afetadas)"),
@@ -361,6 +433,9 @@ PATHS = (
     "confidence.basis", "confidence.limitations[]", "confidence.criteria[].detail",
     "problems[].message", "earth_observation.note",
     "environment.method", "environment.limitations[]", "environment.notes[]",
+    "geomorphology.method", "geomorphology.limitations[]", "geomorphology.notes[]",
+    "geomorphology.comparisons.rover_mobility.label", "geomorphology.comparisons.traverse_planning.label",
+    "geomorphology.comparisons.rugged_terrain_operations.label",
 )
 
 

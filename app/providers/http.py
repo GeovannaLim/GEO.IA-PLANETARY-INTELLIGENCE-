@@ -25,6 +25,7 @@ log = logging.getLogger("geoia.http")
 ALLOWED_HOSTS = frozenset({
     "oderest.rsl.wustl.edu",        # ODE REST + GDS
     "imbrium.mit.edu",              # LOLA team archive: polar illumination maps (Mazarico et al. 2011)
+    "copernicus-dem-30m.s3.amazonaws.com",   # Copernicus DEM GLO-30 (AWS Open Data registry)
     "ode.rsl.wustl.edu",            # ODE web / derived files
     "pds-geosciences.wustl.edu",    # PDS Geosciences node (CRISM, LOLA, MOLA)
     "planetarydata.jpl.nasa.gov",   # PDS Imaging node (M3)

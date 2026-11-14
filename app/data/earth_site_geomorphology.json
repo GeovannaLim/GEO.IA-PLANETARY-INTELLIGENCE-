@@ -1,0 +1,3462 @@
+{
+ "product": "Copernicus DSM COG 10 (GLO-30), EGM2008",
+ "source": "https://copernicus-dem-30m.s3.amazonaws.com/",
+ "method": "app/science/geomorphology.py",
+ "family": {
+  "window_km": 1.0,
+  "offset_km": 1.0,
+  "extent_km": 2.0,
+  "min_valid_windows": 5
+ },
+ "baselines_m": [
+  60.0,
+  120.0,
+  240.0,
+  480.0
+ ],
+ "block_cells": 5,
+ "generated_at": "2026-11-14T08:10:55.574164+00:00",
+ "sites": [
+  {
+   "id": "samail_bt1b",
+   "name": "Samail Ophiolite \u2014 Wadi Mansah listvenite (OmanDP Hole BT1B)",
+   "lat": 23.364496,
+   "lon": 58.182396,
+   "coordinate_precision_km": 0.5,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 32295,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 5.2269,
+       "uncertainty": 9.8124,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 26.4975,
+       "uncertainty": 11.8721,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 11.3262,
+       "uncertainty": 7.5988,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 4.88,
+       "uncertainty": 2.1806,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 36.1821,
+       "uncertainty": 21.2576,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 114.6067,
+       "uncertainty": 77.4543,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 32295,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 6.4826,
+       "uncertainty": 8.4083,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 20.9054,
+       "uncertainty": 10.943,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 9.939,
+       "uncertainty": 6.0372,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 9.9109,
+       "uncertainty": 4.5574,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 36.1117,
+       "uncertainty": 21.5949,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 117.9353,
+       "uncertainty": 79.3532,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 32295,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 6.5224,
+       "uncertainty": 7.02,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 15.1707,
+       "uncertainty": 9.0468,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 6.3933,
+       "uncertainty": 4.6292,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 14.9017,
+       "uncertainty": 8.8389,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 33.5596,
+       "uncertainty": 20.2305,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 99.9864,
+       "uncertainty": 68.3401,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 32295,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N23_00_E058_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N23_00_E058_00_DEM/Copernicus_DSM_COG_10_N23_00_E058_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:10:57.636251+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "rio_tinto",
+   "name": "R\u00edo Tinto headwaters \u2014 Pe\u00f1a de Hierro",
+   "lat": 37.72512,
+   "lon": -6.55643,
+   "coordinate_precision_km": 0.5,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 37503,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 11.8223,
+       "uncertainty": 2.6508,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 20.5376,
+       "uncertainty": 2.6124,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 7.6672,
+       "uncertainty": 1.2312,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 4.3098,
+       "uncertainty": 0.3118,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 32.0851,
+       "uncertainty": 9.4815,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 101.7431,
+       "uncertainty": 34.9224,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 37503,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 8.4421,
+       "uncertainty": 2.4792,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 17.3286,
+       "uncertainty": 3.4186,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 6.6585,
+       "uncertainty": 1.6138,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 8.7112,
+       "uncertainty": 0.838,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 32.4054,
+       "uncertainty": 9.9812,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 102.1574,
+       "uncertainty": 35.6726,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 37503,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 7.7337,
+       "uncertainty": 2.6129,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 11.9347,
+       "uncertainty": 3.9468,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 4.5431,
+       "uncertainty": 1.8216,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 12.9051,
+       "uncertainty": 2.8138,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 29.6445,
+       "uncertainty": 9.3635,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 91.4763,
+       "uncertainty": 32.0997,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 37503,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N37_00_W007_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W007_00_DEM/Copernicus_DSM_COG_10_N37_00_W007_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:10:59.969870+00:00",
+   "represents_site": true,
+   "relief_modification": {
+    "class": "mixed_natural_and_mining",
+    "evidence": "The catalog point lies 0.05 km from the Pena de Hierro mine headframe; the Pena de Hierro open pit (330 x 190 m, ~85 m deep, worked 1883-1960) is 0.12-0.23 km away, inside the central window. Mapped mining features cover 2% (OpenStreetMap landuse=quarry) to 8.6% (CORINE 2012/2018 class 131) of the 9-window area, a lower bound: historic waste dumps and rail cuts are not fully mapped. Masking the mapped features leaves the profile within its uncertainty and the lunar comparisons unchanged (scripts/geomorph_rio_tinto_mask.py), but the unmapped modification cannot be bounded without a pre-mining DEM.",
+    "sources": [
+     "https://www.openstreetmap.org/way/208910493",
+     "https://image.discomap.eea.europa.eu/arcgis/rest/services/Corine/CLC2012_WM/MapServer/0",
+     "https://astrobiology.nasa.gov/news/drilling-for-weird-life/",
+     "https://es.wikipedia.org/wiki/Mina_de_Pe%C3%B1a_del_Hierro"
+    ],
+    "assessed_at": "2026-11-14"
+   }
+  },
+  {
+   "id": "el_tatio",
+   "name": "El Tatio geyser field",
+   "lat": -22.33139,
+   "lon": -68.01028,
+   "coordinate_precision_km": 2,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 32022,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 5.7671,
+       "uncertainty": 3.5432,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 16.2906,
+       "uncertainty": 8.0843,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 9.721,
+       "uncertainty": 4.8459,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 1.4436,
+       "uncertainty": 0.5306,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 27.3978,
+       "uncertainty": 20.1871,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 81.6626,
+       "uncertainty": 71.6886,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 32022,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 5.4398,
+       "uncertainty": 3.4036,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 14.5797,
+       "uncertainty": 8.1594,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 7.3359,
+       "uncertainty": 4.5323,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 3.8925,
+       "uncertainty": 1.2128,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 27.2982,
+       "uncertainty": 20.2558,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 78.1429,
+       "uncertainty": 71.8396,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 32022,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 4.2379,
+       "uncertainty": 3.0979,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 10.6996,
+       "uncertainty": 7.0702,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 4.76,
+       "uncertainty": 3.9786,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 7.682,
+       "uncertainty": 3.9129,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 24.0011,
+       "uncertainty": 19.8292,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 65.6583,
+       "uncertainty": 66.8141,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 32022,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_S23_00_W069_00_DEM",
+    "Copernicus_DSM_COG_10_S23_00_W068_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W069_00_DEM/Copernicus_DSM_COG_10_S23_00_W069_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W068_00_DEM/Copernicus_DSM_COG_10_S23_00_W068_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:02.751375+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "cuprite",
+   "name": "Cuprite mining district",
+   "lat": 37.55,
+   "lon": -117.21389,
+   "coordinate_precision_km": 1,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 37381,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 4.8322,
+       "uncertainty": 2.9854,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 15.4473,
+       "uncertainty": 3.8864,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 6.1537,
+       "uncertainty": 2.2025,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 2.577,
+       "uncertainty": 0.9686,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 22.0305,
+       "uncertainty": 7.5693,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 74.1915,
+       "uncertainty": 25.1816,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 37381,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 4.4351,
+       "uncertainty": 2.3532,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 12.6949,
+       "uncertainty": 2.8802,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 4.7063,
+       "uncertainty": 1.5501,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 4.6816,
+       "uncertainty": 1.9159,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 21.2429,
+       "uncertainty": 7.5414,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 70.4503,
+       "uncertainty": 23.9549,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 37381,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 4.328,
+       "uncertainty": 1.9993,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 9.262,
+       "uncertainty": 1.9606,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 2.8694,
+       "uncertainty": 1.0411,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 7.8753,
+       "uncertainty": 3.6055,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 18.3368,
+       "uncertainty": 7.0966,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 56.5054,
+       "uncertainty": 21.9564,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 37381,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N37_00_W118_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W118_00_DEM/Copernicus_DSM_COG_10_N37_00_W118_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:04.812294+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "puu_nene",
+   "name": "Pu\u02bbu N\u0113n\u0113 cinder cone (JSC Mars-1 source)",
+   "lat": 19.69743,
+   "lon": -155.49697,
+   "coordinate_precision_km": 0.3,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31478,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 1.3057,
+       "uncertainty": 1.4837,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 6.2936,
+       "uncertainty": 7.3661,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 1.9229,
+       "uncertainty": 3.0497,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 1.6015,
+       "uncertainty": 0.8613,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 9.479,
+       "uncertainty": 7.2837,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 26.8368,
+       "uncertainty": 26.5986,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31478,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 1.0649,
+       "uncertainty": 1.5473,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 5.6392,
+       "uncertainty": 5.6579,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 1.7048,
+       "uncertainty": 2.5752,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 3.6688,
+       "uncertainty": 2.3748,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 9.0195,
+       "uncertainty": 7.1037,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 25.368,
+       "uncertainty": 25.4371,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31478,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 0.9331,
+       "uncertainty": 1.4389,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 3.6605,
+       "uncertainty": 2.7629,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 1.5413,
+       "uncertainty": 1.0557,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 4.8173,
+       "uncertainty": 5.2075,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 7.581,
+       "uncertainty": 6.3597,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 24.0465,
+       "uncertainty": 20.2091,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31478,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N19_00_W156_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N19_00_W156_00_DEM/Copernicus_DSM_COG_10_N19_00_W156_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:07.148577+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "kau_desert",
+   "name": "Ka\u02bb\u016b Desert, K\u012blauea",
+   "lat": 19.40861,
+   "lon": -155.29667,
+   "coordinate_precision_km": 3,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31386,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.31,
+       "uncertainty": 0.5082,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 6.1171,
+       "uncertainty": 8.8359,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 1.8768,
+       "uncertainty": 2.8339,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 2.2035,
+       "uncertainty": 1.5555,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 13.8041,
+       "uncertainty": 10.6478,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 43.5839,
+       "uncertainty": 37.7888,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31386,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.2298,
+       "uncertainty": 0.7885,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 5.645,
+       "uncertainty": 7.6328,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 1.4538,
+       "uncertainty": 3.4985,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 3.7437,
+       "uncertainty": 3.8396,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 12.9263,
+       "uncertainty": 10.688,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 40.7678,
+       "uncertainty": 38.2548,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31386,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.0689,
+       "uncertainty": 1.7238,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 4.758,
+       "uncertainty": 4.4216,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 1.1702,
+       "uncertainty": 2.6058,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 5.9768,
+       "uncertainty": 7.4826,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 11.6449,
+       "uncertainty": 10.1881,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 36.6903,
+       "uncertainty": 34.6594,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31386,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N19_00_W156_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N19_00_W156_00_DEM/Copernicus_DSM_COG_10_N19_00_W156_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:08.997406+00:00",
+   "represents_site": false
+  },
+  {
+   "id": "dresser",
+   "name": "Dresser Formation, North Pole Dome, Pilbara",
+   "lat": -21.151759,
+   "lon": 119.437252,
+   "coordinate_precision_km": 5,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31788,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 8.6137,
+       "uncertainty": 0.8962,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 18.5559,
+       "uncertainty": 2.3305,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 9.1887,
+       "uncertainty": 1.4672,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 4.8642,
+       "uncertainty": 0.3364,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 18.915,
+       "uncertainty": 3.8479,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 60.7061,
+       "uncertainty": 13.1659,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31788,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 5.432,
+       "uncertainty": 0.6249,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 11.2529,
+       "uncertainty": 2.2744,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 5.2101,
+       "uncertainty": 1.2952,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 9.0394,
+       "uncertainty": 0.9825,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 18.2941,
+       "uncertainty": 3.972,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 58.2441,
+       "uncertainty": 12.4208,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31788,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.9184,
+       "uncertainty": 0.7556,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 5.4215,
+       "uncertainty": 1.7909,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 2.5274,
+       "uncertainty": 1.3635,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 11.6215,
+       "uncertainty": 2.5989,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 14.7632,
+       "uncertainty": 3.8774,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 45.1749,
+       "uncertainty": 12.6815,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31788,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_S22_00_E119_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_S22_00_E119_00_DEM/Copernicus_DSM_COG_10_S22_00_E119_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:10.820705+00:00",
+   "represents_site": false
+  },
+  {
+   "id": "lonar",
+   "name": "Lonar Crater",
+   "lat": 19.975,
+   "lon": 76.5075,
+   "coordinate_precision_km": 1,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31496,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.6281,
+       "uncertainty": 0.6183,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 20.3738,
+       "uncertainty": 3.2584,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 3.1294,
+       "uncertainty": 3.6352,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 2.3476,
+       "uncertainty": 0.263,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 30.5476,
+       "uncertainty": 2.1952,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 95.9951,
+       "uncertainty": 7.0768,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31496,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.2614,
+       "uncertainty": 0.5137,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 18.1766,
+       "uncertainty": 2.0075,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 3.3819,
+       "uncertainty": 3.4585,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 6.0245,
+       "uncertainty": 0.6627,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 30.3961,
+       "uncertainty": 2.0056,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 95.8163,
+       "uncertainty": 5.5685,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31496,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.2983,
+       "uncertainty": 0.632,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 14.0132,
+       "uncertainty": 1.3316,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 8.4928,
+       "uncertainty": 3.5348,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 14.3482,
+       "uncertainty": 1.9411,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 29.7982,
+       "uncertainty": 1.1763,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 91.983,
+       "uncertainty": 4.7478,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 31496,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N19_00_E076_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N19_00_E076_00_DEM/Copernicus_DSM_COG_10_N19_00_E076_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:12.601139+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "twin_sisters",
+   "name": "Twin Sisters dunite",
+   "lat": 48.7045599,
+   "lon": -121.9873731,
+   "coordinate_precision_km": 2,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 44916,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 30.3069,
+       "uncertainty": 2.8636,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 46.143,
+       "uncertainty": 1.1321,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 15.1697,
+       "uncertainty": 3.124,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 7.3485,
+       "uncertainty": 0.8549,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 113.925,
+       "uncertainty": 15.9318,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 378.3795,
+       "uncertainty": 57.2951,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 44916,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 27.6119,
+       "uncertainty": 2.7589,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 41.8041,
+       "uncertainty": 1.5031,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 12.949,
+       "uncertainty": 3.1993,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 17.6351,
+       "uncertainty": 3.2025,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 114.933,
+       "uncertainty": 16.3626,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 377.298,
+       "uncertainty": 60.6565,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 44916,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 25.4525,
+       "uncertainty": 3.2432,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 34.469,
+       "uncertainty": 2.8403,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 10.4379,
+       "uncertainty": 3.1541,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 42.2971,
+       "uncertainty": 9.3887,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 113.0361,
+       "uncertainty": 16.6229,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 338.982,
+       "uncertainty": 55.8578,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 44916,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N48_00_W123_00_DEM",
+    "Copernicus_DSM_COG_10_N48_00_W122_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W123_00_DEM/Copernicus_DSM_COG_10_N48_00_W123_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W122_00_DEM/Copernicus_DSM_COG_10_N48_00_W122_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:15.840390+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "merriam_jsc1",
+   "name": "Merriam Crater cinder quarry, San Francisco Volcanic Field (JSC-1 source)",
+   "lat": 35.3333,
+   "lon": -111.2833,
+   "coordinate_precision_km": 2,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 36312,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 8.9329,
+       "uncertainty": 5.9599,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 27.3831,
+       "uncertainty": 6.0606,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 9.8161,
+       "uncertainty": 6.9078,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 2.392,
+       "uncertainty": 0.42,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 56.0032,
+       "uncertainty": 19.4139,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 190.0648,
+       "uncertainty": 68.5719,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 36312,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 9.1704,
+       "uncertainty": 5.7234,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 26.0041,
+       "uncertainty": 6.6521,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 8.3247,
+       "uncertainty": 6.6985,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 6.3129,
+       "uncertainty": 1.6624,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 56.296,
+       "uncertainty": 19.5017,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 196.6761,
+       "uncertainty": 69.7433,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 36312,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 9.2248,
+       "uncertainty": 5.5418,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 22.6702,
+       "uncertainty": 6.82,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 8.6218,
+       "uncertainty": 5.2097,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 13.0066,
+       "uncertainty": 6.5538,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 54.5122,
+       "uncertainty": 18.6014,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 155.0049,
+       "uncertainty": 63.6031,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 36312,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N35_00_W112_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:17.670637+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "craters_of_the_moon",
+   "name": "Craters of the Moon lava field (Snake River Plain)",
+   "lat": 43.463336,
+   "lon": -113.571361,
+   "coordinate_precision_km": 0.1,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 40789,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 5.1787,
+       "uncertainty": 1.2955,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 17.7796,
+       "uncertainty": 2.5154,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 9.9363,
+       "uncertainty": 3.4209,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 2.7869,
+       "uncertainty": 0.2548,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 28.7175,
+       "uncertainty": 7.1368,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 97.4058,
+       "uncertainty": 22.6283,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 40789,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 4.9978,
+       "uncertainty": 1.3371,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 15.2587,
+       "uncertainty": 2.3453,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 8.2892,
+       "uncertainty": 2.5201,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 5.9938,
+       "uncertainty": 0.9396,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 28.2596,
+       "uncertainty": 7.0539,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 92.6875,
+       "uncertainty": 22.7782,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 40789,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 3.9508,
+       "uncertainty": 1.7621,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 10.2305,
+       "uncertainty": 1.9818,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 6.3649,
+       "uncertainty": 1.489,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 11.6345,
+       "uncertainty": 1.9861,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 27.4737,
+       "uncertainty": 6.5588,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 89.7967,
+       "uncertainty": 24.0715,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 40789,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "measured_unit": {
+    "unit": "Highway Flow (block a'a lava), sample HF16001",
+    "coordinate_quoted": "HF16001 43\u00b027'48.01\" N, 113\u00b034'16.90 \"W",
+    "coordinate_source": "Tolometti 2021, PhD thesis, Western University (Neish group, FINESSE line), Table 2.2: https://uwo.scholaris.ca/bitstreams/8a90b505-fda3-46d6-8f08-16ae2d73feaf/download",
+    "datum": "not stated (handheld GPS); treated as WGS84",
+    "note": "0.7 km from the catalog reference point; US-20/26/93 crosses the measured area"
+   },
+   "catalog_reference_point": {
+    "lat": 43.46167,
+    "lon": -113.56271,
+    "coordinate_precision_km": 5
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N43_00_W114_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N43_00_W114_00_DEM/Copernicus_DSM_COG_10_N43_00_W114_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T15:38:35.458182+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "timanfaya",
+   "name": "Timanfaya lava field (1730\u20131736), Lanzarote",
+   "lat": 28.99417,
+   "lon": -13.79333,
+   "coordinate_precision_km": 3,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 33878,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 3.0984,
+       "uncertainty": 0.9381,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 15.3088,
+       "uncertainty": 8.1726,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 4.201,
+       "uncertainty": 3.7311,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 2.8072,
+       "uncertainty": 0.9857,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 21.9415,
+       "uncertainty": 9.905,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 75.5951,
+       "uncertainty": 34.7994,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 33878,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.9317,
+       "uncertainty": 0.8177,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 13.4109,
+       "uncertainty": 6.496,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 3.2275,
+       "uncertainty": 3.3299,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 5.4919,
+       "uncertainty": 2.8322,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 21.2452,
+       "uncertainty": 9.8759,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 69.6739,
+       "uncertainty": 32.5381,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 33878,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.9877,
+       "uncertainty": 0.704,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 7.658,
+       "uncertainty": 3.6373,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 1.7524,
+       "uncertainty": 2.5847,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 9.3302,
+       "uncertainty": 6.664,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 17.1462,
+       "uncertainty": 8.6794,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 60.0314,
+       "uncertainty": 30.8179,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 33878,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N28_00_W014_00_DEM",
+    "Copernicus_DSM_COG_10_N29_00_W014_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N28_00_W014_00_DEM/Copernicus_DSM_COG_10_N28_00_W014_00_DEM.tif",
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N29_00_W014_00_DEM/Copernicus_DSM_COG_10_N29_00_W014_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:21.753864+00:00",
+   "represents_site": false
+  },
+  {
+   "id": "stillwater",
+   "name": "Stillwater Complex, Beartooth Mountains (NU-LHT simulant source)",
+   "lat": 45.3861,
+   "lon": -109.9031,
+   "coordinate_precision_km": 5,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 42162,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 23.5667,
+       "uncertainty": 2.3287,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 32.3618,
+       "uncertainty": 1.7518,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 11.2274,
+       "uncertainty": 1.9607,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 4.7812,
+       "uncertainty": 0.5002,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 54.7902,
+       "uncertainty": 10.5027,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 182.0932,
+       "uncertainty": 34.7791,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 42162,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 21.9192,
+       "uncertainty": 2.0404,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 29.5332,
+       "uncertainty": 1.8607,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 9.4809,
+       "uncertainty": 1.7979,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 10.9434,
+       "uncertainty": 1.3241,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 54.2542,
+       "uncertainty": 10.4277,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 181.1738,
+       "uncertainty": 34.6189,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 42162,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 19.9,
+       "uncertainty": 1.9061,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 25.8562,
+       "uncertainty": 1.4318,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 6.8293,
+       "uncertainty": 1.9755,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 23.0293,
+       "uncertainty": 3.5188,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 50.6397,
+       "uncertainty": 11.013,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 169.6952,
+       "uncertainty": 38.38,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 42162,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N45_00_W110_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N45_00_W110_00_DEM/Copernicus_DSM_COG_10_N45_00_W110_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:23.637637+00:00",
+   "represents_site": false
+  },
+  {
+   "id": "shawmere",
+   "name": "Shawmere Anorthosite, Kapuskasing Structural Zone (OB-1 simulant source)",
+   "lat": 48.1324,
+   "lon": -82.7886,
+   "coordinate_precision_km": 0.5,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 44433,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 3.5898,
+       "uncertainty": 0.2737,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 7.6289,
+       "uncertainty": 0.6721,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 3.4592,
+       "uncertainty": 0.3804,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 2.0041,
+       "uncertainty": 0.1436,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 9.7556,
+       "uncertainty": 1.1517,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 32.6499,
+       "uncertainty": 4.3357,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 44433,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.7194,
+       "uncertainty": 0.2738,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 5.7531,
+       "uncertainty": 0.6652,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 2.4676,
+       "uncertainty": 0.3034,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 3.3632,
+       "uncertainty": 0.3127,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 9.4406,
+       "uncertainty": 1.1002,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 31.5476,
+       "uncertainty": 3.9895,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 44433,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 1.9533,
+       "uncertainty": 0.2877,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 3.3413,
+       "uncertainty": 0.4117,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 1.3576,
+       "uncertainty": 0.1747,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 5.597,
+       "uncertainty": 0.8993,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 8.7426,
+       "uncertainty": 1.3085,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 29.4387,
+       "uncertainty": 4.9911,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 44433,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N48_00_W083_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W083_00_DEM/Copernicus_DSM_COG_10_N48_00_W083_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:25.988916+00:00",
+   "represents_site": true
+  },
+  {
+   "id": "sittampundi",
+   "name": "Sittampundi Anorthosite Complex (LSS-ISAC-1 simulant source)",
+   "lat": 11.275,
+   "lon": 77.917,
+   "coordinate_precision_km": 15,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 30202,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 1.1273,
+       "uncertainty": 0.0609,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 1.742,
+       "uncertainty": 0.058,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 0.5582,
+       "uncertainty": 0.0195,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 0.5646,
+       "uncertainty": 0.0468,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 2.7385,
+       "uncertainty": 0.3408,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 8.9043,
+       "uncertainty": 1.1971,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 30202,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 0.9558,
+       "uncertainty": 0.0789,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 1.3572,
+       "uncertainty": 0.0864,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 0.4074,
+       "uncertainty": 0.0399,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 0.6888,
+       "uncertainty": 0.0799,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 2.6444,
+       "uncertainty": 0.3306,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 8.2805,
+       "uncertainty": 1.2464,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 30202,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 0.7999,
+       "uncertainty": 0.1149,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 1.0518,
+       "uncertainty": 0.099,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 0.3014,
+       "uncertainty": 0.0572,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 1.1697,
+       "uncertainty": 0.169,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 2.4042,
+       "uncertainty": 0.3646,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 7.0195,
+       "uncertainty": 1.1076,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 30202,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N11_00_E077_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N11_00_E077_00_DEM/Copernicus_DSM_COG_10_N11_00_E077_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:27.856256+00:00",
+   "represents_site": false
+  },
+  {
+   "id": "sudbury_creighton",
+   "name": "Sudbury Igneous Complex norite, South Range (Creighton)",
+   "lat": 46.46389,
+   "lon": -81.17472,
+   "coordinate_precision_km": 2,
+   "profiles": {
+    "L60": {
+     "baseline_m": 60.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 43006,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 2.0517,
+       "uncertainty": 0.5174,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 6.6213,
+       "uncertainty": 5.9878,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 2.6786,
+       "uncertainty": 0.8414,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 2.4053,
+       "uncertainty": 0.8651,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 60.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 12.8081,
+       "uncertainty": 7.0871,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 23.379,
+       "uncertainty": 20.9227,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L120": {
+     "baseline_m": 120.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 43006,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 1.4873,
+       "uncertainty": 0.4071,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 3.9355,
+       "uncertainty": 6.0365,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 2.0437,
+       "uncertainty": 0.7295,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 3.4792,
+       "uncertainty": 2.2708,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 120.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 11.7342,
+       "uncertainty": 6.882,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 20.8218,
+       "uncertainty": 20.4418,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L240": {
+     "baseline_m": 240.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 9,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 43006,
+     "status": "valid",
+     "metrics": {
+      "slope_median_deg": {
+       "value": 0.9168,
+       "uncertainty": 0.1574,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "median of theta = atan(|grad z|), central differences over 2L on the L grid"
+      },
+      "slope_p90_deg": {
+       "value": 2.0176,
+       "uncertainty": 3.8715,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "90th percentile of theta (same slope field)"
+      },
+      "slope_iqr_deg": {
+       "value": 0.9345,
+       "uncertainty": 1.5413,
+       "unit": "deg",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "interquartile range p75 - p25 of theta (slope heterogeneity)"
+      },
+      "roughness_m": {
+       "value": 5.1737,
+       "uncertainty": 5.7385,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 240.0,
+       "definition": "RMS of z_ij - mean(4 neighbours) on the L grid (departure from local planarity)"
+      },
+      "relief_sigma_m": {
+       "value": 9.3848,
+       "uncertainty": 6.4604,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "RMS of cell elevations about the least-squares plane over the window R"
+      },
+      "relief_amplitude_m": {
+       "value": 18.3903,
+       "uncertainty": 14.8585,
+       "unit": "m",
+       "n_windows": 9,
+       "scale_m": 1000.0,
+       "definition": "p95 - p05 of plane-detrended cell elevations over the window R"
+      }
+     }
+    },
+    "L480": {
+     "baseline_m": 480.0,
+     "window_km": 1.0,
+     "offset_km": 1.0,
+     "extent_km": 2.0,
+     "windows_valid": 0,
+     "windows_total": 9,
+     "coverage_median": 1.0,
+     "samples": 43006,
+     "status": "insufficient",
+     "metrics": {}
+    }
+   },
+   "tiles": [
+    "Copernicus_DSM_COG_10_N46_00_W082_00_DEM"
+   ],
+   "urls": [
+    "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N46_00_W082_00_DEM/Copernicus_DSM_COG_10_N46_00_W082_00_DEM.tif"
+   ],
+   "dem_pixel_m": 30.9,
+   "retrieved_at": "2026-11-14T08:11:30.062645+00:00",
+   "represents_site": true
+  }
+ ],
+ "updated_at": "2026-11-14T15:38:35.574565+00:00",
+ "updated_sites": [
+  "craters_of_the_moon"
+ ]
+}

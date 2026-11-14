@@ -152,3 +152,15 @@ def test_lang_pt_br_on_analyze_poll_and_report():
         assert c.get(f"/v1/jobs/{doc['analysis_id']}?lang=fr").status_code == 422
         pdf = c.get(f"/v1/reports/{doc['analysis_id']}?format=pdf&lang=pt-BR")
         assert pdf.status_code == 200 and pdf.content[:5] == b"%PDF-"
+
+
+def test_result_with_provider_failure_is_not_replayed_from_cache():
+    """Final integration: a lunar result whose M3 step failed at the provider (e.g. PDS timeout) is returned once,
+    but the next identical request recomputes instead of replaying the outage from the 24 h cache."""
+    world = FakeWorld(10.0, -15.0, ode_status=503)                     # M3 product search fails at the provider
+    body = {"latitude": 10.0, "longitude": -15.0, "radius_km": 3}
+    with _client_world(world), TestClient(create_app()) as c:
+        first = c.post("/v1/lunar/analyze?wait_s=30", json=body).json()
+        assert first["status"] == "completed" and first["mineralogy"]["reason"] == "provider_error"
+        again = c.post("/v1/lunar/analyze?wait_s=30", json=body).json()
+        assert again["cache"]["hit"] is False and again["analysis_id"] != first["analysis_id"]

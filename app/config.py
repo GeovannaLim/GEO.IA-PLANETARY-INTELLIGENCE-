@@ -39,6 +39,9 @@ class Settings(BaseSettings):
     # total budget for the ODE GDS altimetry step; a slow GDS fails only the topography section,
     # never the whole job (must stay well below job_timeout_s)
     altimetry_deadline_s: float = 150.0
+    # total budget for the lunar M3 mineralogy step (PDS Imaging byte-range reads); a slow PDS fails only the
+    # mineralogy section (reported as provider_error, never as an absence of minerals), never the whole job
+    mineralogy_deadline_s: float = 200.0   # observed M3 under a slow PDS: 150-203 s; leaves 40 s of the job budget
     default_wait_s: float = 0.0
     result_cache_ttl_s: int = 24 * 3600
     metadata_cache_ttl_s: int = 12 * 3600

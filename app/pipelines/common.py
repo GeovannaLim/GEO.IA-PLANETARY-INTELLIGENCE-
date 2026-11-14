@@ -12,14 +12,14 @@ import logging
 import math
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Awaitable, Callable
+from typing import Any, Awaitable, Callable
 
 from app.config import get_settings
 from app.providers import ode, pds, trek, usgs
 from app.providers.http import HttpClient, ProviderError
 from app.schemas.analysis import (
     AnalysisResult, AnalysisStatus, AnalyzeRequest, ConfidenceSection, Coordinates, Criterion,
-    EarthAnalogSection, EnvironmentSection, ImagerySection, MineralogySection, ProblemDetail, Reason, SectionStatus,
+    EarthAnalogSection, EnvironmentSection, GeomorphologySection, ImagerySection, MineralogySection, ProblemDetail, Reason, SectionStatus,
     SourceRecord, TerrestrialAnalogSection, TopographySection)
 from app.science import topography as topo
 from app.science.coordinates import (BODY_RADIUS_KM, REFERENCE_FRAME, region_box, to_east_180,
@@ -61,6 +61,9 @@ class Context:
     sources: list[SourceRecord] = field(default_factory=list)
     problems: list[ProblemDetail] = field(default_factory=list)
     _n: int = 0
+    altimetry: Any = None              # ode.AltimetryResult kept for geomorphology (Moon); never serialised
+    altimetry_radius_km: float | None = None
+    altimetry_source_id: str | None = None
 
     def source(self, **kw) -> SourceRecord:
         self._n += 1
@@ -173,6 +176,7 @@ async def topography_step(ctx: Context) -> TopographySection:
         return TopographySection(status=SectionStatus.unavailable, reason=Reason.no_coverage, n_points=0,
                                  method=f"{meta['instrument']} shots", datum=meta["datum"],
                                  sampled_radius_km=radius, source_ids=[rec.source_id])
+    ctx.altimetry, ctx.altimetry_radius_km, ctx.altimetry_source_id = result, radius, rec.source_id
     return topo.summarize(result.lat, result.lon360, result.elev_m, lat0=ctx.lat, lon0_360=to_east_360(ctx.lon),
                           roi_radius_km=ctx.req.radius_km, sampled_radius_km=radius,
                           body_radius_km=BODY_RADIUS_KM[ctx.body], datum=meta["datum"],
@@ -258,12 +262,14 @@ def finalize(ctx: Context, analysis_id: str, created_at: datetime, imagery: Imag
              topo_s: TopographySection, min_s: MineralogySection, analogs: EarthAnalogSection,
              confidence: ConfidenceSection, progress: list[str], earth_obs: dict | None = None,
              terrestrial: TerrestrialAnalogSection | None = None,
-             environment: EnvironmentSection | None = None) -> AnalysisResult:
+             environment: EnvironmentSection | None = None,
+             geomorphology: GeomorphologySection | None = None) -> AnalysisResult:
     return AnalysisResult(
         analysis_id=analysis_id, planet=ctx.body, status=AnalysisStatus.completed, created_at=created_at,
         completed_at=now(), progress=progress, coordinates=ctx.coords, data_sources=ctx.sources,
         imagery=imagery, topography=topo_s, mineralogy=min_s, earth_analogs=analogs,
         terrestrial_analogs=terrestrial, earth_observation=earth_obs, environment=environment,
+        geomorphology=geomorphology,
         confidence=confidence, problems=ctx.problems, report_id=analysis_id,
         links={"self": f"/v1/jobs/{analysis_id}", "report": f"/v1/reports/{analysis_id}",
                "report_pdf": f"/v1/reports/{analysis_id}?format=pdf"})
