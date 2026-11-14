@@ -3,7 +3,7 @@
 ## Produção (2026-11-05)
 | Item | Valor |
 |---|---|
-| GitHub | https://github.com/GeovannaLim/GEO.IA-PLANETARY-INTELLIGENCE- (privado, branch `main`) |
+| GitHub | https://github.com/GeovannaLim/GEO.IA-PLANETARY-INTELLIGENCE- (branch `main`) |
 | Render | https://geoia-planetary-backend.onrender.com (plano Free, Docker) |
 | Health | 200, `environment: production`, `database: ok`, Earth Engine `initialized: true` (service account) |
 | CORS | `https://geoai-interplanetary.goskip.app` |
@@ -42,7 +42,7 @@ Não há CLI/API do Render autenticada nesta máquina — o deploy é feito pelo
 
 1. https://dashboard.render.com → **New → Blueprint** → conectar o GitHub → escolher `geoia-planetary-backend`.
 2. O `render.yaml` cria o serviço web Docker no plano **free** (sem custo).
-3. Preencher no painel: `GEOIA_CORS_ORIGINS` = `https://geoai-interplanetary.goskip.app` (plataforma Skip); opcional `GEE_PROJECT` = `geoia-505304` + `GEE_SERVICE_ACCOUNT_JSON` (conteúdo da chave JSON da service account `geoia-render`).
+3. Preencher no painel: `GEOIA_CORS_ORIGINS` = `https://geoai-interplanetary.goskip.app` (plataforma Skip); opcional `GEE_PROJECT` = `<id do projeto Google Cloud>` + `GEE_SERVICE_ACCOUNT_JSON` (conteúdo da chave JSON de uma service account com acesso ao Earth Engine).
 4. Após “Live”: verificar
    ```bash
    curl -i https://<servico>.onrender.com/health

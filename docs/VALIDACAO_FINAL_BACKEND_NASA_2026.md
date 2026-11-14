@@ -293,3 +293,30 @@ existente mudou de tipo ou de significado.
 
 **APROVADO para publicação**, com os riscos da Seção 8 aceitos. Commit, push e deploy aguardam autorização
 explícita. Rollback: `ed1ee18`.
+
+## 13. Publicação e validação em produção (`8df1d61`)
+
+Publicação autorizada pela usuária ("Commit and deploy") em 2026-11-14.
+
+**Publicação**
+- Commit `8df1d61` com 35 arquivos.
+- Push `ed1ee18..8df1d61` para `origin/main`; o push levou junto o commit local `481fdc2`.
+- O deploy foi automático no Render (`autoDeploy`).
+- Versão confirmada pelo `/openapi.json`, que agora tem `GeomorphologySection.experimental`. Esse schema não
+  existe em `ed1ee18`.
+- Ficaram fora do commit `var/`, `.env` e os documentos antigos `docs/PROMPT_SKIP_*.md` e `docs/AUDITORIA_*.md`.
+
+**21 cenários reais contra `https://geoia-planetary-backend.onrender.com`**
+
+| Item | Resultado |
+|---|---|
+| Vereditos | **20 PASS + M8 INCONCLUSIVE**, iguais a `ed1ee18`, **na primeira execução, sem retentativas** |
+| Comparação com `ed1ee18` (`scripts/final_regression.py`) | **21/21 idênticos** em mineralogia, `terrestrial_analogs`, `environment`, topografia, imagem, `earth_analogs` e confiança, com a proveniência resolvida |
+| Produtos M3 | os mesmos da produção anterior: L1 `M3G20090513T191408`, L2 `M3G20090416T122951`, L3 `M3G20090609T183254`, L4 `M3G20090202T151458` |
+| Schema e segurança | 21/21 respostas válidas; 0 caminhos locais, tracebacks ou credenciais |
+| Geomorfologia em L4 | `available`, `experimental: true`, nota em pt-BR. Rio Tinto só em `modified_relief_references`; Craters of the Moon em rugged (fraca, conforme a Seção 3) |
+| Tempos | Marte 6,5–13 s; Lua 45–103 s, abaixo do prazo do M3 (200 s) e do limite do job (240 s) |
+
+Evidência: `var/prod_8df1d61/science.log` e `var/prod_8df1d61/science_tests.json` (não versionados).
+
+**Rollback:** se necessário, novo deploy de `ed1ee18` no Render.

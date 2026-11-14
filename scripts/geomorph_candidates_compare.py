@@ -5,7 +5,6 @@ correspond) / partial (some metrics) / no_correspondence / inconclusive (profile
 W1 (slope-distribution distance, deg) is shown as a descriptive diagnostic only (Phase 3A study: not adopted).
     PYTHONPATH=. python scripts/geomorph_candidates_compare.py > var/geomorph_candidates.txt"""
 import json, pickle
-import numpy as np
 from app.science import geomorphology as G
 from scripts.geomorph_dist_lib import perm_test, unit_profile
 

@@ -5,7 +5,6 @@ Also: window-count sensitivity (5..9 of the 9 windows) on Earth sites and lunar 
 import json, math, itertools
 import numpy as np
 from app.science import geomorphology as G
-from app.providers import copernicus_dem as C  # noqa: F401  (provenance only)
 
 Cj = json.load(open("var/geomorph_controls.json"))
 REG = {r["key"]: r for r in json.load(open("var/geomorph_regions.json"))}

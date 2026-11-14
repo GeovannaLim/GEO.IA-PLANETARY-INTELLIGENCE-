@@ -1,52 +1,85 @@
-# GEØ.IA Planetary Intelligence — backend científico
+# GEØ.IA Planetary Intelligence — scientific backend
 
-API FastAPI que analisa regiões da **Terra**, da **Lua** e de **Marte** a partir de coordenadas, usando somente fontes científicas rastreáveis (NASA PDS/ODE, NASA Trek, USGS Astrogeology, Google Earth Engine). Cada valor devolvido aponta para a fonte, o produto e o processamento de onde veio. Nenhum dado lunar local, vetor fixo ou resultado pré-calculado é usado como medição.
+**NASA Space Apps Challenge 2026** · Challenge: *Identify Earth Locations that Analog the Permanent Moon Base
+Locations and Mars*
 
-## Arquitetura
+GEØ.IA lets anyone select a region of the Moon or Mars on a 3D globe. It returns the documented places on Earth
+that best help study that region, explains why, and states where the analogy fails. This repository is the
+scientific backend: a FastAPI service that reads open NASA data live, computes screening-level mineral evidence,
+lunar south-polar illumination and an experimental terrain comparison, and matches the evidence to a curated catalog
+of terrestrial analog sites.
 
-```
-Vercel (site institucional) ──► Skip (plataforma 3D) ──HTTPS──► Render (esta API) ──► NASA / USGS / Earth Engine
-```
+| | |
+|---|---|
+| Live platform | https://geoai-interplanetary.goskip.app |
+| Scientific API | https://geoia-planetary-backend.onrender.com (OpenAPI at `/docs`) |
+| Project documentation (PDF, 14 pages) | [docs/submission/GEOIA_NASA_Space_Apps_2026_Documentation.pdf](docs/submission/GEOIA_NASA_Space_Apps_2026_Documentation.pdf) |
+| Scientific documentation | [docs/submission/SCIENTIFIC_DOCUMENTATION.md](docs/submission/SCIENTIFIC_DOCUMENTATION.md) |
+| Validation and tests | [docs/submission/VALIDATION_AND_TESTS.md](docs/submission/VALIDATION_AND_TESTS.md) |
+| Data, resources and references | [docs/submission/REFERENCES.md](docs/submission/REFERENCES.md) |
+
+## Use of AI (Super Intelligence)
+
+This project was developed with the assistance of generative AI tools, under the team's direction:
+
+- **Backend code, tests, validation scripts and documentation drafts:** written with **Claude (Anthropic)**. The
+  team chose the challenge, defined the scientific approach and acceptance criteria, and reviewed and approved
+  every change and deployment. Every commit carries a `Co-Authored-By: Claude` line in its metadata.
+- **Literature and coordinate research:** assisted by Claude. Every coordinate and reference used was quoted from
+  an opened source, and DOIs were verified on Crossref/DataCite.
+- **Web interface:** generated with the **Skip AI app builder**, from prompts written by the team.
+- **Results:** no scientific result is produced by an AI model. Every value is computed at request time from the
+  NASA and partner data listed below.
+
+## What the API returns
+
+`POST /v1/{lunar,mars}/analyze` with `{"latitude", "longitude", "radius_km"}` returns:
+
+| Section | Content |
+|---|---|
+| `topography` | LRO LOLA RDR / MGS MOLA PEDR laser shots: elevation statistics, slopes, roughness, coverage |
+| `mineralogy` | Moon: Chandrayaan-1 M³ band depths. Mars: MRO CRISM summary parameters. Each indicator has a statistical detection test, and on Mars a physical floor calibrated on real negative controls. Screening, not identification. |
+| `terrestrial_analogs` | Documented Earth analog sites whose published geology explains the detected mineral families, with coordinates, similarities, **differences**, limitations and DOI-verified references. No similarity score. |
+| `environment` | Lunar south pole: sunlit fraction, permanent-shadow area and Earth visibility (LOLA/PGDA models) |
+| `geomorphology` | Lunar south pole, **experimental**: LOLA and Copernicus GLO-30 terrain profiled with the same method; correspondences per exploration purpose, never presented as recommendations |
+| `data_sources`, `problems` | Product IDs, observation dates and URLs of every value; explicit reasons for every unavailable section |
+
+A missing measurement (no sunlight, permanent shadow, no coverage, a NASA service timeout) is reported with a
+reason code and is never turned into "no mineral" or into an analog. Other endpoints: `GET /v1/jobs/{id}`,
+`GET /v1/reports/{id}` (`?format=pdf`), `GET /v1/planetary/datasets`, `GET /health`. Prose fields are available in
+English and Portuguese (`?lang=en` / `?lang=pt-BR`).
+
+## Data sources
+
+| Body | Topography | Spectroscopy | Other |
+|---|---|---|---|
+| Moon | LRO LOLA RDR (ODE GDS) | Chandrayaan-1 M³ L2 (PDS Imaging Node, HTTP range reads) | LOLA/PGDA south polar illumination and permanent-shadow maps; Moon Trek WMTS |
+| Mars | MGS MOLA PEDR (ODE GDS) | MRO CRISM MTRDR (PDS Geosciences Node) | Mars Trek WMTS |
+| Earth | Copernicus DEM GLO-30 (ESA, AWS Open Data) | NASA EMIT L2A (Google Earth Engine) | USGS Astrogeology STAC |
+
+Full list, with how each source is used: [docs/submission/REFERENCES.md](docs/submission/REFERENCES.md).
+
+## Repository layout
 
 ```
 app/
-  main.py              FastAPI, CORS por variável de ambiente, logs JSON, ciclo de vida
-  config.py            configuração GEOIA_* (limites, timeouts, concorrência)
-  api/routes.py        endpoints
-  schemas/analysis.py  contrato único Terra/Lua/Marte (estados por seção + motivo)
-  providers/           clientes HTTP: ODE REST/GDS, Trek, PDS, USGS STAC, M3, CRISM, Earth Engine
-  pipelines/           orquestração por corpo (common, lunar, mars, earth)
-  science/             coordenadas, topografia, espectroscopia, similaridade
-  services/            jobs assíncronos, SQLite, relatórios PDF, cache, catálogo de fontes
-  data/                biblioteca terrestre EMIT (90 sítios, com proveniência)
+  main.py, config.py   FastAPI app, configuration (GEOIA_* environment variables)
+  api/                 endpoints
+  schemas/             single response contract for Moon/Mars/Earth (status + reason per section)
+  providers/           HTTP clients: ODE REST/GDS, Trek, PDS, USGS STAC, M³, CRISM, LOLA illumination,
+                       Copernicus DEM, Earth Engine
+  pipelines/           orchestration per body, with per-step deadlines
+  science/             coordinates, topography, spectral indicators, analog matching, geomorphology
+  services/            async jobs, SQLite store, PDF reports, cache
+  data/                curated analog catalog, Earth terrain profiles, EMIT reference library (with provenance)
+scripts/               reproducible validation: 21 pre-registered scenarios, adversarial tests, controls
+tests/                 unit and integration tests (synthetic data only here), live tests (opt-in)
+docs/submission/       English project documentation for the NASA Space Apps submission
+docs/                  the team's internal working reports for each development phase (in Portuguese)
 ```
 
-## Tecnologias
-Python 3.12 · FastAPI · Pydantic v2 · HTTPX · NumPy · ReportLab · SQLite · Docker · pytest/respx · earthengine-api (opcional).
+## Run locally
 
-## Fontes científicas
-
-| Corpo | Topografia (numérica) | Espectroscopia | Imagem / descoberta |
-|---|---|---|---|
-| Lua | LRO LOLA RDR (ODE GDS) | Chandrayaan-1 M3 L2 (leitura parcial por HTTP Range) | Trek WMTS, PDS Registry (LOLA, Diviner), USGS STAC (DTMs Kaguya) |
-| Marte | MGS MOLA PEDR (ODE GDS) | MRO CRISM MTRDR (parâmetros-sumário + I/F) | Trek WMTS, USGS STAC (DTMs CTX/HiRISE) |
-| Terra | Copernicus DEM GLO-30 (Earth Engine) | EMIT L2A (Earth Engine) | — |
-
-Detalhes, definições e referências: [docs/CIENCIA.md](docs/CIENCIA.md).
-
-## Endpoints
-
-| Método | Caminho | Descrição |
-|---|---|---|
-| POST | `/v1/lunar/analyze` · `/v1/mars/analyze` · `/v1/earth/analyze` | `{"latitude", "longitude", "radius_km"}` → 202 + polling, ou `?wait_s=` (0–60) |
-| GET | `/v1/jobs/{analysis_id}` | estado e resultado |
-| GET | `/v1/reports/{report_id}` | relatório JSON; `?format=pdf` para PDF |
-| GET | `/v1/planetary/datasets` | fontes, convenções e o que cada uma não responde |
-| GET | `/health` | saúde (banco, jobs, Earth Engine sem segredos) |
-
-OpenAPI em `/docs`. Contrato para o Skip, com exemplos TypeScript: [docs/INTEGRACAO_FRONTEND.md](docs/INTEGRACAO_FRONTEND.md).
-
-## Instalação local
 ```bash
 python3.12 -m venv .venv
 .venv/bin/pip install -r requirements-dev.txt
@@ -54,39 +87,29 @@ cp .env.example .env
 .venv/bin/uvicorn app.main:app --reload --port 8000
 ```
 
-## Configuração de ambiente
-Todas as variáveis estão em [.env.example](.env.example). Principais:
+## Tests
 
-| Variável | Função |
-|---|---|
-| `GEOIA_CORS_ORIGINS` | origens exatas permitidas (separadas por vírgula; sem curinga) |
-| `GEOIA_DB_PATH` | arquivo SQLite de jobs e relatórios |
-| `GEOIA_MAX_CONCURRENT_JOBS`, `GEOIA_JOB_TIMEOUT_S` | limites de processamento |
-| `GEOIA_MAX_RADIUS_KM_{MOON,MARS,EARTH}` | limites operacionais |
-| `GEE_PROJECT`, `GEE_SERVICE_ACCOUNT_JSON` ou `GEE_SERVICE_ACCOUNT_KEY_FILE` | Earth Engine (só o endpoint da Terra) |
-
-Segredos ficam apenas no painel do Render ou em `.env` local; nunca são logados nem devolvidos pela API.
-
-## Testes
 ```bash
-.venv/bin/python -m pytest -q                                   # offline: unitários, integração com mocks, API
-GEOIA_LIVE_TESTS=1 .venv/bin/python -m pytest -m live -q        # chamadas reais à NASA/USGS
-PYTHONPATH=. .venv/bin/python scripts/validate_production.py https://<servico>.onrender.com   # testes A–F contra um deploy
+.venv/bin/python -m pytest -q                                 # 222 offline tests (synthetic fakes only in tests/)
+GEOIA_LIVE_TESTS=1 .venv/bin/python -m pytest -m live -q      # live calls to NASA services
+PYTHONPATH=. .venv/bin/python scripts/science_tests.py https://geoia-planetary-backend.onrender.com   # 21 scenarios
 ```
-Os mocks (`tests/fakes.py`) existem só nos testes; um teste garante que o pacote `app` não os importa nem contém o vetor lunar antigo.
 
-## Deploy
-Docker + blueprint Render (`render.yaml`, plano **free** por padrão). Passo a passo, opções de persistência e validação: [docs/DEPLOY.md](docs/DEPLOY.md). O GitHub Actions (`.github/workflows/tests.yml`) roda os testes e faz build + health check da imagem.
+A test guarantees that the `app` package never imports the test fakes. Validation results for every release are
+summarised in [docs/submission/VALIDATION_AND_TESTS.md](docs/submission/VALIDATION_AND_TESTS.md).
 
-## Robustez operacional
-Timeouts e retries com backoff exponencial; allow-list de hosts (inclusive para URLs devolvidas pelos provedores) contra SSRF; limite de bytes por download; concorrência por host e por job; cache de metadados (12 h) e de resultados (24 h, sinalizado em `cache.hit`); cada etapa isolada (falha de um provedor não derruba as outras seções); jobs interrompidos por reinício são retomados automaticamente enquanto o banco persistir.
+## Deployment
 
-## Limitações científicas
-* Indicadores espectrais são **triagem** (detecção estatística de absorção), não identificação nem abundância mineral.
-* M3: correção térmica empírica afeta a região de 2 µm; 140–280 m/pixel.
-* CRISM: só onde há observações direcionadas (~10 km); parâmetros-sumário sensíveis a ruído e CO2 residual.
-* Análogos terrestres: **ranking** por 2 profundidades de banda com definição idêntica — discriminação fraca; biblioteca dominada por sistemas hidrotermais. Não é probabilidade de depósito.
-* Altimetria laser deixa lacunas entre trilhas; a cobertura é reportada.
-* Terra exige credencial Earth Engine; sem ela responde `not_configured`.
+Docker and a Render blueprint (`render.yaml`, free plan). Secrets live only in the Render dashboard or in a local
+`.env` (never committed, never logged, never returned by the API). See [docs/DEPLOY.md](docs/DEPLOY.md).
 
-Auditoria do backend anterior e verificação das APIs: [docs/DIAGNOSTICO.md](docs/DIAGNOSTICO.md).
+## Main limitations
+
+- Spectral indicators are screening parameters, not mineral identifications or abundances.
+- Analog sites come from a curated catalog of documented sites; the platform does not discover new sites.
+- The geomorphology comparison is experimental and its discrimination is modest.
+- Lunar illumination is model-derived; ice is not measured.
+- Results depend on the availability of NASA services; when one fails, the affected section says so.
+
+The complete list is in the scientific documentation. The Portuguese version of this README is
+[README.pt-BR.md](README.pt-BR.md).
