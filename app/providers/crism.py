@@ -38,6 +38,10 @@ LIMITATIONS = [
     "depths therefore differ in calibration from the terrestrial EMIT surface reflectance.",
 ]
 
+POLAR_LIMITATION = ("Polar stereographic product: pixel positions use the spherical fallback equations published "
+                    "with the product (MTR_MAP.CAT); the products were generated with the ellipsoid form, so "
+                    "positions near the pole are uncertain at the ~1 km level.")
+
 LEGACY_WL = (800.0, 1000.0, 1300.0, 1700.0, 2000.0, 2300.0)
 
 
@@ -51,8 +55,10 @@ class MapProjection:
     pixel_size: tuple[float, float]
 
     @classmethod
-    def from_header(cls, h: EnviHeader) -> "MapProjection":
+    def from_header(cls, h: EnviHeader) -> "MapProjection | PolarStereographic":
         mi, pi = h.map_info, h.projection_info
+        if len(mi) >= 7 and "polar stereographic" in mi[0].lower():
+            return PolarStereographic.from_header(h)
         if len(mi) < 7 or len(pi) < 4 or "equirectangular" not in mi[0].lower():
             raise ProviderError(PROVIDER, "unsupported or missing map projection in header")
         return cls(radius_m=float(pi[1]), std_parallel_deg=float(pi[2]), central_meridian_deg=float(pi[3]),
@@ -77,6 +83,59 @@ class MapProjection:
         y = self.tie_xy[1] - (row - (self.tie_px[1] - 1.0) + 0.5) * self.pixel_size[1]
         lat = np.degrees(y / self.radius_m)
         lon = np.degrees(x / (self.radius_m * math.cos(math.radians(self.std_parallel_deg)))) + self.central_meridian_deg
+        return lat, lon
+
+
+@dataclass
+class PolarStereographic:
+    """MTRDR polar stereographic grid (observations poleward of +/-65 deg).
+
+    Uses the transformation published with the product (catalog/MTR_MAP.CAT, mrocr_4001):
+    planetocentric latitude, spherical equations with the IAU 2000 polar radius
+    Rp = 3376.2 km, true scale at the pole; south: longitude 0 points up and 90E right;
+    north: longitude 0 points down and 90E right. The grid comes from the ENVI ``map info``
+    tie point (upper-left corner of pixel 1,1) and pixel size, as for the equirectangular
+    products. The catalog states the products were generated with the ellipsoid form and
+    gives these spherical equations as the fallback, so positions near the pole carry a
+    small extra uncertainty (reported in the limitations).
+    """
+    south: bool
+    radius_m: float
+    tie_px: tuple[float, float]
+    tie_xy: tuple[float, float]
+    pixel_size: tuple[float, float]
+
+    RP = 3376200.0
+
+    @classmethod
+    def from_header(cls, h: EnviHeader) -> "PolarStereographic":
+        mi = h.map_info
+        name = mi[0].lower()
+        if "south" not in name and "north" not in name:
+            raise ProviderError(PROVIDER, "polar stereographic header without hemisphere")
+        return cls(south="south" in name, radius_m=cls.RP, tie_px=(float(mi[1]), float(mi[2])),
+                   tie_xy=(float(mi[3]), float(mi[4])), pixel_size=(float(mi[5]), float(mi[6])))
+
+    def xy(self, lat, lon):
+        colat = np.radians(90.0 + lat) if self.south else np.radians(90.0 - lat)
+        rho = 2.0 * self.RP * np.tan(colat / 2.0)
+        lam = np.radians(lon)
+        return rho * np.sin(lam), (rho * np.cos(lam) if self.south else -rho * np.cos(lam))
+
+    def pixel(self, lat: float, lon: float) -> tuple[float, float]:
+        """Fractional (row, col), 0-based, of the point."""
+        x, y = self.xy(lat, lon)
+        col = (x - self.tie_xy[0]) / self.pixel_size[0] + (self.tie_px[0] - 1.0)
+        row = (self.tie_xy[1] - y) / self.pixel_size[1] + (self.tie_px[1] - 1.0)
+        return float(row), float(col)
+
+    def latlon(self, row: np.ndarray, col: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        """Lat/lon of pixel centres (0-based indices); longitude east 0-360."""
+        x = self.tie_xy[0] + (col - (self.tie_px[0] - 1.0) + 0.5) * self.pixel_size[0]
+        y = self.tie_xy[1] - (row - (self.tie_px[1] - 1.0) + 0.5) * self.pixel_size[1]
+        c = np.degrees(2.0 * np.arctan(np.hypot(x, y) / (2.0 * self.RP)))
+        lat = c - 90.0 if self.south else 90.0 - c
+        lon = np.degrees(np.arctan2(x, y if self.south else -y)) % 360.0
         return lat, lon
 
 
@@ -164,8 +223,11 @@ async def extract(http: HttpClient, product: ode.OdeProduct, lat: float, lon: fl
 
     legacy, legacy_wl = None, None
     processing = [
-        f"map projection from SU header (Equirectangular, R={R:.1f} m, std parallel {proj.std_parallel_deg}°); "
-        f"target pixel row {row}, col {col}",
+        (f"map projection from SU header (Polar Stereographic, {'south' if proj.south else 'north'}, spherical "
+         f"fallback equations of MTR_MAP.CAT, Rp={R:.1f} m); target pixel row {row}, col {col}"
+         if isinstance(proj, PolarStereographic) else
+         f"map projection from SU header (Equirectangular, R={R:.1f} m, std parallel {proj.std_parallel_deg}°); "
+         f"target pixel row {row}, col {col}"),
         f"window {r1 - r0 + 1}x{c1 - c0 + 1} px ({px:.0f} m/px); pixels > {radius_km} km masked; "
         f"ignore value {ignore:g} and non-finite masked",
     ]
@@ -190,4 +252,5 @@ async def extract(http: HttpClient, product: ode.OdeProduct, lat: float, lon: fl
         row=row, col=col, pixel_size_m=px, half_window=half, params=params,
         legacy_spectra=legacy, legacy_wavelengths=legacy_wl,
         n_window=int(within.sum()), n_valid=int(valid.sum()),
-        incidence_deg=product.incidence_deg, emission_deg=product.emission_deg, processing=processing)
+        incidence_deg=product.incidence_deg, emission_deg=product.emission_deg, processing=processing,
+        limitations=list(LIMITATIONS) + ([POLAR_LIMITATION] if isinstance(proj, PolarStereographic) else []))

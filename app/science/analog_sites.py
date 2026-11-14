@@ -73,7 +73,9 @@ EVIDENCE: dict[str, dict[str, Any]] = {
                                               "altered_basaltic_soil"},
                      en="H2O in hydrated minerals (BD1900_2; mineral family not resolved)",
                      pt="H2O em minerais hidratados (BD1900_2; família mineral não resolvida)"),
-    "ferric_oxide": dict(strength="specific", sites={"ferric_oxide", "altered_basaltic_soil"},
+    # broad: BD530_2 was positive at every Mars control, dust included (Martian dust is ferric), so it
+    # does not discriminate regions; adversarial test showed ferric-only sites tying with clay analogs
+    "ferric_oxide": dict(strength="broad", sites={"ferric_oxide", "altered_basaltic_soil"},
                          en="crystalline ferric oxides (BD530_2)", pt="óxidos férricos cristalinos (BD530_2)"),
     "ice": dict(strength="specific", sites=set(), en="CO2 or H2O ice (BD1435/BD1500_2)",
                 pt="gelo de CO2 ou H2O (BD1435/BD1500_2)"),
@@ -88,6 +90,19 @@ CRISM_CLASS = {"OLINDEX3": "olivine", "LCPINDEX2": "pyroxene", "HCPINDEX2": "pyr
                "MIN2295_2480": "carbonate", "MIN2345_2537": "carbonate", "BD2100_2": "sulfate",
                "SINDEX2": "sulfate", "BD1900_2": "hydrated", "BD530_2": "ferric_oxide",
                "BD1435": "ice", "BD1500_2": "ice"}
+# infrared families whose diagnostic absorptions overlap H2O/CO2 ice bands (1.25, 1.435, 1.5, 2.0 um)
+ICE_AFFECTED = {"olivine", "pyroxene", "mafic", "fe_mg_phyllosilicate", "al_phyllosilicate_silica",
+                "carbonate", "sulfate", "hydrated"}
+def _tie_notes(sites: list, t: dict) -> list[str]:
+    groups: dict[int, list[str]] = {}
+    for x in sites:
+        r = x.get("rank") if isinstance(x, dict) else x.rank
+        n = x.get("name") if isinstance(x, dict) else x.name
+        if r is not None:
+            groups.setdefault(r, []).append(n)
+    return [t["tie"].format(names="; ".join(v)) for _, v in sorted(groups.items()) if len(v) > 1]
+
+
 # a broad class is dropped when a specific class already explains the same absorption
 SUBSUMED = {"mafic": {"olivine", "pyroxene"},
             "hydrated": {"sulfate", "fe_mg_phyllosilicate", "al_phyllosilicate_silica", "carbonate"}}
@@ -104,6 +119,10 @@ T = {
                      "doi:10.1126/science.287.5458.1626) and are NOT specific to the selected region.",
         no_evidence="The region's measurements show no screened detection that maps to a documented analog family.",
         no_site="No catalog site documents this family: {labels}.",
+        tie="Tied (same evidence strength, documentary basis and EMIT agreement): {names}. Their order is not "
+            "meaningful.",
+        ice_masked="Exposed ice dominates the spectrum; ice absorptions (1.25, 1.5, 2.0 um) overlap the "
+                   "diagnostic bands of {labels}, so those detections are not used to choose analog sites.",
         emit_both="Masked EMIT composite of the site ({scenes} scenes, {start}–{end}, {pct}% rock pixels): "
                   "1 µm band {s1}, 2 µm band {s2}; region: 1 µm {r1}, 2 µm {r2}.",
         detected="detected", not_detected="not detected", unknown="not assessed",
@@ -130,6 +149,11 @@ T = {
                      "e NÃO são específicos da região selecionada.",
         no_evidence="As medições da região não têm detecção triada que corresponda a uma família análoga documentada.",
         no_site="Nenhum sítio do catálogo documenta esta família: {labels}.",
+        tie="Empatados (mesma força de evidência, base documental e concordância EMIT): {names}. A ordem entre "
+            "eles não tem significado.",
+        ice_masked="Gelo exposto domina o espectro; as absorções do gelo (1,25, 1,5 e 2,0 µm) se sobrepõem "
+                   "às bandas diagnósticas de {labels}, por isso essas detecções não são usadas para escolher "
+                   "sítios análogos.",
         emit_both="Composto EMIT mascarado do sítio ({scenes} cenas, {start}–{end}, {pct}% de pixels de rocha): "
                   "banda de 1 µm {s1}, banda de 2 µm {s2}; região: 1 µm {r1}, 2 µm {r2}.",
         detected="detectada", not_detected="não detectada", unknown="não avaliada",
@@ -273,8 +297,8 @@ def _texts(site: dict, matched: list[str], comp: dict, lang: str) -> dict[str, l
                                           pct=round(100 * e["rock_fraction"]), s1=state(e["bd1000_detected"]),
                                           s2=state(e["bd2000_detected"]), r1=state(r1), r2=state(r2)))
         for band, r, s in (("1 µm", r1, e["bd1000_detected"]), ("2 µm", r2, e["bd2000_detected"])):
-            if r is None or s is None:
-                continue
+            if r is None or s is None or (r is False and s is False):
+                continue  # both lacking a band is not a similarity (adversarial test A2)
             (sims if r == s else diffs).append(
                 t["agree"].format(band=band, state=state(r)) if r == s else
                 t["disagree"].format(band=band, r=state(r), s=state(s)))
@@ -297,6 +321,12 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
     if basis is None:
         return TerrestrialAnalogSection(status=SectionStatus.unavailable, reason=Reason.not_attempted,
                                         catalog=f"{cat['name']} v{cat['version']}")
+    masked: list[str] = []
+    if any(e["class"] == "ice" for e in evidence):
+        # ice detections already passed the calibrated magnitude floor; on icy surfaces the other
+        # infrared families are not trustworthy, so they are reported but not matched
+        masked = [e["class"] for e in evidence if e["class"] in ICE_AFFECTED]
+        evidence = [e for e in evidence if e["class"] not in ICE_AFFECTED]
     ev_classes = [e["class"] for e in evidence]
     r1, r2 = _region_band(body, min_s, "1000"), _region_band(body, min_s, "2000")
     scored = []
@@ -314,16 +344,25 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
         ok, _ = _emit_usable(e)
         agree = 0
         if ok and basis == "regional_spectral_evidence":
-            agree = sum(1 for r, s in ((r1, e["bd1000_detected"]), (r2, e["bd2000_detected"]))
-                        if r is not None and s is not None and r == s)
+            # only shared PRESENCE of a band counts; shared absence is weak evidence (adversarial test A2)
+            agree = sum(1 for r, s in ((r1, e["bd1000_detected"]), (r2, e["bd2000_detected"])) if r and s)
         basis_w = max(BASIS_WEIGHT.get(a.get("basis"), 0) for a in site["analog_for"] if a["body"] == body)
-        scored.append(((n_spec, len(matched), basis_w, agree, -site["coordinate_precision_km"]), site, matched, e))
+        # evidence explained, documentary basis and measured EMIT agreement only; coordinate precision is
+        # not an analog-quality criterion (adversarial test: it silently broke exact ties)
+        scored.append(((n_spec, len(matched), basis_w, agree), site, matched, e))
+    scored.sort(key=lambda x: x[1]["id"])                 # deterministic display order inside a tie
     scored.sort(key=lambda x: x[0], reverse=True)
+    ranks, prev, rank = [], None, 0
+    for key, *_ in scored:
+        if key != prev:
+            rank, prev = rank + 1, key
+        ranks.append(rank)
     sites = []
-    for _, site, matched, e in scored[:MAX_SITES]:
+    for (_, site, matched, e), rank in zip(scored[:MAX_SITES], ranks):
         comp = {"body": body, "emit": e, "region_bd1000": r1 if basis != "global_context" else None,
                 "region_bd2000": r2 if basis != "global_context" else None}
         sites.append(TerrestrialAnalogSite(
+            rank=rank,
             id=site["id"], name=site["name"], country=site["country"], latitude=site["lat"], longitude=site["lon"],
             coordinate_source=site["coordinate_source"], coordinate_precision_km=site["coordinate_precision_km"],
             key_minerals=site["key_minerals"], matched_classes=matched,
@@ -340,6 +379,9 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
         notes.append(T["en"]["no_evidence"])
     if unexplained:
         notes.append(T["en"]["no_site"].format(labels="; ".join(EVIDENCE[c]["en"] for c in unexplained)))
+    if masked:
+        notes.append(T["en"]["ice_masked"].format(labels="; ".join(EVIDENCE[c]["en"] for c in masked)))
+    notes += _tie_notes(sites, T["en"])
     status = (SectionStatus.available if sites and basis == "regional_spectral_evidence" else
               SectionStatus.partial if sites else SectionStatus.unavailable)
     return TerrestrialAnalogSection(
@@ -347,7 +389,8 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
         body=body, basis=basis, method=T["en"]["method"], catalog=f"{cat['name']} v{cat['version']}",
         region_evidence=[{"class": e["class"], "label": EVIDENCE[e["class"]]["en"], "indicators": e["indicators"],
                           "strength": EVIDENCE[e["class"]]["strength"]} for e in evidence],
-        unexplained_evidence=unexplained, sites=sites, notes=notes, disclaimer=T["en"]["disclaimer"])
+        unexplained_evidence=unexplained, masked_evidence=masked, sites=sites, notes=notes,
+        disclaimer=T["en"]["disclaimer"])
 
 
 def localize(section: dict, lang: str) -> dict:
@@ -379,6 +422,10 @@ def localize(section: dict, lang: str) -> dict:
         notes.append(t["no_evidence"])
     if unexplained:
         notes.append(t["no_site"].format(labels="; ".join(EVIDENCE[c][key] for c in unexplained if c in EVIDENCE)))
+    masked = section.get("masked_evidence") or []
+    if masked:
+        notes.append(t["ice_masked"].format(labels="; ".join(EVIDENCE[c][key] for c in masked if c in EVIDENCE)))
+    notes += _tie_notes(section.get("sites") or [], t)
     section["notes"] = notes
     if section.get("method"):
         section["method"] = t["method"]

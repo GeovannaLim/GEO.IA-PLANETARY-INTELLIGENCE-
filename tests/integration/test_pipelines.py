@@ -161,3 +161,29 @@ def test_pdf_lists_analog_sites_before_the_illustrative_spectral_appendix():
     assert "Earth analogs" not in text
     earth = {**d, "terrestrial_analogs": None}            # Earth / old records have no analog-site section
     assert render_pdf(earth)[:5] == b"%PDF-"
+
+
+def test_mars_unlit_observation_gives_no_mineralogy():
+    d = _run("mars", FakeWorld(18.44, 77.45, crism_incidence="88"), 18.44, 77.45)
+    assert d["mineralogy"]["status"] == "unavailable" and d["mineralogy"]["reason"] == "insufficient_data"
+    assert d["mineralogy"]["indicators"] == []
+    assert any("incidence 88.0" in p["message"] for p in d["problems"])
+    ta = d["terrestrial_analogs"] or {}
+    # no regional measurement -> only the explicitly labelled global context, never regional evidence
+    assert ta.get("region_evidence") in (None, []) or ta.get("basis") == "global_context"
+    assert not ta.get("sites") or (ta["basis"] == "global_context" and ta["notes"])
+
+
+def test_moon_unlit_pixel_gives_no_mineralogy(monkeypatch):
+    from app.providers import m3
+    real = m3.extract
+
+    async def dark(*a, **k):
+        ex = await real(*a, **k)
+        ex.incidence_deg = 91.5                    # sun below the horizon, as at the lunar south pole test
+        return ex
+    monkeypatch.setattr(m3, "extract", dark)
+    d = _run("moon", FakeWorld(10.0, -15.0), 10.0, -15.0)
+    assert d["mineralogy"]["status"] == "unavailable" and d["mineralogy"]["indicators"] == []
+    assert d["topography"]["status"] == "available"          # other sections unaffected
+    assert not (d["terrestrial_analogs"] or {}).get("sites")

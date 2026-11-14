@@ -252,6 +252,8 @@ class EarthAnalogSection(BaseModel):
 
 
 class TerrestrialAnalogSite(BaseModel):
+    rank: int | None = Field(None, description="1 = explains the region best; tied sites share a rank and "
+                             "their mutual order is not meaningful")
     id: str
     name: str
     country: str
@@ -282,6 +284,9 @@ class TerrestrialAnalogSection(BaseModel):
     catalog: str | None = None
     region_evidence: list[dict[str, Any]] = Field(default_factory=list)
     unexplained_evidence: list[str] = Field(default_factory=list)
+    masked_evidence: list[str] = Field(
+        default_factory=list, description="Detected families not used for matching because exposed ice "
+        "dominates the spectrum (ice bands overlap their diagnostic absorptions)")
     sites: list[TerrestrialAnalogSite] = Field(default_factory=list)
     notes: list[str] = Field(default_factory=list)
     disclaimer: str | None = None

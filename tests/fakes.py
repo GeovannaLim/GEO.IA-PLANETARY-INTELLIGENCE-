@@ -153,8 +153,10 @@ class FakeWorld:
     """Configurable fake of ODE/GDS/Trek/PDS/STAC/M3/CRISM."""
 
     def __init__(self, lat: float, lon: float, *, m3: bool = True, crism: bool = True, gds_status: int = 200,
-                 trek_status: int = 200, pds_status: int = 200, ode_status: int = 200, gds_empty: bool = False):
+                 trek_status: int = 200, pds_status: int = 200, ode_status: int = 200, gds_empty: bool = False,
+                 crism_incidence: str = "40"):
         self.lat, self.lon = lat, lon
+        self.crism_incidence = crism_incidence
         self.m3, self.crism = m3, crism
         self.gds_status, self.trek_status, self.pds_status, self.ode_status = gds_status, trek_status, pds_status, ode_status
         self.gds_empty = gds_empty
@@ -185,7 +187,7 @@ class FakeWorld:
                 ("FRTFAKE_07_SU000J_MTR3.HDR", f"{CRISM_BASE}/su.hdr"),
                 ("FRTFAKE_07_SU000J_MTR3.IMG", f"{CRISM_BASE}/su.img"),
                 ("FRTFAKE_07_IF000J_MTR3.HDR", f"{CRISM_BASE}/if.hdr"),
-                ("FRTFAKE_07_IF000J_MTR3.IMG", f"{CRISM_BASE}/if.img")], Map_scale="36", Incidence_angle="40")]
+                ("FRTFAKE_07_IF000J_MTR3.IMG", f"{CRISM_BASE}/if.img")], Map_scale="36", Incidence_angle=self.crism_incidence)]
         body = {"ODEResults": {"Status": "Success", "Products": {"Product": prods} if prods else "No Products Found"}}
         return httpx.Response(200, json=body)
 

@@ -94,13 +94,43 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
                                      window_pixels=ex.n_window, valid_pixels=ex.n_valid,
                                      source_ids=[search_rec.source_id, rec.source_id],
                                      limitations=ex.limitations, **base), {}, ex.incidence_deg
+        if ex.incidence_deg is not None and ex.incidence_deg >= spectral.MAX_USABLE_INCIDENCE_DEG:
+            ctx.problem("mineralogy", Reason.insufficient_data,
+                        f"{ex.product_id}: solar incidence {ex.incidence_deg:.1f}° >= "
+                        f"{spectral.MAX_USABLE_INCIDENCE_DEG:.0f}° (surface unlit or grazing light); "
+                        "reflectance band depths not computed", rec.source_id)
+            if prod is not candidates[-1]:
+                continue  # another observation may be illuminated
+            return MineralogySection(status=SectionStatus.unavailable, reason=Reason.insufficient_data,
+                                     product_used=ex.product_id, pixel_distance_m=round(ex.pixel_distance_m, 1),
+                                     window_pixels=ex.n_window, valid_pixels=ex.n_valid,
+                                     source_ids=[search_rec.source_id, rec.source_id],
+                                     limitations=ex.limitations, **base), {}, ex.incidence_deg
         indicators, values = spectral.m3_indicators(ex.spectra, ex.wavelengths)
+        ibd1 = values.get("IBD1000")
+        ibd1_med = float(np.nanmedian(ibd1)) if ibd1 is not None and np.isfinite(ibd1).any() else None
+        convex = ibd1_med is not None and ibd1_med < spectral.M3_CONVEX_1UM
+        if convex:
+            # a strongly negative integrated 1 um band depth (convex 1 um region) is not a silicate signature;
+            # seen on M3 observations that disagree with others over the same ground (Copernicus peak,
+            # Apollo 17): treat the observation as suspect and prefer another one
+            ctx.problem("mineralogy", Reason.invalid_data,
+                        f"{ex.product_id}: IBD1000 median {ibd1_med:.2f} (convex 1 µm region, not a silicate "
+                        "absorption); observation treated as spectrally suspect", rec.source_id)
+            if prod is not candidates[-1]:
+                continue
         mean_spec = np.nanmean(ex.spectra, axis=0)
         analog_inputs = {k: spectral.legacy_analog_input(values[k]) for k in ("legacy_bd1000", "legacy_bd2000")
                          if k in values}
         analog_inputs = {k: v for k, v in analog_inputs.items() if v is not None}
         analog_inputs["_sem"] = {k: spectral.window_sem(values[k]) for k in analog_inputs}
         limitations = list(ex.limitations)
+        if convex:
+            limitations.append("Only available observation shows a convex 1 µm region (IBD1000 strongly negative): "
+                               "band depths are unreliable here and no mineral family is inferred.")
+            analog_inputs = {}
+            indicators = [i.model_copy(update={"detected": None}) if i.detected is not None else i
+                          for i in indicators]
         if ex.incidence_deg is not None and ex.incidence_deg > 70:
             limitations.append(f"high solar incidence at the pixel ({ex.incidence_deg:.0f}°)")
         status = SectionStatus.available if ex.n_valid >= 25 else SectionStatus.partial

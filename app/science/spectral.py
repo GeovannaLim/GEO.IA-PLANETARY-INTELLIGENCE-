@@ -38,6 +38,30 @@ from app.schemas.analysis import SpectralIndicator, Stats
 DETECTION_SIGMA = 3.0
 CORRELATION_PIXELS = 25     # ~5x5 px correlation length (instrument PSF + resampling)
 MIN_POSITIVE_FRACTION = 0.6
+# Minimum physical magnitude (window median) on top of the statistical test, for the CRISM parameters
+# that produced false positives on real negative controls. With thousands of pixels the statistical test
+# accepts tiny systematic offsets (calibration/atmospheric residuals). No published detection floors were
+# found (Viviano-Beck et al. 2014 define the parameters, not floors), so floors are calibrated on real
+# MTRDR controls (data/calibration/crism_controls.json, docs/RELATORIO_TESTES_CIENTIFICOS.md):
+#  * negatives: 5 dust-mantled Tharsis/Amazonis observations; 4 ice-free low-latitude sites
+#    (Jezero, Nili Fossae, Mawrth, Gale) for the ice parameters;
+#  * rule: floor = 2 x the largest negative-control median, rounded;
+#  * exception OLINDEX3: 2x would exceed the documented olivine of Jezero/Nili Fossae (0.063-0.071),
+#    so the floor is the midpoint between the dust maximum (0.043) and that olivine (thin margin);
+#  * ice: positives from the polar caps (BD1500_2 0.051-0.240 north; BD1435 0.41 south).
+# Parameters whose negative controls stayed negative (D2300, MIN2295_2480, MIN2345_2537, BD1900_2,
+# BD2100_2, LCPINDEX2, HCPINDEX2) keep the statistical rule. BD530_2 (ferric oxide) is real on dust.
+MAGNITUDE_FLOOR = {"BD1435": 0.02, "BD1500_2": 0.025, "OLINDEX3": 0.05, "BDI1000IR": 0.045,
+                   "BD2210_2": 0.003, "SINDEX2": 0.017}
+FLOOR_BASIS = ("window median must also reach {floor} (floor calibrated on real CRISM negative controls "
+               "such as dust-covered and ice-free surfaces; see docs/RELATORIO_TESTES_CIENTIFICOS.md)")
+# Above this solar incidence the surface is too dimly lit (or unlit) for reflectance band depths.
+MAX_USABLE_INCIDENCE_DEG = 85.0
+# M3 quality gate: an IBD1000 window median below this marks a convex 1 um region, which silicate surfaces do
+# not produce; observed only on observations contradicted by others over the same ground (calibration in
+# docs/RELATORIO_TESTES_CIENTIFICOS.md: suspect products -0.11 to -0.36; good mare/olivine +1.3 to +1.8).
+M3_CONVEX_1UM = -0.1
+
 DETECTION_BASIS = ("statistical screening: window mean > 3 x standard error (effective n = pixels/25 for "
                    "spatial correlation), median > 0 and >= 60% of pixels positive. Detects a positive band "
                    "depth; not a mineral abundance or identification")
@@ -233,14 +257,30 @@ CRISM_PARAMS = {
 }
 
 
+def crism_detected(name: str, arr: np.ndarray) -> bool:
+    """Statistical screening plus, for the ice parameters, the calibrated magnitude floor."""
+    if not detected(arr):
+        return False
+    floor = MAGNITUDE_FLOOR.get(name)
+    if floor is None:
+        return True
+    v = arr[np.isfinite(arr)]
+    return bool(v.size and float(np.median(v)) >= floor)
+
+
 def crism_indicator(name: str, arr: np.ndarray) -> SpectralIndicator:
     descriptive = name.startswith("R")
-    det = None if descriptive else detected(arr)
+    det = None if descriptive else crism_detected(name, arr)
+    floor = MAGNITUDE_FLOOR.get(name)
+    basis = DETECTION_BASIS + ("; " + FLOOR_BASIS.format(floor=floor) if floor is not None else "")
     if descriptive:
         interp = "Descriptive I/F value; no detection test applies."
     elif det:
-        interp = (f"Positive parameter value detected ({DETECTION_BASIS}). Sensitive to "
+        interp = (f"Positive parameter value detected ({basis}). Sensitive to "
                   f"{CRISM_PARAMS[name]}; confirmation requires ratioed-spectrum analysis.")
+    elif floor is not None and detected(arr):
+        interp = (f"Small positive value below the {floor} floor: not counted as a detection "
+                  f"(dust-covered or ice-free control surfaces reach similar values).")
     else:
         interp = "No statistically significant positive value in the window."
     finite = arr[np.isfinite(arr)]
@@ -248,8 +288,8 @@ def crism_indicator(name: str, arr: np.ndarray) -> SpectralIndicator:
         name=name, value=stats(arr), unit="I/F" if descriptive else "dimensionless",
         definition=f"CRISM MTRDR summary parameter {name} (computed by the CRISM team)",
         reference=VB14, sensitive_to=CRISM_PARAMS.get(name),
-        screening_threshold=None if descriptive else 0.0,
-        threshold_basis=None if descriptive else DETECTION_BASIS,
+        screening_threshold=None if descriptive else (floor if floor is not None else 0.0),
+        threshold_basis=None if descriptive else basis,
         fraction_above_threshold=None if descriptive or finite.size == 0 else float(np.mean(finite > 0)),
         n_pixels=int(finite.size), interpretation=interp, comparability="body_specific", detected=det)
 
@@ -258,7 +298,7 @@ def crism_character(indicators: list[SpectralIndicator], values: dict[str, np.nd
     if not values:
         return None
     hits = [i.name for i in indicators
-            if i.name in values and not i.name.startswith("R") and detected(values[i.name])]
+            if i.name in values and not i.name.startswith("R") and crism_detected(i.name, values[i.name])]
     if not hits:
         return "No summary parameter shows a statistically significant positive value in the window."
     parts = [f"{h} ({CRISM_PARAMS.get(h, '?')})" for h in hits]
