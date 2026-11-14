@@ -87,3 +87,20 @@ Dados: `var/shadow_regression.json`.
 **Antes do deploy:** registrar `46f3a88` como rollback. Depois do deploy: repetir a bateria e as 6 regiões em produção.
 
 Diff acumulado (etapa 1 + esta correção): `var/shadow_mineralogy.diff`.
+
+---
+
+## 9. Validação em produção (deploy `ed1ee18`, 2026-11-14)
+**Rollback:** `46f3a88`. Não executado.
+
+| Verificação | Resultado |
+|---|---|
+| Testes automatizados (commit publicado) | **198/198** |
+| 21 cenários científicos (produção, sem cache) | **20 PASS + Olympus Mons inconclusivo**; **os 21 idênticos a `46f3a88`** (mineralogia, produto, famílias, sítios e posições, altitude). Marte não mudou |
+| Ataques adversariais | A1–A3 e A5 OK; A4 como antes |
+| 6 regiões lunares | Shackleton: 100% de sombra permanente, sem mineralogia · **80°S 30,5°E: 73/73 pixels excluídos, 0 sítios** · Haworth: 2,7% de sol · Malapert: 39% de sol · Copernicus e Imbrium: **idênticos** |
+| Integração com o Skip | **33/34**: a Lua no antimeridiano (0,5°N, 179,95°E) estourou 240 s; na repetição, **completou em 234 s** |
+
+**Divergência (anterior a este deploy, não causada por ele):** fora do polo, o código novo não roda. O tempo vem do filtro do M³ de `abb10cb`: as três observações desse ponto são suspeitas (IBD1000 de −0,63 a −1,00), então três leituras do M³ são feitas, com o PDS lento. O risco de estourar o tempo continua: **recomenda-se orçamento de tempo para o filtro do M³** (pendente desde a validação de 14/11).
+
+Evidências locais: `var/prod_ed1ee18/`.
