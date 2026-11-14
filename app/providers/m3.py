@@ -59,6 +59,8 @@ class M3Extraction:
     n_window: int
     n_valid: int
     incidence_deg: float | None
+    pixel_lat: np.ndarray | None = None     # (n_valid,) planetocentric latitude of each valid pixel
+    pixel_lon: np.ndarray | None = None     # (n_valid,) east longitude 0-360 of each valid pixel
     processing: list[str] = field(default_factory=list)
     limitations: list[str] = field(default_factory=lambda: list(LIMITATIONS))
 
@@ -201,7 +203,7 @@ async def extract(http: HttpClient, product: ode.OdeProduct, lat: float, lon: fl
         observation_start=product.observation_start, observation_end=product.observation_end,
         line=line, sample=sample, pixel_distance_m=dist_m, pixel_size_m=pix, half_window=half,
         wavelengths=wl[use], spectra=sub[valid], n_window=int(within.sum()), n_valid=int(valid.sum()),
-        incidence_deg=incidence,
+        incidence_deg=incidence, pixel_lat=lats.reshape(-1)[valid], pixel_lon=lons.reshape(-1)[valid],
         processing=[
             f"pixel located via L1B LOC backplane ({l1b_id}); nearest pixel line {line}, sample {sample}",
             f"window {l1 - l0 + 1}x{c1 - c0 + 1} px range-read from L2 RFL; "

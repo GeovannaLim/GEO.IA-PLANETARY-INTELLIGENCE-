@@ -260,6 +260,25 @@ class EarthAnalogSection(BaseModel):
                        "of mineral occurrence and does not indicate a deposit.")
 
 
+class EnvironmentSection(BaseModel):
+    """Moon south polar illumination environment (model-derived; see app/providers/lola_illumination.py).
+    Reported as measured environmental context; it does not by itself select analog sites."""
+    status: SectionStatus
+    reason: Reason | None = None
+    kind: Literal["model_derived"] | None = None
+    method: str | None = None
+    sunlit_fraction: Stats | None = Field(None, description="fraction of time the solar disc is visible, 0..1")
+    permanent_shadow_fraction: float | None = Field(
+        None, description="fraction of the analysed area that is permanently shadowed (never sunlit)")
+    earth_visible_fraction: Stats | None = Field(None, description="fraction of time the Earth disc is visible, 0..1")
+    centre: dict[str, float] | None = Field(None, description="values of the pixel containing the point")
+    analyzed_extent: dict[str, Any] | None = None
+    products: list[str] = Field(default_factory=list)
+    source_ids: list[str] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+
+
 class TerrestrialAnalogSite(BaseModel):
     rank: int | None = Field(None, description="1 = explains the region best; tied sites share a rank and "
                              "their mutual order is not meaningful")
@@ -293,6 +312,9 @@ class TerrestrialAnalogSection(BaseModel):
     catalog: str | None = None
     region_evidence: list[dict[str, Any]] = Field(default_factory=list)
     unexplained_evidence: list[str] = Field(default_factory=list)
+    inconclusive_evidence: list[str] = Field(
+        default_factory=list, description="Observations that do not support any composition, e.g. "
+        "'lunar_no_mafic_band' (neither mafic band detected): never used to choose analog sites")
     uncertain_evidence: list[str] = Field(
         default_factory=list, description="Families whose detection passes the value floor but fails the provisional "
         "spatial-coverage criterion; reported, not used for matching")
@@ -341,6 +363,9 @@ class AnalysisResult(BaseModel):
         None, description="Moon/Mars: documented terrestrial analog sites matched by mineral family")
     earth_observation: dict[str, Any] | None = Field(
         None, description="Earth only: Sentinel-2/ASTER/EMIT indices with provenance")
+    environment: EnvironmentSection | None = Field(
+        None, description="Moon only: south polar illumination (sunlit fraction, permanent shadow, Earth "
+        "visibility), model-derived from LOLA topography")
     confidence: ConfidenceSection
     problems: list[ProblemDetail] = Field(default_factory=list)
     cache: CacheInfo = Field(default_factory=CacheInfo)

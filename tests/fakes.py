@@ -146,6 +146,41 @@ def trek_catalog(body: str) -> dict:
     return {"response": {"docs": docs}}
 
 
+
+# --------------------------------------------------------------------------- #
+# LOLA polar illumination maps (85S grid only), small synthetic version
+# --------------------------------------------------------------------------- #
+ILLUM_BASE = "https://imbrium.mit.edu/EXTRAS/ILLUMINATION/IMG/"
+ILLUM_N, ILLUM_SCALE = 600, 60.0          # 600 px x 60 m: within ~18 km of the pole (lat <= ~-89.4)
+
+
+def illum_label(name: str, factor: float, offset: float) -> str:
+    off = ILLUM_N / 2 + 0.5
+    return (f'PDS_VERSION_ID = PDS3\nRECORD_BYTES = {ILLUM_N * 2}\n^IMAGE = "{name}.IMG"\n'
+            f"OBJECT = IMAGE\n LINES = {ILLUM_N}\n LINE_SAMPLES = {ILLUM_N}\n SAMPLE_TYPE = LSB_INTEGER\n"
+            f" SAMPLE_BITS = 16\n SCALING_FACTOR = {factor}\n OFFSET = {offset}\nEND_OBJECT = IMAGE\n"
+            f"OBJECT = IMAGE_MAP_PROJECTION\n MAP_PROJECTION_TYPE = \"POLAR STEREOGRAPHIC\"\n"
+            f" A_AXIS_RADIUS = 1737.4 <km>\n CENTER_LATITUDE = -90 <deg>\n MAP_SCALE = {ILLUM_SCALE:g} <m/pix>\n"
+            f" LINE_PROJECTION_OFFSET = {off} <pix>\n SAMPLE_PROJECTION_OFFSET = {off} <pix>\n"
+            f"END_OBJECT = IMAGE_MAP_PROJECTION\nEND\n")
+
+
+def illum_grids() -> dict[str, bytes]:
+    """Sunlit 0.30 everywhere except a permanently shadowed quadrant (longitudes 0-90E: x>0 and y>0)."""
+    import numpy as np
+    idx = np.arange(ILLUM_N)
+    rows, cols = np.meshgrid(idx, idx, indexing="ij")
+    off = ILLUM_N / 2 + 0.5
+    y = (off - (rows + 1)) * ILLUM_SCALE
+    x = (cols + 1 - off) * ILLUM_SCALE
+    shadow = (x > 0) & (y > 0)
+    sun = np.where(shadow, 0, int(0.30 / 0.00004)).astype("<i2")
+    psr = np.where(shadow, 20000, -20000).astype("<i2")
+    earth = np.full_like(sun, int(0.50 / 0.00004))
+    return {"AVGVISIB_85S_060M_201608": sun.tobytes(), "LPSR_85S_060M_201608": psr.tobytes(),
+            "AVGVISIB_85S_060M_201608_EARTH": earth.tobytes()}
+
+
 # --------------------------------------------------------------------------- #
 # router
 # --------------------------------------------------------------------------- #
@@ -154,8 +189,9 @@ class FakeWorld:
 
     def __init__(self, lat: float, lon: float, *, m3: bool = True, crism: bool = True, gds_status: int = 200,
                  trek_status: int = 200, pds_status: int = 200, ode_status: int = 200, gds_empty: bool = False,
-                 crism_incidence: str = "40"):
+                 crism_incidence: str = "40", illum_status: int = 200):
         self.lat, self.lon = lat, lon
+        self.illum_status = illum_status
         self.crism_incidence = crism_incidence
         self.m3, self.crism = m3, crism
         self.gds_status, self.trek_status, self.pds_status, self.ode_status = gds_status, trek_status, pds_status, ode_status
@@ -226,6 +262,21 @@ class FakeWorld:
         router.get(f"{CRISM_BASE}/su.hdr").mock(return_value=httpx.Response(200, text=self.su_hdr))
         router.get(f"{CRISM_BASE}/if.hdr").mock(return_value=httpx.Response(200, text=self.if_hdr))
         router.get(f"{CRISM_BASE}/su.img").mock(side_effect=ranged(self.su))
+        grids = illum_grids()
+        labels = {"AVGVISIB_85S_060M_201608": (0.00004, 0.0), "LPSR_85S_060M_201608": (0.000025, 0.5),
+                  "AVGVISIB_85S_060M_201608_EARTH": (0.00004, 0.0)}
+
+        def illum(request):
+            if self.illum_status != 200:
+                return httpx.Response(self.illum_status)
+            name = str(request.url).rsplit("/", 1)[1]
+            stem, ext = name.rsplit(".", 1)
+            if stem not in grids:
+                return httpx.Response(404)
+            if ext == "LBL":
+                return httpx.Response(200, text=illum_label(stem, *labels[stem]))
+            return ranged(grids[stem])(request)
+        router.get(url__startswith=ILLUM_BASE).mock(side_effect=illum)
         router.get(f"{CRISM_BASE}/if.img").mock(side_effect=ranged(self.ifc))
 
         def trek_cat(request):

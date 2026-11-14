@@ -12,10 +12,10 @@ import math
 import numpy as np
 
 from app.config import get_settings
-from app.providers import m3, ode
+from app.providers import lola_illumination, m3, ode
 from app.providers.http import HttpClient, ProviderError
-from app.schemas.analysis import (AnalysisResult, AnalyzeRequest, ImagerySection, MineralogySection, Reason,
-                                  SectionStatus, TopographySection)
+from app.schemas.analysis import (AnalysisResult, AnalyzeRequest, EnvironmentSection, ImagerySection,
+                                  MineralogySection, Reason, SectionStatus, TopographySection)
 from app.science import analog_sites, similarity, spectral
 from app.science.coordinates import footprint_contains, haversine_km, region_box
 from app.pipelines.common import (Context, ProgressFn, assess_confidence, build_coordinates, finalize, guarded,
@@ -106,6 +106,43 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
                                      window_pixels=ex.n_window, valid_pixels=ex.n_valid,
                                      source_ids=[search_rec.source_id, rec.source_id],
                                      limitations=ex.limitations, **base), {}, ex.incidence_deg
+        # Permanent-shadow control (south polar region): M3 reflectance inside a permanently shadowed region
+        # is not direct sunlight (at best scattered light), so those pixels cannot support a composition.
+        shadow_limits: list[str] = []
+        if ctx.lat <= -65.0 and ex.pixel_lat is not None and ex.n_valid:
+            n_total = ex.n_valid
+            try:
+                flags = await lola_illumination.permanent_shadow_at(ctx.http, ex.pixel_lat, ex.pixel_lon)
+            except lola_illumination.NotApplicable:
+                flags = None
+            except ProviderError as exc:
+                flags = None
+                shadow_limits.append("Permanent shadow could not be checked for these M3 pixels (illumination maps "
+                                     "unavailable); shadowed pixels may be included.")
+                ctx.problem("mineralogy", Reason.provider_error, f"permanent-shadow check failed: {exc}",
+                            rec.source_id)
+            if flags is not None:
+                in_psr = flags == 1.0
+                n_psr = int(in_psr.sum())
+                if int(np.isnan(flags).sum()):
+                    shadow_limits.append(f"{int(np.isnan(flags).sum())} M3 pixels fall outside the illumination "
+                                         "grid; their shadow status is unknown.")
+                if n_psr:
+                    keep = ~in_psr
+                    ex.spectra, ex.n_valid = ex.spectra[keep], int(keep.sum())
+                    ex.pixel_lat, ex.pixel_lon = ex.pixel_lat[keep], ex.pixel_lon[keep]
+                    msg = (f"{n_psr} of {n_total} valid M3 pixels lie in permanent shadow (LOLA/PGDA LPSR, Mazarico "
+                           "et al. 2011) and were excluded: reflectance there is not direct sunlight.")
+                    shadow_limits.append(msg)
+                    if ex.n_valid < 4:
+                        ctx.problem("mineralogy", Reason.insufficient_data, f"{ex.product_id}: {msg} "
+                                    "Mineralogy is not inferred.", rec.source_id)
+                        return MineralogySection(
+                            status=SectionStatus.unavailable, reason=Reason.insufficient_data,
+                            product_used=ex.product_id, pixel_distance_m=round(ex.pixel_distance_m, 1),
+                            window_pixels=ex.n_window, valid_pixels=ex.n_valid,
+                            source_ids=[search_rec.source_id, rec.source_id],
+                            limitations=list(ex.limitations) + shadow_limits, **base), {}, ex.incidence_deg
         indicators, values = spectral.m3_indicators(ex.spectra, ex.wavelengths)
         ibd1 = values.get("IBD1000")
         ibd1_med = float(np.nanmedian(ibd1)) if ibd1 is not None and np.isfinite(ibd1).any() else None
@@ -124,7 +161,7 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
                          if k in values}
         analog_inputs = {k: v for k, v in analog_inputs.items() if v is not None}
         analog_inputs["_sem"] = {k: spectral.window_sem(values[k]) for k in analog_inputs}
-        limitations = list(ex.limitations)
+        limitations = list(ex.limitations) + shadow_limits
         if convex:
             limitations.append("Only available observation shows a convex 1 µm region (IBD1000 strongly negative): "
                                "band depths are unreliable here and no mineral family is inferred.")
@@ -158,6 +195,55 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
     return MineralogySection(status=st, reason=reason, source_ids=[search_rec.source_id], **base), {}, None
 
 
+async def illumination_step(ctx: Context) -> EnvironmentSection:
+    """South polar illumination context (model-derived, Mazarico et al. 2011). Independent of mineralogy."""
+    L = lola_illumination
+    try:
+        res = await L.sample(ctx.http, ctx.lat, ctx.lon, ctx.req.radius_km)
+    except L.NotApplicable as exc:
+        return EnvironmentSection(status=SectionStatus.unavailable, reason=Reason.not_supported, notes=[str(exc)])
+    except ProviderError as exc:
+        rec = ctx.source(provider=L.PROVIDER, service="HTTP byte-range read of PDS IMG polar illumination maps",
+                         instrument="LOLA (derived)", mission="LRO", status="error", message=str(exc))
+        ctx.problem("environment", Reason.provider_error, str(exc), rec.source_id)
+        return EnvironmentSection(status=SectionStatus.failed, reason=Reason.provider_error,
+                                  source_ids=[rec.source_id])
+    await ctx.progress("illumination")
+    rec = ctx.source(
+        provider=L.PROVIDER, service="HTTP byte-range read of PDS IMG polar illumination maps",
+        instrument="LOLA (derived)", mission="LRO", product_type="polar illumination model (Mazarico et al. 2011)",
+        product_id=res.products["sun"], url=L.BASE + res.products["sun"] + ".IMG",
+        spatial_resolution_m=res.scale_m,
+        processing=[f"grid {res.grid} ({res.scale_m:.0f} m/px), polar stereographic sphere R=1737.4 km",
+                    f"{res.n_pixels} pixels within {res.half_window_km:g} km of the point",
+                    "layers: " + ", ".join(res.products.values())],
+        limitations=list(L.LIMITATIONS))
+    psr = float((res.values["psr"] > 0.5).mean()) if res.n_pixels else None
+    notes = []
+    if psr:
+        pct = round(100 * psr)
+        notes.append(f"{pct if pct >= 1 else '<1'}% of the analysed area is permanently shadowed in the model "
+                     "(never sunlit): a potential cold trap. Ice is not measured by this section.")
+    limitations = list(L.LIMITATIONS)
+    if res.half_window_km < res.requested_radius_km:
+        limitations.append(f"Illumination statistics use the {res.half_window_km:g} km around the point, not the "
+                           f"whole requested {res.requested_radius_km:g} km radius.")
+    req_area = math.pi * res.requested_radius_km ** 2
+    area = res.n_pixels * (res.scale_m / 1000.0) ** 2
+    return EnvironmentSection(
+        status=SectionStatus.available if res.n_pixels else SectionStatus.unavailable,
+        reason=None if res.n_pixels else Reason.insufficient_data, kind="model_derived",
+        method="LOLA-derived average illumination over the 18.6-year nutation cycle (Mazarico et al. 2011)",
+        sunlit_fraction=spectral.stats(res.values["sun"]), permanent_shadow_fraction=psr,
+        earth_visible_fraction=spectral.stats(res.values["earth"]),
+        centre={"sunlit_fraction": res.centre["sun"], "permanent_shadow": res.centre["psr"],
+                "earth_visible_fraction": res.centre["earth"]},
+        analyzed_extent={"radius_km": res.half_window_km, "pixel_size_m": res.scale_m, "pixels": res.n_pixels,
+                         "area_km2": round(area, 2), "requested_radius_km": res.requested_radius_km,
+                         "fraction_of_requested_area": round(min(1.0, area / req_area), 4) if req_area else None},
+        products=list(res.products.values()), source_ids=[rec.source_id], limitations=limitations, notes=notes)
+
+
 async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_at, progress: ProgressFn
               ) -> AnalysisResult:
     done: list[str] = []
@@ -168,12 +254,14 @@ async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_a
 
     ctx = Context(body="moon", req=req, coords=build_coordinates(req, "moon"), http=http, progress=prog)
     failed = SectionStatus.failed
-    imagery, topo_s, (min_s, analog_inputs, incidence), _, _ = await asyncio.gather(
+    imagery, topo_s, (min_s, analog_inputs, incidence), environment, _, _ = await asyncio.gather(
         guarded(ctx, "imagery", imagery_step(ctx), lambda: ImagerySection(status=failed, reason=Reason.invalid_data)),
         guarded(ctx, "topography", topography_step(ctx),
                 lambda: TopographySection(status=failed, reason=Reason.invalid_data)),
         guarded(ctx, "mineralogy", mineralogy_step(ctx),
                 lambda: (MineralogySection(status=failed, reason=Reason.invalid_data), {}, None)),
+        guarded(ctx, "environment", illumination_step(ctx),
+                lambda: EnvironmentSection(status=failed, reason=Reason.invalid_data)),
         guarded(ctx, "discovery", pds_step(ctx, ["lola", "diviner"]), lambda: None),
         guarded(ctx, "discovery", usgs_step(ctx), lambda: None))
     analogs = similarity.compare("moon", analog_inputs)
@@ -184,4 +272,4 @@ async def run(req: AnalyzeRequest, http: HttpClient, analysis_id: str, created_a
     conf = assess_confidence(topo_s, min_s, extra, incidence)
     terrestrial = guarded_sync(ctx, lambda: analog_sites.match("moon", min_s, ctx.lat))
     return finalize(ctx, analysis_id, created_at, imagery, topo_s, min_s, analogs, conf, done,
-                    terrestrial=terrestrial)
+                    terrestrial=terrestrial, environment=environment)

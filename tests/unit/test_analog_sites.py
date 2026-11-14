@@ -75,11 +75,17 @@ def test_lunar_pyroxene_region_gets_basalt_with_emit_comparison():
     assert "probab" not in json.dumps(s.model_dump()).lower().replace("or a probability", "")
 
 
-def test_lunar_no_band_is_ambiguous_feldspathic():
+def test_lunar_no_band_is_inconclusive_not_anorthosite():
+    """Absence of mafic bands alone must not select anorthosite sites (2026-11-14 correction: shadowed /
+    dark M3 windows lack bands too)."""
     s = analog_sites.match("moon", section(ind("IBD1000", False), ind("IBD2000", False)))
-    assert [x.id for x in s.sites] == ["anorth"]
-    assert s.region_evidence[0]["strength"] == "broad"
-    assert any("No masked EMIT measurement" in t for t in s.sites[0].differences)
+    assert s.sites == [] and s.region_evidence == []
+    assert s.inconclusive_evidence == ["lunar_no_mafic_band"]
+    assert s.status == SectionStatus.unavailable and s.reason.value == "insufficient_data"
+    assert any("not evidence of anorthosite" in n for n in s.notes)
+    pt = i18n.localize({"status": "completed", "links": {}, "terrestrial_analogs": s.model_dump(mode="json")},
+                       "pt-BR")["terrestrial_analogs"]
+    assert any("não é evidência de anortosito" in n for n in pt["notes"])
 
 
 def test_mars_specific_class_and_low_emit_coverage_is_not_used():

@@ -70,6 +70,42 @@ def _sens(m: re.Match) -> str:
 
 
 RULES: list[_Rule] = [
+    # ---- M3 vs permanent shadow (2026-11-14) ---------------------------------------------------
+    (re.compile(r"(\d+) of (\d+) valid M3 pixels lie in permanent shadow \(LOLA/PGDA LPSR, Mazarico et al\. 2011\) "
+                r"and were excluded: reflectance there is not direct sunlight\."),
+     r"\1 de \2 pixels M3 válidos estão em sombra permanente (LOLA/PGDA LPSR, Mazarico et al. 2011) e foram "
+     r"excluídos: a refletância ali não é luz solar direta."),
+    _lit(" Mineralogy is not inferred.", " A mineralogia não é inferida."),
+    _lit("Permanent shadow could not be checked for these M3 pixels (illumination maps unavailable); shadowed "
+         "pixels may be included.",
+         "Não foi possível verificar sombra permanente nestes pixels M3 (mapas de iluminação indisponíveis); "
+         "pixels sombreados podem estar incluídos."),
+    (re.compile(r"(\d+) M3 pixels fall outside the illumination grid; their shadow status is unknown\."),
+     r"\1 pixels M3 ficam fora da grade de iluminação; não se sabe se estão em sombra."),
+    _lit("permanent-shadow check failed: ", "falha na verificação de sombra permanente: "),
+    # ---- Moon south polar illumination (environment section) ------------------------------------
+    _lit("LOLA-derived average illumination over the 18.6-year nutation cycle (Mazarico et al. 2011)",
+         "Iluminação média derivada do LOLA ao longo do ciclo de nutação de 18,6 anos (Mazarico et al. 2011)"),
+    _lit("Model product: illumination computed over the LOLA topography (Mazarico et al. 2011), not a direct "
+         "observation; terrain smaller than the grid spacing is not resolved.",
+         "Produto de modelo: iluminação calculada sobre a topografia do LOLA (Mazarico et al. 2011), não uma "
+         "observação direta; relevo menor que o espaçamento da grade não é resolvido."),
+    _lit("Long-term averages over the 18.6-year lunar nutation cycle; they do not describe any particular date.",
+         "Médias de longo prazo ao longo do ciclo de nutação lunar de 18,6 anos; não descrevem nenhuma data "
+         "específica."),
+    _lit("Sunlit fraction counts any visible part of the solar disc; it is not an energy or temperature estimate.",
+         "A fração iluminada conta qualquer parte visível do disco solar; não é estimativa de energia nem de "
+         "temperatura."),
+    (re.compile(r"Illumination statistics use the ([\d.]+) km around the point, not the whole requested "
+                r"([\d.]+) km radius\."),
+     r"As estatísticas de iluminação usam os \1 km em volta do ponto, não todo o raio pedido de \2 km."),
+    (re.compile(r"(<?\d+)% of the analysed area is permanently shadowed in the model \(never sunlit\): a potential "
+                r"cold trap\. Ice is not measured by this section\."),
+     r"\1% da área analisada está em sombra permanente no modelo (nunca recebe sol): uma possível armadilha "
+     r"fria. Esta seção não mede gelo."),
+    _lit("illumination maps are used only for the lunar south polar region (lat <= -65)",
+         "os mapas de iluminação são usados só para a região polar sul da Lua (lat ≤ −65)"),
+    _lit("point outside the polar illumination grid", "ponto fora da grade polar de iluminação"),
     # ---- 2026-11-14 science fixes (floors, coverage, illumination, polar, window) ---------------
     (re.compile(r"window median must also reach ([\d.]+) \(floor calibrated on real CRISM negative controls "
                 r"such as dust-covered and ice-free surfaces; see docs/RELATORIO_TESTES_CIENTIFICOS\.md\)"),
@@ -324,6 +360,7 @@ PATHS = (
     "earth_analogs.approximate_proxies[]", "earth_analogs.not_comparable[]",
     "confidence.basis", "confidence.limitations[]", "confidence.criteria[].detail",
     "problems[].message", "earth_observation.note",
+    "environment.method", "environment.limitations[]", "environment.notes[]",
 )
 
 

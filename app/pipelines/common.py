@@ -19,7 +19,7 @@ from app.providers import ode, pds, trek, usgs
 from app.providers.http import HttpClient, ProviderError
 from app.schemas.analysis import (
     AnalysisResult, AnalysisStatus, AnalyzeRequest, ConfidenceSection, Coordinates, Criterion,
-    EarthAnalogSection, ImagerySection, MineralogySection, ProblemDetail, Reason, SectionStatus,
+    EarthAnalogSection, EnvironmentSection, ImagerySection, MineralogySection, ProblemDetail, Reason, SectionStatus,
     SourceRecord, TerrestrialAnalogSection, TopographySection)
 from app.science import topography as topo
 from app.science.coordinates import (BODY_RADIUS_KM, REFERENCE_FRAME, region_box, to_east_180,
@@ -257,12 +257,14 @@ def assess_confidence(topo_s: TopographySection, min_s: MineralogySection, extra
 def finalize(ctx: Context, analysis_id: str, created_at: datetime, imagery: ImagerySection,
              topo_s: TopographySection, min_s: MineralogySection, analogs: EarthAnalogSection,
              confidence: ConfidenceSection, progress: list[str], earth_obs: dict | None = None,
-             terrestrial: TerrestrialAnalogSection | None = None) -> AnalysisResult:
+             terrestrial: TerrestrialAnalogSection | None = None,
+             environment: EnvironmentSection | None = None) -> AnalysisResult:
     return AnalysisResult(
         analysis_id=analysis_id, planet=ctx.body, status=AnalysisStatus.completed, created_at=created_at,
         completed_at=now(), progress=progress, coordinates=ctx.coords, data_sources=ctx.sources,
         imagery=imagery, topography=topo_s, mineralogy=min_s, earth_analogs=analogs,
-        terrestrial_analogs=terrestrial, earth_observation=earth_obs, confidence=confidence, problems=ctx.problems, report_id=analysis_id,
+        terrestrial_analogs=terrestrial, earth_observation=earth_obs, environment=environment,
+        confidence=confidence, problems=ctx.problems, report_id=analysis_id,
         links={"self": f"/v1/jobs/{analysis_id}", "report": f"/v1/reports/{analysis_id}",
                "report_pdf": f"/v1/reports/{analysis_id}?format=pdf"})
 

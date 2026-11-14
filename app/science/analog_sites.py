@@ -119,6 +119,9 @@ T = {
                      "doi:10.1126/science.287.5458.1626) and are NOT specific to the selected region.",
         no_evidence="The region's measurements show no screened detection that maps to a documented analog family.",
         no_site="No catalog site documents this family: {labels}.",
+        no_mafic_band="Neither the 1 µm nor the 2 µm band is detected: the composition is inconclusive. The absence "
+                      "of mafic bands alone is not evidence of anorthosite (dark, shadowed, immature or noisy "
+                      "surfaces also lack bands), so no analog site is selected.",
         uncertain="Uncertain detection (provisional criterion: the value reaches the floor in fewer than 75% of "
                   "the window pixels): {labels}. Shown, but not used to choose analog sites.",
         tie="Tied (same evidence strength, documentary basis and EMIT agreement): {names}. Their order is not "
@@ -151,6 +154,9 @@ T = {
                      "e NÃO são específicos da região selecionada.",
         no_evidence="As medições da região não têm detecção triada que corresponda a uma família análoga documentada.",
         no_site="Nenhum sítio do catálogo documenta esta família: {labels}.",
+        no_mafic_band="Nem a banda de 1 µm nem a de 2 µm foram detectadas: a composição é inconclusiva. A ausência "
+                      "de bandas máficas, sozinha, não é evidência de anortosito (superfícies escuras, sombreadas, "
+                      "imaturas ou ruidosas também não mostram bandas), por isso nenhum sítio análogo é escolhido.",
         uncertain="Detecção incerta (critério provisório: o valor atinge o mínimo em menos de 75% dos pixels "
                   "da janela): {labels}. Mostrada, mas não usada para escolher sítios análogos.",
         tie="Empatados (mesma força de evidência, base documental e concordância EMIT): {names}. A ordem entre "
@@ -224,9 +230,11 @@ def region_evidence(body: str, min_s: MineralogySection, latitude: float | None 
         a, b = ind.get("IBD1000"), ind.get("IBD2000")
         if a is None or b is None or a.detected is None or b.detected is None:
             return [], None
+        # Neither band detected is NOT evidence of anorthosite: dark, shadowed, immature or noisy surfaces also
+        # lack bands, and no positive plagioclase criterion is implemented. It is reported as inconclusive
+        # (match(): inconclusive_evidence) and never selects analog sites.
         cls = ("lunar_pyroxene" if a.detected and b.detected else
-               "lunar_olivine_or_glass" if a.detected else
-               None if b.detected else "lunar_no_mafic_band")
+               "lunar_olivine_or_glass" if a.detected else None)
         if cls:
             ev.append({"class": cls, "indicators": ["IBD1000", "IBD2000"]})
         return ev, "regional_spectral_evidence"
@@ -325,6 +333,11 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
     if basis is None:
         return TerrestrialAnalogSection(status=SectionStatus.unavailable, reason=Reason.not_attempted,
                                         catalog=f"{cat['name']} v{cat['version']}")
+    inconclusive: list[str] = []
+    if body == "moon" and basis == "regional_spectral_evidence":
+        ib = _ind(min_s)
+        if all(ib.get(n) is not None and ib[n].detected is False for n in ("IBD1000", "IBD2000")):
+            inconclusive = ["lunar_no_mafic_band"]
     uncertain: list[str] = []
     if body == "mars" and basis == "regional_spectral_evidence":
         uncertain = sorted({CRISM_CLASS[i.name] for i in min_s.indicators
@@ -384,7 +397,9 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
     notes = []
     if basis == "global_context":
         notes.append(T["en"]["global_basis"])
-    if not evidence:
+    if inconclusive:
+        notes.append(T["en"]["no_mafic_band"])
+    elif not evidence:
         notes.append(T["en"]["no_evidence"])
     if unexplained:
         notes.append(T["en"]["no_site"].format(labels="; ".join(EVIDENCE[c]["en"] for c in unexplained)))
@@ -396,11 +411,12 @@ def match(body: str, min_s: MineralogySection, latitude: float | None = None) ->
     status = (SectionStatus.available if sites and basis == "regional_spectral_evidence" else
               SectionStatus.partial if sites else SectionStatus.unavailable)
     return TerrestrialAnalogSection(
-        status=status, reason=None if sites else Reason.no_coverage if not evidence else Reason.insufficient_data,
+        status=status, reason=None if sites else Reason.insufficient_data if (evidence or inconclusive)
+        else Reason.no_coverage,
         body=body, basis=basis, method=T["en"]["method"], catalog=f"{cat['name']} v{cat['version']}",
         region_evidence=[{"class": e["class"], "label": EVIDENCE[e["class"]]["en"], "indicators": e["indicators"],
                           "strength": EVIDENCE[e["class"]]["strength"]} for e in evidence],
-        unexplained_evidence=unexplained, uncertain_evidence=uncertain, masked_evidence=masked, sites=sites,
+        unexplained_evidence=unexplained, inconclusive_evidence=inconclusive, uncertain_evidence=uncertain, masked_evidence=masked, sites=sites,
         notes=notes,
         disclaimer=T["en"]["disclaimer"])
 
@@ -430,7 +446,9 @@ def localize(section: dict, lang: str) -> dict:
     notes = []
     if section.get("basis") == "global_context":
         notes.append(t["global_basis"])
-    if not section.get("region_evidence"):
+    if section.get("inconclusive_evidence"):
+        notes.append(t["no_mafic_band"])
+    elif not section.get("region_evidence"):
         notes.append(t["no_evidence"])
     if unexplained:
         notes.append(t["no_site"].format(labels="; ".join(EVIDENCE[c][key] for c in unexplained if c in EVIDENCE)))
