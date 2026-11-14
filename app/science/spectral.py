@@ -38,21 +38,24 @@ from app.schemas.analysis import SpectralIndicator, Stats
 DETECTION_SIGMA = 3.0
 CORRELATION_PIXELS = 25     # ~5x5 px correlation length (instrument PSF + resampling)
 MIN_POSITIVE_FRACTION = 0.6
-# Minimum physical magnitude (window median) on top of the statistical test, for the CRISM parameters
-# that produced false positives on real negative controls. With thousands of pixels the statistical test
-# accepts tiny systematic offsets (calibration/atmospheric residuals). No published detection floors were
-# found (Viviano-Beck et al. 2014 define the parameters, not floors), so floors are calibrated on real
-# MTRDR controls (data/calibration/crism_controls.json, docs/RELATORIO_TESTES_CIENTIFICOS.md):
-#  * negatives: 5 dust-mantled Tharsis/Amazonis observations; 4 ice-free low-latitude sites
-#    (Jezero, Nili Fossae, Mawrth, Gale) for the ice parameters;
-#  * rule: floor = 2 x the largest negative-control median, rounded;
-#  * exception OLINDEX3: 2x would exceed the documented olivine of Jezero/Nili Fossae (0.063-0.071),
-#    so the floor is the midpoint between the dust maximum (0.043) and that olivine (thin margin);
-#  * ice: positives from the polar caps (BD1500_2 0.051-0.240 north; BD1435 0.41 south).
-# Parameters whose negative controls stayed negative (D2300, MIN2295_2480, MIN2345_2537, BD1900_2,
-# BD2100_2, LCPINDEX2, HCPINDEX2) keep the statistical rule. BD530_2 (ferric oxide) is real on dust.
-MAGNITUDE_FLOOR = {"BD1435": 0.02, "BD1500_2": 0.025, "OLINDEX3": 0.05, "BDI1000IR": 0.045,
-                   "BD2210_2": 0.003, "SINDEX2": 0.017}
+# Minimum physical magnitude (window median) on top of the statistical test. With thousands of pixels the
+# statistical test accepts tiny systematic offsets (calibration/atmospheric residuals), which produced
+# false mineral detections on dust. No published detection floors were found (Viviano-Beck et al. 2014
+# define the parameters, not floors), so floors are calibrated on real MTRDR controls
+# (data/calibration/crism_controls.json, docs/RELATORIO_TESTES_CIENTIFICOS.md):
+#  * negatives: 26 dust-mantled observations of Amazonis/Olympus/western Tharsis (0-30N, 200-260E;
+#    Noctis Labyrinthus excluded), plus ice-free low-latitude sites for the ice parameters;
+#  * rule, for every parameter whose negative-control maximum is positive: floor = 2 x that maximum;
+#  * exception OLINDEX3: 2x (0.087) would exceed the documented olivine of Jezero/Nili Fossae
+#    (0.063-0.071), so the floor is the midpoint between the dust maximum (0.043) and that olivine;
+#  * BD1500_2 uses the ice-free sites (Mawrth 0.0123); polar ice reaches 0.051-0.306;
+#  * validation: 10 further dust observations, never used for calibration, stay below every floor;
+#    documented Fe/Mg clay (Jezero, Nili, Mawrth), carbonate and hydration (Nili, Mawrth) stay detected.
+# Parameters whose negative controls stayed negative (MIN2295_2480, LCPINDEX2, HCPINDEX2) keep the
+# statistical rule. BD530_2 (ferric oxide) is genuinely present on dust and is treated as broad evidence.
+MAGNITUDE_FLOOR = {"OLINDEX3": 0.05, "BDI1000IR": 0.045, "D2300": 0.002, "BD2210_2": 0.007,
+                   "MIN2345_2537": 0.0017, "BD2100_2": 0.0054, "SINDEX2": 0.019, "BD1900_2": 0.013,
+                   "BD1435": 0.02, "BD1500_2": 0.025}
 FLOOR_BASIS = ("window median must also reach {floor} (floor calibrated on real CRISM negative controls "
                "such as dust-covered and ice-free surfaces; see docs/RELATORIO_TESTES_CIENTIFICOS.md)")
 # Above this solar incidence the surface is too dimly lit (or unlit) for reflectance band depths.

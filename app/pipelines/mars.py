@@ -95,7 +95,10 @@ async def mineralogy_step(ctx: Context) -> tuple[MineralogySection, dict[str, fl
             processing=ex.processing, limitations=ex.limitations)
         await ctx.progress("crism_extraction")
         if ex.n_valid < 4:
-            ctx.problem("mineralogy", Reason.insufficient_data, f"{ex.n_valid} valid CRISM pixels", rec.source_id)
+            ctx.problem("mineralogy", Reason.insufficient_data,
+                        f"{ex.n_valid} valid CRISM pixels in {ex.product_id}", rec.source_id)
+            if prod is not candidates[-1]:
+                continue  # another observation may have valid pixels at the point
             return MineralogySection(status=SectionStatus.unavailable, reason=Reason.insufficient_data,
                                      product_used=ex.product_id, window_pixels=ex.n_window, valid_pixels=ex.n_valid,
                                      source_ids=[search_rec.source_id, rec.source_id], limitations=ex.limitations,

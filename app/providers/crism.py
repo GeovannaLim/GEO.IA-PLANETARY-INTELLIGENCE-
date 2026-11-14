@@ -38,9 +38,8 @@ LIMITATIONS = [
     "depths therefore differ in calibration from the terrestrial EMIT surface reflectance.",
 ]
 
-POLAR_LIMITATION = ("Polar stereographic product: pixel positions use the spherical fallback equations published "
-                    "with the product (MTR_MAP.CAT); the products were generated with the ellipsoid form, so "
-                    "positions near the pole are uncertain at the ~1 km level.")
+POLAR_LIMITATION = ("Polar stereographic product: pixel positions use the ellipsoidal equations stated in "
+                    "MTR_MAP.CAT; checked against product labels to 0.01-0.03 deg (about 1-2 km near the pole).")
 
 LEGACY_WL = (800.0, 1000.0, 1300.0, 1700.0, 2000.0, 2300.0)
 
@@ -90,14 +89,15 @@ class MapProjection:
 class PolarStereographic:
     """MTRDR polar stereographic grid (observations poleward of +/-65 deg).
 
-    Uses the transformation published with the product (catalog/MTR_MAP.CAT, mrocr_4001):
-    planetocentric latitude, spherical equations with the IAU 2000 polar radius
-    Rp = 3376.2 km, true scale at the pole; south: longitude 0 points up and 90E right;
-    north: longitude 0 points down and 90E right. The grid comes from the ENVI ``map info``
-    tie point (upper-left corner of pixel 1,1) and pixel size, as for the equirectangular
-    products. The catalog states the products were generated with the ellipsoid form and
-    gives these spherical equations as the fallback, so positions near the pole carry a
-    small extra uncertainty (reported in the limitations).
+    catalog/MTR_MAP.CAT (mrocr_4001): polar products use the IAU 2000 ellipsoid (Re 3396.19 km,
+    Rp 3376.2 km), true scale at the pole, planetocentric latitude, east longitude; south: longitude 0
+    points up and 90E right; north: longitude 0 points down and 90E right. The catalog states the
+    products were generated with the ELLIPSOID form of the equations (its spherical equations are
+    only a fallback). Checked against product labels (MINIMUM/MAXIMUM_LATITUDE): the ellipsoidal
+    form applied to the planetocentric latitude reproduces the label footprint to 0.01-0.03 deg,
+    the spherical fallback is 0.05-0.08 deg off (docs/RELATORIO_TESTES_CIENTIFICOS.md).
+    Formulas: Snyder (1987), USGS Professional Paper 1395, polar aspect, k0 = 1 at the pole.
+    The grid comes from the ENVI ``map info`` tie point (upper-left corner of pixel 1,1).
     """
     south: bool
     radius_m: float
@@ -105,6 +105,7 @@ class PolarStereographic:
     tie_xy: tuple[float, float]
     pixel_size: tuple[float, float]
 
+    A = 3396190.0
     RP = 3376200.0
 
     @classmethod
@@ -116,9 +117,20 @@ class PolarStereographic:
         return cls(south="south" in name, radius_m=cls.RP, tie_px=(float(mi[1]), float(mi[2])),
                    tie_xy=(float(mi[3]), float(mi[4])), pixel_size=(float(mi[5]), float(mi[6])))
 
+    @classmethod
+    def _e(cls) -> float:
+        return math.sqrt(1.0 - (cls.RP / cls.A) ** 2)
+
+    @classmethod
+    def _k(cls) -> float:
+        e = cls._e()
+        return 2.0 * cls.A / math.sqrt((1 + e) ** (1 + e) * (1 - e) ** (1 - e))
+
     def xy(self, lat, lon):
-        colat = np.radians(90.0 + lat) if self.south else np.radians(90.0 - lat)
-        rho = 2.0 * self.RP * np.tan(colat / 2.0)
+        e = self._e()
+        phi = np.radians(-np.asarray(lat, float) if self.south else np.asarray(lat, float))
+        t = np.tan(np.pi / 4 - phi / 2) / ((1 - e * np.sin(phi)) / (1 + e * np.sin(phi))) ** (e / 2)
+        rho = self._k() * t
         lam = np.radians(lon)
         return rho * np.sin(lam), (rho * np.cos(lam) if self.south else -rho * np.cos(lam))
 
@@ -133,8 +145,11 @@ class PolarStereographic:
         """Lat/lon of pixel centres (0-based indices); longitude east 0-360."""
         x = self.tie_xy[0] + (col - (self.tie_px[0] - 1.0) + 0.5) * self.pixel_size[0]
         y = self.tie_xy[1] - (row - (self.tie_px[1] - 1.0) + 0.5) * self.pixel_size[1]
-        c = np.degrees(2.0 * np.arctan(np.hypot(x, y) / (2.0 * self.RP)))
-        lat = c - 90.0 if self.south else 90.0 - c
+        e, t = self._e(), np.hypot(x, y) / self._k()
+        phi = np.pi / 2 - 2 * np.arctan(t)
+        for _ in range(12):                      # converges to < 1e-12 rad well before 12 iterations
+            phi = np.pi / 2 - 2 * np.arctan(t * ((1 - e * np.sin(phi)) / (1 + e * np.sin(phi))) ** (e / 2))
+        lat = -np.degrees(phi) if self.south else np.degrees(phi)
         lon = np.degrees(np.arctan2(x, y if self.south else -y)) % 360.0
         return lat, lon
 
@@ -223,8 +238,8 @@ async def extract(http: HttpClient, product: ode.OdeProduct, lat: float, lon: fl
 
     legacy, legacy_wl = None, None
     processing = [
-        (f"map projection from SU header (Polar Stereographic, {'south' if proj.south else 'north'}, spherical "
-         f"fallback equations of MTR_MAP.CAT, Rp={R:.1f} m); target pixel row {row}, col {col}"
+        (f"map projection from SU header (Polar Stereographic, {'south' if proj.south else 'north'}, IAU 2000 "
+         f"ellipsoid per MTR_MAP.CAT); target pixel row {row}, col {col}"
          if isinstance(proj, PolarStereographic) else
          f"map projection from SU header (Equirectangular, R={R:.1f} m, std parallel {proj.std_parallel_deg}°); "
          f"target pixel row {row}, col {col}"),

@@ -72,7 +72,16 @@ CASES = [
                                         radius_km=3), name="Dust: Amazonis/Tharsis (held out)",
          ref="Tharsis/Amazonis dust mantle", expect="no olivine, clay, carbonate, sulfate, silica or ice"),
     dict(id="D2", body="mars", req=dict(latitude=21.433, longitude=222.1729, longitude_convention="east_360",
-                                        radius_km=3), name="Dust: Olympus aureole (held out)",
+                                        radius_km=3), name="Dust: Olympus aureole (held out in round 1; now in calibration)",
+         ref="Tharsis/Amazonis dust mantle", expect="no olivine, clay, carbonate, sulfate, silica or ice"),
+    dict(id="D4", body="mars", req=dict(latitude=5.473, longitude=224.3693, longitude_convention="east_360",
+                                        radius_km=3), name="Dust: Amazonis S (held out, round 2)",
+         ref="Tharsis/Amazonis dust mantle", expect="no olivine, clay, carbonate, sulfate, silica or ice"),
+    dict(id="D5", body="mars", req=dict(latitude=15.071, longitude=229.6985, longitude_convention="east_360",
+                                        radius_km=3), name="Dust: Olympus W (held out, round 2)",
+         ref="Tharsis/Amazonis dust mantle", expect="no olivine, clay, carbonate, sulfate, silica or ice"),
+    dict(id="D6", body="mars", req=dict(latitude=24.56, longitude=217.9007, longitude_convention="east_360",
+                                        radius_km=3), name="Dust: Amazonis N (held out, round 2)",
          ref="Tharsis/Amazonis dust mantle", expect="no olivine, clay, carbonate, sulfate, silica or ice"),
     dict(id="D3", body="mars", req=dict(latitude=10.6569, longitude=224.7566, longitude_convention="east_360",
                                         radius_km=3), name="Dust: Amazonis (held out)",
@@ -207,7 +216,7 @@ def evaluate(cid: str, d: dict, R: dict) -> tuple[str, str]:
             return "FAIL", "no M3 data"
         ok = "lunar_pyroxene" in fam and len((d.get("terrestrial_analogs") or {}).get("sites") or []) > 0
         return ("PASS" if ok else "FAIL"), f"families {sorted(fam)}"
-    if cid in ("D1", "D2", "D3"):
+    if cid in ("D1", "D2", "D3", "D4", "D5", "D6"):
         if not has_mineralogy(d):
             return "INCONCLUSIVE", f"CRISM: {(d.get('mineralogy') or {}).get('reason')}"
         bad = fam & {"olivine", "fe_mg_phyllosilicate", "al_phyllosilicate_silica", "carbonate", "sulfate", "ice",
