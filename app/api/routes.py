@@ -74,7 +74,7 @@ async def get_report(report_id: str, format: str = Query("json", pattern="^(json
     if doc["status"] == "processing":
         raise HTTPException(status_code=409, detail="analysis still processing")
     if format == "pdf":
-        pdf = reports.render_pdf(doc)
+        pdf = reports.render_pdf(doc, lang)
         return Response(pdf, media_type="application/pdf",
                         headers={"Content-Disposition": f'inline; filename="geoia-{doc["planet"]}-{report_id}.pdf"'})
     return JSONResponse(i18n.localize(doc, lang))
